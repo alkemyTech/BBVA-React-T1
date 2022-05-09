@@ -1,0 +1,29 @@
+.form-container{
+    width: 60%;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-field{
+    padding: 15px 30px;
+    border: 1px solid #c1c1c1;
+}
+
+.select-field{
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+}
+
+.submit-btn{
+    background-color: #2E86C1;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    background-color: #3498DB;
+}
