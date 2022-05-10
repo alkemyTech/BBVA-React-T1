@@ -44,14 +44,12 @@ const links = [
 
 const Footer = () => {
 
-    const [name, setName] = useState('')
     const [logo, setLogo] = useState('')
 
     useEffect( () => {
         axios.get('https://ongapi.alkemy.org/api/organization')
         .then( (res) => {
             setLogo(res.data.data.logo)
-            setName(res.data.data.name)
         })
         .catch( (err) => {
             console.log(err);
@@ -62,10 +60,12 @@ const Footer = () => {
     return(
         <footer>
             <div>
-                <h1>{name}</h1>
-                <img src={logo} alt="logo footer" />
+                <div className="logo-container">
+                    <img src={logo} alt="logo footer" />
+                    <hr/>
+                </div>
                 <nav className="nav-footer">
-                    <ul>
+                    <ul className="ul-roots">
                         <li><Link to="/inicio"> Inicio</Link></li>
                         <li><Link to="/nosotros">Nosotos </Link></li>
                         <li><Link to="/novedades">Novedades</Link></li>
@@ -73,7 +73,8 @@ const Footer = () => {
                         <li><Link to="/contacto">Contacto</Link></li>
                         <li><Link to="/contacto">Contribuye</Link></li>
                     </ul>
-                    <ul>
+                    <hr/>
+                    <ul className="ul-socials">
                         {links.map((socialLink, index) =>
                             <li key={index}>
                                 <ButtonContact 

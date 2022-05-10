@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
+
+footer{
+    font-family: 'Poppins', sans-serif;
+    background-color: #C0C0C0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12rem;
+    max-height: 559px;
+}
+hr{
+    background-color: black;
+    width:100vw;
+    box-shadow: none;
+    height:0.15rem;
+}
+
+.Logo-container{
+    margin-top:3rem;
+    display: flex;
+    flex-direction: row;
+    position:absolute;
+    margin-bottom:0;
+    padding-bottom: 0;
+}
+
+
+.logo-container img{
+    background-color: #C0C0C0;
+    z-index: 99;
+    position:relative;
+}
+
+.logo-container hr{
+    position:relative;
+    top:-7rem;
+    bottom:10px;
+}
+
+a{
+    text-decoration: none;
+    cursor:pointer;
+    color:black;
+}
+
+li{
+    list-style:none;
+}
+
+.ul-roots{
+    margin-bottom: 3rem;
+    margin-top: 0;
+
+}
+
+.ul-socials{
+    padding-bottom: 1rem;
+}
+
+.ul-roots li{
+    padding-right: 2rem;
+}
+
+.ul-socials li{
+    padding-right: 1.5rem;
+    margin-top: 2rem;
+}
+
+.ul-roots, .ul-socials{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive- Mobile */
+
+@media (max-width: 400px) {
+    hr{
+        background-color:white;
+    }
+
+    .ul-roots li{
+        font-size:0.8rem;
+        padding-right: 2rem;
+
+    }
+
+    footer{
+        height: 267px;
+        padding-top:6rem;
+        font-weight: 300;
+    }
+
+
+  }
