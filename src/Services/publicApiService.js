@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://jsonplaceholder.typicode.com/users';
 
 const config = {
     headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+        Group: 1                
     }
 }
 

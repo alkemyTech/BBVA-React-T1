@@ -1,12 +1,12 @@
 import axios from 'axios';
 
+const API_BASE_URL = 'https://ongapi.alkemy.org/api'
+
 const config = {
     headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+        Group: 1               
     }
 }
-
-const API_BASE_URL = 'https://ongapi.alkemy.org/api/docs#/';
 
 const Get = () => {
     axios.get('https://jsonplaceholder.typicode.com/users', config)
@@ -14,8 +14,7 @@ const Get = () => {
     .catch(err => console.log(err))
 }
 
-/* 
- *  peticiones DELETE a los endpoints privados
+/** Método DELETE a los endpoints privados
  *    REQUISITOS:
  *     -route := ruta destino
  *     -id := identificador de usuario
@@ -29,6 +28,20 @@ export const Delete = (rout, id) => {
     .then(res => console.log(res))
     .catch(err => console.err(err));
     //Debo devolver response...
+}
+
+
+/**
+ * Actualiza los datos de la ruta destino
+ * @function
+ * @param id Id del recurso a actualizar
+ * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
+ * @param body Se pasa el objeto del recurso a actualizar
+ * 
+ * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
+ */
+export const Put = (id, route, body) => {
+    return axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
 }
 
 export default Get
