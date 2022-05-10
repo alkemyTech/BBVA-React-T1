@@ -1,0 +1,7 @@
+.spinner{
+    z-index: 1;
+    display: inline-block;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(91, 88, 90, 0.204) ;
+}
