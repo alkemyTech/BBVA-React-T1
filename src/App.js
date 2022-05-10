@@ -15,7 +15,6 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 
 function App() {
-  require('dotenv').config()
   return (
     <>
       <BrowserRouter>

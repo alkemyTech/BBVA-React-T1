@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/'
-
 const config = {
     headers: {
         Group: 1               
@@ -25,7 +23,7 @@ const Get = () => {
  * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
  */
 export const Put = (id, route, body) => {
-    return axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
+    return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT}${process.env.REACT_APP_URL_MEMBER_PATH}/${id}`,body,config)
 }
 
 export default Get
