@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://ongapi.alkemy.org/api'
+const API_BASE_URL = 'https://ongapi.alkemy.org/api/'
 
 const config = {
     headers: {
@@ -16,18 +16,16 @@ const Get = () => {
 
 /** Método DELETE a los endpoints privados
  *    REQUISITOS:
- *     -route := ruta destino
- *     -id := identificador de usuario
- *    EJECUCIÓN: 
- *     Llama a axios.delete() con la ruta destino e útiliza el id para autentificar con el servidor,
- *      y se tratan los casos then() y catch()
+ *     - route := ruta destino
+ *     - id := identificador de usuario
+ *    DEVUELVE: 
+ *     - La promesa realizada por axios.delete() con la ruta destino, e id del obj a borrar en el servidor
+ *    POST-REQUISITOS:
+ *     - Manejar los posibles casos de la promesa devuelta.
  */
 
-export const Delete = (rout, id) => {
-    axios.delete(`${API_BASE_URL}/${rout}/${id}`, config)
-    .then(res => console.log(res))
-    .catch(err => console.err(err));
-    //Debo devolver response...
+export const Delete = (route, id) => {
+    return(axios.delete(`${API_BASE_URL}/${route}/${id}`, config.headers));
 }
 
 
