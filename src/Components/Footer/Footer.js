@@ -10,6 +10,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { grey  } from '@mui/material/colors';
 
+import './Footer.css'
+
 
 const links = [
     {
