@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://jsonplaceholder.typicode.com/'
 
 const config = {
     headers: {
-        Group: 1                //Aqui va el ID del equipo!!
+        Group: 1                //Queda a la respuesta de angeles
     }
 }
 
@@ -24,9 +24,8 @@ const Get = () => {
  * 
  * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
  */
-const Put = (id, route, body) => {
+export const Put = (id, route, body) => {
     return axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
 }
 
 export default Get
-export { Put }
