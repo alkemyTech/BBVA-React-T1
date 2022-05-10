@@ -1,3 +1,7 @@
+import React, { useState } from 'react';
+import './Nosotros.css'
+import '../../App.css'
+
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
@@ -8,11 +12,14 @@
 
 const Nosotros = () => {
 
-   
+   const [ sobreNosotros , setSobreNosotros ] = useState({
+       text : "Cargar datos de la API"
+    })
 
     return (
         <>
-        
+            <h2 class="centerText">Sobre Nosotros</h2>
+            {sobreNosotros.text}
         </>
     )
 }
