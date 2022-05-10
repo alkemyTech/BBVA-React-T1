@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/users';
+const API_BASE_URL = 'https://ongapi.alkemy.org/api/';
 
 const config = {
     headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+        Group: 1                //Aqui va el ID del equipo!!
     }
 }
 
@@ -15,17 +15,17 @@ const Get = () => {
 }
 
 
-/* Función estandard POST.
+/** Función estandard POST.
     REQUISITOS:
         - route :=  ruta destino.
         - bodyObj := objeto para enviar en el body. 
-    EJECUCIÓN:
-        - Realiza una promesa axios.post y se manejan los casos .then() y .catch()
+    RETORNO:
+        - Devuelve una promesa axios.post
+    POST-REQUISITOS:
+        -Manejar los posibles casos de la promesa devuelta.
 */
 export const Post = (route, bodyObj) => {
-    axios.post(`${API_BASE_URL}/${route}}`, bodyObj, config)
-    .then(res => console.log(res))
-    .catch(err => console.err(err));
+    return(axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers));
 }
 
 export default Get
