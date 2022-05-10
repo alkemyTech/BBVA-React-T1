@@ -23,8 +23,7 @@ const Get = () => {
         - Realiza una promesa axios.post y se manejan los casos .then() y .catch()
 */
 export const Post = (route, bodyObj) => {
-    let postUrl = `${API_BASE_URL}/${route}}`;
-    axios.post(postUrl, bodyObj, config)
+    axios.post(`${API_BASE_URL}/${route}}`, bodyObj, config)
     .then(res => console.log(res))
     .catch(err => console.err(err));
 }
