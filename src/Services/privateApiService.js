@@ -7,7 +7,7 @@ const config = {
 }
 
 const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
+    axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/users`, config)
     .then(res => console.log(res))
     .catch(err => console.log(err))
 }
