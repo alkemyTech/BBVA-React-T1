@@ -13,7 +13,6 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Spinner from './Components/Spinner/Spinner'
 
 function App() {
   return (
@@ -34,7 +33,6 @@ function App() {
         </Switch>
       </BrowserRouter>
     <div className="App">
-      <Spinner visible={true} size={200} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
