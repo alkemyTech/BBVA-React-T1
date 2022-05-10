@@ -22,7 +22,6 @@ height: 100vh;
 }
 
 .img-form {
-width: 40%;
 height: 100%;
 display: flex;
 flex-wrap: wrap;
@@ -33,3 +32,8 @@ box-sizing: border-box;
     object-fit: cover;
 }
 
+@media (max-width: 600px) {
+    .img-form{
+        display: none;
+    }
+}
