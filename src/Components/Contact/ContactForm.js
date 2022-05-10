@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import '../../Components/FormStyles.css';
 
 const ContactForm = () => {
 
     // valida 0 y codigo de país opcional. codigo area obligatorio 
-
     const numberRegex = /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/;
+    // RFC 5322 standard
+    const mailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
     let history = useHistory();
 
@@ -30,25 +31,25 @@ const ContactForm = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const phone = e.target.phone.value;
+        let name = e.target.name.value;
+        let email = e.target.email.value;
+        let phone = e.target.phone.value;
         
         if(name !== '' && email !== ''){
-            if(numberRegex.test(phone)){
+            if(numberRegex.test(phone) && mailRegex.test(email)){
                 console.log('Se envio correctamente')
             }else{
                 console.log('Ingrese un numero valido')
+                e.preventDefault();
             }
 
         } else{
             console.log('Los datos ingresados son invalidos')
+            e.preventDefault();
         }
     }
 
     const handleBtn = () => {
-        console.log('holaa');
         history.push('/')
     }
 
@@ -56,15 +57,20 @@ const ContactForm = () => {
         <>
             <section>
                 <h2>¿Queres contribuir?</h2>
+
                 <button>Contribuir</button>
+
                 <h2>¡Contactate con nosotros!</h2>
-                <form className="form-container" onSubmit={handleSubmit}>
-                    <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name" required></input>
-                    <input className="input-field" type="email" name="email" value = {initialValues.email || ''} onChange={handleChange} placeholder="Email" required></input>
-                    <input className="input-field" type="number" name="phone" value = {initialValues.phone || ''} onChange={handleChange} pattern={numberRegex} placeholder="Telefono de contacto" required></input>
-                    <textarea className="input-field" type="text" name="message" value = {initialValues.message || ''} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
+
+                <form className="form-container"  onSubmit={handleSubmit}>
+                    <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Nombre y apellido" required></input>
+                    <input className="input-field" type="email" name="email" value = {initialValues.email} onChange={handleChange} placeholder="Email" required></input>
+                    <input className="input-field" type="number" name="phone" value = {initialValues.phone} onChange={handleChange} pattern={numberRegex} placeholder="Telefono de contacto" required></input>
+                    <textarea className="input-field" type="text" name="message" value = {initialValues.message} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
+
                     <button className="submit-btn" type="submit">Enviar consulta</button>
                 </form>
+
                 <button className="submit-btn" onClick={handleBtn} required>Volver a inicio</button>
             </section>
         </>
