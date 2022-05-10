@@ -34,9 +34,9 @@ const ContactForm = () => {
 
 
 
-    // const handleBtn = () => {
-    //     history.go(-1);
-    // }
+    const handleBtn = () => {
+        console.log('holaa');
+    }
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
@@ -45,7 +45,7 @@ const ContactForm = () => {
             <input className="input-field" type="number" name="phone" value = {initialValues.phone || ''} onChange={handleChange} pattern={numberRegex} placeholder="Telefono de contacto"></input>
             <textarea className="input-field" type="text" name="message" value = {initialValues.message || ''} onChange={handleChange} placeholder = "Escriba su mensaje"></textarea>
             <button className="submit-btn" type="submit">Enviar consulta</button>
-            {/* <button className="btn" onclick="handleBtn()">Volver a inicio</button> */}
+            <button className="btn" onClick={handleBtn}>Volver a inicio</button>
         </form>
     )
 }
