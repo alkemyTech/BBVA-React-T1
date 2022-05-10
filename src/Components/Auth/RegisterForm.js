@@ -10,6 +10,10 @@ const RegisterForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const [error, setError] = useState({
+    passwordError: "",
+    confirmPasswordError: "",
+  });
 
   const handleChange = (e) => {
     if (e.target.name === "name") {
@@ -17,6 +21,24 @@ const RegisterForm = () => {
     }
     if (e.target.name === "lastName") {
       setInitialValues({ ...initialValues, lastName: e.target.value });
+    }
+    if (e.target.name === "email") {
+      setInitialValues({ ...initialValues, email: e.target.value });
+    }
+    if (e.target.name === "password") {
+      setInitialValues({ ...initialValues, password: e.target.value });
+    }
+    if (e.target.name === "confirmPassword") {
+      setInitialValues({ ...initialValues, confirmPassword: e.target.value });
+      if (
+        initialValues.password !== initialValues.confirmPassword &&
+        initialValues.confirmPassword !== ""
+      ) {
+        setError({
+          ...error,
+          confirmPasswordError: "Las contraseñas deben coincidir",
+        });
+      }
     }
   };
 
@@ -28,12 +50,8 @@ const RegisterForm = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h5" component="div" gutterBottom>
-        Bienvenido/a
-      </Typography>
-      <Typography variant="h3" gutterBottom component="div">
-        Regístrese
-      </Typography>
+      <h3>Bienvenido/a!</h3>
+      <h1>Regístrese</h1>
       <form className="form-container" onSubmit={handleSubmit}>
         <TextField
           required
@@ -67,6 +85,8 @@ const RegisterForm = () => {
           type="password"
           onChange={handleChange}
           value={initialValues.password}
+          error={error.passwordError !== "" ? true : false}
+          helperText={error.passwordError}
         />
         <TextField
           id="outlined-password-input"
@@ -75,8 +95,10 @@ const RegisterForm = () => {
           type="password"
           onChange={handleChange}
           value={initialValues.confirmPassword}
+          error={error.confirmPasswordError !== "" ? true : false}
+          helperText={error.confirmPasswordError}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button className="submit-btn" variant="contained" type="submit">
           Registrarse
         </Button>
       </form>
