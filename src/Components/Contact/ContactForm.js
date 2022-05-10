@@ -31,21 +31,24 @@ const ContactForm = () => {
     }
 
     const handleSubmit = (e) => {
+        
+        console.log(e.target)
+        e.preventDefault()
+
         let name = e.target.name.value;
         let email = e.target.email.value;
         let phone = e.target.phone.value;
         
         if(name !== '' && email !== ''){
             if(numberRegex.test(phone) && mailRegex.test(email)){
-                console.log('Se envio correctamente')
-            }else{
+                console.log('Formulario enviado')
+                setInitialValues({name: '', email: '', phone: '', message: ''});
+            } else{
                 console.log('Ingrese un numero valido')
-                e.preventDefault();
             }
 
         } else{
             console.log('Los datos ingresados son invalidos')
-            e.preventDefault();
         }
     }
 
@@ -62,11 +65,11 @@ const ContactForm = () => {
 
                 <h2>¡Contactate con nosotros!</h2>
 
-                <form className="form-container"  onSubmit={handleSubmit}>
-                    <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Nombre y apellido" required></input>
-                    <input className="input-field" type="email" name="email" value = {initialValues.email} onChange={handleChange} placeholder="Email" required></input>
-                    <input className="input-field" type="number" name="phone" value = {initialValues.phone} onChange={handleChange} pattern={numberRegex} placeholder="Telefono de contacto" required></input>
-                    <textarea className="input-field" type="text" name="message" value = {initialValues.message} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
+                <form className="form-container" method='POST' onSubmit={handleSubmit}>
+                    <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Nombre y apellido" required></input>
+                    <input className="input-field" type="email" name="email" value = {initialValues.email || ''} onChange={handleChange} placeholder="Email" required></input>
+                    <input className="input-field" type="tel" name="phone" value = {initialValues.phone || ''} onChange={handleChange}  placeholder="Telefono de contacto" required></input>
+                    <textarea className="input-field" type="text" name="message" value = {initialValues.message || ''} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
 
                     <button className="submit-btn" type="submit">Enviar consulta</button>
                 </form>
