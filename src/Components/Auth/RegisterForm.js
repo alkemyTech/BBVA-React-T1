@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, TextField, Button, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, TextField, Button } from "@mui/material";
 import "../FormStyles.css";
 
 const RegisterForm = () => {
@@ -14,6 +14,10 @@ const RegisterForm = () => {
     passwordError: "",
     confirmPasswordError: "",
   });
+
+  const passValidation = new RegExp(
+    "^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
+  );
 
   const handleChange = (e) => {
     if (e.target.name === "name") {
@@ -30,17 +34,45 @@ const RegisterForm = () => {
     }
     if (e.target.name === "confirmPassword") {
       setInitialValues({ ...initialValues, confirmPassword: e.target.value });
-      if (
-        initialValues.password !== initialValues.confirmPassword &&
-        initialValues.confirmPassword !== ""
-      ) {
-        setError({
-          ...error,
-          confirmPasswordError: "Las contraseñas deben coincidir",
-        });
-      }
     }
   };
+
+  useEffect(() => {
+    if (
+      initialValues.password !== initialValues.confirmPassword &&
+      initialValues.confirmPassword !== ""
+    ) {
+      setError({
+        ...error,
+        confirmPasswordError: "Las contraseñas deben coincidir",
+      });
+    } else {
+      setError({
+        ...error,
+        confirmPasswordError: "",
+      });
+    }
+    return () => {};
+  }, [initialValues.confirmPassword]);
+
+  useEffect(() => {
+    if (
+      !initialValues.password.match(passValidation) &&
+      initialValues.password !== ""
+    ) {
+      setError({
+        ...error,
+        passwordError:
+          "Debe contener un mínimo de 6 caracteres, una letra, un número y un símbolo",
+      });
+    } else {
+      setError({
+        ...error,
+        passwordError: "",
+      });
+    }
+    return () => {};
+  }, [initialValues.password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,60 +81,67 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <h3>Bienvenido/a!</h3>
-      <h1>Regístrese</h1>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <TextField
-          required
-          id="outlined-required"
-          name="name"
-          label="Nombre"
-          onChange={handleChange}
-          value={initialValues.name}
-        />
-        <TextField
-          required
-          id="outlined-required"
-          name="lastName"
-          label="Apellido"
-          onChange={handleChange}
-          value={initialValues.lastName}
-        />
-        <TextField
-          required
-          id="outlined-required"
-          name="email"
-          label="Email"
-          type="email"
-          onChange={handleChange}
-          value={initialValues.email}
-        />
-        <TextField
-          id="outlined-password-input"
-          name="password"
-          label="Contraseña"
-          type="password"
-          onChange={handleChange}
-          value={initialValues.password}
-          error={error.passwordError !== "" ? true : false}
-          helperText={error.passwordError}
-        />
-        <TextField
-          id="outlined-password-input"
-          name="confirmPassword"
-          label="Confirmar contraseña"
-          type="password"
-          onChange={handleChange}
-          value={initialValues.confirmPassword}
-          error={error.confirmPasswordError !== "" ? true : false}
-          helperText={error.confirmPasswordError}
-        />
-        <Button className="submit-btn" variant="contained" type="submit">
-          Registrarse
-        </Button>
-      </form>
-    </Container>
+    <div className="container-form">
+      <Container maxWidth="sm" className="form-container">
+        <h3>Bienvenido/a!</h3>
+        <h1>Regístrese</h1>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            required
+            id="outlined-required"
+            name="name"
+            label="Nombre"
+            onChange={handleChange}
+            value={initialValues.name}
+          />
+          <TextField
+            required
+            id="outlined-required"
+            name="lastName"
+            label="Apellido"
+            onChange={handleChange}
+            value={initialValues.lastName}
+          />
+          <TextField
+            required
+            id="outlined-required"
+            name="email"
+            label="Email"
+            type="email"
+            onChange={handleChange}
+            value={initialValues.email}
+          />
+          <TextField
+            id="outlined-password-input"
+            name="password"
+            label="Contraseña"
+            type="password"
+            onChange={handleChange}
+            value={initialValues.password}
+            error={error.passwordError !== "" ? true : false}
+            helperText={error.passwordError}
+            required
+          />
+          <TextField
+            id="outlined-password-input"
+            name="confirmPassword"
+            label="Confirmar contraseña"
+            type="password"
+            onChange={handleChange}
+            value={initialValues.confirmPassword}
+            error={error.confirmPasswordError !== "" ? true : false}
+            helperText={error.confirmPasswordError}
+            required
+          />
+          <Button className="submit-btn" variant="contained" type="submit">
+            Registrarse
+          </Button>
+        </form>
+      </Container>
+      <div className="img-form">
+        <img alt="" src="/images/login.png" />
+      </div>
+    </div>
   );
 };
 
