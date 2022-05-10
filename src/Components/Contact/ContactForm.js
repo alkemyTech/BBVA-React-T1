@@ -62,11 +62,11 @@ const ContactForm = () => {
 
                 <form className="form-container" method='POST' onSubmit={handleSubmit}>
                     <div className="contribution">
-                        <h2>¿Queres contribuir?</h2>
+                        <h2 className="contribution-title">¿Queres contribuir?</h2>
                         <button className="submit-btn">Contribuir</button>
                     </div>
 
-                    <h2>¡Contactate con nosotros!</h2>
+                    <h2 className="contact-us">¡Contactate con nosotros!</h2>
 
                     <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Nombre y apellido" required></input>
                     <input className="input-field" type="email" name="email" value = {initialValues.email || ''} onChange={handleChange} placeholder="Email" required></input>
