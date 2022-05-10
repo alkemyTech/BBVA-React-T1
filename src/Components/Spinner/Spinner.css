@@ -1,7 +1,8 @@
 .spinner{
-    z-index: 1;
-    display: inline-block;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    align-content: center;
     background-color: rgba(91, 88, 90, 0.204) ;
 }
