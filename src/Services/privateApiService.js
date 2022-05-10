@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://jsonplaceholder.typicode.com/'
 
 const config = {
     headers: {
-        Group: 1                //Queda a la respuesta de angelesc:
+        Group: 1               
     }
 }
 
