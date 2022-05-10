@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './Nosotros.css'
 import '../../App.css'
-
+import './Nosotros.css'
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
@@ -13,13 +12,14 @@ import '../../App.css'
 const Nosotros = () => {
 
    const [ sobreNosotros , setSobreNosotros ] = useState({
-       text : "Cargar datos de la API"
+       text : "Sobre Nosotros"
     })
 
     return (
         <>
-            <h2 class="centerText">Sobre Nosotros</h2>
-            {sobreNosotros.text}
+            <h2 class="centerText">Nosotros</h2>
+            {/* El texto sobre nosotros debe obtenerse de una API */}
+            <p>{sobreNosotros.text}</p>
         </>
     )
 }
