@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://ongapi.alkemy.org/api/';
 
 const config = {
     headers: {
-        Group: 1                //Aqui va el ID del equipo!!
+        Group: 1                
     }
 }
 
