@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+* {
+    font-family: 'Poppins';
+}
+
+.form-container{
+    width: 50%;
+    margin: 15px 40vw 15px 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-field,
+.input-field{
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: 0.7px solid #484747
+}
+
+.message-field{
+    min-height: 150px;
+}
+
+.select-field{
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+}
+
+.contribution{
+    width: 80%;
+}
+
+
+/* FORM GROUP */
+
+/* BUTTONS */
+
+.functional-btn,
+.submit-btn,
+.submit-btn-form{
+    border: none;
+    border-radius: 20px;
+    padding: 10px 25px 10px 25px;
+    color: #fff;
+    gap: 15px;
+}
+
+.contribution .submit-btn{
+    background-color: #FF0000;
+    width: 35%;
+}
+
+.submit-btn:hover{
+    cursor:pointer;
+    background-color: #e65252;
+}
+
+.submit-btn-form{
+    background-color: #0038FF;
+}
+
+.submit-btn-form:hover{
+    cursor: pointer;
+    background-color: #315aee;
+}
+
+.functional-btn{
+    background-color: #fff;
+    border-radius: 20px;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.functional-btn:hover{ 
+    cursor: pointer;
+    background-color: rgb(163, 163, 163);
+}
+
+.form-container .submit-btn-form,
+.form-container .functional-btn{
+    width: 40%;
+}

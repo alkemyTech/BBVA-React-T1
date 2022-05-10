@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import '../../Components/FormStyles.css';
+import '../ContactFormStyle.css'
 
 const ContactForm = () => {
 
@@ -58,23 +58,26 @@ const ContactForm = () => {
 
     return (
         <>
-            <section>
-                <h2>¿Queres contribuir?</h2>
-
-                <button>Contribuir</button>
-
-                <h2>¡Contactate con nosotros!</h2>
+            <section className="form-group">
 
                 <form className="form-container" method='POST' onSubmit={handleSubmit}>
+                    <div className="contribution">
+                        <h2>¿Queres contribuir?</h2>
+                        <button className="submit-btn">Contribuir</button>
+                    </div>
+
+                    <h2>¡Contactate con nosotros!</h2>
+
                     <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Nombre y apellido" required></input>
                     <input className="input-field" type="email" name="email" value = {initialValues.email || ''} onChange={handleChange} placeholder="Email" required></input>
                     <input className="input-field" type="tel" name="phone" value = {initialValues.phone || ''} onChange={handleChange}  placeholder="Telefono de contacto" required></input>
-                    <textarea className="input-field" type="text" name="message" value = {initialValues.message || ''} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
+                    <textarea className="message-field" type="text" name="message" value = {initialValues.message || ''} onChange={handleChange} placeholder = "Escriba su mensaje" required></textarea>
 
-                    <button className="submit-btn" type="submit">Enviar consulta</button>
+                    <button className="submit-btn-form" type="submit">Enviar consulta</button>
+
+                    <button className="functional-btn" onClick={handleBtn} required>Volver a inicio</button>
                 </form>
 
-                <button className="submit-btn" onClick={handleBtn} required>Volver a inicio</button>
             </section>
         </>
     )
