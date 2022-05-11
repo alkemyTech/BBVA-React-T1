@@ -1,17 +1,19 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/'
+const API_BASE_URL = 'https://ongapi.alkemy.org/api/'
+const access_token = ""
 
 const config = {
     headers: {
-        Group: 1               
+        Group: 1,                //Aqui va el ID del equipo!!
+        Authorization: `token ${access_token}`
     }
 }
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+ export const Get = (endpoint, id = "") => {
+    axios.get(`${API_BASE_URL}${endpoint}/${id}`, config)
+    .then(res => res.data)
+    .catch(err => err)
 }
 
 
@@ -28,4 +30,3 @@ export const Put = (id, route, body) => {
     return axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
 }
 
-export default Get
