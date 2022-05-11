@@ -1,15 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 const config = {
-    headers: {
-        Group: 1                
-    }
-}
+  headers: {
+    Group: 1,
+  },
+};
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+const Get = (route, id = null) => {
+  axios
+    .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => console.log(err));
+};
 
-export default Get
+export { Get };
