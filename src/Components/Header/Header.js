@@ -7,8 +7,8 @@ function Header() {
     { name: "Inicio", link: "/", requiresLogIn: false },
     { name: "Nosotros", link: "/nosotros", requiresLogIn: false },
     { name: "Contacto", link: "/contacto", requiresLogIn: false },
-    { name: "School", link: "/school", requiresLogIn: false },
-    { name: "Toys", link: "/toys", requiresLogIn: false }
+    { name: "School", link: "/school-campaign", requiresLogIn: false },
+    { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
   ];
 
   //Hamburguer menu
@@ -40,18 +40,21 @@ function Header() {
           </button>
           <div className="nav_links">
             <ul className="header_list">
-              {navMenu.map((item) => (isLoggedIn || (!isLoggedIn && !item.requiresLogIn)) && (
-                <li className={`nav_item ${navbarOpen && "showMenu"}`}>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? "active" : "link"
-                    }
-                    to={item.link}
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              ))}
+              {navMenu.map(
+                (item) =>
+                  (isLoggedIn || (!isLoggedIn && !item.requiresLogIn)) && (
+                    <li className={`nav_item ${navbarOpen && "showMenu"}`}>
+                      <NavLink
+                        className={(navData) =>
+                          navData.isActive ? "active" : "link"
+                        }
+                        to={item.link}
+                      >
+                        {item.name}
+                      </NavLink>
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         </div>
