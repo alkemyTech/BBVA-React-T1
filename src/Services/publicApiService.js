@@ -10,7 +10,7 @@ const config = {
 
 const Get = (route, id = null) => {
   axios
-    .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
+    .get(`https://ongapi.alkemy.org/api/${route}${id}`, config)
     .then((res) => {
       return res;
     })

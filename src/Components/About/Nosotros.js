@@ -17,8 +17,11 @@ const Nosotros = () => {
         loaded:false
        })
 
-    useEffect(() => {
-        Get('https://ongapi.alkemy.org/api/',"organization").then( val => {
+    useEffect( () => {
+        
+        console.log ("fasf", Get("organization"))
+        
+        Get("organization").then( val => {
             console.log("val",val)
             setSobreNosotros({...sobreNosotros, loaded: true, text: val})
             console.log("val",sobreNosotros.text)
