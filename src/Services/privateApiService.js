@@ -6,14 +6,16 @@ const access_token = ""
 const config = {
     headers: {
         Group: 1,                //Aqui va el ID del equipo!!
-        Authorization: `token ${access_token}`
+        Authorization: `token ${access_token}`,
+        'Access-Control-Allow-Headers': ''
     }
 }
 
- export const Get = (endpoint, id = "") => {
-    axios.get(`${API_BASE_URL}${endpoint}/${id}`, config)
-    .then(res => res.data)
-    .catch(err => err)
+
+
+ export const Get =  (endpoint, id = "") => {
+    const param= (id.length>0)? `/${id}`: "";
+    return axios.get(`${API_BASE_URL}${endpoint}${param}`, config)
 }
 
 /** Método DELETE a los endpoints privados
