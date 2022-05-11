@@ -1,31 +1,38 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com/users';
+const API_BASE_URL = 'https://ongapi.alkemy.org/api/';
 
 const config = {
-    headers: {
-        Group: 1                
-    }
-}
+  headers: {
+    Group: 1,
+  },
+};
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+const Get = (route, id = null) => {
+  axios
+    .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
 
 
-/* Función estandard POST.
+/** Función estandard POST.
     REQUISITOS:
         - route :=  ruta destino.
         - bodyObj := objeto para enviar en el body. 
-    EJECUCIÓN:
-        - Realiza una promesa axios.post y se manejan los casos .then() y .catch()
+    RETORNO:
+        - Devuelve res en caso de petición correcta.
+        - Devuelve el error en caso de petición incorrecta.
 */
-export const Post = (route, bodyObj) => {
-    axios.post(`${API_BASE_URL}/${route}}`, bodyObj, config)
-    .then(res => console.log(res))
-    .catch(err => console.err(err));
+export const Post = async (route, bodyObj) => {
+    try {
+        const res = await axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers);
+        return res;
+    } catch (err) { return err; }
 }
 
-export default Get
+export { Get };

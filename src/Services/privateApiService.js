@@ -16,6 +16,23 @@ const config = {
     .catch(err => err)
 }
 
+/** Método DELETE a los endpoints privados
+ *    REQUISITOS:
+ *     - route := ruta destino
+ *     - id := identificador de usuario
+ *    DEVUELVE: 
+ *     - Res de la promesa en caso de que se haya ejecutado correctamente.
+ *     - Err producido por la petición incorrecta.
+ *    
+ */
+
+export const Delete = async (route, id) => {
+    try {
+        const res = await axios.delete(`${API_BASE_URL}${route}/${id}`, config.headers);
+        return res;
+    } catch (err) { return err; }
+}
+
 
 /**
  * Actualiza los datos de la ruta destino
