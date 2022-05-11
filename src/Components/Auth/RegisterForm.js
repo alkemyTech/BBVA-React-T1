@@ -16,6 +16,9 @@ const RegisterForm = () => {
     confirmPasswordError: "",
   });
 
+  const { name, lastName, email, password, confirmPassword } = initialValues;
+  const { passwordError, confirmPasswordError } = error;
+
   const passValidation = new RegExp(
     "^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
   );
@@ -24,7 +27,7 @@ const RegisterForm = () => {
     setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
 
-  function handleErrorConfirmPassword() {
+  const handleErrorConfirmPassword = () => {
     if (
       initialValues.password !== initialValues.confirmPassword &&
       initialValues.confirmPassword !== ""
@@ -39,9 +42,9 @@ const RegisterForm = () => {
         confirmPasswordError: "",
       });
     }
-  }
+  };
 
-  function handleErrorPassword() {
+  const handleErrorPassword = () => {
     if (
       !initialValues.password.match(passValidation) &&
       initialValues.password !== ""
@@ -57,22 +60,21 @@ const RegisterForm = () => {
         passwordError: "",
       });
     }
-  }
+  };
 
   useEffect(() => {
     handleErrorConfirmPassword();
     return () => {};
-  }, [initialValues.confirmPassword]);
+  }, [confirmPassword]);
 
   useEffect(() => {
     handleErrorPassword();
     return () => {};
-  }, [initialValues.password]);
+  }, [password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("token", "tokenValueExample");
-    return initialValues;
   };
 
   return (
@@ -87,7 +89,7 @@ const RegisterForm = () => {
             name="name"
             label="Nombre"
             onChange={handleChange}
-            value={initialValues.name}
+            value={name}
           />
           <TextField
             required
@@ -95,7 +97,7 @@ const RegisterForm = () => {
             name="lastName"
             label="Apellido"
             onChange={handleChange}
-            value={initialValues.lastName}
+            value={lastName}
           />
           <TextField
             required
@@ -104,7 +106,7 @@ const RegisterForm = () => {
             label="Email"
             type="email"
             onChange={handleChange}
-            value={initialValues.email}
+            value={email}
           />
           <TextField
             id="outlined-password-input"
@@ -112,9 +114,9 @@ const RegisterForm = () => {
             label="Contraseña"
             type="password"
             onChange={handleChange}
-            value={initialValues.password}
-            error={error.passwordError !== "" ? true : false}
-            helperText={error.passwordError}
+            value={password}
+            error={passwordError !== "" ? true : false}
+            helperText={passwordError}
             required
           />
           <TextField
@@ -123,9 +125,9 @@ const RegisterForm = () => {
             label="Confirmar contraseña"
             type="password"
             onChange={handleChange}
-            value={initialValues.confirmPassword}
-            error={error.confirmPasswordError !== "" ? true : false}
-            helperText={error.confirmPasswordError}
+            value={confirmPassword}
+            error={confirmPasswordError !== "" ? true : false}
+            helperText={confirmPasswordError}
             required
           />
           <Button
