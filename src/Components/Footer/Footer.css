@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
 
-footer{
+.footer-front{
     font-family: 'Poppins', sans-serif;
     background-color: #C0C0C0;
     text-align: center;
@@ -9,61 +9,52 @@ footer{
     align-items: center;
     padding-bottom: 12rem;
     max-height: 559px;
+    width: 100vw;
 }
-hr{
+
+.hr-logo, .hr-nav{
     background-color: black;
     width:100vw;
-    box-shadow: none;
     height:0.15rem;
 }
 
-.Logo-container{
-    margin-top:3rem;
-    display: flex;
-    flex-direction: row;
+.logo-container{
+    position:relative;
+    z-index: 899;
+}
+
+.hr-logo{
     position:absolute;
-    margin-bottom:0;
-    padding-bottom: 0;
+    top:6rem;
+    z-index: -9999;
 }
 
-
-.logo-container img{
+.img-logo{
     background-color: #C0C0C0;
-    z-index: 99;
-    position:relative;
+    padding:0 4rem;
 }
 
-.logo-container hr{
-    position:relative;
-    top:-7rem;
-    bottom:10px;
-}
-
-a{
-    text-decoration: none;
-    cursor:pointer;
-    color:black;
-}
-
-li{
+.li-roots, .li-socials{
     list-style:none;
 }
 
 .ul-roots{
     margin-bottom: 3rem;
     margin-top: 0;
-
 }
 
 .ul-socials{
     padding-bottom: 1rem;
 }
 
-.ul-roots li{
+.li-roots .a-roots{
     padding-right: 2rem;
+    text-decoration: none;
+    cursor:pointer;
+    color:black;
 }
 
-.ul-socials li{
+.li-socials{
     padding-right: 1.5rem;
     margin-top: 2rem;
 }
@@ -79,21 +70,29 @@ li{
 /* Responsive- Mobile */
 
 @media (max-width: 400px) {
-    hr{
-        background-color:white;
+    
+    .hr-logo, .hr-nav{
+        background-color:#FFFFFF;
     }
 
-    .ul-roots li{
+    .img-logo{
+        padding:0 2rem;
+    }
+    
+    .ul-roots{
+        margin-bottom: 1rem;
+    }
+
+    .li-roots{
         font-size:0.8rem;
-        padding-right: 2rem;
-
+        padding-bottom: 0.5rem;
     }
 
-    footer{
+    .footer-front{
         height: 267px;
-        padding-top:6rem;
+        padding-top:3rem;
         font-weight: 300;
+        padding-bottom: 8rem;
     }
-
 
   }

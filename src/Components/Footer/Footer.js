@@ -11,6 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { grey  } from '@mui/material/colors';
 
+
 //CSS
 import './Footer.css'
 
@@ -35,7 +36,6 @@ const links = [
   ];
 
 
-
 const Footer = () => {
     const [logo, setLogo] = useState('')
     useEffect( () => {
@@ -47,27 +47,26 @@ const Footer = () => {
     }, [])
 
     
-    
     return(
-        <footer >
+        <footer className ="footer-front" >
             <div>
                 <div className="logo-container">
-                    <img src={logo} alt="logo footer" />
-                    <hr/>
+                    <img className="img-logo" src={logo} alt="img-logo"/>
+                    <hr className = "hr-logo"/>
                 </div>
                 <nav className="nav-footer">
                     <ul className="ul-roots">
-                        <li><Link to="/inicio"> Inicio</Link></li>
-                        <li><Link to="/nosotros">Nosotos </Link></li>
-                        <li><Link to="/novedades">Novedades</Link></li>
-                        <li><Link to="/testimonios">Testimonios</Link></li>
-                        <li><Link to="/contacto">Contacto</Link></li>
-                        <li><Link to="/contacto">Contribuye</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/inicio"> Inicio</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/nosotros">Nosotos </Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/novedades">Novedades</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/testimonios">Testimonios</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots"to="/contacto">Contacto</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/contacto">Contribuye</Link></li>
                     </ul>
-                    <hr/>
+                    <hr className= "hr-nav"/>
                     <ul className="ul-socials">
                         {links.map((socialLink, index) =>
-                            <li key={index}>
+                            <li className ="li-socials" key={index}>
                                 <a href={socialLink.href} rel="noreferrer" target="_blank">
                                         <Avatar sx={{ bgcolor: grey[900] }}>
                                             {socialLink.icon}
