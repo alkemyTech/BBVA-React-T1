@@ -16,8 +16,8 @@ const Get = () => {
 
 export const PrivatePost = (endpoint, body) => {
     axios.post(`${API_BASE_URL}${endpoint}`,body, config)
-    .then(res => {return res})
-    .catch(err => console.log(err))
+    .then(res => res)
+    .catch(err => err)
 }
 
 
