@@ -25,30 +25,37 @@ import './LoginForm.css';
 
 const LoginForm = () => {
   
+  const submitHandler = e => {
+    e.preventDefault();
+    console.log('Submit'); //BORRAR
+  }
   return (
     <>
-    <div className="login-container">
-        <div className='form-container form-login border'>
-          <FormControl>
-            <TextField required
-              id="emailId" name='email'
-              type='email' label="Email"
-              helperText='HelperText'
-            />
-            <TextField required
-              id="passwordId" name='password'
-              type='password' label="Password"
-              helperText='HelperText'
-            />
-            <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-            <Button>Iniciar Sesión</Button>
-          </FormControl>
+      <div className="login-container">
+        <div className='form-container form-login '>
+          <form action="" onSubmit={submitHandler}>
+            <FormControl>
+              <span>Bienvendio</span>
+              <h2>Inicia sesion en tu cuenta!</h2>
+              <TextField required
+                id="emailId" name='email'
+                type='email' label="Email"
+                helperText='HelperText'
+              />
+              <TextField required
+                id="passwordId" name='password'
+                type='password' label="Password"
+                helperText='HelperText'
+              />
+              <Button type='submit'>Iniciar Sesión</Button>
+            </FormControl>
+          </form>
 
         </div>
-        <div className='img-container border'>
+        <div className='img-container '>
           <img alt="img-login" src={`${process.env.PUBLIC_URL}/images/login.jpg`} />
         </div>
-    </div>
+      </div>
     </>
   );
 }
