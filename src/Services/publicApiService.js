@@ -20,12 +20,16 @@ const Get = () => {
         - route :=  ruta destino.
         - bodyObj := objeto para enviar en el body. 
     RETORNO:
-        - Devuelve una promesa axios.post
+        - Devuelve res en caso de petición correcta.
+        - Devuelve el error en caso de petición incorrecta.
     POST-REQUISITOS:
-        -Manejar los posibles casos de la promesa devuelta.
+        -.
 */
-export const Post = (route, bodyObj) => {
-    return(axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers));
+export const Post = async (route, bodyObj) => {
+    try {
+        const res = await axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers);
+        return res;
+    } catch (err) { return err; }
 }
 
 export default Get
