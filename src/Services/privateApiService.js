@@ -14,6 +14,12 @@ const Get = () => {
     .catch(err => console.log(err))
 }
 
+export const privatePost = (endpoint, body) => {
+    axios.post(`${API_BASE_URL}${endpoint}`,body, config)
+    .then(res => {return res})
+    .catch(err => console.log(err))
+}
+
 
 /**
  * Actualiza los datos de la ruta destino
@@ -29,3 +35,4 @@ export const Put = (id, route, body) => {
 }
 
 export default Get
+
