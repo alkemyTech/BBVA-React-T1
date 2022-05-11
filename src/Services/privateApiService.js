@@ -5,7 +5,7 @@ const access_token = ""
 
 const config = {
     headers: {
-        Group: 1,                //Aqui va el ID del equipo!!
+        Group: 1,
         Authorization: `token ${access_token}`
     }
 }
@@ -47,4 +47,3 @@ export const Delete = async (route, id) => {
 export const Put = (id, route, body) => {
     return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT}${process.env.REACT_APP_URL_MEMBER_PATH}/${id}`,body,config)
 }
-

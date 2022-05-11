@@ -7,8 +7,6 @@
 node_modules/
 dist/
 package-lock.json
-#Incluyo los archivos .env
-#.env
 
 # Compiled Java class files
 *.class
