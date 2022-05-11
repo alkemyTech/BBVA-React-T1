@@ -37,6 +37,11 @@
     color: #ff0000;
 }
 
+/* Utilicé !important para sobreescribir estilos de MaterialUI */
+.submit-btn{
+background-color: #ff0000 !important;
+}
+
 @media (max-width: 600px) {
     .img-form {
         display: none;

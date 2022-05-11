@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, TextField, Button } from "@mui/material";
-import { Redirect, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../FormStyles.css";
 
 const RegisterForm = () => {
@@ -12,9 +12,13 @@ const RegisterForm = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState({
-    passwordError: "",
-    confirmPasswordError: "",
+    passwordError: false,
+    confirmPasswordError: false,
   });
+
+  const passErrorMsg =
+    "Debe contener un mínimo de 6 caracteres, una letra, un número y un símbolo";
+  const cPassErrorMsg = "Las contraseñas deben coincidir";
 
   const { name, lastName, email, password, confirmPassword } = initialValues;
   const { passwordError, confirmPasswordError } = error;
@@ -27,55 +31,20 @@ const RegisterForm = () => {
     setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
 
-  const handleErrorConfirmPassword = () => {
-    if (
-      initialValues.password !== initialValues.confirmPassword &&
-      initialValues.confirmPassword !== ""
-    ) {
-      setError({
-        ...error,
-        confirmPasswordError: "Las contraseñas deben coincidir",
-      });
-    } else {
-      setError({
-        ...error,
-        confirmPasswordError: "",
-      });
-    }
-  };
-
-  const handleErrorPassword = () => {
-    if (
-      !initialValues.password.match(passValidation) &&
-      initialValues.password !== ""
-    ) {
-      setError({
-        ...error,
-        passwordError:
-          "Debe contener un mínimo de 6 caracteres, una letra, un número y un símbolo",
-      });
-    } else {
-      setError({
-        ...error,
-        passwordError: "",
-      });
-    }
-  };
-
-  useEffect(() => {
-    handleErrorConfirmPassword();
-    return () => {};
-  }, [confirmPassword]);
-
-  useEffect(() => {
-    handleErrorPassword();
-    return () => {};
-  }, [password]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("token", "tokenValueExample");
   };
+
+  useEffect(() => {
+    setError({
+      ...error,
+      confirmPasswordError:
+        password !== confirmPassword && confirmPassword !== "",
+      passwordError: !password.match(passValidation) && password !== "",
+    });
+    return () => {};
+  }, [initialValues.password, initialValues.confirmPassword]);
 
   return (
     <div className="main-container-form">
@@ -115,8 +84,8 @@ const RegisterForm = () => {
             type="password"
             onChange={handleChange}
             value={password}
-            error={passwordError !== "" ? true : false}
-            helperText={passwordError}
+            error={passwordError}
+            helperText={passwordError ? passErrorMsg : ""}
             required
           />
           <TextField
@@ -126,15 +95,14 @@ const RegisterForm = () => {
             type="password"
             onChange={handleChange}
             value={confirmPassword}
-            error={confirmPasswordError !== "" ? true : false}
-            helperText={confirmPasswordError}
+            error={confirmPasswordError}
+            helperText={confirmPasswordError ? cPassErrorMsg : ""}
             required
           />
           <Button
             className="submit-btn"
             variant="contained"
             type="submit"
-            style={{ backgroundColor: "#ff0000" }}
           >
             Registrarse
           </Button>
