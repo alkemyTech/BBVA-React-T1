@@ -19,10 +19,7 @@ function Header() {
 
   //Validate if the user has token in localStorage
   let isLoggedIn = false;
-  !localStorage.getItem("token") === null ||
-  !localStorage.getItem("token") === undefined
-    ? (isLoggedIn = true)
-    : (isLoggedIn = false);
+  localStorage.getItem("token") ? (isLoggedIn = true) : (isLoggedIn = false);
 
   return (
     <div className="header">
