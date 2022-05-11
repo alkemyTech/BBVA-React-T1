@@ -13,14 +13,9 @@ const config = {
 
 
 
-export const Get =  async (endpoint, id = null) => {
-    try{
+export const Get =  (endpoint, id = null) => {
     const param = (id) ? `/${id}`: "";
-    return await axios.get(`${API_BASE_URL}${endpoint}${param}`, config)
-    }
-    catch(err){
-        return err;
-    }
+    return axios.get(`${API_BASE_URL}${endpoint}${param}`, config)
 }
 
 /** Método DELETE a los endpoints privados

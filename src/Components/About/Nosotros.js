@@ -17,30 +17,26 @@ const Nosotros = () => {
         loaded:false
        })
 
-    useEffect( () => {
-        
-        console.log ("fasf", Get("organization"))
-        
-        Get("organization").then( val => {
-            console.log("val",val)
-            setSobreNosotros({...sobreNosotros, loaded: true, text: val})
-            console.log("val",sobreNosotros.text)
+    useEffect( async () => { 
+        Get("organization").then(res => {
+            setSobreNosotros({...sobreNosotros, loaded: true, text: res})
         })
-        
     }, []);
 
 
     return (
         <>
-            <h2 class="centerText">Nosotros</h2>
-            {/* El texto sobre nosotros debe obtenerse de una API */}
-            {
-                sobreNosotros.loaded &&
-                (
-                <div dangerouslySetInnerHTML= {{__html: (sobreNosotros.text.data.data.long_description)}} />
-                )
-            }
-            </>
+            <div>
+                <h2 class="centerText">Nosotros</h2>
+                {/* El texto sobre nosotros debe obtenerse de una API */}
+                {
+                    sobreNosotros.loaded &&
+                    (
+                    <div dangerouslySetInnerHTML= {{__html: (sobreNosotros.text.data.data.long_description)}} />
+                    )
+                }
+            </div>
+        </>
     )
 }
 
