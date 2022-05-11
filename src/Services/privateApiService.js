@@ -43,7 +43,11 @@ export const Delete = async (route, id) => {
  * 
  * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
  */
-export const Put = (id, route, body) => {
-    return axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
+export const Put = async (id, route, body) => {
+    try{
+    return await axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
+    }catch(error){
+        return error
+    }
 }
 
