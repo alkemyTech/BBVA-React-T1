@@ -10,10 +10,11 @@ const Get = (route, id = null) => {
   axios
     .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
     .then((res) => {
-      console.log(res);
       return res;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return err;
+    });
 };
 
 export { Get };
