@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { FormControl } from '@mui/material';
+import { FormControl, FormHelperText, TextField, Button } from '@mui/material';
 
 // Styles
 
@@ -27,13 +27,27 @@ const LoginForm = () => {
   
   return (
     <>
-    <div className="form-login">
-      <div className='form-container form-login'>
-        <h2>FORM</h2>
-      </div>
-      <div className='img-container'>
-        <h2>IMG</h2>
-      </div>
+    <div className="login-container">
+        <div className='form-container form-login border'>
+          <FormControl>
+            <TextField required
+              id="emailId" name='email'
+              type='email' label="Email"
+              helperText='HelperText'
+            />
+            <TextField required
+              id="passwordId" name='password'
+              type='password' label="Password"
+              helperText='HelperText'
+            />
+            <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+            <Button>Iniciar Sesión</Button>
+          </FormControl>
+
+        </div>
+        <div className='img-container border'>
+          <img alt="img-login" src={`${process.env.PUBLIC_URL}/images/login.jpg`} />
+        </div>
     </div>
     </>
   );
