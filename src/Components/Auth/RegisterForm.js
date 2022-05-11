@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, TextField, Button } from "@mui/material";
 import "../FormStyles.css";
+import "./RegisterForm.css";
 
 const RegisterForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -20,24 +21,10 @@ const RegisterForm = () => {
   );
 
   const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
-    }
-    if (e.target.name === "lastName") {
-      setInitialValues({ ...initialValues, lastName: e.target.value });
-    }
-    if (e.target.name === "email") {
-      setInitialValues({ ...initialValues, email: e.target.value });
-    }
-    if (e.target.name === "password") {
-      setInitialValues({ ...initialValues, password: e.target.value });
-    }
-    if (e.target.name === "confirmPassword") {
-      setInitialValues({ ...initialValues, confirmPassword: e.target.value });
-    }
+    setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
+  function handleErrorConfirmPassword() {
     if (
       initialValues.password !== initialValues.confirmPassword &&
       initialValues.confirmPassword !== ""
@@ -52,10 +39,9 @@ const RegisterForm = () => {
         confirmPasswordError: "",
       });
     }
-    return () => {};
-  }, [initialValues.confirmPassword]);
+  }
 
-  useEffect(() => {
+  function handleErrorPassword() {
     if (
       !initialValues.password.match(passValidation) &&
       initialValues.password !== ""
@@ -71,21 +57,30 @@ const RegisterForm = () => {
         passwordError: "",
       });
     }
+  }
+
+  useEffect(() => {
+    handleErrorConfirmPassword();
+    return () => {};
+  }, [initialValues.confirmPassword]);
+
+  useEffect(() => {
+    handleErrorPassword();
     return () => {};
   }, [initialValues.password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(initialValues);
     localStorage.setItem("token", "tokenValueExample");
+    return initialValues;
   };
 
   return (
-    <div className="container-form">
+    <div className="main-container-form">
       <Container maxWidth="sm" className="form-container">
         <h3>Bienvenido/a!</h3>
         <h1>Regístrese</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleSubmit}>
           <TextField
             required
             id="outlined-required"
@@ -133,13 +128,18 @@ const RegisterForm = () => {
             helperText={error.confirmPasswordError}
             required
           />
-          <Button className="submit-btn" variant="contained" type="submit">
+          <Button
+            className="submit-btn"
+            variant="contained"
+            type="submit"
+            style={{ backgroundColor: "#ff0000" }}
+          >
             Registrarse
           </Button>
         </form>
       </Container>
-      <div className="img-form">
-        <img alt="" src="/images/login.png" />
+      <div className="img-form-container">
+        <img className="img-form" alt="" src="/images/login.png" />
       </div>
     </div>
   );
