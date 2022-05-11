@@ -1,18 +1,24 @@
-import axios from 'axios';
+
+import axios from "axios";
 
 const API_BASE_URL = 'https://ongapi.alkemy.org/api/';
 
 const config = {
-    headers: {
-        Group: 1                
-    }
-}
+  headers: {
+    Group: 1,
+  },
+};
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+const Get = (route, id = null) => {
+  axios
+    .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
 
 
 /** Función estandard POST.
@@ -22,8 +28,6 @@ const Get = () => {
     RETORNO:
         - Devuelve res en caso de petición correcta.
         - Devuelve el error en caso de petición incorrecta.
-    POST-REQUISITOS:
-        -.
 */
 export const Post = async (route, bodyObj) => {
     try {
@@ -32,4 +36,4 @@ export const Post = async (route, bodyObj) => {
     } catch (err) { return err; }
 }
 
-export default Get
+export { Get };
