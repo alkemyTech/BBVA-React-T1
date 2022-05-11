@@ -11,6 +11,12 @@ function Header() {
     { name: "Toys", link: "/toys", requiresLogIn: false }
   ];
 
+  //Hamburguer menu
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const handleToggle = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
   //Validate if the user has token in localStorage
   let isLoggedIn = false;
   !localStorage.getItem("token") === null ||
@@ -27,10 +33,15 @@ function Header() {
             src="/images/assets/logo.png"
             alt="logo"
           />
+          <button onClick={handleToggle} className="toggle-button">
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
           <div className="nav_links">
             <ul className="header_list">
               {navMenu.map((item) => (isLoggedIn || (!isLoggedIn && !item.requiresLogIn)) && (
-                <li className={`nav_item`}>
+                <li className={`nav_item ${navbarOpen && "showMenu"}`}>
                   <NavLink
                     className={(navData) =>
                       navData.isActive ? "active" : "link"
