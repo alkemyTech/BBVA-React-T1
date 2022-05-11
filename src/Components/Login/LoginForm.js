@@ -1,4 +1,9 @@
 import React, {useEffect} from 'react';
+import { FormControl } from '@mui/material';
+
+// Styles
+
+import './LoginForm.css';
 //import 'styles.css'; // Relative path to public.
 //import '/css/responsive.css'; // Relative path to public.
 
@@ -11,7 +16,7 @@ import React, {useEffect} from 'react';
 *   - La contraseña debe tener una longitud mínima de 6 caraceteres, 
 *     y contener al menos un número, una letra y un símbolo 
 *     (por ejemplo: @#$%).
-*   - Utilizar formik para validar los campos. Al no disponer aún del servicio de peticiones HTTP, solamente almacenar los campos completados en un objeto (para posteriormente enviarlo).
+*   - Al no disponer aún del servicio de peticiones HTTP, solamente almacenar los campos completados en un objeto (para posteriormente enviarlo).
 *   - El email debe tener un formato adecuado.
 */
 
@@ -23,7 +28,12 @@ const LoginForm = () => {
   return (
     <>
     <div className="form-login">
-      <h2>LOGIN FORM</h2>
+      <div className='form-container form-login'>
+        <h2>FORM</h2>
+      </div>
+      <div className='img-container'>
+        <h2>IMG</h2>
+      </div>
     </div>
     </>
   );
