@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, TextField, Button } from "@mui/material";
+import { Redirect, NavLink } from "react-router-dom";
 import "../FormStyles.css";
-import "./RegisterForm.css";
 
 const RegisterForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -137,6 +137,10 @@ const RegisterForm = () => {
             Registrarse
           </Button>
         </form>
+        <p className="question-p">¿Ya tienes una cuenta?</p>
+        <NavLink className="nav-link" to="/login">
+          Inicia sesión
+        </NavLink>
       </Container>
       <div className="img-form-container">
         <img className="img-form" alt="" src="/images/login.png" />
