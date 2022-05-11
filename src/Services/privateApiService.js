@@ -21,13 +21,16 @@ const config = {
  *     - route := ruta destino
  *     - id := identificador de usuario
  *    DEVUELVE: 
- *     - La promesa realizada por axios.delete() con la ruta destino, e id del obj a borrar en el servidor
- *    POST-REQUISITOS:
- *     - Manejar los posibles casos de la promesa devuelta.
+ *     - Res de la promesa en caso de que se haya ejecutado correctamente.
+ *     - Err producido por la petición incorrecta.
+ *    
  */
 
-export const Delete = (route, id) => {
-    return(axios.delete(`${API_BASE_URL}/${route}/${id}`, config.headers));
+export const Delete = async (route, id) => {
+    try {
+        const res = await axios.delete(`${API_BASE_URL}${route}/${id}`, config.headers);
+        return res;
+    } catch (err) { return err; }
 }
 
 
