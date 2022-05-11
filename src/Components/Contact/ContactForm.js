@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import SnackBarMessage from '../Message/SnackBarMessage';
 import '../ContactFormStyle.css'
 
 const ContactForm = () => {
@@ -9,7 +10,7 @@ const ContactForm = () => {
     // RFC 5322 standard
     const mailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
 
-    let history = useHistory();
+    const history = useHistory();
 
     const [initialValues, setInitialValues] = useState({
         name: '',
@@ -18,42 +19,55 @@ const ContactForm = () => {
         message: ''
     });
 
+    const [showMessage, setShowMessage] = useState({
+        status: false,
+        message: '',
+        type: ''
+    });
+
+    const { status, message, type } = showMessage 
+
     const handleChange = (e) => {
-        if(e.target.name === 'name') {
-            setInitialValues({...initialValues,name: e.target.value});
-        }if(e.target.name === 'email') {
-            setInitialValues({...initialValues,email: e.target.value});
-        }if(e.target.name === 'phone') {
-            setInitialValues({...initialValues,phone: e.target.value});
-        }if(e.target.name === 'message') {
-            setInitialValues({...initialValues,message: e.target.value});
-        }
+        setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
 
     const handleSubmit = (e) => {
         
-        console.log(e.target)
         e.preventDefault()
-
-        let name = e.target.name.value;
-        let email = e.target.email.value;
-        let phone = e.target.phone.value;
         
-        if(name !== '' && email !== ''){
-            if(numberRegex.test(phone) && mailRegex.test(email)){
-                console.log('Formulario enviado')
+        if(e.target.name.value !== '' && e.target.email.value !== ''){
+            if(numberRegex.test(e.target.phone.value) && mailRegex.test(e.target.email.value)){
                 setInitialValues({name: '', email: '', phone: '', message: ''});
-            } else{
-                console.log('Ingrese un numero valido')
+                setShowMessage({
+                    status: true,
+                    message: 'Mensaje enviado correctamente',
+                    type: 'success'
+                })
+            }else{
+                setShowMessage({
+                    status: true,
+                    message: 'Coloque un numero de contacto valido',
+                    type: 'warning'
+                })
             }
-
-        } else{
-            console.log('Los datos ingresados son invalidos')
+        }else{
+            setShowMessage({
+                status: true,
+                message: 'Complete todos los campos',
+                type: 'error'
+            })
         }
     }
 
     const handleBtn = () => {
         history.push('/')
+    }
+
+    const handleClose = () => {
+        setShowMessage({
+            ...showMessage,
+            status: false
+        })
     }
 
     return (
@@ -77,8 +91,8 @@ const ContactForm = () => {
 
                     <button className="functional-btn" onClick={handleBtn} required>Volver a inicio</button>
                 </form>
-
             </section>
+            <SnackBarMessage estado={status} handleClose={handleClose} type={type} message={message}/>
         </>
     )
 }
