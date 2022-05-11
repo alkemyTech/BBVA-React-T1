@@ -12,7 +12,7 @@ const config = {
 
 export const Get = (endpoint, id = null) => {
   const param = id ? `/${id}` : "";
-  return axios.get(`${API_BASE_URL}${endpoint}${param}`);
+  return axios.get(`${API_BASE_URL}${endpoint}${param}`, config);
 };
 
 /** Método DELETE a los endpoints privados
