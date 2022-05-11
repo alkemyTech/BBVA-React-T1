@@ -41,7 +41,7 @@ export const Delete = async (route, id) => {
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
  * 
- * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
+ * @returns Body de respuesta capturada por try/catch
  */
 export const Put = async (id, route, body) => {
     try{
