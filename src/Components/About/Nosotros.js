@@ -31,7 +31,7 @@ const Nosotros = () => {
         <>
         
         <div className='containerGeneral'>
-        <Spinner visible={true} className="spinner"  /> 
+        <Spinner visible={!sobreNosotros.loaded} className="spinner"  /> 
             <h2 class="centerText">Nosotros</h2>
                 <div className='flexContainer'>
                     <div>
