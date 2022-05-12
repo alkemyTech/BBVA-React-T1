@@ -1,13 +1,8 @@
 import axios from "axios";
 
-<<<<<<< HEAD
-const API_BASE_URL = "https://ongapi.alkemy.org/api/";
+
 const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
-=======
 
-const access_token = ""
-
->>>>>>> main
 
 const config = {
   headers: {
@@ -68,9 +63,15 @@ export const PrivatePost = (endpoint, body) => {
  * @param id Id del recurso a actualizar
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
- *
- * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
+ * 
+ * @returns Body de respuesta capturada por try/catch
  */
-export const Put = (id, route, body) => {
-  return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, body, config);
-};
+export const Put = async (id, route, body) => {
+    try{
+    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
+    }catch(error){
+        return error
+    }
+}
+
+

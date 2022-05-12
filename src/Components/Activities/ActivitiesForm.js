@@ -8,8 +8,9 @@ import './ActivitiesForm.css'
 import { useEffect } from 'react';
 import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
-
+import { Snackbar , Alert } from '@mui/material';
 import { getDateString } from '../../Utils/Utils';
+import { useHistory } from "react-router-dom";
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -19,6 +20,12 @@ const ActivitiesForm = () => {
         description: '',
         getData: '',
     });
+    const history = useHistory();
+    const [snack, setSnack] = useState({
+        open: false,
+        message: "",
+        severity: "error",
+    })
  
 
     const { idActividad } = useParams();
@@ -39,7 +46,7 @@ const ActivitiesForm = () => {
             })
         }
         
-    }, );
+    },[] );
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -78,11 +85,17 @@ const ActivitiesForm = () => {
             updated_at:   getDateString(),
             deleted_at: "" ,
         }
-        var promesa = (idActividad)? Put("activities",objectSend.id,objectSend) : PrivatePost("activities",objectSend);
+        var promesa = (idActividad)? Put(objectSend.id,"activities",objectSend) : PrivatePost("activities",objectSend);
 
         promesa.then( res => {
             if(res.data.success){
-                console.log ("OK")
+                history.push("/activities");
+            }else{
+                setSnack({...snack, 
+                message:"Error debe completar todos los casilleros y subir una imagen.",
+                open:true,
+                severity:"error"
+            })
             }
         })
         
@@ -90,6 +103,9 @@ const ActivitiesForm = () => {
         
     }
     
+    const onCloseSnack = () =>{
+        setSnack({...snack, open:false})
+    }
 
 
     return (
@@ -111,6 +127,18 @@ const ActivitiesForm = () => {
                 
                 <button className="submit-btn" type="submit" >Send</button>
             </form>
+
+            <Snackbar
+                open={snack.open}
+                severity={snack.severity}
+                autoHideDuration={3000}
+                onClose={onCloseSnack}
+
+                action={onCloseSnack}>
+                <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
+                    {snack.message}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

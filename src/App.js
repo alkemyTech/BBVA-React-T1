@@ -16,6 +16,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import Test from './Components/Test/Test';
 import Footer from './Components/Footer/Footer'
 import ContactForm from './Components/Contact/ContactForm.js';
+import ActivitiesList from './Components/Activities/ActivitiesList.js';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
+          <Route path="/activities" component={ActivitiesList}/>
           <Route path="/edit-activity/:idActividad" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
