@@ -1,3 +1,4 @@
+import { Visibility } from "@mui/icons-material";
 import {TailSpin} from "react-loader-spinner";
 import './Spinner.css'
 
@@ -14,7 +15,7 @@ import './Spinner.css'
  */
 const Spinner = ({visible,size,padding,color}) => {
     return(
-        <div className="spinner" style={padding={padding}}>
+        <div className="spinner" style={{padding: {padding}, visibility: (visible?'visible':'hidden') }} >
         {visible &&
         <TailSpin
             height={size}
