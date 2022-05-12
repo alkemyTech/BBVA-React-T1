@@ -1,0 +1,50 @@
+.card-ver{
+    position: relative;
+        flex: 0 0 240px;
+        width: 240px;
+        height: 320px;
+        background-color: #333;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow:
+            rgba(black, 0.66) 0 30px 60px 0,
+}
+
+.card-ver.staff{
+    background: linear-gradient(rgba(0, 0, 0, 0.5) -28.48% rgba(0, 0, 0, 0) 80.06%)
+}
+.name{
+    font-family: 'Mulish', sans-serif;
+}
+.name.staff {
+    font-weight: 700;
+    font-size: 24px;
+}
+.description-card.staff {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+}
+
+.card-body-ver.staff{
+    box-sizing: border-box;
+    padding: 20px;
+    width: 240px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;;
+    text-align: center;
+}
+
+.name.staff, .description-card.staff{
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.77);
+    color: white;
+}
+.name.testimonials{
+    font-weight: 600;
+    font-size: 16px;
+}
+
