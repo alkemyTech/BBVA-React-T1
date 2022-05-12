@@ -13,6 +13,8 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
+import Footer from './Components/Footer/Footer'
+import ContactForm from './Components/Contact/ContactForm.js';
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/contact-form" component={ContactForm} />
         </Switch>
+        <Footer/>
       </BrowserRouter>
     <div className="App">
       <header className="App-header">
