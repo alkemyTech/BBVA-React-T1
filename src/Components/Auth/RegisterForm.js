@@ -36,12 +36,15 @@ const RegisterForm = () => {
     localStorage.setItem("token", "tokenValueExample");
   };
 
+  const validConfirmPassword =
+    password !== confirmPassword && confirmPassword !== "";
+  const validPassword = !password.match(passValidation) && password !== "";
+
   useEffect(() => {
     setError({
       ...error,
-      confirmPasswordError:
-        password !== confirmPassword && confirmPassword !== "",
-      passwordError: !password.match(passValidation) && password !== "",
+      confirmPasswordError: validConfirmPassword,
+      passwordError: validPassword,
     });
     return () => {};
   }, [initialValues.password, initialValues.confirmPassword]);
@@ -99,11 +102,7 @@ const RegisterForm = () => {
             helperText={confirmPasswordError ? cPassErrorMsg : ""}
             required
           />
-          <Button
-            className="submit-btn"
-            variant="contained"
-            type="submit"
-          >
+          <Button className="submit-btn" variant="contained" type="submit">
             Registrarse
           </Button>
         </form>
