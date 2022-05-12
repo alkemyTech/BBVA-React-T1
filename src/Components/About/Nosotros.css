@@ -8,15 +8,24 @@ p {
     display: flex;
     align-content: space-around;
     flex-direction: row;
-            
+    height: 100%;
 
 }
 
 .imageContainer{
+    margin-right: 7px;
     width: 50%;
+    border-radius: 7px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    min-height: 100%;
+    background-size: cover;
+}
 
-    
-
+.textoContainer{
+    width: 50%;
+    height: 100%;
 }
 
 .divimg{

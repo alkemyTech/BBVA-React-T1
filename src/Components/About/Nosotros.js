@@ -34,7 +34,7 @@ const Nosotros = () => {
         <Spinner visible={!sobreNosotros.loaded} className="spinner"  /> 
             <h2 class="centerText" style={{marginTop:30}}>Nosotros</h2>
                 <div className='flexContainer'>
-                    <div>
+                    <div className='textoContainer'>
                         {
                             sobreNosotros.loaded &&
                             (
@@ -43,8 +43,8 @@ const Nosotros = () => {
                             )
                         }
                     </div>
-                    <div className='imageContainer'>
-                        <img src={sobreNosotros.imgSrc} alt="" className='divimg' />
+                    <div className='imageContainer' style={{background: `url(${sobreNosotros.imgSrc})`}}>
+                        
                     </div>
                 </div>
             </div>
