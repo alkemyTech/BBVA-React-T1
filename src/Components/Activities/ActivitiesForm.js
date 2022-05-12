@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
+import { getToken } from '../../Services/privateApiService'
+
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -20,6 +22,8 @@ const ActivitiesForm = () => {
         console.log(initialValues);
     }
     
+    getToken();
+
     return (
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
