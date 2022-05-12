@@ -44,15 +44,34 @@ const passwordValidator = password => {
   return 'valid';
 }
 
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+/**
+ *  Función que comprueba que el campo email tenga una syntaxis correcta
+ * 
+ * DEVOLUCIÓN:
+ *  - true en caso de que el mail tenga syntaxis correcta.
+ *  - False en caso contrario.
+*/
+const emailValidator = email => { return(emailRegex.test(email)); }
+
 
 const LoginForm = () => {
-  
+  //States
+  const [values, setValues] = useState({email: '', password:''});
+  const [validPassword, setValidPassword] = useState('error');
+
+  //useEffect
+  useEffect( () => {
+      console.log(values);
+  }, [values]);
+
   const submitHandler = e => {
     e.preventDefault();
-    //Crear objeto para devolver.
+    //Devolver obj values...
   }
 
-  const [validPassword, setValidPassword] = useState('error');
+  const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
   return (
     <>
       <div className="login-container">
@@ -64,14 +83,17 @@ const LoginForm = () => {
               <TextField required
                 id="emailId" name='email'
                 type='email' label="Email"
-                helperText='HelperText'
+                value={values.email}
+                onChange={handleChange}
+                helperText=''
               />
               <TextField required
                 id="passwordId" name='password'
                 type='password' label="Password"
+                value={values.password}
+                onChange={handleChange}
                 helperText={(validPassword === 'valid') ? '' : validPassword }
                 error = { (validPassword === 'valid')? false : true }
-                onChange={console.log('cambiando')}
               />
               <Button type='submit'>Iniciar Sesión</Button>
             </FormControl>

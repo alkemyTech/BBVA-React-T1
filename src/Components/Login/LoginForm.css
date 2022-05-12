@@ -60,7 +60,7 @@
 }
 .img-container{ 
   width: 45vw;
-  max-width: 708px;
+  max-width: calc(100vw - 45vw);
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
