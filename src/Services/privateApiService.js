@@ -16,7 +16,7 @@ export const getToken = () => {
 
 export const getHeaderAuthorization = () => {
     const token = localStorage.getItem('token');
-    if(!token == ''){
+    if(!token === ''){
         return(
             {'Authorization': 'Bearer ' + token}
         )
