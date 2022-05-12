@@ -13,12 +13,13 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Nosotros from './Components/About/Nosotros'
 import Footer from './Components/Footer/Footer'
-
+import Header from './Components/Header/Header';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Header/>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
