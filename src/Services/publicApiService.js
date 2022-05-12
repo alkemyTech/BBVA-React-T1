@@ -30,7 +30,7 @@ const Get = (route, id = null) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers);
+        const res = await axios.post(`${API_BASE_URL}${route}`, bodyObj, config);
         return res;
     } catch (err) { return err; }
 }
