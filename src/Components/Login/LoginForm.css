@@ -32,6 +32,7 @@
   letter-spacing: 0em;
   text-align: center;
   color: #FFFFFF;
+  margin: 10px 0;
 }
 
 .form-container button:hover {

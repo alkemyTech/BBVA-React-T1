@@ -14,6 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Footer from './Components/Footer/Footer'
+import LoginForm from './Components/Login/LoginForm';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { FormControl, FormHelperText, TextField, Button } from '@mui/material';
 
 // Styles
@@ -22,13 +22,37 @@ import './LoginForm.css';
 
 
 
+// Password conditions:
+const minPasswordLength = 6;
+//const mustIncludeRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/; BORRAR
+const passMustIncludeLettersReg = /[a-z]/i;
+const passMustIncludeNumbersReg = /[0-9]/;
+const passMustIncludeSymbolsReg = /\W|_/g;
+
+/**
+ *  Función que comprueba que el campo password cumpla las condiciones requeridas
+ * 
+ * DEVOLUCIÓN:
+ *  - 'valid' en caso de que la contraseña cumpla con las condiciones.
+ *  - Msj de condición faltante en caso que no cumpla 1 o más condiciones.
+*/
+const passwordValidator = password => {
+  if(password.length < minPasswordLength) return 'Contraseña muy corta';
+  if(passMustIncludeLettersReg.test(password)) return 'La contraseña no posee letra/s';
+  if(passMustIncludeNumbersReg.test(password)) return 'La contraseña no posee numero/s';
+  if(passMustIncludeSymbolsReg.test(password)) return 'La contraseña no posee simbolo/s';
+  return 'valid';
+}
+
 
 const LoginForm = () => {
   
   const submitHandler = e => {
     e.preventDefault();
-    console.log('Submit'); //BORRAR
+    //Crear objeto para devolver.
   }
+
+  const [validPassword, setValidPassword] = useState('error');
   return (
     <>
       <div className="login-container">
@@ -45,7 +69,9 @@ const LoginForm = () => {
               <TextField required
                 id="passwordId" name='password'
                 type='password' label="Password"
-                helperText='HelperText'
+                helperText={(validPassword === 'valid') ? '' : validPassword }
+                error = { (validPassword === 'valid')? false : true }
+                onChange={console.log('cambiando')}
               />
               <Button type='submit'>Iniciar Sesión</Button>
             </FormControl>
