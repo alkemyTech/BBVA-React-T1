@@ -49,6 +49,13 @@ export const Delete = async (route, id) => {
   }
 };
 
+export const PrivatePost = (endpoint, body) => {
+  axios
+    .post(`${API_BASE_URL}${endpoint}`, body, config)
+    .then((res) => res)
+    .catch((err) => err);
+};
+
 /**
  * Actualiza los datos de la ruta destino
  * @function
