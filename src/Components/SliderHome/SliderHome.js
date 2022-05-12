@@ -17,8 +17,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 //Estilos
 import './SliderHome.css'
 
-//Spiner
-import Spiner from "../Spinner/Spinner"
 
 
 const SliderHome = ({endopoint}) => {
@@ -35,16 +33,14 @@ const SliderHome = ({endopoint}) => {
         <div className="container-section-list">
             <Swiper
                 slidesPerView={1}
-                centeresSlides= {true} 
-                spaceBetween={30}
                 autoplay={{
-                    delay: 2500,
+                    delay: 2200,
                     disableOnInteraction: false,
                 }}
                 pagination={{
                     clickable: true,
                     dynamicBullets: true,
-                    dynamicMainBullets: 4
+                    dynamicMainBullets: 2
                 }}
 
                 navigation={{
@@ -60,16 +56,17 @@ const SliderHome = ({endopoint}) => {
             {
                 slides.length === 0 ? (
                     <span>No hay titulos para mostrar
-                        <Spiner/>
+    
                     </span>
                 ) : (
                     <>  
                         {slides.map( (slide) => {
-                            const { name, image, id } = slide
+                            const { name, image, id, description } = slide
                             return(
                                 <SwiperSlide className= "slide-solo" key={id}>
                                         <img className="slide-image" src = {image} alt = {name}/>
-                                        <p className="slide-span">{name}</p>
+                                        <span className="slide-span">{name}</span>
+                                        <p>{description}</p>
                                 </SwiperSlide>
                             )
                         })}
@@ -77,8 +74,8 @@ const SliderHome = ({endopoint}) => {
                     </>
                 )
             }
-                <div class="swiper-button-next"><ArrowForwardIosIcon/></div>
-                <div class="swiper-button-prev"><ArrowBackIosNewIcon/></div>
+                <div className="swiper-button-next"><ArrowForwardIosIcon/></div>
+                <div className="swiper-button-prev"><ArrowBackIosNewIcon/></div>
             </Swiper>
 
         </div>

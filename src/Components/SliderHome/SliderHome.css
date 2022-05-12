@@ -1,23 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
 
-body{
-  background: #eee;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-}
-
 .swiper {
   width: 100%;
   height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
-img{
-    width: 100px;
-    height: 100px;
-}
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -30,8 +18,6 @@ img{
   align-items: center;
 }
 
-
-
 .swiper {
   margin-left: auto;
   margin-right: auto;
@@ -43,7 +29,7 @@ img{
     padding: 1.5rem;
     width:0.2rem;
     height:0.2rem;
-    top: 25rem;
+    top: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +44,7 @@ img{
 
 .swiper-button-next{
   position:absolute;
-  right:2rem;
+  right: 2%;
   background-color: white;
   cursor:pointer;
   box-shadow: 3px 0px 5px 2px rgba(29, 29, 29, 0.233);
@@ -69,7 +55,7 @@ img{
 .swiper-button-prev{
   position:absolute;
   background-color: transparent;
-  right: 142rem;
+  left:2%;
   background-color: white;
   cursor:pointer;
   box-shadow: -3px 0px 5px 2px rgba(29, 29, 29, 0.233);
@@ -81,16 +67,23 @@ img{
   background-color: rgba(39, 36, 36, 0.562);
   color:white;
   font-weight: bold;
-  font-size: 6rem;
+  font-size: 5rem;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family: 'Poppins', sans-serif;
   overflow:hidden;
   height:100%;
   width:100%;
   z-index: 9999;
 
+}
+
+p{
+  position: absolute;
+  top:55%;
+  color:white;
+  font-size: 1.8rem;
+  z-index: 9999;
 }
 
 
@@ -116,37 +109,25 @@ img{
 
 }
 
-
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background-color: blue;
   opacity:1;
 }
 
+
 /* target all bullets */
 .swiper-pagination-bullet {
   background-color: white;
-  display: inline-block;
   opacity:1;
-  margin-bottom: 5rem;
-  margin-right:0.8rem;
+  margin-bottom:1rem !important;
   width: 1.5rem;
   height: 1.5rem;
+
 }
 
+@media (max-width: 1700px) {
 
-.swiper-pagination {
-  position: absolute;
-  text-align: center;
-  transition: 300ms opacity;
-  transform: translate3d(0, 0, 0);
-  z-index: 10;
-}
-
-@media (max-width: 400px) {
-
-  .swiper-slide {
-    height: 170px;
-}
+  
 
 }
 
