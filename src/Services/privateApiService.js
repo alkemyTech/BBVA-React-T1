@@ -11,12 +11,14 @@ const config = {
 }
 
 export const getToken = () => {
-    return console.log(localStorage.getItem('token'))
+    return localStorage.getItem('token')
 }
 
 export const getHeaderAuthorization = () => {
-    const token = localStorage.getItem('token');
-    if(!token === ''){
+    
+    const token = getToken();
+
+    if(token !== ''){
         return(
             {'Authorization': 'Bearer ' + token}
         )
