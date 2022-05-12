@@ -14,6 +14,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import Nosotros from './Components/About/Nosotros'
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header';
+import ContactForm from './Components/Contact/ContactForm.js';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/Nosotros" component={Nosotros} />
+          <Route path="/contact-form" component={ContactForm} />
         </Switch>
         <Footer/>
       </BrowserRouter>
