@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = 'https://ongapi.alkemy.org/api/';
+
 
 const config = {
   headers: {
@@ -10,7 +10,7 @@ const config = {
 
 const Get = (route, id = null) => {
   axios
-    .get(`https://ongapi.alkemy.org/api/${route}/${id}`, config)
+    .get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, config)
     .then((res) => {
       return res;
     })
@@ -30,7 +30,7 @@ const Get = (route, id = null) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(`${API_BASE_URL}${route}`, bodyObj, config.headers);
+        const res = await axios.post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`, bodyObj, config.headers);
         return res;
     } catch (err) { return err; }
 }
