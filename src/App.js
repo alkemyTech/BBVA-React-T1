@@ -14,6 +14,8 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
+import Footer from './Components/Footer/Footer'
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/register" component={RegisterForm} />
         </Switch>
+        <Footer/>
       </BrowserRouter>
       <div className="App"></div>
     </>
