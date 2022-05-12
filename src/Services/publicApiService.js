@@ -11,7 +11,6 @@ const config = {
 const Get = (route, id = null) => {
   axios
     .get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, config)
-
     .then((res) => {
       return res;
     })

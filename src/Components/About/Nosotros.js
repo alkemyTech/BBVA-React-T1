@@ -19,11 +19,15 @@ const Nosotros = () => {
         loaded:false
        })
 
-    useEffect( () => { 
+    const getDataFromAPI = () => {
         Get("organization").then( res => {
             const data=res.data.data;
             setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
         })
+    }
+
+    useEffect( () => { 
+        getDataFromAPI ();
     }, []);
 
 
