@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css'
 import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
+import Spinner from '../Spinner/Spinner'
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
@@ -18,8 +19,8 @@ const Nosotros = () => {
         loaded:false
        })
 
-    useEffect( async () => { 
-        Get("organization").then(res => {
+    useEffect( () => { 
+        Get("organization").then( res => {
             const data=res.data.data;
             setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
         })
@@ -28,19 +29,23 @@ const Nosotros = () => {
 
     return (
         <>
-        <h2 class="centerText">Nosotros</h2>
-            <div className='flexContainer'>
-                <div>
-                    {
-                        sobreNosotros.loaded &&
-                        (
-                        <div dangerouslySetInnerHTML= {{__html: 
-                            (sobreNosotros.text)}} />
-                        )
-                    }
-                </div>
-                <div className='imageContainer'>
-                    <img src={sobreNosotros.imgSrc} alt="" className='divimg' />
+        
+        <div className='containerGeneral'>
+        <Spinner visible={true} className="spinner"  /> 
+            <h2 class="centerText">Nosotros</h2>
+                <div className='flexContainer'>
+                    <div>
+                        {
+                            sobreNosotros.loaded &&
+                            (
+                            <div dangerouslySetInnerHTML= {{__html: 
+                                (sobreNosotros.text)}} />
+                            )
+                        }
+                    </div>
+                    <div className='imageContainer'>
+                        <img src={sobreNosotros.imgSrc} alt="" className='divimg' />
+                    </div>
                 </div>
             </div>
         </>
