@@ -5,6 +5,13 @@ import "./Card.css";
 const Card = (props) => {
   const { type, img, title, description, buttonContent, buttonNav } = props;
 
+  const handleError = (e) => {
+    return (
+      (e.target.onerror = null),
+      (e.target.src = "/images/placeholder/270x340.png")
+    );
+  };
+
   if (type == "staff") {
     return (
       <div
@@ -22,7 +29,12 @@ const Card = (props) => {
   } else if (type == "testimonials") {
     return (
       <div className={`card-ver ${type}`}>
-        <img className={`img-card ${type}`} src={img} alt="" />
+        <img
+          className={`img-card ${type}`}
+          src={img}
+          onError={handleError}
+          alt=""
+        />
         <div className={`card-body-ver ${type}`}>
           <h4 className={`name ${type}`}>{title}</h4>
           <p className={`description-card ${type}`}>{description}</p>
@@ -33,7 +45,12 @@ const Card = (props) => {
     return (
       <div className={`card-hor ${type}`}>
         <div className={`img-container ${type}`}>
-          <img className={`img-card ${type}`} src={img} alt="" />
+          <img
+            className={`img-card ${type}`}
+            src={img}
+            alt=""
+            onError={handleError}
+          />
         </div>
         <div className={`card-body-hor ${type}`}>
           <div className={`description-card-container ${type}`}>
