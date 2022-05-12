@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
+import { TextField } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 
 const ActivitiesForm = () => {
@@ -7,6 +9,9 @@ const ActivitiesForm = () => {
         name: '',
         description: ''
     });
+    const { idActividad } = useParams();
+    
+  
 
     const handleChange = (e) => {
         if(e.target.name === 'name'){
@@ -23,8 +28,14 @@ const ActivitiesForm = () => {
     
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description"></input>
+            
+            <TextField id="outlined-basic" label="Titulo de la actividad" variant="outlined"  
+                        type="text" name="name" value={initialValues.name} onChange={handleChange}/>
+            <TextField id="outlined-basic" label="Titulo de la actividad" variant="outlined"  
+                        type="text" name="name" value={initialValues.name} onChange={handleChange}/>
+             <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description"></input>
+          
+            
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
