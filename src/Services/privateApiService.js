@@ -68,7 +68,7 @@ export const PrivatePost = (endpoint, body) => {
 
 export const Put = async (id, route, body) => {
     try{
-    return await axios.put(`${API_BASE_URL}${route}/${id}`,body,config)
+    return await axios.put(`${API_BASE_URL+route+'/'+id}`,body,config)
     }catch(error){
         return error
     }
