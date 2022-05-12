@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, TextField, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import "../FormStyles.css";
+import { Post } from "../../Services/publicApiService";
 
 const RegisterForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -33,6 +34,13 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const res = Post("register", {
+      name: "juan",
+      email: "juan@gmail.com",
+      password: "lkdjfzhnl",
+    });
+    res.catch((e) => console.log(e));
+    console.log("blabla" + res);
     localStorage.setItem("token", "tokenValueExample");
   };
 
