@@ -1,7 +1,13 @@
 import axios from "axios";
 
+<<<<<<< HEAD
 const API_BASE_URL = "https://ongapi.alkemy.org/api/";
 const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
+=======
+
+const access_token = ""
+
+>>>>>>> main
 
 const config = {
   headers: {
@@ -12,7 +18,7 @@ const config = {
 
 export const Get = (endpoint, id = null) => {
   const param = id ? `/${id}` : "";
-  return axios.get(`${API_BASE_URL}${endpoint}${param}`, config);
+  return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
 };
 
 export const getToken = () => {
@@ -27,6 +33,7 @@ export const getHeaderAuthorization = () => {
   }
 };
 
+
 /** Método DELETE a los endpoints privados
  *    REQUISITOS:
  *     - route := ruta destino
@@ -36,11 +43,10 @@ export const getHeaderAuthorization = () => {
  *     - Err producido por la petición incorrecta.
  *
  */
-
 export const Delete = async (route, id) => {
   try {
     const res = await axios.delete(
-      `${API_BASE_URL}${route}/${id}`,
+      `${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,
       config.headers
     );
     return res;
@@ -49,10 +55,11 @@ export const Delete = async (route, id) => {
   }
 };
 
+
 export const PrivatePost = (endpoint, body) => {
- return axios
-    .post(`${API_BASE_URL}${endpoint}`, body, config)
-    
+  return axios
+    .post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint}`, body, config)
+
 };
 
 /**
@@ -65,5 +72,5 @@ export const PrivatePost = (endpoint, body) => {
  * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
  */
 export const Put = (id, route, body) => {
-  return axios.put(`${API_BASE_URL}${route}/${id}`, body, config);
+  return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, body, config);
 };
