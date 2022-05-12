@@ -35,13 +35,11 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const res = Post("register", {
-      name: "juan",
-      email: "juan@gmail.com",
-      password: "lkdjfzhnl",
+      name: name.toString(),
+      email: email.toString(),
+      password: password.toString(),
     });
-    res.catch((e) => console.log(e));
-    console.log("blabla" + res);
-    localStorage.setItem("token", "tokenValueExample");
+    localStorage.setItem("token", res.data.token);
   };
 
   const validConfirmPassword =
@@ -55,7 +53,7 @@ const RegisterForm = () => {
       passwordError: validPassword,
     });
     return () => {};
-  }, [initialValues.password, initialValues.confirmPassword]);
+  }, [password, confirmPassword]);
 
   return (
     <div className="main-container-form">
