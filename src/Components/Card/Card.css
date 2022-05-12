@@ -1,10 +1,10 @@
 .card-ver{
     position: relative;
         flex: 0 0 240px;
-        width: 240px;
-        height: 320px;
+        width: 212px;
+        height: 234px;
         background-color: #333;
-        overflow: hidden;
+        /* overflow: hidden; */
         border-radius: 20px;
         box-shadow:
             rgba(black, 0.66) 0 30px 60px 0,
@@ -18,11 +18,11 @@
 }
 .name.staff {
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
 }
 .description-card.staff {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.015em;
 }
@@ -30,8 +30,8 @@
 .card-body-ver.staff{
     box-sizing: border-box;
     padding: 20px;
-    width: 240px;
-    height: 320px;
+    width: 212px;
+    height: 234px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,8 +43,29 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.77);
     color: white;
 }
+
+
+.card-ver.testimonials{
+    background-color: rgba(253, 255, 164, 1);
+    border: 1px solid rgba(249, 254, 0, 1);
+}
+.img-card.testimonials{
+    width: 75px;
+    height: 75px;
+    margin:8px 0px 0px 8px;
+}
+.card-body-ver.testimonials{
+    box-sizing: border-box;
+    width: (212)px;
+    height: (234 - 75 - 8)px;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: visible;
+    margin-left: 8px;
+}
 .name.testimonials{
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
 }
+
 
