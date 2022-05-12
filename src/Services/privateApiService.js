@@ -70,4 +70,3 @@ export const PrivatePost = (endpoint, body) => {
 export const Put = (id, route, body) => {
   return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, body, config);
 };
-
