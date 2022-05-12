@@ -16,7 +16,6 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import Footer from './Components/Footer/Footer'
 import ContactForm from './Components/Contact/ContactForm.js';
 
-
 function App() {
   return (
     <>
@@ -35,6 +34,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/contact-form" component={ContactForm} />
         </Switch>
+        <Footer/>
       </BrowserRouter>
     <div className="App">
       <header className="App-header">
