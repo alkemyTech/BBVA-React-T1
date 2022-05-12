@@ -58,6 +58,10 @@
   max-width: 40vw;
   width: 100%;
 }
+
+/* utilizo important para poder pisar estilo de MUI*/
+.inputer{ margin: 10px 0 !important;}
+
 .img-container{ 
   width: 45vw;
   max-width: calc(100vw - 45vw);

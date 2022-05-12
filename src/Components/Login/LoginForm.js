@@ -38,9 +38,9 @@ const passMustIncludeSymbolsReg = /\W|_/g;
 */
 const passwordValidator = password => {
   if(password.length < minPasswordLength) return 'Contraseña muy corta';
-  if(passMustIncludeLettersReg.test(password)) return 'La contraseña no posee letra/s';
-  if(passMustIncludeNumbersReg.test(password)) return 'La contraseña no posee numero/s';
-  if(passMustIncludeSymbolsReg.test(password)) return 'La contraseña no posee simbolo/s';
+  if(!passMustIncludeLettersReg.test(password)) return 'La contraseña no posee letra/s';
+  if(!passMustIncludeNumbersReg.test(password)) return 'La contraseña no posee numero/s';
+  if(!passMustIncludeSymbolsReg.test(password)) return 'La contraseña no posee simbolo/s';
   return 'valid';
 }
 
@@ -60,15 +60,18 @@ const LoginForm = () => {
   //States
   const [values, setValues] = useState({email: '', password:''});
   const [validPassword, setValidPassword] = useState('error');
+  const [validEmail, setValidEmail] = useState(false);
 
   //useEffect
   useEffect( () => {
-      console.log(values);
+      setValidEmail(emailValidator(values.email));
+      setValidPassword(passwordValidator(values.password));
   }, [values]);
 
   const submitHandler = e => {
     e.preventDefault();
     //Devolver obj values...
+    //Lógica de validaciones y redirigir a donde corresponda...
   }
 
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
@@ -80,14 +83,15 @@ const LoginForm = () => {
             <FormControl>
               <span>Bienvendio</span>
               <h2>Inicia sesion en tu cuenta!</h2>
-              <TextField required
+              <TextField required className='inputer'
                 id="emailId" name='email'
                 type='email' label="Email"
                 value={values.email}
                 onChange={handleChange}
-                helperText=''
+                helperText={(!validEmail)? 'Formato incorrecto' : ''}
+                error={!validEmail}
               />
-              <TextField required
+              <TextField required className='inputer'
                 id="passwordId" name='password'
                 type='password' label="Password"
                 value={values.password}
@@ -95,7 +99,7 @@ const LoginForm = () => {
                 helperText={(validPassword === 'valid') ? '' : validPassword }
                 error = { (validPassword === 'valid')? false : true }
               />
-              <Button type='submit'>Iniciar Sesión</Button>
+              <Button type='submit' disabled={!(validEmail && validPassword === 'valid')}>Iniciar Sesión</Button>
             </FormControl>
           </form>
 
