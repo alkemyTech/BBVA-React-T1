@@ -15,6 +15,18 @@ export const Get = (endpoint, id = null) => {
   return axios.get(`${API_BASE_URL}${endpoint}${param}`, config);
 };
 
+export const getToken = () => {
+  return localStorage.getItem("token");
+};
+
+export const getHeaderAuthorization = () => {
+  const token = getToken();
+
+  if (token !== "") {
+    return { Authorization: "Bearer " + token };
+  }
+};
+
 /** Método DELETE a los endpoints privados
  *    REQUISITOS:
  *     - route := ruta destino
