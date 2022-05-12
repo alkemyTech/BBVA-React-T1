@@ -32,19 +32,20 @@ const Nosotros = () => {
         
         <div className='containerGeneral'>
         <Spinner visible={!sobreNosotros.loaded} className="spinner"  /> 
-            <h2 class="centerText" style={{marginTop:30}}>Nosotros</h2>
-                <div className='flexContainer'>
-                    <div className='textoContainer'>
-                        {
-                            sobreNosotros.loaded &&
-                            (
-                            <div dangerouslySetInnerHTML= {{__html: 
-                                (sobreNosotros.text)}} />
-                            )
-                        }
-                    </div>
-                    <div className='imageContainer' style={{background: `url(${sobreNosotros.imgSrc})`}}>
-                        
+            <div className='containerData'>
+                <h2 className="centerText" style={{marginTop:30}}>Nosotros</h2>
+                    <div className='flexContainer'>
+                        <div className='textoContainer'>
+                            {
+                                sobreNosotros.loaded &&
+                                (
+                                <div dangerouslySetInnerHTML= {{__html: 
+                                    (sobreNosotros.text)}} />
+                                )
+                            }
+                        </div>
+                        <div className='imageContainer' style={{backgroundImage: `url(${sobreNosotros.imgSrc})`}}>
+                        </div>
                     </div>
                 </div>
             </div>
