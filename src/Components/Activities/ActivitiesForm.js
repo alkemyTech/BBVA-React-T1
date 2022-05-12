@@ -6,15 +6,16 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './ActivitiesForm.css'
 import { useEffect } from 'react';
-import { Get } from '../../Services/privateApiService';
+import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
-import { Post }from '../../Services/publicApiService';
 
+import { getDateString } from '../../Utils/Utils';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
-        srcUrlImage: '',
+        image64: '',
+        imageUrl:'',
         description: '',
         getData: '',
     });
@@ -51,10 +52,40 @@ const ActivitiesForm = () => {
         }
     }
 
+    const imageABase64 = (element) => {
+        if(!element||!element.currentTarget.files)
+            return;
+        var file = element.currentTarget.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            setInitialValues({...initialValues, image64: reader.result})
+        }
+        reader.readAsDataURL(file);
+        
+      }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+       
+        const objectSend={
+            id: (!!idActividad)? idActividad:0 ,
+            name: initialValues.name ,
+            descripcion: initialValues.description,
+            image: initialValues.image64,
+            user_id:  0,
+            category_id:  0,
+            created_at:  (!!idActividad)?initialValues.getData.created_at:getDateString() ,
+            updated_at:   getDateString(),
+            deleted_at: "" ,
+        }
+        var promesa = (idActividad)? Put("activities",objectSend.id,objectSend) : PrivatePost("activities",objectSend);
+
+        promesa.then( res => {
+            if(res.data.success){
+                console.log ("OK")
+            }
+        })
         
-        objectSend
 
         
     }
@@ -75,15 +106,9 @@ const ActivitiesForm = () => {
                         onChange={ ( event, editor ) => setInitialValues(
                             {...initialValues ,description : editor.getData()}) }
                     /> 
-                <TextField id="outlined-basic" label="Image src URL" variant="outlined"  
-                            type="text" name="srcUrlImage" value={initialValues.srcUrlImage} onChange={handleChange}/>
-
-
-                {initialValues.srcUrlImage.length>5 &&
-                    <img  src={initialValues.srcUrlImage} alt="La imagen no pudo ser cargada, verifique la URL"
-                    className='imgPrueba'/>
+                <h4>Seleccione una imagen</h4>
+                <input accept="image/*" type="file" onChange={imageABase64} />
                 
-                }
                 <button className="submit-btn" type="submit" >Send</button>
             </form>
         </div>

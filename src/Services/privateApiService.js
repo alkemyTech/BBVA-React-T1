@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const API_BASE_URL = "https://ongapi.alkemy.org/api/";
-const access_token = "";
+const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
 
 const config = {
   headers: {
     Group: 1, //Aqui va el ID del equipo!!
-    Authorization: `token ${access_token}`,
+    Authorization: `${access_token}`,
   },
 };
 
@@ -50,10 +50,9 @@ export const Delete = async (route, id) => {
 };
 
 export const PrivatePost = (endpoint, body) => {
-  axios
+ return axios
     .post(`${API_BASE_URL}${endpoint}`, body, config)
-    .then((res) => res)
-    .catch((err) => err);
+    
 };
 
 /**
