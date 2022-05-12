@@ -2,3 +2,24 @@ p {
     margin-inline: 20px;
 }
 
+.flexContainer{
+    display: flex;
+    align-content: space-around;
+    flex-direction: row;
+            
+
+}
+
+.imageContainer{
+    width: 50%;
+
+    
+
+}
+
+.divimg{
+    width: 100%;
+    object-fit: none;
+    object-position: center;
+
+}

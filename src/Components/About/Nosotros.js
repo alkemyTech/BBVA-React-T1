@@ -14,27 +14,34 @@ const Nosotros = () => {
 
    const [ sobreNosotros , setSobreNosotros ] = useState({
         text:"",
+        imgSrc:"",
         loaded:false
        })
 
     useEffect( async () => { 
         Get("organization").then(res => {
-            setSobreNosotros({...sobreNosotros, loaded: true, text: res})
+            const data=res.data.data;
+            setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
         })
     }, []);
 
 
     return (
         <>
-            <div>
-                <h2 class="centerText">Nosotros</h2>
-                {/* El texto sobre nosotros debe obtenerse de una API */}
-                {
-                    sobreNosotros.loaded &&
-                    (
-                    <div dangerouslySetInnerHTML= {{__html: (sobreNosotros.text.data.data.long_description)}} />
-                    )
-                }
+        <h2 class="centerText">Nosotros</h2>
+            <div className='flexContainer'>
+                <div>
+                    {
+                        sobreNosotros.loaded &&
+                        (
+                        <div dangerouslySetInnerHTML= {{__html: 
+                            (sobreNosotros.text)}} />
+                        )
+                    }
+                </div>
+                <div className='imageContainer'>
+                    <img src={sobreNosotros.imgSrc} alt="" className='divimg' />
+                </div>
             </div>
         </>
     )
