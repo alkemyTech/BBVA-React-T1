@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css'
 import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'

@@ -1,6 +1,4 @@
-p {
-    margin-inline: 20px;
-}
+
 
 .flexContainer{
     position: relative;
@@ -26,6 +24,7 @@ p {
 .textoContainer{
     width: 70%;
     height: 100%;
+    margin-inline: 20px;
 }
 
 .divimg{
