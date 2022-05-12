@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://ongapi.alkemy.org/api/";
-const access_token = "";
+
+const access_token = ""
+
 
 const config = {
   headers: {
@@ -12,7 +13,7 @@ const config = {
 
 export const Get = (endpoint, id = null) => {
   const param = id ? `/${id}` : "";
-  return axios.get(`${API_BASE_URL}${endpoint}${param}`, config);
+  return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
 };
 
 export const getToken = () => {
@@ -27,6 +28,7 @@ export const getHeaderAuthorization = () => {
   }
 };
 
+
 /** Método DELETE a los endpoints privados
  *    REQUISITOS:
  *     - route := ruta destino
@@ -36,11 +38,10 @@ export const getHeaderAuthorization = () => {
  *     - Err producido por la petición incorrecta.
  *
  */
-
 export const Delete = async (route, id) => {
   try {
     const res = await axios.delete(
-      `${API_BASE_URL}${route}/${id}`,
+      `${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,
       config.headers
     );
     return res;
@@ -49,9 +50,10 @@ export const Delete = async (route, id) => {
   }
 };
 
+
 export const PrivatePost = (endpoint, body) => {
   axios
-    .post(`${API_BASE_URL}${endpoint}`, body, config)
+    .post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint}`, body, config)
     .then((res) => res)
     .catch((err) => err);
 };
@@ -65,11 +67,11 @@ export const PrivatePost = (endpoint, body) => {
  * 
  * @returns Body de respuesta capturada por try/catch
  */
-
 export const Put = async (id, route, body) => {
     try{
-    return await axios.put(`${API_BASE_URL+route+'/'+id}`,body,config)
+    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
     }catch(error){
         return error
     }
 }
+
