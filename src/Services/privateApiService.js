@@ -10,6 +10,21 @@ const config = {
     }
 }
 
+export const getToken = () => {
+    return localStorage.getItem('token')
+}
+
+export const getHeaderAuthorization = () => {
+    
+    const token = getToken();
+
+    if(token !== ''){
+        return(
+            {'Authorization': 'Bearer ' + token}
+        )
+    }
+}
+
  export const Get = (endpoint, id = "") => {
     axios.get(`${API_BASE_URL}${endpoint}/${id}`, config)
     .then(res => res.data)
