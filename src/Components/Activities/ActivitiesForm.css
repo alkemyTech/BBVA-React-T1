@@ -31,5 +31,6 @@ button{
     margin: 0 auto;
 }
 .imgPrueba{
+    border-radius: 8px;
     max-width: 50vw;
 }

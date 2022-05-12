@@ -6,22 +6,37 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './ActivitiesForm.css'
 import { useEffect } from 'react';
-import { Get } from '../../Services/publicApiService';
+import { Get } from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
+import { Post }from '../../Services/publicApiService';
+
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
         srcUrlImage: '',
-        description: ''
+        description: '',
+        getData: '',
     });
+ 
 
-    const [ckEditorData, setCkData] = useState("")
     const { idActividad } = useParams();
-
-  
+    const [loaded , setLoaded] = useState(!idActividad)
+    
     useEffect(() => {
-        
+        if(idActividad){
+            Get("activities",idActividad.toString()).then( res => {
+                initialValues.getData=res;
+                const data=res.data.data;
+                initialValues.name=data.name || "";
+                initialValues.srcUrlImage=data.image || "";
+                initialValues.description=data.description || ""
+                setInitialValues({...initialValues})
+                setLoaded(true)
+            }).catch( e => {
+                console.log ("Error: "+e)
+            })
+        }
         
     }, );
 
@@ -38,17 +53,17 @@ const ActivitiesForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(initialValues);
+        
+        objectSend
+
+        
     }
     
-    const submitData = () =>{
-
-    }
 
 
     return (
         <div className="globalContainer">
-            <Spinner visible={false} className="spinner"  /> 
+            <Spinner visible={!loaded} className="spinner"  /> 
             <form className="form-container" onSubmit={handleSubmit}>
                 
                 <TextField id="outlined-basic" label="Titulo de la actividad" variant="outlined"  
@@ -56,10 +71,10 @@ const ActivitiesForm = () => {
                 
             <CKEditor
                         editor={ ClassicEditor }
-                        data={ckEditorData}
-                        onChange={ ( event, editor ) => setCkData(editor.getData()) }
+                        data={initialValues.description}
+                        onChange={ ( event, editor ) => setInitialValues(
+                            {...initialValues ,description : editor.getData()}) }
                     /> 
-
                 <TextField id="outlined-basic" label="Image src URL" variant="outlined"  
                             type="text" name="srcUrlImage" value={initialValues.srcUrlImage} onChange={handleChange}/>
 
@@ -69,7 +84,7 @@ const ActivitiesForm = () => {
                     className='imgPrueba'/>
                 
                 }
-                <button className="submit-btn" type="submit" onClick={submitData()}>Send</button>
+                <button className="submit-btn" type="submit" >Send</button>
             </form>
         </div>
     );
