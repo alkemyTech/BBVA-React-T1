@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Card.css";
 
-const Card = (props) => {
-  const { type, img, title, description, buttonContent, buttonNav } = props;
-
+const Card = ({ type, img, title, description, buttonContent, buttonNav }) => {
   const handleError = (e) => {
     return (
       (e.target.onerror = null),
