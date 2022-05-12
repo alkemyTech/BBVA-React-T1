@@ -9,7 +9,9 @@ const Card = (props) => {
     return (
       <div
         className={`card-ver ${type}`}
-        style={{ backgroundImage: `url(${img})` }}
+        style={{
+          backgroundImage: `url(${img}), url(${"/images/placeholder/270x340.png"})`,
+        }}
       >
         <div className={`card-body-ver ${type}`}>
           <div className={`name ${type}`}>{title}</div>
@@ -30,12 +32,19 @@ const Card = (props) => {
   } else if (type == "news") {
     return (
       <div className={`card-hor ${type}`}>
-        <img className={`img-card {type}`} src={img} alt="" />
+        <div className={`img-container ${type}`}>
+          <img className={`img-card ${type}`} src={img} alt="" />
+        </div>
         <div className={`card-body-hor ${type}`}>
-          <p className={`description-card ${type}`}>{description}</p>
-          <Link to={buttonNav}>
-            <button className={`button-card ${type}`}>{buttonContent}</button>
-          </Link>
+          <div className={`description-card-container ${type}`}>
+            <p className={`description-card ${type}`}>{description}</p>
+          </div>
+
+          <div className={`button-container ${type}`}>
+            <Link to={buttonNav}>
+              <button className={`button-card ${type}`}>{buttonContent}</button>
+            </Link>
+          </div>
         </div>
       </div>
     );
