@@ -12,6 +12,7 @@ import 'swiper/modules/pagination/pagination.min.css'
 
 import { Autoplay, Navigation, Pagination } from "swiper";
 
+import './SliderHome.css'
 
 const SliderHome = ({endopoint}) => {
     const [slides, setSlides] = useState([])
