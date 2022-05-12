@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
+
+body{
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display:flex;
+  flex-direction: column;
+  position:relative;
+  height:30vw;
+  justify-content:center;
+  align-items: center;
+}
+
+
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: white;
+    padding: 1.5rem;
+    width:0.2rem;
+    height:0.2rem;
+    top: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 999;
+    color: transparent;
+    stroke: rgb(128, 128, 128) !important;
+}
+
+
+.swiper-container {   margin-top: 50px;   position: relative; }   
+
+.swiper-button-next{
+  position:absolute;
+  right:2rem;
+  background-color: white;
+  cursor:pointer;
+  box-shadow: 3px 0px 5px 2px rgba(29, 29, 29, 0.233);
+
+
+}
+
+.swiper-button-prev{
+  position:absolute;
+  background-color: transparent;
+  right: 142rem;
+  background-color: white;
+  cursor:pointer;
+  box-shadow: -3px 0px 5px 2px rgba(29, 29, 29, 0.233);
+}
+
+
+.slide-span{
+  position:absolute;
+  background-color: rgba(39, 36, 36, 0.562);
+  color:white;
+  font-weight: bold;
+  font-size: 6rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: 'Poppins', sans-serif;
+  overflow:hidden;
+  height:100%;
+  width:100%;
+  z-index: 9999;
+
+}
+
+
+.slide-solo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height:250%;
+  object-fit:cover;
+  overflow: hidden;
+}
+
+
+
+.slide-image {
+  object-fit:cover;
+  max-width: 100%;
+
+}
+
+
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: blue;
+  opacity:1;
+}
+
+/* target all bullets */
+.swiper-pagination-bullet {
+  background-color: white;
+  display: inline-block;
+  opacity:1;
+  margin-bottom: 5rem;
+  margin-right:0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+.swiper-pagination {
+  position: absolute;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+@media (max-width: 400px) {
+
+  .swiper-slide {
+    height: 170px;
+}
+
+}
+
