@@ -15,7 +15,6 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
-import Sidebar from './Components/Backoffice/Sidebar/Sidebar'
 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-            <Route path="/side" component={Sidebar}/>
             <Route path="/backoffice/create-activity" component={ActivitiesForm} />
             <Route path="/backoffice/create-category" component={CategoriesForm} />
             <Route path="/backoffice/create-news" component={NewsForm} />

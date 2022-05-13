@@ -3,7 +3,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
 import ListadoRutas from '../ListadoRutas/ListadoRutas';
-
+import '../../../App.css'
 
 const Sidebar = () => { 
 
@@ -29,7 +29,7 @@ const Sidebar = () => {
   
 
     return(
-        <React.Fragment key={"left"} >
+        <React.Fragment key={"left"} className="pruebadd"  >
             <IconButton aria-label="Sidebar" onClick={toggleDrawer( true)}>
                 <MenuIcon fontSize="inherit" />
             </IconButton>
