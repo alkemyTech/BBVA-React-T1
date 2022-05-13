@@ -19,13 +19,17 @@ import './SliderHome.css'
 
 const SliderHome = ({endpoint}) => {
     const [slides, setSlides] = useState([])
-    useEffect( () => {
+
+    const getSlidesInfo = () =>{
         Get(endpoint)
         .then( (res) => {
             setSlides(res.data.data)
         })
-    }, [endpoint])
+    }
 
+    useEffect( () => {
+        getSlidesInfo()
+    })
 
     return(
         <div className="container-section-list">
