@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+.navbar{
+    max-height: 20vh;
+    width: 100vw;
+}
+
+.img-logo{
+    height: 10vh;
+    left: 15px;
+}
+
+.img-logo,
+.navbar{
+    background-color: #FFFFFF;
+}
+
+.menu-bars{
+    font-size: 5vh;
+    position: relative;
+    float: right;
+    right: 15px;
+    margin-top: 15px;
+    
+}
+
+.nav-menu{
+    display: flex;
+    background-color: #FF0000;
+    width: 25vw;
+    height: 100vh;
+    justify-content: center;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    transition: 850ms;
+}
+
+.active{
+    right: 0;
+    transition: 400ms;
+}

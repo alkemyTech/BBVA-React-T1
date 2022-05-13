@@ -3,42 +3,42 @@ import React from 'react';
 export const SidebarData = [
     {
         title: 'Actividades',
-        path: '/backoffice/create-activity',
+        path: '/create-activity',
         cName: 'nav-text'
     },
     {
         title: 'Categorias',
-        path: '/backoffice/create-category',
+        path: '/create-category',
         cName: 'nav-text'
     },
     {
         title: 'Novedades',
-        path: '/backoffice/create-news',
+        path: '/create-news',
         cName: 'nav-text'
     }, 
     {
         title: 'Slides',
-        path: '/backoffice/create-slides',
+        path: '/backoffice/create-slide',
         cName: 'nav-text'
     },
     {
         title: 'Testimonios',
-        path: '/backoffice/create-testimonials',
+        path: '/create-testimonials',
         cName: 'nav-text'
     },
     {
         title: 'Usuarios',
-        path: '/backoffice/create-user',
+        path: '/create-user',
         cName: 'nav-text'
     },
     {
         title: 'Miembros',
-        path: '/backoffice/create-member',
+        path: '/create-member',
         cName: 'nav-text'
     },
     {
         title: 'Proyectos',
-        path: '/backoffice/create-proyetc',
+        path: '/create-proyect',
         cName: 'nav-text'
     }
 ]
