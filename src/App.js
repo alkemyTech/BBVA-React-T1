@@ -1,3 +1,4 @@
+
 import React from "react";
 
 import "./App.css";
@@ -15,6 +16,7 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
+
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
+
     </>
   );
 }
