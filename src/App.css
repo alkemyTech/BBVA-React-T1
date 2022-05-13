@@ -37,3 +37,7 @@
     transform: translateY(0px)
   }
 }
+
+.centerText{
+  text-align: center;
+}
