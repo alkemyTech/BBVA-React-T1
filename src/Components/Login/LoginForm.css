@@ -1,5 +1,5 @@
 .login-container{
-  width: 100vw;
+  width: calc(100vw - 10px);
   height: calc(100vh - 21px - 1rem);
   display: flex;
   margin: 0;
@@ -10,14 +10,14 @@
 .p-0{ padding: 0; }
 
 
-.form-container{
+.container-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: calc(100vw - 45vw);
   padding: 0 20px;
   margin: 0;
-  
 }
 
 .login-button{
@@ -79,7 +79,7 @@
 @media screen and (max-width: 600px) {
   .img-container{ display: none; }
   .img-container img{display: none;}
-  .form-container{
+  .container-form{
     width: 100%;
     padding: 0;
   }

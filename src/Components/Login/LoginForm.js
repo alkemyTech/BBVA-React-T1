@@ -1,47 +1,10 @@
 
 import React, {useEffect, useState} from 'react';
 import { FormControl, FormHelperText, TextField, Button, CssBaseline, StyledEngineProvider } from '@mui/material';
-
+import { Post } from '../../Services/publicApiService';
 // Styles
 
 import './LoginForm.css';
-
-
-/*
- * Criterios de aceptación: En base al formulario entregado como base, transformar los campos de textoa un campo Email y campo Contraseña para autenticarse. 
-*  Ambos campos son obligatorios y deben ser validados desde el lado del cliente.
-*
-*  VALIDACIONES
-*   - La contraseña debe tener una longitud mínima de 6 caraceteres, 
-*     y contener al menos un número, una letra y un símbolo 
-*     (por ejemplo: @#$%).
-*   - Al no disponer aún del servicio de peticiones HTTP, solamente almacenar los campos completados en un objeto (para posteriormente enviarlo).
-*   - El email debe tener un formato adecuado.
-*/
-
-
-
-// Password conditions:
-const minPasswordLength = 6;
-//const mustIncludeRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/; BORRAR
-const passMustIncludeLettersReg = /[a-z]/i;
-const passMustIncludeNumbersReg = /[0-9]/;
-const passMustIncludeSymbolsReg = /\W|_/g;
-
-/**
- *  Función que comprueba que el campo password cumpla las condiciones requeridas
- * 
- * DEVOLUCIÓN:
- *  - 'valid' en caso de que la contraseña cumpla con las condiciones.
- *  - Msj de condición faltante en caso que no cumpla 1 o más condiciones.
-*/
-const passwordValidator = password => {
-  if(password.length < minPasswordLength) return 'Contraseña muy corta';
-  if(!passMustIncludeLettersReg.test(password)) return 'La contraseña no posee letra/s';
-  if(!passMustIncludeNumbersReg.test(password)) return 'La contraseña no posee numero/s';
-  if(!passMustIncludeSymbolsReg.test(password)) return 'La contraseña no posee simbolo/s';
-  return 'valid';
-}
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -58,19 +21,19 @@ const emailValidator = email => { return(emailRegex.test(email)); }
 const LoginForm = () => {
   //States
   const [values, setValues] = useState({email: '', password:''});
-  const [validPassword, setValidPassword] = useState('error');
   const [validEmail, setValidEmail] = useState(false);
 
   //useEffect
   useEffect( () => {
       setValidEmail(emailValidator(values.email));
-      setValidPassword(passwordValidator(values.password));
   }, [values]);
 
   const submitHandler = e => {
     e.preventDefault();
-    //Devolver obj values...
-    //Lógica de validaciones y redirigir a donde corresponda...
+    try {
+      const res = Post('/login', values);
+      /* Lógica de login */
+    } catch (err) { /* Caso en que la petición devuelve error */ }
   }
 
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
@@ -79,7 +42,7 @@ const LoginForm = () => {
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <div className="login-container">
-          <div className='form-container form-login m-0 p-0 '>
+          <div className='container-form form-login m-0 p-0 '>
             <form className='form' action="" onSubmit={submitHandler}>
               <FormControl>
                 <span>Bienvendio</span>
@@ -97,10 +60,8 @@ const LoginForm = () => {
                   type='password' label="Password"
                   value={values.password}
                   onChange={handleChange}
-                  helperText={(validPassword === 'valid') ? '' : validPassword}
-                  error={(validPassword === 'valid') ? false : true}
                 />
-                <Button className='login-button' type='submit' disabled={!(validEmail && validPassword === 'valid')}>Iniciar Sesión</Button>
+                <Button className='login-button' type='submit' disabled={!(validEmail)}>Iniciar Sesión</Button>
               </FormControl>
             </form>
 
