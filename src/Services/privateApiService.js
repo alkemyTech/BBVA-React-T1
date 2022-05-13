@@ -12,9 +12,8 @@ const config = {
   },
 };
 
-export const Get = (endpoint, id = null) => {
-  const param = id ? `/${id}` : "";
-  return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
+export const Get = (endpoint) => {
+  return axios.get(`${endpoint}`, config);
 };
 
 export const getToken = () => {
@@ -54,7 +53,7 @@ export const Delete = async (route, id) => {
 
 export const PrivatePost = (endpoint, body) => {
   return axios
-    .post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint}`, body, config)
+    .post(`${endpoint}`, body, config)
 
 };
 
@@ -68,7 +67,7 @@ export const PrivatePost = (endpoint, body) => {
  */
 export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`,body,config)
+    return await axios.put(`${route}`,body,config)
     }catch(error){
         return error
     }

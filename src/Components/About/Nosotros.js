@@ -19,7 +19,7 @@ const Nosotros = () => {
        })
 
     const getOrganizationData  = () => {
-        Get("organization").then( res => {
+        Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
             const data=res.data.data;
             setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
         })

@@ -41,7 +41,7 @@ const ActivitiesForm = () => {
 
     const getActivityDataToDisplay = () =>{
         if(id){
-            Get(process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+id.toString())
+            Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+id.toString())
             .then( res => {
                 const data=res.data.data;
                 setInitialValues({
@@ -95,7 +95,9 @@ const ActivitiesForm = () => {
             updated_at:   getDateString(),
             deleted_at: "" ,
         }
-        var promise = (!!id)? Put(process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+objectSend.id,objectSend) : PrivatePost(process.env.REACT_APP_URL_ACTIVITIES_PATH,objectSend);
+        var promise = (!!id)? 
+        Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+objectSend.id,objectSend) : 
+        PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH,objectSend);
 
         promise.then( res => {
             if(res.data.success){
