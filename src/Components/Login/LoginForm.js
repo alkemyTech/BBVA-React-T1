@@ -1,11 +1,10 @@
+
 import React, {useEffect, useState} from 'react';
-import { FormControl, FormHelperText, TextField, Button } from '@mui/material';
+import { FormControl, FormHelperText, TextField, Button, CssBaseline, StyledEngineProvider } from '@mui/material';
 
 // Styles
 
 import './LoginForm.css';
-//import 'styles.css'; // Relative path to public.
-//import '/css/responsive.css'; // Relative path to public.
 
 
 /*
@@ -77,37 +76,40 @@ const LoginForm = () => {
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
   return (
     <>
-      <div className="login-container">
-        <div className='form-container form-login '>
-          <form action="" onSubmit={submitHandler}>
-            <FormControl>
-              <span>Bienvendio</span>
-              <h2>Inicia sesion en tu cuenta!</h2>
-              <TextField required className='inputer'
-                id="emailId" name='email'
-                type='email' label="Email"
-                value={values.email}
-                onChange={handleChange}
-                helperText={(!validEmail)? 'Formato incorrecto' : ''}
-                error={!validEmail}
-              />
-              <TextField required className='inputer'
-                id="passwordId" name='password'
-                type='password' label="Password"
-                value={values.password}
-                onChange={handleChange}
-                helperText={(validPassword === 'valid') ? '' : validPassword }
-                error = { (validPassword === 'valid')? false : true }
-              />
-              <Button type='submit' disabled={!(validEmail && validPassword === 'valid')}>Iniciar Sesión</Button>
-            </FormControl>
-          </form>
+      <StyledEngineProvider injectFirst>
+        <CssBaseline/>
+        <div className="login-container">
+          <div className='form-container form-login m-0 p-0 '>
+            <form className='form' action="" onSubmit={submitHandler}>
+              <FormControl>
+                <span>Bienvendio</span>
+                <h2>Inicia sesion en tu cuenta!</h2>
+                <TextField required className='inputer'
+                  id="emailId" name='email'
+                  type='email' label="Email"
+                  value={values.email}
+                  onChange={handleChange}
+                  helperText={(!validEmail) ? 'Formato incorrecto' : ''}
+                  error={!validEmail}
+                />
+                <TextField required className='inputer'
+                  id="passwordId" name='password'
+                  type='password' label="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  helperText={(validPassword === 'valid') ? '' : validPassword}
+                  error={(validPassword === 'valid') ? false : true}
+                />
+                <Button className='login-button' type='submit' disabled={!(validEmail && validPassword === 'valid')}>Iniciar Sesión</Button>
+              </FormControl>
+            </form>
 
+          </div>
+          <div className='img-container '>
+            <img className='side-img' alt="img-login" src={`${process.env.PUBLIC_URL}/images/login.jpg`} />
+          </div>
         </div>
-        <div className='img-container '>
-          <img alt="img-login" src={`${process.env.PUBLIC_URL}/images/login.jpg`} />
-        </div>
-      </div>
+      </StyledEngineProvider>
     </>
   );
 }

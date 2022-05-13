@@ -6,10 +6,8 @@
   padding: 0;
 }
 
-.login-container div{
-  margin: 0;
-  padding: 0;
-}
+.m-0{ margin: 0; }
+.p-0{ padding: 0; }
 
 
 .form-container{
@@ -21,7 +19,7 @@
   
 }
 
-.form-container button {
+.login-button{
   background: #FF0000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
@@ -35,7 +33,7 @@
   margin: 10px 0;
 }
 
-.form-container button:hover {
+.login-button:hover {
   background: #ff0000;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border-radius: 8px;
@@ -49,7 +47,7 @@
   color: #FFFFFF;
 }
 
-.form-container form{
+.form{
   margin: 0px 40px;
   padding: 0;
   display: flex;
@@ -60,7 +58,7 @@
 }
 
 /* utilizo important para poder pisar estilo de MUI*/
-.inputer{ margin: 10px 0 !important;}
+.inputer{ margin: 10px 0;}
 
 .img-container{ 
   width: 45vw;
@@ -70,7 +68,7 @@
   padding: 0px;
 }
 
-.img-container img{ 
+.side-img{ 
   object-fit: cover;
   width: 100%;
   height: calc(100vh - 21px - 1rem);
@@ -84,7 +82,7 @@
     width: 100%;
     padding: 0;
   }
-  .form-container form{ 
+  .form{ 
     max-width: 80vw;
     margin: 0; }
   
