@@ -34,7 +34,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await Post("register", {
+    const res = await Post("/register", {
       name: name.toString(),
       email: email.toString(),
       password: password.toString(),
