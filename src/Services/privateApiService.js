@@ -5,6 +5,7 @@ const access_token = ""
 
 
 const config = {
+
   headers: {
     Group: 1, //Aqui va el ID del equipo!!
     Authorization: `token ${access_token}`,
@@ -64,9 +65,14 @@ export const PrivatePost = (endpoint, body) => {
  * @param id Id del recurso a actualizar
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
- *
- * @returns Promesa de axios, se debe capturar los metodos then y catch en caso de error
+ * 
+ * @returns Body de respuesta capturada por try/catch
  */
-export const Put = (id, route, body) => {
-  return axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, body, config);
-};
+export const Put = async (id, route, body) => {
+    try{
+    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
+    }catch(error){
+        return error
+    }
+}
+
