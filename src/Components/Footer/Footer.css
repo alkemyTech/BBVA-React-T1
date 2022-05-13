@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
 
 .footer-front{
+    box-sizing: content-box;
     font-family: 'Poppins', sans-serif;
     background-color: #C0C0C0;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 12rem;
+    padding-bottom: 10rem;
     max-height: 559px;
     width: 100vw;
 }
@@ -15,7 +13,7 @@
 .hr-logo, .hr-nav{
     background-color: black;
     width:100vw;
-    height:0.15rem;
+    height:0.3rem;
 }
 
 .logo-container{
@@ -90,9 +88,8 @@
 
     .footer-front{
         height: 267px;
-        padding-top:3rem;
         font-weight: 300;
-        padding-bottom: 8rem;
+        padding-bottom: 12rem;
     }
 
   }
