@@ -4,13 +4,6 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import HomeIcon from '@mui/icons-material/Home';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -21,6 +14,8 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { Link } from 'react-router-dom';
+
+import './ListadoRutas.css'
 
 const ListadoRutas = () => {
     const navMenu = [
@@ -51,7 +46,7 @@ const ListadoRutas = () => {
                     {
                         navMenu.map( child =>{
                             return(
-                                <Link to={child.link} id={child.link}> 
+                                <Link to={child.link} id={child.link} className="linkList"> 
                                     <ListItemButton>
                                             <ListItemIcon>
                                                 {[child.icono]} 
