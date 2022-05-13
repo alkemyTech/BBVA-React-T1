@@ -30,7 +30,6 @@ function UsersList() {
     const response = await Get("/users", null);
     const usersList = await response.data.data;
     setData(usersList);
-    console.log(usersList);
   };
 
   useEffect(() => {
