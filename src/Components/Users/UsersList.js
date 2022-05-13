@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Table,
   TableContainer,
@@ -12,19 +11,10 @@ import { Edit, Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import "./UsersList.css";
 import { Link } from "react-router-dom";
+import { Get } from "./../../Services/privateApiService";
 
 function UsersList() {
   const [data, setData] = useState([]);
-
-  //funcion Get sin Headers y limitado a 20 resultados para obtener los datos de la API
-  const Get = (endpoint, id = null) => {
-    const param = id ? `/${id}` : "";
-    return axios.get(
-      `${
-        process.env.REACT_APP_URL_BASE_ENDPOINT + endpoint + param + "?limit=20"
-      }`
-    );
-  };
 
   const getUsers = async () => {
     const response = await Get("/users", null);
