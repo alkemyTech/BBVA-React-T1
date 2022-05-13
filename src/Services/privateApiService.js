@@ -1,6 +1,6 @@
 import axios from "axios";
 
-
+//Este token es solo de pruebas
 const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
 
 
