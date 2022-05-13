@@ -53,8 +53,8 @@ export const Delete = async (route, id) => {
 
 
 export const PrivatePost = (endpoint, body) => {
-  axios
-    .post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint}`, body, config)
+  return axios
+    .post(`${endpoint}`, body, config)
     .then((res) => res)
     .catch((err) => err);
 };
@@ -70,7 +70,7 @@ export const PrivatePost = (endpoint, body) => {
  */
 export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`,body,config)
+    return await axios.put(`${route}`,body,config)
     }catch(error){
         return error
     }

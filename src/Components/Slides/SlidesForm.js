@@ -21,6 +21,8 @@ const SlidesForm = () => {
         image64: '',
     });
 
+    const { numerosDeOrdenUsados , setNumerosDeOrdenUsados } = useState([])
+
     const { id } = useParams();
     const [loaded , setLoaded] = useState(true)
 
@@ -32,6 +34,16 @@ const SlidesForm = () => {
     })
 
     const actualizacionDeDatos = id !== "create";
+
+
+    const getSlidesDataAndShow = () =>{
+
+    }
+
+    useEffect(() => {
+        getSlidesDataAndShow();
+        
+    },[] );
 
     const imageToBase64 = (element) => {
         if(!element||!element.currentTarget.files)
@@ -59,10 +71,10 @@ const SlidesForm = () => {
             user_id:  0,
             order:  initialValues.order,
         }
-        var promise = (!!id)? 
+        var promise = (actualizacionDeDatos)? 
         Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH+"/"+objectSend.id,objectSend) : 
         PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH,objectSend);
-
+ 
         promise.then( res => {
             if(res.data.success){
                 history.push("/slides");
