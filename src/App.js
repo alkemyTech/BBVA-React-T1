@@ -14,8 +14,6 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 
-import SliderHome from "./Components/SliderHome/SliderHome"
-
 function App() {
   return (
     <>
@@ -35,8 +33,6 @@ function App() {
         </Switch>
       </BrowserRouter>
     <div className="App">
-
-    <SliderHome endopoint={"slides"}/>
       
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
