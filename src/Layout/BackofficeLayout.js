@@ -1,12 +1,14 @@
 import React from 'react';
+import Footer from '../Components/Footer/Footer';
 
 
-export const BackofficeLayout = ({chilren}) => {
+export const BackofficeLayout = ({children}) => {
   return(
     <>
-      //HeaderBackoffice
+      {/* Tag de header comentado hasta el merge del mismo. */}
+      {/* <BackofficeHeader/> */}
       {children}
-      //FooterBackoffice
+      <Footer />
     </>
   );
 };
