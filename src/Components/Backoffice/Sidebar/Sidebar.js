@@ -12,6 +12,8 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
+import ListadoRutas from '../ListadoRutas/ListadoRutas';
+
 
 const Sidebar = () => { 
 
@@ -47,7 +49,7 @@ const Sidebar = () => {
           onClose={toggleDrawer( false)}
           onOpen={toggleDrawer( true)}
         >
-          {"chola"}
+          <ListadoRutas/>
         </SwipeableDrawer>
       </React.Fragment>
     )
