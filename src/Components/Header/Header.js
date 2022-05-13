@@ -30,11 +30,11 @@ function Header() {
             src="/images/assets/logo.png"
             alt="logo"
           />
-          {/* <button onClick={handleToggle} className="toggle-button">
+          <button onClick={handleToggle} className="toggle-button">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
-          </button> */}
+          </button>
           <div className="nav_links">
             <ul className="header_list">
               {navMenu.map(
