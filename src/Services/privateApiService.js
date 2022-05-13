@@ -14,6 +14,9 @@ const config = {
 
 export const Get = (endpoint, id = null) => {
   const param = id ? `/${id}` : "";
+  console.log("process: ", process)
+  console.log("process.env: ", process.env)
+  console.log("process.env.end: ",process.env.REACT_APP_URL_BASE_ENDPOINT )
   return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
 };
 
