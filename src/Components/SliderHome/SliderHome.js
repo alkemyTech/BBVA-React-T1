@@ -22,7 +22,6 @@ const SliderHome = ({endpoint}) => {
     useEffect( () => {
         Get(endpoint)
         .then( (res) => {
-            console.log(res)
             setSlides(res.data.data)
         })
     }, [endpoint])
