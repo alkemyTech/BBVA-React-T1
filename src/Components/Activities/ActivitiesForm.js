@@ -25,7 +25,7 @@ const ActivitiesForm = () => {
         severity: "error",
     })
  
-
+    
     const { id } = useParams();
     const [loaded , setLoaded] = useState(false)
     
