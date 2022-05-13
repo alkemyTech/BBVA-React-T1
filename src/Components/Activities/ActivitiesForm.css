@@ -19,17 +19,12 @@
 }
 
 .form-container{
-
-    /*debo usar important pq el form tiene margenes no deseados dentro*/
     margin: 0 auto ;
     width: 100%;
     
     
 }
-button{
-    width: 50%;
-    margin: 0 auto;
-}
+
 .imgPrueba{
     border-radius: 8px;
     max-width: 50vw;
