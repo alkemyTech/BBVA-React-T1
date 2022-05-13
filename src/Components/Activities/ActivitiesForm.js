@@ -91,9 +91,6 @@ const ActivitiesForm = () => {
             image: initialValues.image64,
             user_id:  0,
             category_id:  0,
-            created_at:  (!!id)?initialValues.getData.data.data.created_at:getDateString() ,
-            updated_at:   getDateString(),
-            deleted_at: "" ,
         }
         var promise = (!!id)? 
         Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+objectSend.id,objectSend) : 
