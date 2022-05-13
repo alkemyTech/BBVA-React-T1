@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import axios from "axios";
+import { Get} from '../../Services/privateApiService';
 
 //Swiper
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
@@ -17,15 +17,15 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './SliderHome.css'
 
 
-
-const SliderHome = ({endopoint}) => {
+const SliderHome = ({endpoint}) => {
     const [slides, setSlides] = useState([])
     useEffect( () => {
-        axios.get(`https://ongapi.alkemy.org/api/${endopoint}`)
+        Get(endpoint)
         .then( (res) => {
+            console.log(res)
             setSlides(res.data.data)
         })
-    }, [endopoint])
+    }, [endpoint])
 
 
     return(
