@@ -53,7 +53,7 @@ const SliderHome = ({endpoint}) => {
             >
             {
                 slides.length === 0 ? (
-                    <span>No hay titulos para mostrar
+                    <span>No hay Slides para mostrar
                     </span>
                 ) : (
                     <>  
