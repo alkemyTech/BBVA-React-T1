@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../FormStyles.css';
-import { TextField } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './ActivitiesForm.css'
-import { useEffect } from 'react';
 import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
-import { Snackbar , Alert } from '@mui/material';
+import { Snackbar , Alert,TextField } from '@mui/material';
 import { getDateString } from '../../Utils/Utils';
 import { useHistory } from "react-router-dom";
 
@@ -28,38 +26,43 @@ const ActivitiesForm = () => {
     })
  
 
-    const { idActividad } = useParams();
-    const [loaded , setLoaded] = useState(!idActividad)
+    const { id } = useParams();
+    const [loaded , setLoaded] = useState(false)
     
-    useEffect(() => {
-        if(idActividad){
-            Get("activities",idActividad.toString()).then( res => {
+
+    const getActivityDataToDisplay = () =>{
+        if(id){
+            Get("activities",id.toString()).then( res => {
                 initialValues.getData=res;
                 const data=res.data.data;
-                initialValues.name=data.name || "";
-                initialValues.srcUrlImage=data.image || "";
-                initialValues.description=data.description || ""
-                setInitialValues({...initialValues})
+                setInitialValues({
+                    ...initialValues,
+                    name:data.name || "",
+                    srcUrlImage:data.image || "",
+                    description:data.description || ""
+                })
                 setLoaded(true)
             }).catch( e => {
-                console.log ("Error: "+e)
+                setSnack({...snack, 
+                    message:"Error en la carga de datos, intente nuevamente mas tarde.",
+                    open:true,
+                    severity:"error"
+                })
             })
         }
+        else setLoaded(true);
+    }
+
+    useEffect(() => {
+        getActivityDataToDisplay();
         
     },[] );
 
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
-        }
-        if(e.target.name === 'srcUrlImage'){
-            setInitialValues({...initialValues, srcUrlImage: e.target.value})
-        }
+        setInitialValues({...initialValues, [e.target.name]: [e.target.values]})
     }
 
-    const imageABase64 = (element) => {
+    const imageToBase64 = (element) => {
         if(!element||!element.currentTarget.files)
             return;
         var file = element.currentTarget.files[0];
@@ -75,19 +78,19 @@ const ActivitiesForm = () => {
         e.preventDefault();
        
         const objectSend={
-            id: (!!idActividad)? idActividad:0 ,
+            id: (!!id)? id:0 ,
             name: initialValues.name ,
             descripcion: initialValues.description,
             image: initialValues.image64,
             user_id:  0,
             category_id:  0,
-            created_at:  (!!idActividad)?initialValues.getData.created_at:getDateString() ,
+            created_at:  (!!id)?initialValues.getData.created_at:getDateString() ,
             updated_at:   getDateString(),
             deleted_at: "" ,
         }
-        var promesa = (idActividad)? Put(objectSend.id,"activities",objectSend) : PrivatePost("activities",objectSend);
+        var promise = (id)? Put(objectSend.id,"activities",objectSend) : PrivatePost("activities",objectSend);
 
-        promesa.then( res => {
+        promise.then( res => {
             if(res.data.success){
                 history.push("/activities");
             }else{
@@ -123,7 +126,7 @@ const ActivitiesForm = () => {
                             {...initialValues ,description : editor.getData()}) }
                     /> 
                 <h4>Seleccione una imagen</h4>
-                <input accept="image/*" type="file" onChange={imageABase64} />
+                <input accept="image/*" type="file" onChange={imageToBase64} />
                 
                 <button className="submit-btn" type="submit" >Send</button>
             </form>
