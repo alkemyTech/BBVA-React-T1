@@ -39,7 +39,7 @@ function App() {
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
-              <Route path="/nosotros" />
+              <Route path="/nosotros" component={Nosotros} />
               <Route path="/news" />
               <Route path="/testimonials" />
               <Route path="/contact" />
