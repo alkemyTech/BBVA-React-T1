@@ -13,12 +13,9 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import Nosotros from './Components/About/Nosotros'
 import Footer from './Components/Footer/Footer'
-<<<<<<< HEAD
 import LoginForm from './Components/Login/LoginForm';
-=======
 import Header from './Components/Header/Header';
 import ContactForm from './Components/Contact/ContactForm.js';
->>>>>>> 8d338b0c7f591ef46e9f15502d2171ad0ced741d
 
 function App() {
   return (
@@ -37,12 +34,9 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
-<<<<<<< HEAD
           <Route path="/login" component={LoginForm}/>
-=======
           <Route path="/Nosotros" component={Nosotros} />
           <Route path="/contact-form" component={ContactForm} />
->>>>>>> 8d338b0c7f591ef46e9f15502d2171ad0ced741d
         </Switch>
         <Footer/>
       </BrowserRouter>
