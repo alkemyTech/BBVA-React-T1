@@ -1,4 +1,3 @@
-
 import { useEffect,useState } from "react";
 import axios from "axios";
 
@@ -56,7 +55,6 @@ const SliderHome = ({endopoint}) => {
             {
                 slides.length === 0 ? (
                     <span>No hay titulos para mostrar
-    
                     </span>
                 ) : (
                     <>  
@@ -66,7 +64,7 @@ const SliderHome = ({endopoint}) => {
                                 <SwiperSlide className= "slide-solo" key={id}>
                                         <img className="slide-image" src = {image} alt = {name}/>
                                         <span className="slide-span">{name}</span>
-                                        <p>{description}</p>
+                                        <p className="slide-p">{description}</p>
                                 </SwiperSlide>
                             )
                         })}

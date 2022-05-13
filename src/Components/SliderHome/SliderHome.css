@@ -1,12 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap');
 
-.swiper {
-  width: 100%;
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-}
-
 .swiper-slide {
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -16,11 +11,6 @@
   height:30vw;
   justify-content:center;
   align-items: center;
-}
-
-.swiper {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .swiper-button-next,
@@ -35,39 +25,27 @@
     align-items: center;
     border-radius: 50%;
     z-index: 999;
+    position:absolute;
+    cursor:pointer;
     color: transparent;
     stroke: rgb(128, 128, 128) !important;
+    box-shadow: 3px 0px 5px 2px rgba(29, 29, 29, 0.233);
 }
 
-
-.swiper-container {   margin-top: 50px;   position: relative; }   
-
 .swiper-button-next{
-  position:absolute;
   right: 2%;
-  background-color: white;
-  cursor:pointer;
-  box-shadow: 3px 0px 5px 2px rgba(29, 29, 29, 0.233);
-
-
 }
 
 .swiper-button-prev{
-  position:absolute;
-  background-color: transparent;
   left:2%;
-  background-color: white;
-  cursor:pointer;
-  box-shadow: -3px 0px 5px 2px rgba(29, 29, 29, 0.233);
 }
-
 
 .slide-span{
   position:absolute;
   background-color: rgba(39, 36, 36, 0.562);
   color:white;
   font-weight: bold;
-  font-size: 5rem;
+  font-size: 4rem;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -75,38 +53,28 @@
   height:100%;
   width:100%;
   z-index: 9999;
-
 }
 
-p{
+.slide-p{
   position: absolute;
   top:55%;
   color:white;
   font-size: 1.8rem;
   z-index: 9999;
+  width: 80vw;
 }
-
 
 .slide-solo{
   display:flex;
   justify-content:center;
   align-items:center;
 }
-
-.swiper-slide img {
+.slide-image {
   display: block;
   width: 100%;
-  height:250%;
+  height:auto;
   object-fit:cover;
   overflow: hidden;
-}
-
-
-
-.slide-image {
-  object-fit:cover;
-  max-width: 100%;
-
 }
 
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
@@ -114,20 +82,57 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   opacity:1;
 }
 
-
-/* target all bullets */
 .swiper-pagination-bullet {
   background-color: white;
   opacity:1;
-  margin-bottom:1rem !important;
   width: 1.5rem;
   height: 1.5rem;
-
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1300px) {
+  .swiper-slide {
+    height:40vw;
+  }
 
+  .slide-span{
+    font-size: 2.3rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev { 
+    padding: 1rem;
+  }
   
+  .swiper-pagination-bullet {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  
+  .slide-p{
+    font-size: 1.2rem;
+  }
 
 }
 
+@media (max-width: 400px) {
+  
+  .swiper-slide {
+    height:60vw;
+  }
+  .slide-span{
+    font-size: 1.2rem;
+  }
+  .slide-p{
+    font-size: 0.8rem;
+  }
+  .swiper-pagination-bullet {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  .swiper-button-next,
+.swiper-button-prev {
+  padding: 0.8rem;
+  
+}
+
+}
