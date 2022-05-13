@@ -29,18 +29,18 @@ const Sidebar = () => {
   
 
     return(
-        <React.Fragment key={"left"}>
-        <IconButton aria-label="Sidebar" onClick={toggleDrawer( true)}>
-            <MenuIcon fontSize="inherit" />
-        </IconButton>
-        <SwipeableDrawer
-          anchor={"left"}
-          open={state["left"]}
-          onClose={toggleDrawer( false)}
-          onOpen={toggleDrawer( true)}
-        >
-          <ListadoRutas/>
-        </SwipeableDrawer>
+        <React.Fragment key={"left"} >
+            <IconButton aria-label="Sidebar" onClick={toggleDrawer( true)}>
+                <MenuIcon fontSize="inherit" />
+            </IconButton>
+            <SwipeableDrawer
+            anchor={"left"}
+            open={state["left"]}
+            onClose={toggleDrawer( false)}
+            onOpen={toggleDrawer( true)}
+            >
+                <ListadoRutas/>
+            </SwipeableDrawer>
       </React.Fragment>
     )
 }
