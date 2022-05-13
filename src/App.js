@@ -11,7 +11,6 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import Test from './Components/Test/Test';
 import Nosotros from './Components/About/Nosotros'
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header';
@@ -39,7 +38,6 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/Nosotros" component={Nosotros} />
           <Route path="/contact-form" component={ContactForm} />
-          <Route path="/test" component={Test} />
         </Switch>
         <Footer/>
       </BrowserRouter>
