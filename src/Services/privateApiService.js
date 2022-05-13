@@ -5,6 +5,7 @@ const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL
 
 
 const config = {
+
   headers: {
     Group: 1, //Aqui va el ID del equipo!!
     Authorization: `${access_token}`,
