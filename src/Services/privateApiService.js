@@ -61,15 +61,14 @@ export const PrivatePost = (endpoint, body) => {
 /**
  * Actualiza los datos de la ruta destino
  * @function
- * @param id Id del recurso a actualizar
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
  * 
  * @returns Body de respuesta capturada por try/catch
  */
-export const Put = async (id, route, body) => {
+export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
+    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`,body,config)
     }catch(error){
         return error
     }

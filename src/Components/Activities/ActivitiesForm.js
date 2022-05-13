@@ -41,7 +41,8 @@ const ActivitiesForm = () => {
 
     const getActivityDataToDisplay = () =>{
         if(id){
-            Get("/activities",id.toString()).then( res => {
+            Get(process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+id.toString())
+            .then( res => {
                 const data=res.data.data;
                 setInitialValues({
                     ...initialValues,
@@ -51,7 +52,8 @@ const ActivitiesForm = () => {
                     getData: res
                 })
                 setLoaded(true)
-            }).catch( e => {
+            })
+            .catch( e => {
                 snackErrorCargaDatos();
             })
         }
@@ -93,7 +95,7 @@ const ActivitiesForm = () => {
             updated_at:   getDateString(),
             deleted_at: "" ,
         }
-        var promise = (!!id)? Put(objectSend.id,"/activities",objectSend) : PrivatePost("/activities",objectSend);
+        var promise = (!!id)? Put(process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+objectSend.id,objectSend) : PrivatePost(process.env.REACT_APP_URL_ACTIVITIES_PATH,objectSend);
 
         promise.then( res => {
             if(res.data.success){
