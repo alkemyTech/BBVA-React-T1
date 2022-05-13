@@ -24,9 +24,10 @@ function App() {
       <Header/>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
           <Route path="/backoffice/activity" component={ActivitiesForm} />
           <Route path="/activities" component={ActivitiesList}/>
-          <Route path="/backoffice/activity-edit/:id/" component={ActivitiesForm} />
+          
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
