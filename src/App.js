@@ -15,11 +15,14 @@ import Nosotros from './Components/About/Nosotros'
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header';
 import ContactForm from './Components/Contact/ContactForm.js';
+import BackofficeHeader from './Components/BackofficeHeader/BackofficeHeader'
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <BackofficeHeader/>
       <Header/>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
