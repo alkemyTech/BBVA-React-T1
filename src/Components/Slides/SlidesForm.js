@@ -41,7 +41,7 @@ const SlidesForm = () => {
     return (
         <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  />  
-
+            
             <form className="form-container" onSubmit={handleSubmit}>
                 {id}
                 <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Slide Title"></input>
