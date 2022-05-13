@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
-
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
+import { SidebarData } from "./Sidebar";
+
+
+
 const BackofficeHeader = () => {
 
     const [logo, setLogo] = useState('')
@@ -23,18 +26,27 @@ const BackofficeHeader = () => {
             <div className="navbar">
                 <img className="img-logo" src={logo} alt="img-logo"/>
                 <Link to='#' className='menu-bars'>
-                    <FaBars/>
+                    <FaBars onClick={showSidebar} />
                 </Link>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className="nav-menu-items">
-                        <li className='navbar-toggle'>
-                            <Link to='#' className='menu-bars'>
-                                <AiOutlineClose/>
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
             </div>
+            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul className="nav-menu-items">
+                    <li className='navbar-toggle'>
+                        <Link to='#' className='menu-bars'>
+                            <AiOutlineClose/>
+                        </Link>
+                    </li>
+                    {SidebarData.map((item, index) =>{
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </nav>
         </>
     )
 };
