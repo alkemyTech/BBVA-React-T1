@@ -6,7 +6,7 @@ function Header() {
   const navMenu = [
     { name: "Inicio", link: "/", requiresLogIn: false },
     { name: "Nosotros", link: "/nosotros", requiresLogIn: false },
-    { name: "Contacto", link: "/contacto", requiresLogIn: false },
+    { name: "Contacto", link: "/contact-form", requiresLogIn: false },
     { name: "School", link: "/school-campaign", requiresLogIn: false },
     { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
   ];

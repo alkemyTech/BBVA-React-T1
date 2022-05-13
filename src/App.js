@@ -36,7 +36,7 @@ function App() {
           <Route path="/Nosotros" component={Nosotros} />
           <Route path="/contact-form" component={ContactForm} />
         </Switch>
-        <Footer/>
+      <Footer/>
       </BrowserRouter>
     </>
   );
