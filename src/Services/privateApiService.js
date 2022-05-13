@@ -68,9 +68,9 @@ export const PrivatePost = (endpoint, body) => {
  * 
  * @returns Body de respuesta capturada por try/catch
  */
-export const Put = async (id, route, body) => {
+export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
+    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`,body,config)
     }catch(error){
         return error
     }
