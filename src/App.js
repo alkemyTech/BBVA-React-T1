@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Header/>
+        <Header />
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
@@ -34,11 +34,11 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
-          <Route path="/login" component={LoginForm}/>
+          <Route path="/login" component={LoginForm} />
           <Route path="/Nosotros" component={Nosotros} />
           <Route path="/contact-form" component={ContactForm} />
         </Switch>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );

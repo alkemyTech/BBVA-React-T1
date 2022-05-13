@@ -77,7 +77,7 @@ const LoginForm = () => {
   return (
     <>
       <StyledEngineProvider injectFirst>
-        <CssBaseline/>
+        <CssBaseline />
         <div className="login-container">
           <div className='form-container form-login m-0 p-0 '>
             <form className='form' action="" onSubmit={submitHandler}>
