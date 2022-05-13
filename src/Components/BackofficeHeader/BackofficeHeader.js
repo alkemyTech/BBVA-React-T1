@@ -46,7 +46,7 @@ const BackofficeHeader = () => {
                     {SidebarData.map((item, index) =>{
                         return (
                             <li key={index} className={item.cName}>
-                                <Link to={item.path}>
+                                <Link className="route" to={item.path}>
                                     <span>{item.title}</span>
                                 </Link>
                             </li>

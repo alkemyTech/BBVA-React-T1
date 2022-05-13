@@ -54,7 +54,7 @@
     height: 60px;
 }
 
-.nav-text a {
+.nav-text .route {
     text-decoration: none;
     color: #F0F0F0;
     font-size: 1rem;
@@ -67,7 +67,7 @@
     justify-content: center;
 }
 
-.nav-text a:hover{
+.nav-text .route:hover{
     background-color: #ff0000
 }
 
