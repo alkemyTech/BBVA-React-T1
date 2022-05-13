@@ -6,10 +6,11 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    width: 100vw ;
+    padding-inline: 20%;
     padding-block: 50px;
 
 }
+
 
 .spinner{
     position: absolute;
@@ -28,4 +29,17 @@
 .imgPrueba{
     border-radius: 8px;
     max-width: 50vw;
+}
+
+.radioGroup{
+    display:flex ;
+    width:100%;
+    font-size:0.5em;
+    justify-content: space-between;
+}
+
+.radioGroup FormControlLabel{
+    display: flex;
+    margin: 0 auto;
+    align-self: center;
 }

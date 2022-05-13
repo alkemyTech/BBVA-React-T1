@@ -12,9 +12,8 @@ const config = {
   },
 };
 
-export const Get = (endpoint, id = null) => {
-  const param = id ? `/${id}` : "";
-  return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
+export const Get = (endpoint) => {
+  return axios.get(`${endpoint}`, config);
 };
 
 export const getToken = () => {
