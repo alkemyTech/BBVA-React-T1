@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import RegisterForm from "../Auth/RegisterForm";
 
-const Layout = ({ children }) => {
+const PublicLayout = ({ children }) => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default PublicLayout;
