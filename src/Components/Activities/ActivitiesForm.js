@@ -27,27 +27,32 @@ const ActivitiesForm = () => {
  
     
     const { id } = useParams();
-    const [loaded , setLoaded] = useState(false)
     
+    const [loaded , setLoaded] = useState(false)
+    const actualizacionDeDatos = !!id
+
+    const snackErrorCargaDatos = () =>{
+        setSnack({...snack, 
+            message:"Error en la carga de datos, intente nuevamente mas tarde.",
+            open:true,
+            severity:"error"
+        })
+    }
 
     const getActivityDataToDisplay = () =>{
         if(id){
-            Get("activities",id.toString()).then( res => {
-                initialValues.getData=res;
+            Get("/activities",id.toString()).then( res => {
                 const data=res.data.data;
                 setInitialValues({
                     ...initialValues,
                     name:data.name || "",
                     srcUrlImage:data.image || "",
-                    description:data.description || ""
+                    description:data.description || "",
+                    getData: res
                 })
                 setLoaded(true)
             }).catch( e => {
-                setSnack({...snack, 
-                    message:"Error en la carga de datos, intente nuevamente mas tarde.",
-                    open:true,
-                    severity:"error"
-                })
+                snackErrorCargaDatos();
             })
         }
         else setLoaded(true);
@@ -59,7 +64,7 @@ const ActivitiesForm = () => {
     },[] );
 
     const handleChange = (e) => {
-        setInitialValues({...initialValues, [e.target.name]: [e.target.values]})
+        setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
 
     const imageToBase64 = (element) => {
@@ -78,17 +83,17 @@ const ActivitiesForm = () => {
         e.preventDefault();
        
         const objectSend={
-            id: (!!id)? id:0 ,
+            id: parseInt((!!id)? id:2 ),
             name: initialValues.name ,
-            descripcion: initialValues.description,
+            description: initialValues.description,
             image: initialValues.image64,
             user_id:  0,
             category_id:  0,
-            created_at:  (!!id)?initialValues.getData.created_at:getDateString() ,
+            created_at:  (!!id)?initialValues.getData.data.data.created_at:getDateString() ,
             updated_at:   getDateString(),
             deleted_at: "" ,
         }
-        var promise = (id)? Put(objectSend.id,"activities",objectSend) : PrivatePost("activities",objectSend);
+        var promise = (!!id)? Put(objectSend.id,"/activities",objectSend) : PrivatePost("/activities",objectSend);
 
         promise.then( res => {
             if(res.data.success){
@@ -115,29 +120,28 @@ const ActivitiesForm = () => {
         <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
             <form className="form-container" onSubmit={handleSubmit}>
-                
+                <h2>{(actualizacionDeDatos)?"Actualizacion de actividad":"Actividad nueva"}</h2>
+
                 <TextField id="outlined-basic" label="Titulo de la actividad" variant="outlined"  
                             type="text" name="name" value={initialValues.name} onChange={handleChange}/>
                 
             <CKEditor
                         editor={ ClassicEditor }
-                        data={initialValues.description}
+                        value={initialValues.description}
                         onChange={ ( event, editor ) => setInitialValues(
                             {...initialValues ,description : editor.getData()}) }
                     /> 
                 <h4>Seleccione una imagen</h4>
                 <input accept="image/*" type="file" onChange={imageToBase64} />
                 
-                <button className="submit-btn" type="submit" >Send</button>
+                <button className="submit-btn" type="submit" >{(actualizacionDeDatos)?"Actualizar actividad":"Enviar actividad"}</button>
             </form>
 
             <Snackbar
                 open={snack.open}
                 severity={snack.severity}
                 autoHideDuration={3000}
-                onClose={onCloseSnack}
-
-                action={onCloseSnack}>
+                onClose={onCloseSnack}>
                 <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
                     {snack.message}
                 </Alert>
