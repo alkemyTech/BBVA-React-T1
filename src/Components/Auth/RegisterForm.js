@@ -32,26 +32,30 @@ const RegisterForm = () => {
     setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = Post("register", {
+    const res = await Post("register", {
       name: name.toString(),
       email: email.toString(),
       password: password.toString(),
     });
-    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("token", res.data.data.token);
   };
 
   const validConfirmPassword =
     password !== confirmPassword && confirmPassword !== "";
   const validPassword = !password.match(passValidation) && password !== "";
 
-  useEffect(() => {
+  const handleError = () => {
     setError({
       ...error,
       confirmPasswordError: validConfirmPassword,
       passwordError: validPassword,
     });
+  };
+
+  useEffect(() => {
+    handleError();
     return () => {};
   }, [password, confirmPassword]);
 
