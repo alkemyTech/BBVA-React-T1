@@ -13,6 +13,7 @@ import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import PeopleIcon from '@mui/icons-material/People';
 import { Link } from 'react-router-dom';
 
 import './RoutesList.css'
@@ -26,10 +27,11 @@ const ListadoRutas = () => {
         { name: "Crear slide", link: "/backoffice/slide/create" , icono: (<SlideshowIcon/>)},
         { name: "Agregar Testimonio", link: "/backoffice/create-testimonials", icono: (<EmojiPeopleIcon/>)},
         { name: "Nuevo usuario", link: "/backoffice/create-user", icono: (<PersonAddAltIcon/>)},
+        { name: "Lista de usuarios", link: "/backoffice/users", icono: (<PeopleIcon/>)},
         { name: "Nuevo miembro", link: "/backoffice/create-member", icono: (<GroupAddIcon/>)},
         { name: "Nuevo Proyecto", link: "/backoffice/create-project", icono: (<DocumentScannerIcon/>)},
       ];
-
+      
     return(
         <> 
             <List
