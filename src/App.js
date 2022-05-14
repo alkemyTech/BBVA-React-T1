@@ -15,7 +15,7 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
-
+import Nosotros from './Components/About/Nosotros';
 
 
 
