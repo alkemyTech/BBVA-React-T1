@@ -8,15 +8,9 @@ const config = {
   },
 };
 
-const Get = (route, id = null) => {
-  axios
-    .get(`${route+'/'+id}`, config)
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      return err;
-    });
+const Get = (route) => {
+  return axios
+    .get(route, config)
 };
 
 
@@ -30,7 +24,7 @@ const Get = (route, id = null) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(`${route}`, bodyObj, config);
+        const res = await axios.post(route, bodyObj, config);
         return res;
     } catch (err) { return err; }
 }
