@@ -16,6 +16,7 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
+import MembersList from './Components/Members/MembersList';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
             <Route path="/backoffice/create-slide" component={SlidesForm} />
+            <Route path="/backoffice/members" component={MembersList} />
             <Route path="/create-testimonials" component={TestimonialForm} />
             <Route path="/create-user" component={UserForm} />
             <Route path="/create-member" component={MembersForm} />
