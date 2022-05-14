@@ -16,6 +16,7 @@ import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import Nosotros from './Components/About/Nosotros';
+import UsersList from "./Components/Users/UsersList";
 
 
 
@@ -30,10 +31,18 @@ function App() {
             <Route path="/backoffice/create-category" component={CategoriesForm} />
             <Route path="/backoffice/create-news" component={NewsForm} />
             <Route path="/backoffice/create-slide" component={SlidesForm} />
+<<<<<<< HEAD
             <Route path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route path="/backoffice/create-user" component={UserForm} />
             <Route path="/backoffice/create-member" component={MembersForm} />
             <Route path="/backoffice/create-project" component={ProjectsForm} />
+=======
+            <Route path="/create-testimonials" component={TestimonialForm} />
+            <Route path="/backoffice/users/create" component={UserForm} />
+            <Route path="/create-member" component={MembersForm} />
+            <Route path="/create-project" component={ProjectsForm} />
+            <Route path="/backoffice/users" component={UsersList} />
+>>>>>>> main
 
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
