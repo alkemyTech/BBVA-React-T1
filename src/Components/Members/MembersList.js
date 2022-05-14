@@ -19,6 +19,7 @@ const MembersList = () => {
   const [rowsContent, setrowsContent] = useState([]);
 
   useEffect(() => {
+    //comunicación con Get de API..
   }, []);
   return(
     <>
