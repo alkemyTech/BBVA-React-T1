@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import "./App.css";
@@ -16,7 +15,7 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
-
+import { News } from "./Components/News/News";
 
 function App() {
   return (
@@ -38,7 +37,7 @@ function App() {
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
               <Route path="/nosotros" />
-              <Route path="/news" />
+              <Route path="/news" component={News} />
               <Route path="/testimonials" />
               <Route path="/contact" />
               <Route path="/school-campaign" component={SchoolCampaign} />
@@ -47,7 +46,6 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
-
     </>
   );
 }
