@@ -1,19 +1,12 @@
 import React from "react";
 import Card from "../Card/Card.js";
-// import { Get } from "./../../Services/privateApiService";
+import { Get } from "./../../Services/publicApiService";
 import { useEffect } from "react";
 import axios from "axios";
 import "./News.css";
 
 export const News = () => {
   const [data, setData] = React.useState([]);
-
-  const Get = (endpoint, id = null) => {
-    const param = id ? `/${id}` : "";
-    return axios.get(
-      `${process.env.REACT_APP_URL_BASE_ENDPOINT + endpoint + param}`
-    );
-  };
 
   useEffect(() => {
     const getNews = async () => {
