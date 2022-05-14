@@ -13,7 +13,7 @@ const config = {
 };
 
 export const Get = (endpoint) => {
-  return axios.get(`${endpoint}`, config);
+  return axios.get(endpoint, config);
 };
 
 export const getToken = () => {
@@ -41,7 +41,7 @@ export const getHeaderAuthorization = () => {
 export const Delete = async (route, id) => {
   try {
     const res = await axios.delete(
-      `${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,
+     route,
       config.headers
     );
     return res;
@@ -53,7 +53,7 @@ export const Delete = async (route, id) => {
 
 export const PrivatePost = (endpoint, body) => {
   return axios
-    .post(`${endpoint}`, body, config)
+    .post(endpoint, body, config)
     .then((res) => res)
     .catch((err) => err);
 };
@@ -69,7 +69,7 @@ export const PrivatePost = (endpoint, body) => {
  */
 export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${route}`,body,config)
+    return await axios.put(route,body,config)
     }catch(error){
         return error
     }
