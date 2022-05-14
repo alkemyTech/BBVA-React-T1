@@ -2,7 +2,7 @@ import * as React from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
-import ListadoRutas from '../ListadoRutas/ListadoRutas';
+import ListadoRutas from '../RoutesList/RoutesList';
 import '../../../App.css'
 
 const Sidebar = () => { 

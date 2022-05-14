@@ -15,7 +15,7 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { Link } from 'react-router-dom';
 
-import './ListadoRutas.css'
+import './RoutesList.css'
 
 const ListadoRutas = () => {
     const navMenu = [
