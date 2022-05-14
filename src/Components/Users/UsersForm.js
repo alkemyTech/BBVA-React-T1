@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
-
+import {Get, Post} from "../../Services/publicApiService"
 
 const UserForm = () => {
     
@@ -21,8 +21,18 @@ const UserForm = () => {
         }
     }
  
+       const userCreated={
+        name: initialValues.name ,
+        email: initialValues.email,
+        role_id: parseInt(initialValues.roleId),
+        password: "",
+        profile_image: initialValues.profileImg
+    }
+      
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        Post("/users", userCreated)
     }
     
 
