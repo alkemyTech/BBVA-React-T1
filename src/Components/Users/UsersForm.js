@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
+
 const UserForm = () => {
+    
     const [initialValues, setInitialValues] = useState({
         name: '',
         email: '',
-        roleId: ''
+        roleId: '',
+        profileImg: ''
     })
 
     const handleChange = (e) => {
@@ -13,23 +16,26 @@ const UserForm = () => {
             setInitialValues({...initialValues, name: e.target.value})
         } if(e.target.name === 'email'){
             setInitialValues({...initialValues, email: e.target.value})
+        }if(e.target.name === 'profile-img'){
+            setInitialValues({...initialValues, profileImg: e.target.value})
         }
     }
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(initialValues);
     }
+    
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name || ''} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.description || ''} onChange={handleChange} placeholder="Email"></input>
+            <input className="input-field" type="text" name="email" value={initialValues.email || ''} onChange={handleChange} placeholder="Email"></input>
             <select className="input-field" value={initialValues.roleId || ''} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
                 <option value="" disabled >Select the role</option>
                 <option value="1">Admin</option>
                 <option value="2">User</option>
             </select>
+            <input className="input-field" type="file" name="profile-img" value={initialValues.profileImg || ''} onChange={handleChange} placeholder="Email"></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
     );
