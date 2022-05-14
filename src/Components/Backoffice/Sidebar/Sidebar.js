@@ -7,37 +7,24 @@ import '../../../App.css'
 
 const Sidebar = () => { 
 
-    const [state, setState] = React.useState({
-        top: false,
-        left: false,
-        bottom: false,
-        right: false,
-      });
-    
+  const [isOpen, setIsOpen] = useState(false);
 
-    const toggleDrawer = ( open) => (event) => {
-        if (
-          event &&
-          event.type === 'keydown' &&
-          (event.key === 'Tab' || event.key === 'Shift')
-        ) {
-          return;
-        }
-        setState({ ...state, ["left"]: open });
-      };
+  const toggleDrawer = () => {
+      setIsOpen(!isOpen)
+  }
 
   
 
     return(
         <React.Fragment key={"left"} className="pruebadd"  >
-            <IconButton aria-label="Sidebar" onClick={toggleDrawer( true)}>
+            <IconButton aria-label="Sidebar" onClick={setIsOpen( true)}>
                 <MenuIcon fontSize="inherit" />
             </IconButton>
             <SwipeableDrawer
             anchor={"left"}
             open={state["left"]}
-            onClose={toggleDrawer( false)}
-            onOpen={toggleDrawer( true)}
+            onClose={setIsOpen( false)}
+            onOpen={setIsOpen( true)}
             >
                 <ListadoRutas/>
             </SwipeableDrawer>
