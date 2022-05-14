@@ -41,7 +41,7 @@ const SlidesForm = () => {
     const dataUpdate= id !== "create";
 
 
-    const snackErrorCargaDatos = () =>{
+    const snackDataLoadError = () =>{
         setSnack({...snack, 
             message:"Error en la carga de datos, intente nuevamente mas tarde.",
             open:true,
@@ -72,12 +72,12 @@ const SlidesForm = () => {
                 }
                     setLoaded(true)
                 }else{
-                    snackErrorCargaDatos();
+                    snackDataLoadError();
                 }
                 
             })
             .catch( e => {
-                snackErrorCargaDatos();
+                snackDataLoadError();
             })
         
         
