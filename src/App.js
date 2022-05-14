@@ -18,6 +18,8 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 
 
+
+
 function App() {
   return (
     <>
@@ -37,7 +39,7 @@ function App() {
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
-              <Route path="/nosotros" />
+              <Route path="/nosotros" component={Nosotros} />
               <Route path="/news" />
               <Route path="/testimonials" />
               <Route path="/contact" />
