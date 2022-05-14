@@ -38,7 +38,7 @@ const SlidesForm = () => {
         duration: 3000,
     })
 
-    const actualizacionDeDatos = id !== "create";
+    const dataUpdate= id !== "create";
 
 
     const snackErrorCargaDatos = () =>{
@@ -57,7 +57,7 @@ const SlidesForm = () => {
                 if(success===true){
                 const data=res.data.data;
                 setAllSlidesData(data);
-                if(actualizacionDeDatos){
+                if(dataUpdate){
                     const search=data.find( slide => slide.id=== parseInt(id))
 
                     setDataValues( {
@@ -107,7 +107,7 @@ const SlidesForm = () => {
     const getPossibleOrder = () =>{
         let orderExistente=allSlidesData.map( a => a.order);
         
-        if(actualizacionDeDatos){
+        if(dataUpdate){
             orderExistente=orderExistente.filter( a => a!==dataValues.order)
 
         }
@@ -118,14 +118,14 @@ const SlidesForm = () => {
     const handleSubmit = (e) =>{
         e.preventDefault();
         const objectSend={
-            id: parseInt((actualizacionDeDatos)? id: 0 ),
+            id: parseInt((dataUpdate)? id: 0 ),
             name: dataValues.name ,
             description: dataValues.description,
             image: dataValues.image64,
             user_id:  0,
             order:  dataValues.order,
         }
-        var promise = (actualizacionDeDatos)? 
+        var promise = (dataUpdate)? 
         Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH+"/"+objectSend.id,objectSend) : 
         PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH,objectSend);
  
@@ -150,7 +150,7 @@ const SlidesForm = () => {
             <Spinner visible={!loaded} className="spinner"  />  
 
             <form className="form-container" onSubmit={handleSubmit}>
-            <h2>{(actualizacionDeDatos)?"Actualizacion de slide":"Slide nueva"}</h2>
+            <h2>{(dataUpdate)?"Actualizacion de slide":"Slide nueva"}</h2>
 
             <TextField id="outlined-basic" label="Titulo del Slide" variant="outlined"  
                         type="text" name="name"  
@@ -192,7 +192,7 @@ const SlidesForm = () => {
             <h4>Seleccione una imagen</h4>
             <input accept="image/png, image/jpg" type="file" onChange={imageToBase64} required/>
 
-            <button className="submit-btn" type="submit" >{(actualizacionDeDatos)?"Actualizar actividad":"Enviar actividad"}</button>
+            <button className="submit-btn" type="submit" >{(dataUpdate)?"Actualizar actividad":"Enviar actividad"}</button>
             </form>
 
             <Snackbar
