@@ -20,7 +20,8 @@
     "react-loader-spinner": "^6.0.0-0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "swiper": "^8.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
