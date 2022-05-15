@@ -179,18 +179,23 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1>{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
-        <form className="form-container form-user-back"  onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-            <input className="input-field" type="text" name="email" value={initialValues.email} onChange={handleChange}   placeholder="Email"   ></input>
-            <input className="input-field" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Password"></input>
-            <select className="input-field" value={initialValues.roleId} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
+        <h1 className="title-back" >{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
+        <form className="form-container form-back"  onSubmit={handleSubmit}>
+            <h3 className="title-field-users">Nombre</h3>
+            <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
+            <h3 className="title-field-users">Email</h3>
+            <input className="input-field input-back" type="text" name="email" value={initialValues.email} onChange={handleChange}   placeholder="Email"   ></input>
+            <h3 className="title-field-users">Contraseña</h3>
+            <input className="input-field input-back" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Password"></input>
+            <h3 className="title-field-users">Rol</h3>
+            <select className="input-field input-back" value={initialValues.roleId} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
                 <option value="" disabled >Select the role</option>
                 <option value="1">Admin</option>
                 <option value="2">User</option>
             </select>
-            <input className="input-field" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
-            <button className="form-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
+            <h3 className="title-field-users">Seleccione una imagen</h3>
+            <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
+            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
         </form>
 
         <Snackbar
