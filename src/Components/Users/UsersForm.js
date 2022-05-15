@@ -6,17 +6,13 @@ import { Snackbar , Alert } from '@mui/material';
 
 const UserForm = () => {
   const { id } = useParams();  
-
   const location = useLocation().pathname.toLocaleLowerCase();
-   
   const history = useHistory();
-
   const [snack, setSnack] = useState({
     open: false,
     message: "",
     severity: "error",
 })
-
 
   const [initialValues, setInitialValues] = useState({
     name:  '',
@@ -27,11 +23,12 @@ const UserForm = () => {
 })
 
 
+    //Mensajes de Error:
     const snackErrorCargaDatos = () =>{
         setSnack({...snack, 
-            message:"Error en la carga de datos, intente nuevamente mas tarde.",
-            open:true,
-            severity:"error"
+        message:"Error en la carga de datos, intente nuevamente mas tarde.",
+        open:true,
+        severity:"error"
         })
     }
 
@@ -75,7 +72,7 @@ const UserForm = () => {
         }) 
     }
 
-  
+//Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
     await Get("/users", id)
     .then(res => {
@@ -99,6 +96,7 @@ const UserForm = () => {
     }, []);   
 
 
+// Objeto creado a partir de los valores ingresados del form para enviar peticiones
 const userCreated={
     name: initialValues.name ,
     email: initialValues.email,
@@ -108,6 +106,7 @@ const userCreated={
 } 
   
 
+//Validaciones del form
 const formValidation = () =>{
     const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
@@ -130,6 +129,8 @@ const formValidation = () =>{
     return formCorrecto
 }
 
+
+//Envio del form y peticiones
 const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
@@ -147,35 +148,35 @@ const handleSubmit = async (e)  => {
     }
 }
 
+    //Actualiza los datos con los que obtiene de los inputs del form
     const handleChange = (e) => {
         if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
+        setInitialValues({...initialValues, name: e.target.value})
+        }if(e.target.name === 'email'){
+        setInitialValues({...initialValues, email: e.target.value})
         }if(e.target.name === 'profile-img'){
-            setInitialValues({...initialValues, profileImg: e.target.value})
+        setInitialValues({...initialValues, profileImg: e.target.value})
         }if(e.target.name === 'password'){
-            setInitialValues({...initialValues, password: e.target.value})
+        setInitialValues({...initialValues, password: e.target.value})
         }
         if(e.target.name === 'profile-img'){
-            setInitialValues({...initialValues, profileImg: e.target.value})
+        setInitialValues({...initialValues, profileImg: e.target.value})
         }
     }
 
-      function encodeImageAsURL(element) {
-        var file = element.currentTarget.files[0];
-        var reader = new FileReader();
-        reader.onloadend = function() {
-        setInitialValues({...initialValues, profileImg: reader.result})
-        }
-        reader.readAsDataURL(file);
-      }
+    //Formateo de imagen a code64 para enviar a api
+    function encodeImageAsURL(element) {
+    var file = element.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+    setInitialValues({...initialValues, profileImg: reader.result})}
+    reader.readAsDataURL(file);
+    }
 
+    //Cierre de Notificación Snack
     const onCloseSnack = () =>{
         setSnack({...snack, open:false})
     }
-
-
     
     return (
         <>
