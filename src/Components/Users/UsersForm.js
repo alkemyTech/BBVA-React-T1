@@ -180,7 +180,7 @@ const handleSubmit = async (e)  => {
     return (
         <>
         <h1>{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
-        <form className="form-container"  onSubmit={handleSubmit}>
+        <form className="form-container form-user-back"  onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.email} onChange={handleChange}   placeholder="Email"   ></input>
             <input className="input-field" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Password"></input>

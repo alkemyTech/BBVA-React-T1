@@ -40,12 +40,25 @@
 .submit-btn{
 background-color: #ff0000 !important;
 }
+
+/* Form backoffice UserForm */
+
 .form-submit-btn{
     background-color: #0094d2;
-    color: rgb(0, 0, 0);
-    font-size: 1rem;
+    color:white;
+    font-size: 1.2rem;
     padding:0.2rem 0;
+    margin: 0 auto;
+    cursor: pointer;
+    width:10vw;
+    border:0.1rem solid rgb(27, 26, 26);
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
 }
+
 
 @media (max-width: 600px) {
     .img-form {
