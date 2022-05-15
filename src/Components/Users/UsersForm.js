@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import '../FormStyles.css';
-import {Get, PrivatePost, Put} from "../../Services/privateApiService"
+import {Get, PrivatePost, Put, Delete} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
 
 const UserForm = () => {
-
-  // ID
   const { id } = useParams();  
 
-  //Url route
   const location = useLocation().pathname.toLocaleLowerCase();
    
   const history = useHistory();
@@ -20,6 +17,7 @@ const UserForm = () => {
     severity: "error",
 })
 
+
   const [initialValues, setInitialValues] = useState({
     name:  '',
     email: '',
@@ -27,6 +25,7 @@ const UserForm = () => {
     profileImg:  '',
     password:  ''
 })
+
 
     const snackErrorCargaDatos = () =>{
         setSnack({...snack, 
@@ -36,9 +35,9 @@ const UserForm = () => {
         })
     }
 
-    const snackErrorCampos = () =>{
+    const snackErrorRole = () =>{
         setSnack({...snack, 
-            message:"Error debe completar todos los campos",
+            message:"Debe seleccionar un rol",
             open:true,
             severity:"error"
         }) 
@@ -90,7 +89,7 @@ const UserForm = () => {
             password: data.password || ""
         })
     })
-    .catch(e => {
+    .catch(() => {
          snackErrorCargaDatos()
     })
   };
@@ -109,18 +108,16 @@ const userCreated={
 } 
   
 
-
 const formValidation = () =>{
     const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
-    console.log(userCreated)
     let formCorrecto = false;
-    if(initialValues.name === "" || initialValues.email=== "" || initialValues.password=== "" || isNaN(initialValues.roleId) || initialValues.profileImg === ""){
-        snackErrorCampos()
-        return false;
-    }else if(initialValues.name.length < 4){
+    if(initialValues.name.length < 4){
         snackErrorName()
-    }else if(!emailRegexp.test(initialValues.email)){
+    }else if(Number.isNaN(parseInt(initialValues.roleId)) ){
+        snackErrorRole()
+    }
+    else if(!emailRegexp.test(initialValues.email)){
         snackErrorMail()
     }else if(initialValues.password.length < 8){
         snackErrorPassword()
@@ -133,17 +130,20 @@ const formValidation = () =>{
     return formCorrecto
 }
 
-const handleSubmit = async (e) => {
+const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
         if(location.includes("create")){
-            await PrivatePost("/users", userCreated)
+           await PrivatePost("/users", userCreated)
             history.push("/backoffice/users") 
           }
         else if(location.includes("edit")){
-            await Put(id, "/users", userCreated);
+            await Put(id,"/users", userCreated)
             history.push("/backoffice/users") 
-        }   
+        }else if(location.includes("delete")){
+            await Delete("/users", id)
+            history.push("/backoffice/users") 
+        } 
     }
 }
 
@@ -162,13 +162,11 @@ const handleSubmit = async (e) => {
         }
     }
 
-    const adaptImage64 = (element) => {
-        if(!element||!element.currentTarget.files)
-            return;
+      function encodeImageAsURL(element) {
         var file = element.currentTarget.files[0];
         var reader = new FileReader();
         reader.onloadend = function() {
-            setInitialValues({...initialValues, profileImg: reader.result})
+        setInitialValues({...initialValues, profileImg: reader.result})
         }
         reader.readAsDataURL(file);
       }
@@ -176,10 +174,12 @@ const handleSubmit = async (e) => {
     const onCloseSnack = () =>{
         setSnack({...snack, open:false})
     }
+
+
     
- 
     return (
         <>
+        <h1>{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
         <form className="form-container"  onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
             <input className="input-field" type="text" name="email" value={initialValues.email} onChange={handleChange}   placeholder="Email"   ></input>
@@ -189,8 +189,8 @@ const handleSubmit = async (e) => {
                 <option value="1">Admin</option>
                 <option value="2">User</option>
             </select>
-            <input className="input-field" accept="image/*" type="file" name="profile-img" onChange={adaptImage64} placeholder="imagen de perfil"></input>
-            <button className="submit-btn" type="submit">Send</button>
+            <input className="input-field" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
+            <button className="form-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
         </form>
 
         <Snackbar
