@@ -32,6 +32,7 @@ function App() {
             <Route path="/backoffice/create-slide" component={SlidesForm} />
             <Route path="/create-testimonials" component={TestimonialForm} />
             <Route path="/backoffice/users/create" component={UserForm} />
+            <Route path="/backoffice/users/edit/:id" component={UserForm} />
             <Route path="/create-member" component={MembersForm} />
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/backoffice/users" component={UsersList} />
@@ -39,7 +40,7 @@ function App() {
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
-              <Route path="/nosotros" component={Nosotros} />
+              {/* <Route path="/nosotros" component={Nosotros} /> */}
               <Route path="/news" />
               <Route path="/testimonials" />
               <Route path="/contact" />
