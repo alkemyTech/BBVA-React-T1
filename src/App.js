@@ -33,6 +33,7 @@ function App() {
             <Route path="/create-testimonials" component={TestimonialForm} />
             <Route path="/backoffice/users/create" component={UserForm} />
             <Route path="/backoffice/users/edit/:id" component={UserForm} />
+            <Route path="/backoffice/users/delete/:id" component={UserForm} />
             <Route path="/create-member" component={MembersForm} />
             <Route path="/create-project" component={ProjectsForm} />
             <Route path="/backoffice/users" component={UsersList} />
