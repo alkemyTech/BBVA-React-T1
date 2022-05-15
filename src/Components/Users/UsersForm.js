@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, PrivatePost, Put} from "../../Services/privateApiService"
+import { Snackbar , Alert,TextField } from '@mui/material';
 
 const UserForm = () => {
 
@@ -27,6 +28,54 @@ const UserForm = () => {
     password:  ''
 })
 
+    const snackErrorCargaDatos = () =>{
+        setSnack({...snack, 
+            message:"Error en la carga de datos, intente nuevamente mas tarde.",
+            open:true,
+            severity:"error"
+        })
+    }
+
+    const snackErrorCampos = () =>{
+        setSnack({...snack, 
+            message:"Error debe completar todos los campos",
+            open:true,
+            severity:"error"
+        }) 
+    }
+
+    const snackErrorName = () =>{
+        setSnack({...snack, 
+            message:"El nombre debe contener al menos 4 letras",
+            open:true,
+            severity:"error"
+        }) 
+    }
+
+    const snackErrorMail = () =>{
+        setSnack({...snack, 
+            message:"El formato de mail es incorrecto",
+            open:true,
+            severity:"error"
+        }) 
+    }
+
+    const snackErrorPassword = () =>{
+        setSnack({...snack, 
+            message:"El password debe contener al menor 8 letras",
+            open:true,
+            severity:"error"
+        }) 
+    }
+
+    const snackErrorImage = () =>{
+        setSnack({...snack, 
+            message:"El formato de la imagen debe ser .jpg o .png",
+            open:true,
+            severity:"error"
+        }) 
+    }
+
   
   const getUsers = async () => {
     await Get("/users", id)
@@ -40,6 +89,9 @@ const UserForm = () => {
             profileImg: data.profile_image || "",
             password: data.password || ""
         })
+    })
+    .catch(e => {
+         snackErrorCargaDatos()
     })
   };
 
@@ -58,9 +110,32 @@ const userCreated={
   
 
 
+const formValidation = () =>{
+    const emailRegexp = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/);
+    const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
+    console.log(userCreated)
+    let formCorrecto = false;
+    if(initialValues.name === "" || initialValues.email=== "" || initialValues.password=== "" || isNaN(initialValues.roleId) || initialValues.profileImg === ""){
+        snackErrorCampos()
+        return false;
+    }else if(initialValues.name.length < 4){
+        snackErrorName()
+    }else if(!emailRegexp.test(initialValues.email)){
+        snackErrorMail()
+    }else if(initialValues.password.length < 8){
+        snackErrorPassword()
+    }else if(!imgRegex.test(initialValues.profileImg)){
+        snackErrorImage()
+    }
+    else{
+        formCorrecto = true;
+    }
+    return formCorrecto
+}
 
 const handleSubmit = async (e) => {
     e.preventDefault();
+    if(formValidation()){
         if(location.includes("create")){
             await PrivatePost("/users", userCreated)
             history.push("/backoffice/users") 
@@ -69,7 +144,7 @@ const handleSubmit = async (e) => {
             await Put(id, "/users", userCreated);
             history.push("/backoffice/users") 
         }   
-    
+    }
 }
 
     const handleChange = (e) => {
@@ -118,7 +193,15 @@ const handleSubmit = async (e) => {
             <button className="submit-btn" type="submit">Send</button>
         </form>
 
-
+        <Snackbar
+                open={snack.open}
+                severity={snack.severity}
+                autoHideDuration={3000}
+                onClose={onCloseSnack}>
+                <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
+                    {snack.message}
+                </Alert>
+            </Snackbar>
         </>
     );
 }
