@@ -58,7 +58,8 @@ const TestimonialForm = () => {
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getTestimonials = async () => {
-    await Get("/testimonials", id)
+
+    await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials`, id)
     .then(res => {
         const data=res.data.data;
         setInitialValues({
@@ -71,6 +72,7 @@ const TestimonialForm = () => {
     .catch(() => {
          snackErrorCargaDatos()
     })
+    
   };
 
     useEffect(() => {
@@ -88,12 +90,15 @@ const testimonialCreated={
 
 //Validaciones del form
 const formValidation = () =>{
-    /* const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) */
+    const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
     let formCorrecto = false;
     if(initialValues.name.length < 4){
         snackErrorName()
     }else if(initialValues.description === ""){
         snackErrorEmpty()
+    }else if(!imgRegex.test(initialValues.img)){
+        snackErrorImage()
+
     }
     else{
         formCorrecto = true;
@@ -108,7 +113,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     if(formValidation()){
         if(location.includes("create")){
-            PrivatePost("/testimonials", testimonialCreated)
+            PrivatePost(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials`, testimonialCreated)
             history.push("/backoffice/testimonials") 
           }
         else if(location.includes("edit")){
