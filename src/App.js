@@ -21,6 +21,7 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
 
+
 function App() {
   return (
     <>
@@ -50,7 +51,7 @@ function App() {
               <Route path="/nosotros" component={Nosotros} />
               <Route path="/news" />
               <Route path="/testimonials" />
-              <Route path="/contact" />
+              <Route path="/contact" component={ContactForm} />
               <Route path="/school-campaign" component={SchoolCampaign} />
               <Route path="/toys-campaign" component={ToysCampaign} />
             </PublicLayout>
