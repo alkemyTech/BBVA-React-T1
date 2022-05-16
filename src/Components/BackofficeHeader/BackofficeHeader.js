@@ -3,21 +3,21 @@ import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
-import { SidebarData } from "./Sidebar";
+import { SidebarData } from "./Sidebar"
 import { IconContext } from 'react-icons'
+import { Get } from '../../Services/publicApiService'
+
 import './BackofficeHeader.css'
 
 
-
 const BackofficeHeader = () => {
-
+    
     const [logo, setLogo] = useState('')
-    useEffect (() => {
-        axios.get('https://ongapi.alkemy.org/api/organization/1')
-        .then( (res) => {
-            setLogo(res.data.data.logo)
-        })
-    })
+    
+    useEffect ( () => {
+        const res = Get('/organization', 1)
+        res.then( res => setLogo(res.data.data.logo))
+    }, [])
 
     const [sidebar, setSidebar] = useState(false)
 

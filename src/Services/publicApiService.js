@@ -8,15 +8,18 @@ const config = {
   },
 };
 
-const Get = (route, id = null) => {
-  axios
-    .get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, config)
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => {
-      return err;
-    });
+const Get = async (route, id = null) => {
+  try {
+    const res = await axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+ route + '/' + id}`);
+    return res;
+  } catch (err) { return err; }
+
+  // axios
+  //   .get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, config)
+  //   .then((res) => res)
+  //   .catch((err) => {
+  //     return err;
+  //   });
 };
 
 
