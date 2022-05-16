@@ -117,10 +117,10 @@ const handleSubmit = async (e) => {
             history.push("/backoffice/testimonials") 
           }
         else if(location.includes("edit")){
-            await Put(id, "/testimonials", testimonialCreated)
+            await Put(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/${id}`, testimonialCreated)
             history.push("/backoffice/testimonials") 
         }else if(location.includes("delete")){
-            await Delete("/testimonials", id);
+            await Delete(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/${id}`);
         }   
     }
 }
