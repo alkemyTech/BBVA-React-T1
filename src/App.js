@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import "./App.css";
@@ -17,6 +16,8 @@ import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import MembersList from './Components/Members/MembersList';
+import UsersList from "./Components/Users/UsersList";
+
 
 
 function App() {
@@ -32,14 +33,15 @@ function App() {
             <Route path="/backoffice/create-slide" component={SlidesForm} />
             <Route path="/backoffice/members" component={MembersList} />
             <Route path="/create-testimonials" component={TestimonialForm} />
-            <Route path="/create-user" component={UserForm} />
+            <Route path="/backoffice/users/create" component={UserForm} />
             <Route path="/create-member" component={MembersForm} />
             <Route path="/create-project" component={ProjectsForm} />
+            <Route path="/backoffice/users" component={UsersList} />
 
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
-              <Route path="/nosotros" />
+              <Route path="/nosotros" component={Nosotros} />
               <Route path="/news" />
               <Route path="/testimonials" />
               <Route path="/contact" />
@@ -49,7 +51,6 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
-
     </>
   );
 }
