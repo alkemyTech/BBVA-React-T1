@@ -1,0 +1,92 @@
+.header {
+  top: 0;
+  box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
+    0px 2.5px 5.3px rgba(0, 0, 0, 0.028), 0px 4.8px 10px rgba(0, 0, 0, 0.035),
+    0px 8.5px 17.9px rgba(0, 0, 0, 0.042), 0px 15.9px 33.4px rgba(0, 0, 0, 0.05),
+    0px 38px 80px rgba(0, 0, 0, 0.07);
+}
+
+.header_contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_logo {
+  width: 120px;
+  margin-left: 20px;
+}
+
+.header_list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+}
+
+.nav_item * {
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+  display: block;
+}
+
+.nav_item *:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.active {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 31px;
+  height: 21px;
+  margin-top: 8px;
+  color: inherit;
+  border: none;
+  font: inherit;
+  background: none;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: rgb(97, 97, 97);
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .toggle-button {
+    display: flex;
+  }
+
+  .nav_links {
+    width: 100%;
+  }
+
+  .header_contents {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header_list {
+    width: 100%;
+    flex-direction: column;
+  }
+  .nav_item * {
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .nav_links .showMenu {
+    display: none;
+  }
+}

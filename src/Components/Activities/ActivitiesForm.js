@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
+
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
