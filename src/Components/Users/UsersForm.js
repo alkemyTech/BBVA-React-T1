@@ -23,33 +23,35 @@ const UserForm = () => {
 })
 
 
-const showError = (text) =>{
+const showSnack = (text, type) =>{
     setSnack({...snack, 
         message: text,
         open: true,
-        severity: "error",
+        severity: type,
     })
 }
 
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
-    await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
-    .then(res => {
-        const data=res.data.data;
-        setInitialValues({
-            ...initialValues,
-            name:data.name || "",
-            email:data.email || "",
-            roleId:data.role_id || "",
-            profileImg: data.profile_image || "",
-            password: data.password || ""
+    if(!location.includes("create")){
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
+        .then(res => {
+            const data=res.data.data;
+            setInitialValues({
+                ...initialValues,
+                name:data.name || "",
+                email:data.email || "",
+                roleId:data.role_id || "",
+                profileImg: data.profile_image || "",
+                password: data.password || ""
+            })
         })
-    })
-    .catch(() => {
-        showError("Error en la carga de datos, intente nuevamente mas tarde.")
-    })
-  };
+        .catch(() => {
+            showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
+        })
+        }
+    };
 
     useEffect(() => {
         getUsers()
@@ -72,23 +74,22 @@ const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
     let formCorrecto = false;
     if(initialValues.name.length < 4){
-        showError("El nombre debe contener al menos 4 letras")
+        showSnack("El nombre debe contener al menos 4 letras","error")
     }else if(Number.isNaN(parseInt(initialValues.roleId)) ){
-        showError("Debe seleccionar un rol")
-    }
-    else if(!emailRegexp.test(initialValues.email)){
-        showError("El formato de mail es incorrecto")
+        showSnack("Debe seleccionar un rol")
+    }else if(!emailRegexp.test(initialValues.email)){
+        showSnack("El formato de mail es incorrecto", "error")
     }else if(initialValues.password.length < 8){
-        showError("El password debe contener al menor 8 letras")
+        showSnack("El password debe contener al menos 8 letras", "error")
     }else if(!imgRegex.test(initialValues.profileImg)){
-        showError("El formato de la imagen debe ser .jpg o .png")
+        showSnack("Debe subir una imagen en formato jpg o png", "error")
     }
     else{
         formCorrecto = true;
+        showSnack("Formulario procesado", "success")
     }
     return formCorrecto
 }
-
 
 //Envio del form y peticiones
 const handleSubmit = async (e)  => {
@@ -152,12 +153,12 @@ const handleSubmit = async (e)  => {
         <Snackbar
                 open={snack.open}
                 severity={snack.severity}
-                autoHideDuration={3000}
+                autoHideDuration={4000}
                 onClose={onCloseSnack}>
                 <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
                     {snack.message}
                 </Alert>
-            </Snackbar>
+        </Snackbar>
         </>
     );
 }
