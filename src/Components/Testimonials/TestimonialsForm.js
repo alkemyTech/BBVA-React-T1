@@ -38,19 +38,19 @@ const showSnack = (text, type) =>{
   const getTestimonials = async () => {
     if(!location.includes("create")){
         await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/` + id)
-    .then(res => {
-        const data=res.data.data;
-        setInitialValues({
-            ...initialValues,
-            name:data.name || "",
-            description: data.description || "",
-            img:data.image || ""
+        .then(res => {
+            const info=res.data.data;
+            setInitialValues({
+                ...initialValues,
+                name:info.name,
+                description: info.description,
+                img:info.image 
+            })
         })
-    })
-    .catch(() => {
-        showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
-    })
-    }
+        .catch(() => {
+            showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
+        })
+        }
   };
 
     useEffect(() => {
@@ -134,6 +134,9 @@ const handleSubmit = async (e)  => {
             <h3 className="title-field-users">Descripción</h3>
 
             <CKEditor
+                config={{
+                toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
+                }}
                 editor={ ClassicEditor }
                 value={initialValues.description}
                 onChange={(e, editor) => {
