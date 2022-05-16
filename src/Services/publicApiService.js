@@ -29,7 +29,7 @@ const Get = (route) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`, bodyObj, config.headers);
+        const res = await axios.post(route, bodyObj, config);
         return res;
     } catch (err) { return err; }
 }
