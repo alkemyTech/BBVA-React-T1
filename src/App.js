@@ -16,8 +16,8 @@ import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
-
-
+import ShowSlides from "./Components/Slides/Show/ShowSlides";
+import Nosotros from './Components/About/Nosotros';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+            <Route path="/backoffice/Slides" component={ShowSlides} />
             <Route path="/create-activity" component={ActivitiesForm} />
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
