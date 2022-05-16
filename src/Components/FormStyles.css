@@ -41,7 +41,13 @@
 
 /* Utilicé !important para sobreescribir estilos de MaterialUI */
 .submit-btn{
-background-color: #ff0000 !important;
+    background-color: #ff0000 !important;
+    width: 50%;
+    margin: 0 auto;
+    background-color: #2E86C1;
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
 }
 
 /* Form backoffice UserForm */
@@ -95,5 +101,3 @@ background-color: #ff0000 !important;
         display: none;
     }
 }
-
-
