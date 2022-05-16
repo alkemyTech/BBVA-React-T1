@@ -1,4 +1,5 @@
-.form-container{
+
+.form-container, .register-form{
     width: 60%;
     margin: 15px auto;
     display: flex;
@@ -6,24 +7,45 @@
     gap: 15px;
 }
 
-.input-field{
-    padding: 15px 30px;
-    border: 1px solid #c1c1c1;
+.main-container-form{
+    margin: 0px;
+    display: flex;
+    max-width: 100vw;
+    height: 100vh;
+
 }
 
-.select-field{
-    padding: 10px;
-    border: 1px solid #c1c1c1;
+.img-form-container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
+.img-form-container .img-form {
+    object-fit: cover;
+}
+
+.question-p {
+    display: inline;
+}
+
+.nav-link{
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 2px;
+    color: #ff0000;
+}
+
+/* Utilicé !important para sobreescribir estilos de MaterialUI */
 .submit-btn{
-    background-color: #2E86C1;
-    padding: 10px 15px;
-    border: none;
-    color: #fff;
+background-color: #ff0000 !important;
 }
 
-.submit-btn:hover{
-    cursor: pointer;
-    background-color: #3498DB;
+@media (max-width: 600px) {
+    .img-form {
+        display: none;
+    }
 }
+
+
