@@ -23,6 +23,7 @@ import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 
 
+
 function App() {
   return (
     <>
@@ -35,15 +36,16 @@ function App() {
             <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activity" component={ActivitiesForm} />
             <Route path="/activities" component={ActivitiesList}/>
-            <Route path="/backoffice/create-category" component={CategoriesForm} />
-            <Route path="/backoffice/create-news" component={NewsForm} />
-            <Route path="/backoffice/create-slide" component={SlidesForm} />
-            <Route path="/backoffice/create-testimonials" component={TestimonialForm} />
-            <Route path="/backoffice/create-user" component={UserForm} />
-            <Route path="/backoffice/create-member" component={MembersForm} />
-            <Route path="/backoffice/create-project" component={ProjectsForm} />
-            <Route path="/backoffice/users" component={UsersList} />
 
+
+            <Route path="/create-category" component={CategoriesForm} />
+            <Route path="/create-news" component={NewsForm} />
+            <Route path="/backoffice/create-slide" component={SlidesForm} />
+            <Route path="/create-testimonials" component={TestimonialForm} />
+            <Route path="/backoffice/users/create" component={UserForm} />
+            <Route path="/create-member" component={MembersForm} />
+            <Route path="/create-project" component={ProjectsForm} />
+            <Route path="/backoffice/users" component={UsersList} />
 
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
