@@ -1,0 +1,8 @@
+.spinner{
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(228,226,226,0.4920167896260067) 0%, rgba(219,219,219,0.4976190305223652) 33%, rgba(201,201,201,0.7021008232394521) 85%, rgba(192,192,192,1) 100%); 
+}
