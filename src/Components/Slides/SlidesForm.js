@@ -66,7 +66,7 @@ const SlidesForm = () => {
             Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH)
             .then( res => {
                 const success = res.data.success
-                if(success===true){
+                if(success){
                 const data=res.data.data;
 
                 const dataRR=getPossibleOrder(data)
