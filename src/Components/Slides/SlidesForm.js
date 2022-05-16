@@ -28,6 +28,8 @@ const SlidesForm = () => {
 
     const [ allSlidesData , setAllSlidesData ] = useState([])
 
+    const [radioButtons , setRadioButtons ] = useState ([])
+
     const { id } = useParams();
     const [loaded , setLoaded] = useState(false)
 
@@ -38,7 +40,7 @@ const SlidesForm = () => {
         duration: 3000,
     })
 
-    const dataUpdate= id !== "create";
+
 
 
     const snackDataLoadError = () =>{
@@ -49,6 +51,18 @@ const SlidesForm = () => {
         })
     }
 
+    const getPossibleOrder = (dataFromAllSlides) =>{
+        let orderExistente=dataFromAllSlides.map( a => a.order||-1);
+        
+        if(id){
+            orderExistente=orderExistente.filter( a => a!==dataValues.order)
+
+        }
+        let maxOrderExistent=Math.max( ...orderExistente ) ;
+        maxOrderExistent= (isFinite(maxOrderExistent))? maxOrderExistent :0;
+        return [...[ ...Array(maxOrderExistent + 4).keys() ].filter( number => !orderExistente.includes(number))]
+    }
+
     const getSlidesDataAndShow = () =>{
         
             Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH)
@@ -56,8 +70,11 @@ const SlidesForm = () => {
                 const success = res.data.success
                 if(success===true){
                 const data=res.data.data;
+
                 setAllSlidesData(data);
-                if(dataUpdate){
+                const dataRR=getPossibleOrder(data)
+                setRadioButtons(dataRR)
+                if(id){
                     const search=data.find( slide => slide.id=== parseInt(id))
 
                     setDataValues( {
@@ -69,6 +86,8 @@ const SlidesForm = () => {
                     });
 
                     setCKEditordata(search.description);
+
+                    
                 }
                     setLoaded(true)
                 }else{
@@ -104,28 +123,19 @@ const SlidesForm = () => {
          setDataValues({...dataValues, [e.target.name]: e.target.value})
     }
 
-    const getPossibleOrder = () =>{
-        let orderExistente=allSlidesData.map( a => a.order);
-        
-        if(dataUpdate){
-            orderExistente=orderExistente.filter( a => a!==dataValues.order)
 
-        }
-        const maxOrderExistent=Math.max( ...orderExistente ) || 0;
-        return  [ ...Array(maxOrderExistent + 4).keys() ].filter( number => !orderExistente.includes(number));
-    }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
         const objectSend={
-            id: parseInt((dataUpdate)? id: 0 ),
+            id: parseInt((id)? id: 0 ),
             name: dataValues.name ,
             description: dataValues.description,
             image: dataValues.image64,
             user_id:  0,
             order:  dataValues.order,
         }
-        var promise = (dataUpdate)? 
+        var promise = (id)? 
         Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH+"/"+objectSend.id,objectSend) : 
         PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_SLIDES_PATH,objectSend);
  
@@ -150,7 +160,7 @@ const SlidesForm = () => {
             <Spinner visible={!loaded} className="spinner"  />  
 
             <form className="form-container" onSubmit={handleSubmit}>
-            <h2>{(dataUpdate)?"Actualizacion de slide":"Slide nueva"}</h2>
+            <h2>{(id)?"Actualizacion de slide":"Slide nueva"}</h2>
 
             <TextField id="outlined-basic" label="Titulo del Slide" variant="outlined"  
                         type="text" name="name"  
@@ -180,9 +190,7 @@ const SlidesForm = () => {
                 name="order">
                     
                     { 
-                       allSlidesData.length>0
-                       &&
-                       getPossibleOrder().map(numberMap => {
+                       radioButtons.map(numberMap => {
                             return(<FormControlLabel className='formControlRadio' value={numberMap} key={numberMap} control={<Radio />} label={numberMap} />)
                         })
                     }
@@ -192,7 +200,7 @@ const SlidesForm = () => {
             <h4>Seleccione una imagen</h4>
             <input accept="image/png, image/jpg" type="file" onChange={imageToBase64} required/>
 
-            <button className="submit-btn" type="submit" >{(dataUpdate)?"Actualizar actividad":"Enviar actividad"}</button>
+            <button className="submit-btn" type="submit" >{(id)?"Actualizar actividad":"Enviar actividad"}</button>
             </form>
 
             <Snackbar

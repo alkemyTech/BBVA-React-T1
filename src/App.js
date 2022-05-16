@@ -26,6 +26,7 @@ function App() {
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 
+            <Route path="/backoffice/slides/create" component={SlidesForm} />
             <Route path="/backoffice/slides/:id" component={SlidesForm} />
             <Route path="/create-activity" component={ActivitiesForm} />
             <Route path="/create-category" component={CategoriesForm} />
