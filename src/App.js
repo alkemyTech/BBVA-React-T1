@@ -15,6 +15,7 @@ import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
+import Nosotros from './Components/About/Nosotros';
 
 
 
