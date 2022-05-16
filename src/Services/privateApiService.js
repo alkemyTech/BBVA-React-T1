@@ -54,7 +54,8 @@ export const Delete = async (route) => {
 export const PrivatePost = (endpoint, body) => {
   return axios
     .post(endpoint, body, config)
-
+    .then((res) => res)
+    .catch((err) => err);
 };
 
 /**
