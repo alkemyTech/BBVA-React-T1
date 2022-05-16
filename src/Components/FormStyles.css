@@ -39,14 +39,19 @@
 
 /* Utilicé !important para sobreescribir estilos de MaterialUI */
 .submit-btn{
+<<<<<<< HEAD
 
 background-color: #ff0000 !important;
+=======
+    background-color: #ff0000 !important;
+>>>>>>> main
     width: 50%;
     margin: 0 auto;
     background-color: #2E86C1;
     padding: 10px 15px;
     border: none;
     color: #fff;
+<<<<<<< HEAD
 }
 
 .submit-btn:hover{
@@ -54,6 +59,15 @@ background-color: #ff0000 !important;
     background-color: #3498DB;
 }
 
+=======
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    background-color: #3498DB;
+}
+
+>>>>>>> main
 .submitButton{
     width: 50%;
     margin: 0 auto;
@@ -64,7 +78,11 @@ background-color: #ff0000 !important;
     .img-form {
         display: none;
     }
+<<<<<<< HEAD
 }
 
 
 
+=======
+}
+>>>>>>> main

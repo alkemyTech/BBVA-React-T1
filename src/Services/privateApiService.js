@@ -1,14 +1,14 @@
 import axios from "axios";
 
 
-const access_token = ""
+const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
 
 
 const config = {
 
   headers: {
     Group: 1, //Aqui va el ID del equipo!!
-    Authorization: `token ${access_token}`,
+    Authorization: access_token,
   },
 };
 
@@ -38,10 +38,10 @@ export const getHeaderAuthorization = () => {
  *     - Err producido por la petición incorrecta.
  *
  */
-export const Delete = async (route, id) => {
+export const Delete = async (route) => {
   try {
     const res = await axios.delete(
-     route,
+      route,
       config.headers
     );
     return res;
@@ -54,14 +54,12 @@ export const Delete = async (route, id) => {
 export const PrivatePost = (endpoint, body) => {
   return axios
     .post(endpoint, body, config)
-    .then((res) => res)
-    .catch((err) => err);
+
 };
 
 /**
  * Actualiza los datos de la ruta destino
  * @function
- * @param id Id del recurso a actualizar
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
  * 
@@ -74,4 +72,5 @@ export const Put = async ( route, body) => {
         return error
     }
 }
+
 

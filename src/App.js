@@ -1,22 +1,27 @@
-import React from "react";
-
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
-import NewsForm from "./Components/News/NewsForm";
-import SlidesForm from "./Components/Slides/SlidesForm";
-import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
-import UserForm from "./Components/Users/UsersForm";
-import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
-import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
-import MembersForm from "./Components/Members/MembersForm";
-import ProjectsForm from "./Components/Projects/ProjectsForm";
+import React from 'react';
+import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import ActivitiesForm from './Components/Activities/ActivitiesForm';
+import CategoriesForm from './Components/Categories/CategoriesForm';
+import NewsForm from './Components/News/NewsForm';
+import SlidesForm from './Components/Slides/SlidesForm';
+import TestimonialForm from './Components/Testimonials/TestimonialsForm';
+import UserForm from './Components/Users/UsersForm';
+import SchoolCampaign from './Campaigns/School/SchoolCampaign';
+import ToysCampaign from './Campaigns/Toys/ToysCampaign';
+import MembersForm from './Components/Members/MembersForm';
+import ProjectsForm from './Components/Projects/ProjectsForm';
+import Nosotros from './Components/About/Nosotros'
+import Footer from './Components/Footer/Footer'
+import Header from './Components/Header/Header';
+import ContactForm from './Components/Contact/ContactForm.js';
+import ActivitiesList from './Components/Activities/ActivitiesList.js';
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
-import Nosotros from './Components/About/Nosotros';
+
+
 
 function App() {
   return (
@@ -29,6 +34,10 @@ function App() {
             <Route path="/backoffice/slides/create" component={SlidesForm} />
             <Route path="/backoffice/slides/:id" component={SlidesForm} />
             <Route path="/create-activity" component={ActivitiesForm} />
+            <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
+            <Route path="/backoffice/activity" component={ActivitiesForm} />
+            <Route path="/activities" component={ActivitiesList}/>
+
             <Route path="/create-category" component={CategoriesForm} />
             <Route path="/create-news" component={NewsForm} />
             <Route path="/create-testimonials" component={TestimonialForm} />
