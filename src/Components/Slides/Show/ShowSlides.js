@@ -118,11 +118,11 @@ const ShowSlides = () => {
             <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
 
-            <div className="buttonAdd">
+            <Link className="buttonAdd" to="/backoffice/slides/create">
                 <Button variant="contained" endIcon={<AddIcon />} >
                     Agregar Slide
                 </Button>
-            </div>
+            </Link>
             <Table columnNames={columnNames} rowData={rowData}/>
 
             

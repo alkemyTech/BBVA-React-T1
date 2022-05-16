@@ -31,7 +31,7 @@ function App() {
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 
-            <Route path="/backoffice/Slides" component={ShowSlides} />
+            <Route path="/backoffice/slides" component={ShowSlides} />
             <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activity" component={ActivitiesForm} />
             <Route path="/activities" component={ActivitiesList}/>
