@@ -22,7 +22,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <BackofficeHeader/>
       <Header/>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
