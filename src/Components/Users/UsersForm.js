@@ -23,58 +23,18 @@ const UserForm = () => {
 })
 
 
-    //Mensajes de Error:
-    const snackErrorCargaDatos = () =>{
-        setSnack({...snack, 
-        message:"Error en la carga de datos, intente nuevamente mas tarde.",
-        open:true,
-        severity:"error"
-        })
-    }
+const showError = (text) =>{
+    setSnack({...snack, 
+        message: text,
+        open: true,
+        severity: "error",
+    })
+}
 
-    const snackErrorRole = () =>{
-        setSnack({...snack, 
-            message:"Debe seleccionar un rol",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorName = () =>{
-        setSnack({...snack, 
-            message:"El nombre debe contener al menos 4 letras",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorMail = () =>{
-        setSnack({...snack, 
-            message:"El formato de mail es incorrecto",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorPassword = () =>{
-        setSnack({...snack, 
-            message:"El password debe contener al menor 8 letras",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorImage = () =>{
-        setSnack({...snack, 
-            message:"El formato de la imagen debe ser .jpg o .png",
-            open:true,
-            severity:"error"
-        }) 
-    }
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
-    await Get("/users", id)
+    await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
     .then(res => {
         const data=res.data.data;
         setInitialValues({
@@ -87,7 +47,7 @@ const UserForm = () => {
         })
     })
     .catch(() => {
-         snackErrorCargaDatos()
+        showError("Error en la carga de datos, intente nuevamente mas tarde.")
     })
   };
 
@@ -112,16 +72,16 @@ const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
     let formCorrecto = false;
     if(initialValues.name.length < 4){
-        snackErrorName()
+        showError("El nombre debe contener al menos 4 letras")
     }else if(Number.isNaN(parseInt(initialValues.roleId)) ){
-        snackErrorRole()
+        showError("Debe seleccionar un rol")
     }
     else if(!emailRegexp.test(initialValues.email)){
-        snackErrorMail()
+        showError("El formato de mail es incorrecto")
     }else if(initialValues.password.length < 8){
-        snackErrorPassword()
+        showError("El password debe contener al menor 8 letras")
     }else if(!imgRegex.test(initialValues.profileImg)){
-        snackErrorImage()
+        showError("El formato de la imagen debe ser .jpg o .png")
     }
     else{
         formCorrecto = true;
@@ -135,14 +95,14 @@ const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
         if(location.includes("create")){
-           await PrivatePost("/users", userCreated)
+           await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users", userCreated)
             history.push("/backoffice/users") 
           }
         else if(location.includes("edit")){
-            await Put(id,"/users", userCreated)
+            await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id, userCreated)
             history.push("/backoffice/users") 
         }else if(location.includes("delete")){
-            await Delete("/users", id)
+            await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
             history.push("/backoffice/users") 
         } 
     }
@@ -163,6 +123,7 @@ const handleSubmit = async (e)  => {
         setInitialValues({...initialValues, profileImg: e.target.value})
         }
     }
+    
 
     //Formateo de imagen a code64 para enviar a api
     function encodeImageAsURL(element) {
