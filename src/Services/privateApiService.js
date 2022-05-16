@@ -13,7 +13,7 @@ const config = {
 };
 
 export const Get = (endpoint) => {
-  return axios.get(`${endpoint}`, config);
+  return axios.get(endpoint, config);
 };
 
 export const getToken = () => {
