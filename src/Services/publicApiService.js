@@ -11,6 +11,12 @@ const config = {
 const Get = (route) => {
   return axios
     .get(route, config)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
 };
 
 
