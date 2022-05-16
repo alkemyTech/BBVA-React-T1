@@ -88,12 +88,10 @@ const testimonialCreated={
 
 //Validaciones del form
 const formValidation = () =>{
-    const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
+    /* const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) */
     let formCorrecto = false;
     if(initialValues.name.length < 4){
         snackErrorName()
-    }else if(!imgRegex.test(initialValues.profileImg)){
-        snackErrorImage()
     }else if(initialValues.description === ""){
         snackErrorEmpty()
     }
@@ -111,11 +109,10 @@ const handleSubmit = async (e) => {
     if(formValidation()){
         if(location.includes("create")){
             PrivatePost("/testimonials", testimonialCreated)
-            console.log(initialValues)
             history.push("/backoffice/testimonials") 
           }
         else if(location.includes("edit")){
-            await Put(id, "/testimonials", testimonialCreated);
+            await Put(id, "/testimonials", testimonialCreated)
             history.push("/backoffice/testimonials") 
         }else if(location.includes("delete")){
             await Delete("/testimonials", id);
@@ -133,7 +130,7 @@ const handleSubmit = async (e) => {
         var file = element.currentTarget.files[0];
         var reader = new FileReader();
         reader.onloadend = function() {
-        setInitialValues({...initialValues, profileImg: reader.result})}
+        setInitialValues({...initialValues, img: reader.result})}
         reader.readAsDataURL(file);
     }
 
