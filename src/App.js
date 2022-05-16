@@ -22,7 +22,6 @@ import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
 
 
-
 function App() {
   return (
     <>
@@ -31,20 +30,23 @@ function App() {
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 
+
             <Route path="/backoffice/slides/create" component={SlidesForm} />
             <Route path="/backoffice/slides/:id" component={SlidesForm} />
             <Route path="/create-activity" component={ActivitiesForm} />
+
             <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activity" component={ActivitiesForm} />
             <Route path="/activities" component={ActivitiesList}/>
 
-            <Route path="/create-category" component={CategoriesForm} />
-            <Route path="/create-news" component={NewsForm} />
-            <Route path="/create-testimonials" component={TestimonialForm} />
+            <Route path="/backoffice/create-category" component={CategoriesForm} />
+            <Route path="/backoffice/create-news" component={NewsForm} />
+            <Route path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route path="/backoffice/users/create" component={UserForm} />
-            <Route path="/create-member" component={MembersForm} />
-            <Route path="/create-project" component={ProjectsForm} />
+            <Route path="/backoffice/create-member" component={MembersForm} />
+            <Route path="/backoffice/create-project" component={ProjectsForm} />
             <Route path="/backoffice/users" component={UsersList} />
+
 
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
