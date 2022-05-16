@@ -2,22 +2,37 @@ import React from "react";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
 import { Get } from "../../Services/privateApiService";
-// import {LinkedInIcon, FacebookIcon, InstagramIcon, TwitterIcon} from '@mui/icons-material';
+import "./Contact.css";
 import Avatar from "@mui/material/Avatar";
-import { links } from "../Footer/Footer";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { grey } from "@mui/material/colors";
 
 const Contact = () => {
-
-  const getContactData = async () => {
-    try {
-      const res = await Get("/organization");
-      return res.data.data;
-    } catch (e) {
-      return "Lo sentimos! No pudimos encontrar este elemento";
-    }
-  };
-
-  const contact = getContactData();
+  const info = [
+    {
+      href: "https://www.facebook.com/profile.php?id=100077792335889",
+      icon: <FacebookIcon />,
+      text: "Facebook",
+    },
+    {
+      href: "https://www.linkedin.com/in/somos-mas-ong-80595b236/",
+      icon: <LinkedInIcon />,
+      text: "LinkedIn",
+    },
+    {
+      href: "https://www.instagram.com/somos.mas.ong/",
+      icon: <InstagramIcon />,
+      text: "Instagram",
+    },
+    {
+      href: "https://www.twitter.com/somosmas",
+      icon: <TwitterIcon />,
+      text: "Twitter",
+    },
+  ];
 
   return (
     <>
@@ -27,15 +42,20 @@ const Contact = () => {
           <ContactForm />
         </div>
         <div className="contact-data">
-          <h2 className="subtitle-contact">
-            Medios de e información de contacto
-          </h2>
+          <h2 className="subtitle-contact">Medios de contacto </h2>
           <ul className="list-contact">
-            <li className="li-contact"></li>
-            {links.map((socialLink, index) => (
+            {info.map((infoLi, index) => (
               <li className="li-contact" key={index}>
-                <a href={socialLink.href} rel="noreferrer" target="_blank">
-                  <Avatar sx={{ bgcolor: "primary" }}>{socialLink.icon}</Avatar>
+                <a
+                  className="contact-link"
+                  href={infoLi.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <Avatar sx={{ bgcolor: grey[900] }} className="contact-icon">
+                    {infoLi.icon}
+                  </Avatar>
+                  {infoLi.text}
                 </a>
               </li>
             ))}
