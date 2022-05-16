@@ -46,7 +46,10 @@
     padding: 10px 15px;
     border: none;
     color: #fff;
+
 }
+
+
 
 .submit-btn:hover{
     cursor: pointer;
@@ -63,4 +66,7 @@
     .img-form {
         display: none;
     }
+
 }
+
+
