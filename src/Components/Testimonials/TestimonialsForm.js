@@ -24,42 +24,20 @@ const TestimonialForm = () => {
 })
 
 
-    //Mensajes de Error:
-    const snackErrorCargaDatos = () =>{
-        setSnack({...snack, 
-        message:"Error en la carga de datos, intente nuevamente mas tarde.",
-        open:true,
-        severity:"error"
-        })
-    }
+//Mensajes creados en SnackBar
+const showSnack = (text, type) =>{
+    setSnack({...snack, 
+        message: text,
+        open: true,
+        severity: type,
+    })
+}
 
-    const snackErrorName = () =>{
-        setSnack({...snack, 
-            message:"El nombre debe contener al menos 4 letras",
-            open:true,
-            severity:"error"
-        }) 
-    }
-    
-    const snackErrorEmpty = () =>{
-        setSnack({...snack, 
-            message:"No puede dejar campos vacíos",
-            open:true,
-            severity:"error"
-        }) 
-    }
-    const snackErrorImage = () =>{
-        setSnack({...snack, 
-            message:"El formato de la imagen debe ser .jpg o .png",
-            open:true,
-            severity:"error"
-        }) 
-    }
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getTestimonials = async () => {
-
-    await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials`, id)
+    if(!location.includes("create")){
+        await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/` + id)
     .then(res => {
         const data=res.data.data;
         setInitialValues({
@@ -70,9 +48,9 @@ const TestimonialForm = () => {
         })
     })
     .catch(() => {
-         snackErrorCargaDatos()
+        showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
     })
-    
+    }
   };
 
     useEffect(() => {
@@ -93,15 +71,16 @@ const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
     let formCorrecto = false;
     if(initialValues.name.length < 4){
-        snackErrorName()
+        showSnack("El nombre debe contener al menos 4 letras", "error")
     }else if(initialValues.description === ""){
-        snackErrorEmpty()
+        showSnack("No puede dejar campos vacíos", "error")
     }else if(!imgRegex.test(initialValues.img)){
-        snackErrorImage()
+        showSnack("Ingrese una imagen debe ser .jpg o .png", "error")
 
     }
     else{
         formCorrecto = true;
+        showSnack("Formulario procesado", "success")
     }
     return formCorrecto
 }
@@ -109,19 +88,21 @@ const formValidation = () =>{
 
 //Envio del form y peticiones
 
-const handleSubmit = async (e) => {
+const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
         if(location.includes("create")){
-            PrivatePost(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials`, testimonialCreated)
+           await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH , testimonialCreated)
             history.push("/backoffice/testimonials") 
           }
         else if(location.includes("edit")){
-            await Put(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/${id}`, testimonialCreated)
+            await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id, testimonialCreated)
+            .then(res => console.log(res))
             history.push("/backoffice/testimonials") 
         }else if(location.includes("delete")){
-            await Delete(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/${id}`);
-        }   
+            await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
+            history.push("/backoffice/testimonials") 
+        } 
     }
 }
 
