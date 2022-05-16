@@ -110,18 +110,7 @@ const handleSubmit = async (e)  => {
 
     //Actualiza los datos con los que obtiene de los inputs del form
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-        setInitialValues({...initialValues, name: e.target.value})
-        }if(e.target.name === 'email'){
-        setInitialValues({...initialValues, email: e.target.value})
-        }if(e.target.name === 'profile-img'){
-        setInitialValues({...initialValues, profileImg: e.target.value})
-        }if(e.target.name === 'password'){
-        setInitialValues({...initialValues, password: e.target.value})
-        }
-        if(e.target.name === 'profile-img'){
-        setInitialValues({...initialValues, profileImg: e.target.value})
-        }
+        setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
     
 
