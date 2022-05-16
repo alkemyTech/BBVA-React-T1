@@ -9,6 +9,10 @@ function Header() {
     { name: "Contacto", link: "/contact-form", requiresLogIn: false },
     { name: "School", link: "/school-campaign", requiresLogIn: false },
     { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
+    { name: "Novedades", link: "/news", requiresLogIn: false },
+    { name: "Testimonios", link: "/testimonials", requiresLogIn: false },
+    { name: "Login", link: "/login", requiresLogIn: false },
+    { name: "Registro", link: "/register", requiresLogIn: false },
   ];
 
   //Hamburguer menu
@@ -27,7 +31,7 @@ function Header() {
         <div className="header_contents">
           <img
             className="header_logo"
-            src="/images/assets/logo.png"
+            src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
             alt="logo"
           />
           <button onClick={handleToggle} className="toggle-button">
@@ -42,6 +46,7 @@ function Header() {
                   (isLoggedIn || (!isLoggedIn && !item.requiresLogIn)) && (
                     <li className={`nav_item ${navbarOpen && "showMenu"}`}>
                       <NavLink
+                        key={item.name}
                         className={(navData) =>
                           navData.isActive ? "active" : "link"
                         }

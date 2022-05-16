@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
@@ -16,6 +17,7 @@ import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
 import Nosotros from './Components/About/Nosotros'
 import ContactForm from './Components/Contact/ContactForm'
+
 
 function App() {
   return (
