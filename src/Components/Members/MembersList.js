@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import List from '../GenericList/List';
 import { setRef } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 // Table content
 // Members obj {
@@ -24,28 +27,26 @@ const getReducedRows = (rows) => {
     rows[index] = {
       id,
       name,
-      image,
-      modificar: `urlModificar${id}`,
-      eliminar: `urlEliminar${id}`,
+      image: <img src={image} alt={image} />,
+      modificar: <IconButton aria-label="delete" href={`/members/modify/${id}`}><EditIcon /></IconButton>,
+      eliminar: <IconButton aria-label="delete" href={`/members/delete/${id}`}><DeleteIcon /></IconButton>,
     };
   });
   return rows;
 };
 
-const columnsHeaders = ['id','name','image','description','modificar','eliminar'];
+const columnsHeaders = ['id','name','image','modificar','eliminar'];
 const MembersList = () => {
   const [rowsContent, setRowsContent] = useState([]);
-  const [rowsData, setRowsData] = useState([]);
 
-  useEffect(() => { 
+  useEffect(async () => { 
     //Utilizio método axios.get hasta que se repare el Get de publicAPI..
-    const res = axios.get(`https://ongapi.alkemy.org/api/members`);
-    res.then((res) => setRowsData(res.data.data))
-    .catch(err => alert(err));
-    console.log({rowsData});
-    setRowsContent(getReducedRows(rowsData));
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH}` );
+      const rows = await res.data.data;
+      setRowsContent(getReducedRows(rows));
+    } catch (err) { alert(err); }
   }, []);
-  console.log(rowsContent);
   return(
     <>
       <div className='container'>
