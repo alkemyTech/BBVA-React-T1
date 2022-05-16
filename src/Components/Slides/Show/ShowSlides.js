@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import './ShowSlides.css'
+import { Button } from '@mui/material';
 
 const ShowSlides = () => {
 
@@ -46,8 +47,9 @@ const ShowSlides = () => {
         if(dataAPI.success){
             setLoaded(true)
             const dataArray = dataAPI.data;
+            dataArray.sort( v => v.order)
             const rows = dataArray
-            .map( val => [val.name , val.image, val.order,editIcon(val.id), deleteButton(val.id)])
+            .map( val => [val.name , verImagenJSX(val.image), val.order ,editIcon(val.id), deleteButton(val.id)])
             setRowData(rows)
             
         }
@@ -81,7 +83,13 @@ const ShowSlides = () => {
 
     }
 
-
+    const verImagenJSX = (url) =>{
+        return(
+            <>
+            <img src={url} alt="No se pudo cargar la imagen" className="imgSlide"/>
+            </>
+        )
+    }
 
     const deleteButton = (id) =>{
         return(
@@ -109,10 +117,12 @@ const ShowSlides = () => {
         <>
             <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
-            <Fab color="secondary" aria-label="add" variant="extended" className="fabDown">
-                <AddIcon />
-                Slide
-            </Fab>
+
+            <div className="buttonAdd">
+                <Button variant="contained" endIcon={<AddIcon />} >
+                    Agregar Slide
+                </Button>
+            </div>
             <Table columnNames={columnNames} rowData={rowData}/>
 
             

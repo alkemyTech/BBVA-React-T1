@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import './TableComponent'
 
 const TableComponent = ({columnNames,rowData}) => {
 
@@ -38,7 +38,7 @@ const TableComponent = ({columnNames,rowData}) => {
         <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
+                    <TableHead >
                     <TableRow>
                         {columnNames.map(val => (<StyledTableCell >{val}</StyledTableCell>))}
                     </TableRow>
