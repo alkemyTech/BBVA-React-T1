@@ -92,7 +92,7 @@ const ActivitiesForm = () => {
             user_id:  0,
             category_id:  0,
         }
-        var promise = (!!id)? 
+        var promise = (id)? 
         Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+objectSend.id,objectSend) : 
         PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH,objectSend);
 
