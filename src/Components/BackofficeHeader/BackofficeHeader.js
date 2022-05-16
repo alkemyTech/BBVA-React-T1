@@ -12,10 +12,14 @@ import './BackofficeHeader.css'
 const BackofficeHeader = () => {
     
     const [logo, setLogo] = useState('')
+
+    const getOrganizationData = async () =>{
+        const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + '/' + 1)
+        setLogo(res.data.data.logo)
+    }
     
     useEffect ( () => {
-        const res = Get('/organization', 1)
-        res.then( res => setLogo(res.data.data.logo))
+        getOrganizationData();
     }, [])
 
     const [sidebar, setSidebar] = useState(false)
