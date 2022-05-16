@@ -26,8 +26,6 @@ const SlidesForm = () => {
 
     const [CKEditordata, setCKEditordata] =useState("");
 
-    const [ allSlidesData , setAllSlidesData ] = useState([])
-
     const [radioButtons , setRadioButtons ] = useState ([])
 
     const { id } = useParams();
@@ -71,7 +69,6 @@ const SlidesForm = () => {
                 if(success===true){
                 const data=res.data.data;
 
-                setAllSlidesData(data);
                 const dataRR=getPossibleOrder(data)
                 setRadioButtons(dataRR)
                 if(id){
