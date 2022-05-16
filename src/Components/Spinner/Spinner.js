@@ -1,5 +1,7 @@
 import { Visibility } from "@mui/icons-material";
 import {TailSpin} from "react-loader-spinner";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Spinner.css'
 
 /**
@@ -15,16 +17,12 @@ import './Spinner.css'
  */
 const Spinner = ({visible,size,padding,color}) => {
     return(
-        <div className="spinner" style={{padding: {padding}, visibility: (visible?'visible':'hidden') }} >
-        {visible &&
-        <TailSpin
-            height={size}
-            width={size}
-            color={color || "orange"}
-            ariaLabel="loading"
-            />
-        }
-        </div>
+        <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={visible}
+        >
+            <CircularProgress color="inherit" />
+        </Backdrop>
     );
 }
 
