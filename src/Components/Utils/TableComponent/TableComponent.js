@@ -11,11 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const TableComponent = ({columnNames}) => {
-
-    const slidesEndpoint = process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_SLIDES;
-    
-
+const TableComponent = ({columnNames,rowData}) => {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -37,9 +33,6 @@ const TableComponent = ({columnNames}) => {
         },
       }));
       
-      function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
-      }
       
       const deleteButton = (onClick) =>{
           return(
@@ -57,13 +50,6 @@ const TableComponent = ({columnNames}) => {
           )
       }
 
-      const rows = [
-        createData('Super titulo', 159, 6.0, editIcon(), deleteButton()),
-        createData('Ice cream sandwich', 237, 9.0, editIcon(), deleteButton()),
-        createData('Eclair', 262, 16.0, editIcon(), deleteButton()),
-        createData('Cupcake', 305, 3.7, editIcon(), deleteButton()),
-        createData('Gingerbread', 356, 16.0, editIcon(), deleteButton()),
-      ];
 
 
 
@@ -77,17 +63,10 @@ const TableComponent = ({columnNames}) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {rows.map((row) => (
-                        <StyledTableRow key={row.name}>
-                            <StyledTableCell component="th" scope="row">
-                                {row.name}
-                            </StyledTableCell>
-                            <StyledTableCell >{row.calories}</StyledTableCell>
-                            <StyledTableCell >{row.fat}</StyledTableCell>
-                            <StyledTableCell >{row.carbs}</StyledTableCell>
-                            <StyledTableCell >{row.protein}</StyledTableCell>
-                        </StyledTableRow>
-                    ))}
+                    {rowData.map(row => ( <StyledTableRow key={row[0]}>
+                      
+                        row.map( item => (<StyledTableCell >{item}</StyledTableCell>))
+                       </StyledTableRow> ))}
                     </TableBody>
                 </Table>
             </TableContainer>
