@@ -7,7 +7,7 @@ const ShowSlides = () => {
     
     return(
         <>
-                <SliderHome endpoint={slidesEndpoint}/>
+                
         </>
     )
 }
