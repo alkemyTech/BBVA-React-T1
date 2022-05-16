@@ -1,0 +1,45 @@
+.globalContainer{
+    min-height: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    padding-inline: 20%;
+    padding-block: 50px;
+
+}
+
+
+.spinner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.form-container{
+    margin: 0 auto ;
+    width: 100%;
+    
+    
+}
+
+.imgPrueba{
+    border-radius: 8px;
+    max-width: 50vw;
+}
+
+.radioGroup{
+    display:flex ;
+    width:100%;
+    font-size:0.5em;
+    justify-content: space-between;
+}
+
+.radioGroup FormControlLabel{
+    display: flex;
+    margin: 0 auto;
+    align-self: center;
+}
