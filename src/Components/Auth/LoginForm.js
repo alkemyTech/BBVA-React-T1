@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { FormControl, FormHelperText, TextField, Button, CssBaseline, StyledEngineProvider, Link } from '@mui/material';
 import { Post } from '../../Services/publicApiService';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 // Styles
 import './LoginForm.css';
 
@@ -25,18 +25,15 @@ const LoginForm = () => {
   //States
   const [values, setValues] = useState({email: '', password:''});
   const [validEmail, setValidEmail] = useState(false);
-  const [data, setData] = useState([]);
   const navigate = useHistory();
 
   const loginVerification = data => {
-    if('error' in data) {
-      console.log(`User not registered ->${data.error}`);
-      return;
+    if('error' in data) { 
+        alert('Usuario no registrado');
+        return; 
     }
     localStorage.setItem('token', data.data.token);
-    console.log(`loggueado correctamente, con token -.${data.data.token}`);
-    // no me reconoce a navigate como una fx......
-    navigate('/');
+    navigate.push('/');
   }
 
   //useEffect
@@ -45,15 +42,12 @@ const LoginForm = () => {
   }, [values]);
 
   const submitHandler = async e => {
-    //Por alguna razón el primer submit me tira mal...
     e.preventDefault();
     try {
       const res = await Post('/login', values);
-      setData(res.data);
+      const data = await res.data;
       loginVerification(data);
-    } catch (err) { 
-      console.log(`Error en la comunicación al servidor -> ${err}`);
-     }
+    } catch (err) { return err; }
   }
 
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
@@ -84,7 +78,7 @@ const LoginForm = () => {
                 <Button className='login-button' type='submit' disabled={!(validEmail)}>Iniciar Sesión</Button>
               </FormControl>
             </form>
-
+            <p className='register-text'>No tienes una cuenta? <Link className='register-link' to='/register'><b>Registrate</b></Link></p>
           </div>
           <div className='img-container '>
             <img className='side-img' alt="img-login" src={`${process.env.PUBLIC_URL}/images/login.jpg`} />
