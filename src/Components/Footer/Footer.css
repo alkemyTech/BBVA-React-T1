@@ -7,9 +7,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 12rem;
     max-height: 559px;
     width: 100vw;
+    padding-bottom: 10rem;
 }
 
 .hr-logo, .hr-nav{
@@ -67,7 +67,7 @@
     flex-wrap: wrap;
 }
 
-/* Responsive- Mobile */
+/* Responsive */
 
 @media (max-width: 400px) {
     
@@ -89,10 +89,7 @@
     }
 
     .footer-front{
-        height: 267px;
-        padding-top:3rem;
-        font-weight: 300;
-        padding-bottom: 8rem;
+        padding-bottom: 4rem;
     }
 
   }
