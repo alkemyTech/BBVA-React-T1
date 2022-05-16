@@ -65,7 +65,7 @@ const TableComponent = ({columnNames,rowData}) => {
                     <TableBody>
                     {rowData.map(row => ( <StyledTableRow key={row[0]}>
                       
-                        row.map( item => (<StyledTableCell >{item}</StyledTableCell>))
+                        {row.map( item => (<StyledTableCell >{item}</StyledTableCell>))}
                        </StyledTableRow> ))}
                     </TableBody>
                 </Table>
