@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 
 import './RoutesList.css'
 
-const ListadoRutas = () => {
+const RoutesList = () => {
     const navMenu = [
         { name: "Inicio", link: "/" , icono: (<HomeIcon/>) },
         { name: "Crear Actividad", link: "/backoffice/create-activity" , icono: (<VolunteerActivismIcon/>) },
@@ -68,4 +68,4 @@ const ListadoRutas = () => {
     )
 }
 
-export default ListadoRutas
+export default RoutesList
