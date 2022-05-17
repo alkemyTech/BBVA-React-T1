@@ -8,12 +8,13 @@ import "./News.css";
 export const News = () => {
   const [data, setData] = React.useState([]);
 
+  const getNews = async () => {
+    const response = await Get("/news", "");
+    const newsList = await response.data.data;
+    setData(newsList);
+  };
+
   useEffect(() => {
-    const getNews = async () => {
-      const response = await Get("/news", "");
-      const newsList = await response.data.data;
-      setData(newsList);
-    };
     getNews();
   }, []);
 
