@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,6 +10,7 @@ import { Link } from "react-router-dom";
 import { Get } from "../../../Services/privateApiService";
 
 const NewsBackoffice = () => {
+  const [rows, setRows] = useState([]);
   const columns = [
     { field: "id", headerName: "ID", type: "number", width: 70 },
     { field: "name", headerName: "Nombre", type: "string", width: 130 },
@@ -22,30 +24,25 @@ const NewsBackoffice = () => {
     { field: "delete", headerName: "Eliminar" },
   ];
 
-  const getNewsData = () => {
+  const getNewsData = async () => {
     try {
-      const res = Get(
-        process.env.REACT_APP_URL_BASE_ENDPOINT +
+      const res = await Get(
+        `${
+          process.env.REACT_APP_URL_BASE_ENDPOINT +
           process.env.REACT_APP_URL_NEWS_PATH
+        }`
       );
-      console.log(res.data.data);
-      return res;
+      return res.data.data;
     } catch (err) {
       return [];
     }
   };
 
-  const deleteNews = () => {
+  const deleteNews = () => {};
 
-  } 
-  
   const deleteIcon = (id) => {
     return (
-      <IconButton
-        aria-label="delete"
-        size="small"
-        onClick={deleteNews(id)}
-      >
+      <IconButton aria-label="delete" size="small" onClick={deleteNews(id)}>
         <DeleteIcon />
       </IconButton>
     );
@@ -60,9 +57,10 @@ const NewsBackoffice = () => {
       </Link>
     );
   };
-  const rows = () => {
-    const news = getNewsData();
-    return news.map((e) => {
+
+  const setNews = (news) => {
+    console.log(news);
+    const rows = news.map((e) => {
       return {
         id: e.id,
         name: e.name,
@@ -72,7 +70,15 @@ const NewsBackoffice = () => {
         delete: deleteIcon(e.id),
       };
     });
+    return rows;
   };
+
+  useEffect(() => {
+    const newsData = getNewsData();
+    console.log(newsData);
+    const news = setNews(newsData);
+    setRows(news);
+  }, []);
 
   return (
     <div className="news-bo-container">
@@ -83,7 +89,6 @@ const NewsBackoffice = () => {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          checkboxSelection
         />
       </StyledEngineProvider>
     </div>
