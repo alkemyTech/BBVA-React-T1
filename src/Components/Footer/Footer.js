@@ -15,42 +15,39 @@ import { Get} from '../../Services/privateApiService';
 //CSS
 import './Footer.css'
 
-
-const links = [
-    {
-      href:'https://www.facebook.com/profile.php?id=100077792335889',
-      icon: <FacebookIcon/>,
-    },
-    {
-      href:'https://www.linkedin.com/in/somos-mas-ong-80595b236/',
-      icon: <LinkedInIcon/>,
-    },
-    {
-      href:'https://www.instagram.com/somos.mas.ong/',
-      icon: <InstagramIcon/>,
-    },
-    {
-      href:'https://www.twitter.com/somosmas',
-      icon: <TwitterIcon/>,
-    },
-  ];
-
-
 const Footer = () => {
     const [logo, setLogo] = useState('')
+    const [links, setLinks] = useState([{}])
 
     const getDataOrganization = () => {
         Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4")
         .then( (res) => {
-            setLogo(res.data.data.logo)
-            console.log(res.data.data.logo)
+            const info = res.data.data;
+            setLogo(info.logo)
+            setLinks([
+                {  
+                    href:info.facebook_url,
+                    icon: <FacebookIcon/>,
+                },
+                {
+                    href:info.linkedin_url,
+                    icon: <LinkedInIcon/>,
+                },
+                {
+                    href:info.instagram_url,
+                    icon: <InstagramIcon/>,
+                },
+                {
+                    href:info.twitter_url,
+                    icon: <TwitterIcon/>,
+                },
+            ])
         })
     }
 
     useEffect(() => {
         getDataOrganization()
     }, []);
-
     
     return(
         <footer className ="footer-front" >
@@ -72,7 +69,7 @@ const Footer = () => {
                     <ul className="ul-socials">
                         {links.map((socialLink, index) =>
                             <li className ="li-socials" key={index}>
-                                <a href={socialLink.href} rel="noreferrer" target="_blank">
+                                <a href={socialLink.href}  target="_blank" rel="noopener noreferrer">
                                         <Avatar sx={{ bgcolor: grey[900] }}>
                                             {socialLink.icon}
                                         </Avatar>
