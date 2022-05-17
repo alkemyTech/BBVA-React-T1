@@ -37,7 +37,7 @@ function App() {
 
             <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activity" component={ActivitiesForm} />
-            <Route path="/activities" component={ActivitiesList} />
+            <Route path="/backoffice/activities" component={ActivitiesList} />
 
             <Route
               path="/backoffice/create-category"
