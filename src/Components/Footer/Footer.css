@@ -10,12 +10,13 @@
     max-height: 559px;
     width: 100vw;
     padding-bottom: 10rem;
+    box-sizing: content-box;
 }
 
 .hr-logo, .hr-nav{
     background-color: black;
     width:100vw;
-    height:0.15rem;
+    height:0.25rem;
 }
 
 .logo-container{
@@ -41,6 +42,7 @@
 .ul-roots{
     margin-bottom: 3rem;
     margin-top: 0;
+    padding-left: 1rem;
 }
 
 .ul-socials{
