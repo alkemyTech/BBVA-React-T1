@@ -9,7 +9,9 @@ export const News = () => {
   const [data, setData] = React.useState([]);
 
   const getNews = async () => {
-    const response = await Get("/news", "");
+    const response = await Get(
+      process.env.REACT_APP_URL_BASE_ENDPOINT + "/news"
+    );
     const newsList = await response.data.data;
     setData(newsList);
   };
