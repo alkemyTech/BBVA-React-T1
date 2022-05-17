@@ -37,8 +37,7 @@ function App() {
             <Route path="/backoffice/create-slide" component={SlidesForm} />
             <Route path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route path="/backoffice/users/create" component={UserForm} />
-            <Route path="/backoffice/users/edit/:id" component={UserForm} />
-            <Route path="/backoffice/users/delete/:id" component={UserForm} />
+            <Route path="/backoffice/users/:id" component={UserForm} />
             <Route path="/backoffice/create-member" component={MembersForm} />
             <Route path="/backoffice/create-project" component={ProjectsForm} />
             <Route path="/backoffice/users" component={UsersList} />
