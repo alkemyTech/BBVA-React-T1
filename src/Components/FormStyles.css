@@ -48,12 +48,22 @@
     padding: 10px 15px;
     border: none;
     color: #fff;
+
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    margin-top:2rem;
+    width:50%;
+    border: none;
+    box-shadow: .2rem .2rem  #27282946;
+    border-radius: 1rem;
 }
 
 /* Form backoffice UserForm */
 .title-back{
     font-family: 'Poppins', sans-serif;
-    margin-top:3rem;
+    margin-top:4.5rem;
 }
 .form-back{
     padding-top:2rem;
@@ -63,15 +73,14 @@
 .form-back-submit-btn{
     background-color: #0094d2;
     color:white;
+    cursor:pointer;
+    padding: 0.3rem 1rem;
+    width: 50%;
+    border:none;
+    box-shadow: 0.3rem 0.3rem 0.2rem #272e316e;
+    border-radius: 10px;
     font-size: 1.2rem;
-    padding:0.2rem 0;
-    margin: 0 auto;
-    cursor: pointer;
-    margin-top:2rem;
-    width:50%;
-    border: none;
-    box-shadow: .2rem .2rem  #27282946;
-    border-radius: 1rem;
+    margin: 3rem auto;
 }
 
 .input-back{
@@ -101,4 +110,7 @@
     .img-form {
         display: none;
     }
+
 }
+
+

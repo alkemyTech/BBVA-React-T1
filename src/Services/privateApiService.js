@@ -13,7 +13,7 @@ const config = {
 };
 
 export const Get = (endpoint) => {
-  return axios.get(`${endpoint}`, config);
+  return axios.get(endpoint, config);
 };
 
 export const getToken = () => {
@@ -54,7 +54,8 @@ export const Delete = async (route) => {
 export const PrivatePost = (endpoint, body) => {
   return axios
     .post(endpoint, body, config)
-
+    .then((res) => res)
+    .catch((err) => err);
 };
 
 /**
