@@ -17,17 +17,11 @@ const LoginForm = () => {
   }, []);
 
   const handleChange = (e) => {
-    if (e.target.name === "email") {
-      setInitialValues({ ...initialValues, email: e.target.value });
-    }
-    if (e.target.name === "password") {
-      setInitialValues({ ...initialValues, password: e.target.value });
-    }
+    setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(initialValues);
     localStorage.setItem("token", "tokenValueExample");
   };
 
