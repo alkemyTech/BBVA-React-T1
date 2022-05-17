@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
 .form-container, .register-form{
     width: 60%;
@@ -5,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+
 }
 
 .main-container-form{
@@ -49,16 +51,58 @@
 
 }
 
-
-
 .submit-btn:hover{
     cursor: pointer;
-    background-color: #3498DB;
+    margin-top:2rem;
+    width:50%;
+    border: none;
+    box-shadow: .2rem .2rem  #27282946;
+    border-radius: 1rem;
 }
 
-.submitButton{
+/* Form backoffice UserForm */
+.title-back{
+    font-family: 'Poppins', sans-serif;
+    margin-top:4.5rem;
+}
+.form-back{
+    padding-top:2rem;
+    font-family: 'Poppins', sans-serif;
+    width: 40vw;
+}
+.form-back-submit-btn{
+    background-color: #0094d2;
+    color:white;
+    cursor:pointer;
+    padding: 0.3rem 1rem;
     width: 50%;
-    margin: 0 auto;
+    border:none;
+    box-shadow: 0.3rem 0.3rem 0.2rem #272e316e;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin: 3rem auto;
+}
+
+.input-back{
+    border-radius: 1rem;
+    padding:0.25rem;
+    padding:0.5rem;
+    outline: 0.1rem solid rgba(0, 0, 0, 0.185);
+    border: none;
+}
+
+.input-back-file{
+    border-radius: 1rem;
+    padding:0.25rem;
+    padding:0.5rem;
+    outline: none;
+    border: none;
+}
+
+.title-field-users{
+    text-align: left;
+    margin-top: 0rem;
+    margin-bottom:0rem;
 }
 
 
