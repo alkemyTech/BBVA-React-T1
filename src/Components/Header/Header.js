@@ -37,41 +37,39 @@ function Header() {
 
   return (
     <div className="header">
-      <Router>
-        <div className="header_contents">
-          <img
-            className="header_logo"
-            src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
-            alt="logo"
-          />
-          <button onClick={handleToggle} className="toggle-button">
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </button>
-          <div className="nav_links">
-            <ul className="header_list">
-              {navMenu.map(
-                (item) =>
-                  ((isLoggedIn && !item.notForLoggedIn) ||
-                    (!isLoggedIn && !item.requiresLogIn)) && (
-                    <li className={`nav_item ${navbarOpen && "showMenu"}`}>
-                      <NavLink
-                        key={item.name}
-                        className={(navData) =>
-                          navData.isActive ? "active" : "link"
-                        }
-                        to={item.link}
-                      >
-                        {item.name}
-                      </NavLink>
-                    </li>
-                  )
-              )}
-            </ul>
-          </div>
+      <div className="header_contents">
+        <img
+          className="header_logo"
+          src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
+          alt="logo"
+        />
+        <button onClick={handleToggle} className="toggle-button">
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+        <div className="nav_links">
+          <ul className="header_list">
+            {navMenu.map(
+              (item) =>
+                ((isLoggedIn && !item.notForLoggedIn) ||
+                  (!isLoggedIn && !item.requiresLogIn)) && (
+                  <li className={`nav_item ${navbarOpen && "showMenu"}`}>
+                    <NavLink
+                      key={item.name}
+                      className={(navData) =>
+                        navData.isActive ? "active" : "link"
+                      }
+                      to={item.link}
+                    >
+                      {item.name}
+                    </NavLink>
+                  </li>
+                )
+            )}
+          </ul>
         </div>
-      </Router>
+      </div>
     </div>
   );
 }
