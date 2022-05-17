@@ -38,7 +38,6 @@ const showSnack = (text, type) =>{
     if(id){
         await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
         .then(res => {
-            console.log(res)
             const info=res.data.data;
             setInitialValues({
                 ...initialValues,
@@ -129,12 +128,11 @@ const handleSubmit = async (e)  => {
                 config={{
                 toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
                 }}
-                editor={ ClassicEditor }
-                value={initialValues.description}
+                editor ={ ClassicEditor }
+                value ={initialValues.description}
                 onChange={(e, editor) => {
                     setInitialValues({...initialValues, description : (editor.getData()).replace(/<\/?[^>]+(>|$)/g, "")});
             }}
-         
             /> 
             <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
