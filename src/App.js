@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
+import NewsBackoffice from "./Components/Backoffice/News/NewsBackoffice"
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import UserForm from "./Components/Users/UsersForm";
@@ -12,9 +13,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Nosotros from "./Components/About/Nosotros";
-import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
-import ContactForm from "./Components/Contact/ContactForm.js";
 import ActivitiesList from "./Components/Activities/ActivitiesList.js";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
@@ -43,6 +41,7 @@ function App() {
               path="/backoffice/create-category"
               component={CategoriesForm}
             />
+            <Route path="/backoffice/news" component={NewsBackoffice} />
             <Route path="/backoffice/create-news" component={NewsForm} />
             <Route
               path="/backoffice/create-testimonials"
