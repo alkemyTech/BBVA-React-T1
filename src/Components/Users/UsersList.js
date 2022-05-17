@@ -16,17 +16,10 @@ import { Get } from "./../../Services/privateApiService";
 function UsersList() {
   const [data, setData] = useState([]);
 
-  /* const getUsers = async () => {
-    const response = await Get("/users", null);
-    const usersList = await response.data.data;
-    setData(usersList);
-  }; 
-  
-  */
-
   const getUsers = () => {
     Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users").then((res) => {
       const usersList = res.data.data;
+      console.log(usersList);
       setData(usersList);
     });
   };
