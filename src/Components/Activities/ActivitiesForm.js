@@ -8,6 +8,7 @@ import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
 import { Snackbar , Alert,TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
+import { LogInTestOrReddirect } from '../Utils/Auth/Auth'
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -117,6 +118,8 @@ const ActivitiesForm = () => {
 
 
     return (
+        <>
+        <LogInTestOrReddirect/>
         <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
             <form className="form-container" onSubmit={handleSubmit}>
@@ -147,6 +150,7 @@ const ActivitiesForm = () => {
                 </Alert>
             </Snackbar>
         </div>
+        </>
     );
 }
  

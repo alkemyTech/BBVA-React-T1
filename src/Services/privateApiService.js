@@ -16,6 +16,10 @@ export const Get = (endpoint) => {
   return axios.get(endpoint, config);
 };
 
+export const isloggedIn = () => {
+  return getToken() && getToken().length>5
+}
+
 export const getToken = () => {
   return localStorage.getItem("token");
 };
