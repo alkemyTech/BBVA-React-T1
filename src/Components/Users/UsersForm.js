@@ -49,7 +49,6 @@ const showSnack = (text, type) =>{
                 showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
             })
         }
-        
     };
 
     useEffect(() => {
