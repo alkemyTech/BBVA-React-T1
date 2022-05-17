@@ -1,8 +1,10 @@
 
 import React, {useEffect, useState} from 'react';
-import { FormControl, FormHelperText, TextField, Button, CssBaseline, StyledEngineProvider, Link, Alert } from '@mui/material';
+import { FormControl, FormHelperText, TextField, Button, CssBaseline, StyledEngineProvider, Link, Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { Post } from '../../Services/publicApiService';
 import { useHistory, Redirect } from 'react-router-dom';
+
 // Styles
 import './LoginForm.css';
 
@@ -21,6 +23,10 @@ const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 */
 const emailValidator = email => { return(emailRegex.test(email)); }
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const LoginForm = () => {
   //States
   const [values, setValues] = useState({email: '', password:''});
@@ -36,24 +42,33 @@ const LoginForm = () => {
       setValidEmail(emailValidator(values.email));
   }, [values]);
 
-  const submitHandler = async e => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await Post(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/login`, values);
+      const res = await Post(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/login`,values );
       const data = await res.data;
-      if('error' in data) { 
-        alert('Usuario no registrado');
-        return; 
+      console.log(res);
+      if ("error" in data) {
+        setAlertState({
+          isOpen: true,
+          message: "Usuario no registrado",
+          severity: "error",
+        });
+        return;
+      }
+      localStorage.setItem("token", data.data.token);
+      setAlertState({
+        isOpen: true,
+        message: "Usuario loggeado correctamente",
+        severity: "success",
+      });
+      //navigate.push("/");
+    } catch (err) {
+      return err;
     }
-    localStorage.setItem('token', data.data.token);
-    navigate.push('/');
-    } catch (err) { return err; }
-  }
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') { return; }
-    setOpen(false);
   };
+
+  const handleClose = (event, reason) => { setAlertState({ ...alertState, isOpen: false }); };
 
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
   return (
@@ -112,17 +127,15 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <div>
           <Snackbar
             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
             open={alertState.isOpen}
             onClose={handleClose}
             autoHideDuration={4000}
-            key={vertical + horizontal} 
+            key={'bottom' + 'left'} 
           >
-            <Alert onClose={handleClose} severity={alertState.severity}>{alertState.message}</Alert>
+            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity={alertState.severity}>{alertState.message}</MuiAlert>
           </Snackbar>
-        </div>
       </StyledEngineProvider>
     </>
   );
