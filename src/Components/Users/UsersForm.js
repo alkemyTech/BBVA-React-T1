@@ -32,38 +32,29 @@ const showSnack = (text, type) =>{
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
-        if(id){
-            await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
-            .then(res => {
-                const data=res.data.data;
-                setInitialValues({
-                    ...initialValues,
-                    name:data.name || "",
-                    email:data.email || "",
-                    roleId:data.role_id || "",
-                    profileImg: data.profile_image || "",
-                    password: data.password || ""
-                })
+    if(id){
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
+        .then(res => {
+            const data=res.data.data;
+            setInitialValues({
+                ...initialValues,
+                name:data.name || "",
+                email:data.email || "",
+                roleId:data.role_id || "",
+                profileImg: data.profile_image || "",
+                password: data.password || ""
             })
-            .catch(() => {
-                showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
-            })
-        }
+        })
+        .catch(() => {
+            showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
+        })
+    }
     };
 
     useEffect(() => {
         getUsers()
     }, []);   
 
-
-// Objeto creado a partir de los valores ingresados del form para enviar peticiones
-const userCreated={
-    name: initialValues.name ,
-    email: initialValues.email,
-    role_id: parseInt(initialValues.roleId),
-    password: initialValues.password,
-    profile_image: initialValues.profileImg,
-} 
   
 
 //Validaciones del form
@@ -91,6 +82,15 @@ const formValidation = () =>{
 
 //Envio del form y peticiones
 const handleSubmit = async (e)  => {
+
+    const userCreated={
+    name: initialValues.name ,
+    email: initialValues.email,
+    role_id: parseInt(initialValues.roleId),
+    password: initialValues.password,
+    profile_image: initialValues.profileImg,
+    } 
+
     e.preventDefault();
     if(formValidation()){
         if(id){
@@ -102,12 +102,10 @@ const handleSubmit = async (e)  => {
         }
     }
 }
-
     //Actualiza los datos con los que obtiene de los inputs del form
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
-    
 
     //Formateo de imagen a code64 para enviar a api
     function encodeImageAsURL(element) {
