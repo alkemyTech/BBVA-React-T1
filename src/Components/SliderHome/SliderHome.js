@@ -67,7 +67,7 @@ const SliderHome = ({endpoint}) => {
                                 <SwiperSlide className= "slide-solo" key={id}>
                                         <img className="slide-image" src = {image} alt = {name}/>
                                         <span className="slide-span">{name}</span>
-                                        <p className="slide-p">{description}</p>
+                                        <p className="slide-p" dangerouslySetInnerHTML={{__html:description}}/>
                                 </SwiperSlide>
                             )
                         })}
