@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
-import {Get, PrivatePost, Put, Delete} from "../../Services/privateApiService"
+import {Get, PrivatePost, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -9,7 +9,6 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const TestimonialForm = () => {
   const { id } = useParams();  
-  const location = useLocation().pathname.toLocaleLowerCase();
   const history = useHistory();
   const [snack, setSnack] = useState({
     open: false,
@@ -36,9 +35,10 @@ const showSnack = (text, type) =>{
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getTestimonials = async () => {
-    if(!location.includes("create")){
-        await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/testimonials/` + id)
+    if(id){
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
         .then(res => {
+            console.log(res)
             const info=res.data.data;
             setInitialValues({
                 ...initialValues,
@@ -87,17 +87,14 @@ const handleSubmit = async (e)  => {
     } 
     e.preventDefault();
     if(formValidation()){
-        if(location.includes("create")){
+        if(!id){
            await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH , testimonialCreated)
             history.push("/backoffice/testimonials") 
           }
-        else if(location.includes("edit")){
+        else{
             await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id, testimonialCreated)
             history.push("/backoffice/testimonials") 
-        }else if(location.includes("delete")){
-            await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
-            history.push("/backoffice/testimonials") 
-        } 
+        }
     }
 }
 
@@ -122,7 +119,7 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1 className="title-back" >{!id ? "Crear Testimonio" : (location.includes("edit") ? "Editar Testimonio" : "Eliminar Testimonio") }</h1>
+        <h1 className="title-back" >{ !id ? "Crear Testimonio" : "Editar Testimonio" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
             <h3 className="title-field-users">Nombre</h3>
             <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
@@ -141,7 +138,7 @@ const handleSubmit = async (e)  => {
             /> 
             <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
-            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
+            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : "Editar"}</button>
         </form>
 
         <Snackbar
