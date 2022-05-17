@@ -11,8 +11,18 @@ function Header() {
     { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
     { name: "Novedades", link: "/news", requiresLogIn: false },
     { name: "Testimonios", link: "/testimonials", requiresLogIn: false },
-    { name: "Login", link: "/login", requiresLogIn: false },
-    { name: "Registro", link: "/register", requiresLogIn: false },
+    {
+      name: "Login",
+      link: "/login",
+      requiresLogIn: false,
+      notForLoggedIn: true,
+    },
+    {
+      name: "Registro",
+      link: "/register",
+      requiresLogIn: false,
+      notForLoggedIn: true,
+    },
   ];
 
   //Hamburguer menu
@@ -43,7 +53,8 @@ function Header() {
             <ul className="header_list">
               {navMenu.map(
                 (item) =>
-                  (isLoggedIn || (!isLoggedIn && !item.requiresLogIn)) && (
+                  ((isLoggedIn && !item.notForLoggedIn) ||
+                    (!isLoggedIn && !item.requiresLogIn)) && (
                     <li className={`nav_item ${navbarOpen && "showMenu"}`}>
                       <NavLink
                         key={item.name}
