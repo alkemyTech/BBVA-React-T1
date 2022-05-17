@@ -10,7 +10,26 @@ import { Link } from "react-router-dom";
 import { Get } from "../../../Services/privateApiService";
 
 const NewsBackoffice = () => {
-  const [rows, setRows] = useState([]);
+  const deleteIcon = (id) => {
+    return (
+      <IconButton aria-label="delete" size="small" onClick={deleteNews(id)}>
+        <DeleteIcon />
+      </IconButton>
+    );
+  };
+
+  const editIcon = (id) => {
+    return (
+      <Link to={"/backoffice/news/" + id}>
+        <IconButton aria-label="edit" size="small">
+          <EditIcon />
+        </IconButton>
+      </Link>
+    );
+  };
+  const [rows, setRows] = useState([
+    { id: 123, name: "Agus", image: "", edit: editIcon, delete: deleteIcon },
+  ]);
   const columns = [
     { field: "id", headerName: "ID", type: "number", width: 70 },
     { field: "name", headerName: "Nombre", type: "string", width: 130 },
@@ -40,24 +59,6 @@ const NewsBackoffice = () => {
 
   const deleteNews = () => {};
 
-  const deleteIcon = (id) => {
-    return (
-      <IconButton aria-label="delete" size="small" onClick={deleteNews(id)}>
-        <DeleteIcon />
-      </IconButton>
-    );
-  };
-
-  const editIcon = (id) => {
-    return (
-      <Link to={"/backoffice/news/" + id}>
-        <IconButton aria-label="edit" size="small">
-          <EditIcon />
-        </IconButton>
-      </Link>
-    );
-  };
-
   const setNews = (news) => {
     console.log(news);
     const rows = news.map((e) => {
@@ -74,14 +75,20 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    const newsData = getNewsData();
-    console.log(newsData);
-    const news = setNews(newsData);
-    setRows(news);
+    // const newsData = await getNewsData();
+    // console.log(newsData);
+    // const news = setNews(newsData);
+    // console.log(news);
+    // setRows(news);
+    // console.log(rows);
   }, []);
 
   return (
     <div className="news-bo-container">
+      {"hola" +
+        rows.map((a) => {
+          return "," + a;
+        })}
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <DataGrid
@@ -89,6 +96,7 @@ const NewsBackoffice = () => {
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
+          checkboxSelection
         />
       </StyledEngineProvider>
     </div>
