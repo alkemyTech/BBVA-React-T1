@@ -20,14 +20,18 @@ import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import UsersList from "./Components/Users/UsersList";
+import AuthReducer from './Auth/AuthReducer';
+
 
 function App() {
   return (
-    <>
+    <> 
       <div className="App">
         <BrowserRouter>
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+            <Route path="/backoffice/reducerTest" component={AuthReducer} />
+
 
             <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activity" component={ActivitiesForm} />
@@ -56,6 +60,7 @@ function App() {
             </PublicLayout>
           </Switch>
         </BrowserRouter>
+
       </div>
     </>
   );
