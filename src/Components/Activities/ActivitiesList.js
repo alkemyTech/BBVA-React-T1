@@ -11,7 +11,6 @@ import { Edit, Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Get } from "./../../Services/privateApiService";
-import { height } from "@mui/material/node_modules/@mui/system";
 
 function ActivitiesList() {
   const [data, setData] = useState([]);
@@ -29,16 +28,16 @@ function ActivitiesList() {
   return (
     <div className="Activities">
       <div className="buttons">
-        <Button variant="contained" color="success">
-          <Link className="top-links" to="/backoffice/activity/create">
+        <Button variant="contained" color="success" style={{ marginTop: "2rem"}}>
+          <Link className="top-links" to="/backoffice/activities/create">
             {" "}
-            New Activities{" "}
+            New Activity{" "}
           </Link>
         </Button>
       </div>
       <div className="table">
         <TableContainer>
-          <Table>
+          <Table style={{ marginTop: "2rem"}}>
             <TableHead style={{ backgroundColor: "lightgrey"}}>
               <TableRow>
                 <TableCell>Nombre</TableCell>
@@ -56,7 +55,7 @@ function ActivitiesList() {
                   <TableCell>
                     <Link
                       className="edit-icon"
-                      to={`/backoffice/activity/${user.id}`}
+                      to={`/backoffice/activities/${user.id}`}
                     >
                       <Edit />
                     </Link>
