@@ -37,8 +37,8 @@ function App() {
             <Route path="/backoffice/slides/:id" component={SlidesForm} />
             <Route path="/create-activity" component={ActivitiesForm} />
 
-            <Route path="/backoffice/activities/:id" component={ActivitiesForm} />
-            <Route path="/backoffice/activities/create" component={ActivitiesForm} />
+            <Route path="/backoffice/activity/create" component={ActivitiesForm} />
+            <Route path="/backoffice/activity/:id" component={ActivitiesForm} />
             <Route path="/backoffice/activities" component={ActivitiesList} />
 
             <Route path="/backoffice/create-category" component={CategoriesForm} />
