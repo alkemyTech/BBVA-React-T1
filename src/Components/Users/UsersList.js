@@ -18,9 +18,7 @@ function UsersList() {
 
   const getUsers = () => {
     Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users").then((res) => {
-      const usersList = res.data.data;
-      console.log(usersList);
-      setData(usersList);
+      setData(res.data.data);
     });
   };
 
