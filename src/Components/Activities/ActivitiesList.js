@@ -48,8 +48,8 @@ function ActivitiesList() {
   return (
     <div className="Activities">
       <div className="buttons">
-        <Button variant="contained" color="primary" style={{ marginTop: "2rem"}}>
-          <Link className="top-links table-btn-create" to="/backoffice/activity/create">
+        <Button variant="contained" color="primary" className="table-btn-create">
+          <Link className="top-links table-link-create" to="/backoffice/activity/create">
             New Activity <AddIcon/> 
           </Link>
         </Button>

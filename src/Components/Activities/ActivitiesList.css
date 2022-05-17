@@ -10,7 +10,6 @@
 
 .table-cell{
     color: white !important;
-
 }
 
 .Activities{
@@ -30,7 +29,20 @@
     cursor:pointer;
 }
 
-.table-btn-create{
+.table-link-create{
     display: flex;
     align-items: center;
 }
+.table-btn-create{
+    margin-top:2rem !important;
+}
+
+/* Responsive- Mobile */
+
+@media (max-width: 840px) {
+    
+    .Activities{
+        margin: 0 2rem;
+    }
+    
+  }
