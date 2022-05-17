@@ -57,15 +57,6 @@ const showSnack = (text, type) =>{
         getTestimonials()
     }, []);   
 
-
-// Objeto creado a partir de los valores ingresados del form para enviar peticiones
-const testimonialCreated={
-    name: initialValues.name,
-    description: initialValues.description,
-    image: initialValues.img
-} 
-  
-
 //Validaciones del form
 const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
@@ -89,6 +80,11 @@ const formValidation = () =>{
 //Envio del form y peticiones
 
 const handleSubmit = async (e)  => {
+    const testimonialCreated={
+        name: initialValues.name,
+        description: initialValues.description,
+        image: initialValues.img
+    } 
     e.preventDefault();
     if(formValidation()){
         if(location.includes("create")){
@@ -97,7 +93,6 @@ const handleSubmit = async (e)  => {
           }
         else if(location.includes("edit")){
             await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id, testimonialCreated)
-            .then(res => console.log(res))
             history.push("/backoffice/testimonials") 
         }else if(location.includes("delete")){
             await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
