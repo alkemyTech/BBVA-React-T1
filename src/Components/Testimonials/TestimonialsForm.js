@@ -59,7 +59,7 @@ const showSnack = (text, type) =>{
 //Validaciones del form
 const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
-    let formCorrecto = false;
+    let validationOk = false;
     if(initialValues.name.length < 4){
         showSnack("El nombre debe contener al menos 4 letras", "error")
     }else if(initialValues.description === ""){
@@ -69,10 +69,10 @@ const formValidation = () =>{
 
     }
     else{
-        formCorrecto = true;
+        validationOk = true;
         showSnack("Formulario procesado", "success")
     }
-    return formCorrecto
+    return validationOk
 }
 
 
