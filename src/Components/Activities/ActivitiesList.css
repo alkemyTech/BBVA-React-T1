@@ -1,0 +1,36 @@
+
+.table-list{
+    margin:2rem 0 ;
+    border: 0.08rem solid lightgray;
+}
+
+.table-head{
+    background-color:black;
+}
+
+.table-cell{
+    color: white !important;
+
+}
+
+.Activities{
+    margin: 0 8rem;
+}
+
+.table-cell-two:nth-child(1n){
+    background-color:lightgoldenrodyellow;
+}
+
+.img-list{
+    max-width: 4rem;
+}
+
+.table-icon{
+    color:gray;
+    cursor:pointer;
+}
+
+.table-btn-create{
+    display: flex;
+    align-items: center;
+}
