@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 
 import {Link} from 'react-router-dom'
 import {useState,useEffect } from 'react'
@@ -10,7 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { grey  } from '@mui/material/colors';
-
+import { Get} from '../../Services/privateApiService';
 
 //CSS
 import './Footer.css'
@@ -38,13 +38,18 @@ const links = [
 
 const Footer = () => {
     const [logo, setLogo] = useState('')
-    useEffect( () => {
-        axios.get('https://ongapi.alkemy.org/api/organization')
+
+    const getDataOrganization = () => {
+        Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4")
         .then( (res) => {
             setLogo(res.data.data.logo)
+            console.log(res.data.data.logo)
         })
+    }
 
-    }, [])
+    useEffect(() => {
+        getDataOrganization()
+    }, []);
 
     
     return(
@@ -58,10 +63,10 @@ const Footer = () => {
                     <ul className="ul-roots">
                         <li className ="li-roots"><Link className ="a-roots" to="/inicio"> Inicio</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/nosotros">Nosotos </Link></li>
-                        <li className ="li-roots"><Link className ="a-roots" to="/novedades">Novedades</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots" to="/testimonios">Testimonios</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots"to="/contacto">Contacto</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots" to="/contacto">Contribuye</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/news">Novedades</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/testimonials">Testimonios</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots"to="/contact">Contacto</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/contact">Contribuye</Link></li>
                     </ul>
                     <hr className= "hr-nav"/>
                     <ul className="ul-socials">
