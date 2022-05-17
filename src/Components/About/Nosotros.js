@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'
-
+import { Snackbar , Alert } from '@mui/material';
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
  * bajo la ruta /Nosotros, el cual podremos ver informacion acerca de la ONG
@@ -18,18 +18,41 @@ const Nosotros = () => {
         loaded:false
        })
 
+
+
     const getOrganizationData  = () => {
         Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
             const data=res.data.data;
-            setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
-        })
+            if(res.data.success)
+                setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
+            else
+                snackError("Error en la carga de datos, por favor reintente mas tarde.")
+            }).catch( err => snackError("Error en la carga de datos, por favor reintente mas tarde."))
     }
 
     useEffect( () => { 
         getOrganizationData ();
     }, []);
 
+    const [snack, setSnack] = useState({
+        open: false,
+        message: "",
+        severity: "error",
+    })
 
+    const snackSend = (errorMessage,tipo) =>{
+        setSnack({...snack, 
+            message:errorMessage,
+            open:true,
+            severity:tipo
+        })
+    }
+    const snackError = (message) => snackSend(message,"error")
+    const snackSuccess = (message) => snackSend(message,"success")
+
+    const onCloseSnack = () =>{
+        setSnack({...snack, open:false})
+    }
     return (
         <>
         
@@ -52,6 +75,16 @@ const Nosotros = () => {
                     </div>
                 </div>
             </div>
+
+            <Snackbar
+                open={snack.open}
+                severity={snack.severity}
+                autoHideDuration={3000}
+                onClose={onCloseSnack}>
+                <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
+                    {snack.message}
+                </Alert>
+            </Snackbar>
         </>
     )
 }
