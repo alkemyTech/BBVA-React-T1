@@ -16,8 +16,8 @@
     margin: 0 8rem;
 }
 
-.table-cell-two:nth-child(1n){
-    background-color:lightgoldenrodyellow;
+.table-row:nth-child(odd){
+    background-color:#f5f5f5;
 }
 
 .img-list{
