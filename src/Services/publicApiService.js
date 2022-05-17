@@ -19,7 +19,6 @@ const Get = (route) => {
     });
 };
 
-
 /** Función estandard POST.
     REQUISITOS:
         - route :=  ruta destino.
