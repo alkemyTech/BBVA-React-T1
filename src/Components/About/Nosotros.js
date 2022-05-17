@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'
-
+import { useReducer } from 'react';
+import AuthReducer, { initialStateAuth } from '../../Auth/AuthReducer';
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
  * bajo la ruta /Nosotros, el cual podremos ver informacion acerca de la ONG
@@ -11,6 +12,9 @@ import Spinner from '../Spinner/Spinner'
  */
 
 const Nosotros = () => {
+
+
+    const [state, dispatch] = useReducer(AuthReducer, initialStateAuth);
 
    const [ sobreNosotros , setSobreNosotros ] = useState({
         text:"",
@@ -32,7 +36,7 @@ const Nosotros = () => {
 
     return (
         <>
-        
+        {"token"+state.data.token}
         <div className='containerGeneral'>
         <Spinner visible={!sobreNosotros.loaded} className="spinner"  /> 
             <div className='containerData'>

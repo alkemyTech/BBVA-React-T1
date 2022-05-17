@@ -4,17 +4,23 @@ const AUTHENTICATED = "loggedIn";
 const LOGOUT = "loggedOut";
 
 
-export const initialStateAuth = () => {
-   return { 
+export const initialStateAuth =  {
     user : {
         email: null,
         token: null,
-        nombre: null,
+        name: null,
     }
 }
+
+const AuthReducer = (state , action) =>
+{
+    switch(action.type){
+        case "LOGOUT":
+            return initialStateAuth;
+        case "LOGIN":
+            return {user: { email: action.data.email, name: action.data.name, token: action.data.token}}
+    }
 }
-
-
 
 
 export const LogIn = ({email,name,token}) => {
@@ -40,13 +46,5 @@ export const GetUserData = () => {
     return useSelector(state => state.user)
 }
 
-const AuthReducer = () =>
-{
 
-    return( 
-        <>
-        {"data:"+GetUserData()}
-        </>
-    )
-}
 export default  AuthReducer
