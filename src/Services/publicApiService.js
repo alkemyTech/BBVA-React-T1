@@ -8,9 +8,9 @@ const config = {
   },
 };
 
-const Get = (route, id = null) => {
-  axios
-    .get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`, config)
+const Get = (route) => {
+  return axios
+    .get(route, config)
     .then((res) => {
       return res;
     })
@@ -18,7 +18,6 @@ const Get = (route, id = null) => {
       return err;
     });
 };
-
 
 /** Función estandard POST.
     REQUISITOS:
@@ -30,7 +29,7 @@ const Get = (route, id = null) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route}`, bodyObj, config.headers);
+        const res = await axios.post(route, bodyObj, config);
         return res;
     } catch (err) { return err; }
 }
