@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
-import {Get, PrivatePost, Put, Delete} from "../../Services/privateApiService"
+import {Get, PrivatePost, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
 
 const UserForm = () => {
   const { id } = useParams();  
-  const location = useLocation().pathname.toLocaleLowerCase();
   const history = useHistory();
+
   const [snack, setSnack] = useState({
     open: false,
     message: "",
@@ -22,7 +22,6 @@ const UserForm = () => {
     password:  ''
 })
 
-
 const showSnack = (text, type) =>{
     setSnack({...snack, 
         message: text,
@@ -31,26 +30,26 @@ const showSnack = (text, type) =>{
     })
 }
 
-
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
-    if(!location.includes("create")){
-        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
-        .then(res => {
-            const data=res.data.data;
-            setInitialValues({
-                ...initialValues,
-                name:data.name || "",
-                email:data.email || "",
-                roleId:data.role_id || "",
-                profileImg: data.profile_image || "",
-                password: data.password || ""
+        if(id){
+            await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
+            .then(res => {
+                const data=res.data.data;
+                setInitialValues({
+                    ...initialValues,
+                    name:data.name || "",
+                    email:data.email || "",
+                    roleId:data.role_id || "",
+                    profileImg: data.profile_image || "",
+                    password: data.password || ""
+                })
             })
-        })
-        .catch(() => {
-            showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
-        })
+            .catch(() => {
+                showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
+            })
         }
+        
     };
 
     useEffect(() => {
@@ -95,17 +94,13 @@ const formValidation = () =>{
 const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
-        if(location.includes("create")){
-           await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users", userCreated)
-            history.push("/backoffice/users") 
-          }
-        else if(location.includes("edit")){
+        if(id){
             await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id, userCreated)
             history.push("/backoffice/users") 
-        }else if(location.includes("delete")){
-            await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
+        }else{
+            await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users", userCreated)
             history.push("/backoffice/users") 
-        } 
+        }
     }
 }
 
@@ -131,7 +126,7 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1 className="title-back" >{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
+        <h1 className="title-back" >{ !id ? "Crear usuario" : "Editar Usuario" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
             <h3 className="title-field-users">Nombre</h3>
             <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
@@ -147,7 +142,7 @@ const handleSubmit = async (e)  => {
             </select>
             <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
-            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
+            <button className="form-back-submit-btn" type="submit">{ !id ? "Crear" : "Editar" }</button>
         </form>
 
         <Snackbar
