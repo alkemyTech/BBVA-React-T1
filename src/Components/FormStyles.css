@@ -67,7 +67,8 @@
     padding:0.2rem 0;
     margin: 0 auto;
     cursor: pointer;
-    width:10vw;
+    margin-top:2rem;
+    width:50%;
     border: none;
     box-shadow: .2rem .2rem  #27282946;
     border-radius: 1rem;
