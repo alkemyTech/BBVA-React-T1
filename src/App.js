@@ -34,7 +34,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Route exact path="/backoffice/*">
-            {isloggedIn() && (<Redirect to='/login'/>)}
+            {!isloggedIn() && (<Redirect to='/login'/>)}
             <BackofficeLayout>
               <Switch>
                 <Route exact path="/backoffice/slides" component={ShowSlides} />
