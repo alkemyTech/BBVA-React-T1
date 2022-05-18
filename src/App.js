@@ -33,8 +33,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-            <BackofficeLayout>
-              <Route path="/backoffice/slides" component={ShowSlides} />
+              <Route path="/backoffice/slides" component={<BackofficeLayout children={ShowSlides}/>} />
               <Route path="/backoffice/slides/create" component={SlidesForm} />
               <Route path="/backoffice/slides/:id" component={SlidesForm} />
               <Route path="/create-activity" component={ActivitiesForm} />
@@ -69,7 +68,6 @@ function App() {
                 path="/backoffice/create-project"
                 component={ProjectsForm}
               />
-            </BackofficeLayout>
 
             <PublicLayout>
               <Route path="/register" component={RegisterForm} />
