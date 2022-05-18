@@ -12,6 +12,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { NavLink as Link } from "react-router-dom";
+import "./ScreenDashboard.css";
 
 const ScreenDashboard = () => {
   const navMenu = [
@@ -42,21 +43,29 @@ const ScreenDashboard = () => {
   ];
 
   return (
-    <div className="dashBoard-container">
+    <div className="dashboard-container">
       {navMenu.map((item) => (
-        <div key={item.name} className="dashBoard-card">
-          <Card variant="outlined">
-            <CardContent>
-              <Typography>{item.name}</Typography>
-              <Typography>
-                <item.icono className="card-icon" />
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button className="card-button">
-                <Link to={item.link}>Ir</Link>
-              </Button>
-            </CardActions>
+        <div key={item.name} className="dashboard-card">
+          <Card variant="outlined" sx={{ maxWidth: 275, minWidth: 100 }}>
+            <div className="card-contents">
+              <CardContent>
+                <div className="card-title">
+                  <Typography>{item.name}</Typography>
+                </div>
+                <Typography>
+                  <item.icono className="card-icon" />
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <div className="card-actions-contents">
+                  <Button className="card-button">
+                    <Link className={"card-link"} to={item.link}>
+                      Ir
+                    </Link>
+                  </Button>
+                </div>
+              </CardActions>
+            </div>
           </Card>
         </div>
       ))}
