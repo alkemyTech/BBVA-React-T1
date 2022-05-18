@@ -37,6 +37,8 @@ const LoginForm = () => {
     message: ''
   });
   const navigate = useHistory();
+  const token = localStorage.getItem('token');
+
   //useEffect
   useEffect( () => {
       setValidEmail(emailValidator(values.email));
@@ -47,7 +49,6 @@ const LoginForm = () => {
     try {
       const res = await Post(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/login`,values );
       const data = await res.data;
-      console.log(res);
       if ("error" in data) {
         setAlertState({
           isOpen: true,
@@ -56,7 +57,8 @@ const LoginForm = () => {
         });
         return;
       }
-      localStorage.setItem("token", data.data.token);
+      console.log(data.data.token);
+      localStorage.setItem('token', data.data.token);
       setAlertState({
         isOpen: true,
         message: "Usuario loggeado correctamente",
@@ -73,7 +75,7 @@ const LoginForm = () => {
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
   return (
     <>
-      {/* {(localStorage.getItem('token') != null)? <Redirect to='/' /> : ''} */}
+      {(token)? (navigate.push('/')) : ('')}
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <div className="login-container">
@@ -95,7 +97,10 @@ const LoginForm = () => {
                   error={!validEmail}
                 />
                 <TextField
-                  requiredNavigate
+                  required
+                  className="inputer"
+                  id="passwordId"
+                  name="password"
                   type="password"
                   label="Password"
                   value={values.password}
