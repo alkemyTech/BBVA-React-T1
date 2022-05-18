@@ -33,60 +33,102 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
-          <Switch>
-            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route exact path="/backoffice/*">
             <BackofficeLayout>
-              <Route path="/backoffice/slides" component={ShowSlides} />
-              <Route path="/backoffice/slides/create" component={SlidesForm} />
-              <Route path="/backoffice/slides/:id" component={SlidesForm} />
-              <Route path="/create-activity" component={ActivitiesForm} />
+              <Switch>
+                <Route exact path="/backoffice/slides" component={ShowSlides} />
+                <Route
+                  exact
+                  path="/backoffice/slides/create"
+                  component={SlidesForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/slides/:id"
+                  component={SlidesForm}
+                />
+                <Route
+                  exact
+                  path="/create-activity"
+                  component={ActivitiesForm}
+                />
 
-              <Route
-                path="/backoffice/activity/:id"
-                component={ActivitiesForm}
-              />
-              <Route path="/backoffice/activity" component={ActivitiesForm} />
-              <Route path="/activities" component={ActivitiesList} />
+                <Route
+                  exact
+                  path="/backoffice/activity/:id"
+                  component={ActivitiesForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/activity"
+                  component={ActivitiesForm}
+                />
+                <Route exact path="/activities" component={ActivitiesList} />
 
-              <Route
-                path="/backoffice/create-category"
-                component={CategoriesForm}
-              />
-              <Route path="/backoffice/create-news" component={NewsForm} />
+                <Route
+                  exact
+                  path="/backoffice/create-category"
+                  component={CategoriesForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/create-news"
+                  component={NewsForm}
+                />
 
-              <Route
-                path="/backoffice/testimonials/create"
-                component={TestimonialForm}
-              />
-              <Route
-                path="/backoffice/testimonials/:id"
-                component={TestimonialForm}
-              />
+                <Route
+                  exact
+                  path="/backoffice/testimonials/create"
+                  component={TestimonialForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/testimonials/:id"
+                  component={TestimonialForm}
+                />
 
-              <Route path="/backoffice/users/create" component={UserForm} />
-              <Route path="/backoffice/users/:id" component={UserForm} />
-              <Route path="/backoffice/users" component={UsersList} />
-              <Route path="/backoffice/create-member" component={MembersForm} />
-              <Route
-                path="/backoffice/create-project"
-                component={ProjectsForm}
-              />
+                <Route
+                  exact
+                  path="/backoffice/users/create"
+                  component={UserForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/users/:id"
+                  component={UserForm}
+                />
+                <Route exact path="/backoffice/users" component={UsersList} />
+                <Route
+                  exact
+                  path="/backoffice/create-member"
+                  component={MembersForm}
+                />
+                <Route
+                  exact
+                  path="/backoffice/create-project"
+                  component={ProjectsForm}
+                />
+              </Switch>
             </BackofficeLayout>
-
+          </Route>
+          <Route exact path="/:path?">
             <PublicLayout>
-              <Route path="/register" component={RegisterForm} />
-              <Route path="/login" component={LoginForm} />
-              <Route path="/news" component={News} />
-              <Route path="/nosotros" component={Nosotros} />
-              <Route path="/testimonials" />
-              <Route path="/gracias" component={Gracias} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/donations" component={Donations} />
-              <Route path="/school-campaign" component={SchoolCampaign} />
-              <Route path="/toys-campaign" component={ToysCampaign} />
-              <Route path="/contact-form" component={ContactForm} />
+              <Switch>
+                {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+                <Route path="/register" component={RegisterForm} />
+                <Route path="/login" component={LoginForm} />
+                <Route path="/news" component={News} />
+                <Route path="/nosotros" component={Nosotros} />
+                <Route path="/testimonials" />
+                <Route path="/contact" component={Contact} />
+                <Route path= "/donations" component={Donations} />
+                <Route path= "/gracias" component={Gracias} />
+                <Route path="/school-campaign" component={SchoolCampaign} />
+                <Route path="/toys-campaign" component={ToysCampaign} />
+                <Route path="/contact-form" component={ContactForm} />
+              </Switch>
             </PublicLayout>
-          </Switch>
+          </Route>
         </BrowserRouter>
       </div>
     </>
