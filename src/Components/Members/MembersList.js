@@ -8,14 +8,9 @@ export const MembersList = () => {
   const [data, setData] = React.useState([]);
 
   function getMembers() {
-    Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/members")
-      .then((res) => {
-        setData(res.data.data);
-        console.log(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/members").then((res) => {
+      setData(res.data.data);
+    });
   }
 
   useEffect(() => {
@@ -24,17 +19,19 @@ export const MembersList = () => {
 
   return (
     <div className="members-list">
+      <h2>Miembros</h2>
       <div className="member-container">
-        <h2>Miembros</h2>
         {data.map(
           (item) =>
             item.image && (
               <div className="member-item" key={item.id}>
                 <Card
+                  className="member-card"
+                  style={{ objectFit: "cover" }}
                   type="staff"
                   img={item.image}
                   title={item.name}
-                  description={item.content}
+                  description={item.description}
                 />
               </div>
             )
