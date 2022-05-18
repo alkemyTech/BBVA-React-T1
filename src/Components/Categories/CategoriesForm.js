@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
-import {LogInTestOrReddirect} from '../Utils/Auth/Auth'
+
 
 const CategoriesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -23,7 +23,7 @@ const CategoriesForm = () => {
 
     return (
         <>
-        <LogInTestOrReddirect/>
+
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Title"></input>
             <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>

@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, PrivatePost, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
-import { LogInTestOrReddirect } from '../Utils/Auth/Auth';
+
 
 const UserForm = () => {
   const { id } = useParams();  
@@ -124,7 +124,7 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <LogInTestOrReddirect/>
+
         <h1 className="title-back" >{ !id ? "Crear usuario" : "Editar Usuario" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
             <h3 className="title-field-users">Nombre</h3>

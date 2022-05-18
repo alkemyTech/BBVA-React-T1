@@ -9,7 +9,7 @@ import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 
 import '../FormStyles.css';
 import './SlidesForm.css';
-import { LogInTestOrReddirect } from '../Utils/Auth/Auth';
+
 
 
 
@@ -155,7 +155,6 @@ const SlidesForm = () => {
 
     return (
         <div className="globalContainer">
-            <LogInTestOrReddirect/>
             <Spinner visible={!loaded} className="spinner"  />  
 
             <form className="form-container" onSubmit={handleSubmit}>
