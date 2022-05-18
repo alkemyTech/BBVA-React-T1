@@ -1,0 +1,42 @@
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10%;
+}
+
+.dashboard-card {
+  flex: 1 0 21%;
+  margin-bottom: 20px;
+}
+
+.card-contents {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card-title {
+  margin: 20px;
+}
+
+.card-actions-contents {
+  width: 100%;
+}
+
+.card-button {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: rgba(1, 108, 60, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+}
