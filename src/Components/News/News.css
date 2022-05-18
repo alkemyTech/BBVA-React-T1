@@ -1,0 +1,12 @@
+.news-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.news-item {
+  margin: 10px;
+}
