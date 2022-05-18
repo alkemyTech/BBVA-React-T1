@@ -3,6 +3,7 @@ import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'
 import { Snackbar , Alert } from '@mui/material';
+import { MembersList } from "../Members/MembersList";
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
  * bajo la ruta /Nosotros, el cual podremos ver informacion acerca de la ONG
@@ -77,6 +78,7 @@ const Nosotros = () => {
                         <div className='imageContainer' style={{backgroundImage: `url(${aboutData.imgSrc})`}}>
                         </div>
                     </div>
+                    <MembersList />
                 </div>
             </div>
 
@@ -94,4 +96,4 @@ const Nosotros = () => {
 }
 
 
-export default Nosotros
+export default Nosotros;
