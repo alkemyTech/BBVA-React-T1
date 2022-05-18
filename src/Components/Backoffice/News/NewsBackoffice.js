@@ -1,47 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+  Table,
+  TableContainer,
+  TableHead,
+  TableCell,
+  TableBody,
+  TableRow,
+} from "@material-ui/core";
 import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
-import { Get } from "../../../Services/privateApiService";
+import { Get, Delete } from "../../../Services/privateApiService";
+import { News } from "../../News/News";
 
 const NewsBackoffice = () => {
-  const deleteIcon = (id) => {
-    return (
-      <IconButton aria-label="delete" size="small" onClick={deleteNews(id)}>
-        <DeleteIcon />
-      </IconButton>
-    );
-  };
-
-  const editIcon = (id) => {
-    return (
-      <Link to={"/backoffice/news/" + id}>
-        <IconButton aria-label="edit" size="small">
-          <EditIcon />
-        </IconButton>
-      </Link>
-    );
-  };
-  const [rows, setRows] = useState([
-    { id: 123, name: "Agus", image: "", edit: editIcon, delete: deleteIcon },
-  ]);
-  const columns = [
-    { field: "id", headerName: "ID", type: "number", width: 70 },
-    { field: "name", headerName: "Nombre", type: "string", width: 130 },
-    { field: "image", headerName: "Imagen", type: "string", width: 130 },
-    {
-      field: "createdAt",
-      headerName: "Fecha de creación",
-      width: 90,
-    },
-    { field: "edit", headerName: "Editar" },
-    { field: "delete", headerName: "Eliminar" },
-  ];
+  const [data, setData] = useState([]);
 
   const getNewsData = async () => {
     try {
@@ -57,7 +35,20 @@ const NewsBackoffice = () => {
     }
   };
 
-  const deleteNews = () => {};
+  const deleteNews = async (id) => {
+    try {
+      const res = await Delete(
+        `${
+          process.env.REACT_APP_URL_BASE_ENDPOINT +
+          process.env.REACT_APP_URL_NEWS_PATH +
+          "/" +
+          id
+        }`
+      );
+    } catch (e) {
+      return e;
+    }
+  };
 
   const setNews = (news) => {
     console.log(news);
@@ -67,37 +58,68 @@ const NewsBackoffice = () => {
         name: e.name,
         image: e.image,
         createdAt: e.created_at,
-        edit: editIcon(e.id),
-        delete: deleteIcon(e.id),
       };
     });
-    return rows;
+    setData(rows);
+  };
+
+  const handleRows = async () => {
+    const newsData = await getNewsData();
+    await setNews(newsData);
   };
 
   useEffect(() => {
-    // const newsData = await getNewsData();
-    // console.log(newsData);
-    // const news = setNews(newsData);
-    // console.log(news);
-    // setRows(news);
-    // console.log(rows);
+    handleRows();
   }, []);
 
   return (
     <div className="news-bo-container">
-      {"hola" +
-        rows.map((a) => {
-          return "," + a;
-        })}
       <StyledEngineProvider injectFirst>
         <CssBaseline />
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+        <h1>Listado de novedades</h1>
+        <Button variant="contained" color="primary" className="button-news">
+          <Link className="top-links" to="/backoffice/news/create">
+            Agregar novedad
+          </Link>
+        </Button>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Nombre</TableCell>
+                <TableCell>Imagen</TableCell>
+                <TableCell>Fecha de creación</TableCell>
+                <TableCell>Editar</TableCell>
+                <TableCell>Eliminar</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((news) => (
+                <TableRow key={news.id}>
+                  <TableCell>{news.name}</TableCell>
+                  <TableCell>{news.image}</TableCell>
+                  <TableCell>{news.createdAt}</TableCell>
+                  <TableCell>
+                    <Link to={"/backoffice/news/" + news.id}>
+                      <IconButton aria-label="edit" size="small">
+                        <EditIcon />
+                      </IconButton>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      onClick={() => deleteNews(news.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </StyledEngineProvider>
     </div>
   );
