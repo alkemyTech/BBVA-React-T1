@@ -17,6 +17,8 @@ const RegisterForm = () => {
     confirmPasswordError: false,
   });
 
+  const token = localStorage.getItem('token');
+
   const passErrorMsg =
     "Debe contener un mínimo de 6 caracteres, una letra, un número y un símbolo";
   const cPassErrorMsg = "Las contraseñas deben coincidir";
