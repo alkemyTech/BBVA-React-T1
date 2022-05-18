@@ -62,7 +62,7 @@ const LoginForm = () => {
         message: "Usuario loggeado correctamente",
         severity: "success",
       });
-      //navigate.push("/");
+      navigate.push("/");
     } catch (err) {
       return err;
     }
@@ -73,6 +73,7 @@ const LoginForm = () => {
   const handleChange = e => { setValues({ ...values, [e.target.name]: e.target.value }); }
   return (
     <>
+      {/* {(localStorage.getItem('token') != null)? <Redirect to='/' /> : ''} */}
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <div className="login-container">
@@ -94,10 +95,7 @@ const LoginForm = () => {
                   error={!validEmail}
                 />
                 <TextField
-                  required
-                  className="inputer"
-                  id="passwordId"
-                  name="password"
+                  requiredNavigate
                   type="password"
                   label="Password"
                   value={values.password}
