@@ -6,6 +6,12 @@ import MessageIcon from "@mui/icons-material/Message";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import DriveFileMoveIcon from "@mui/icons-material/DriveFileMove";
 import GroupIcon from "@mui/icons-material/Group";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { NavLink as Link } from "react-router-dom";
 
 const ScreenDashboard = () => {
   const navMenu = [
@@ -34,7 +40,28 @@ const ScreenDashboard = () => {
     { name: "Usuarios", link: "/backoffice/users", icono: GroupIcon },
     { name: "Miembros", link: "/backoffice/members", icono: GroupIcon },
   ];
-  return <div>ScreenDashboard</div>;
+
+  return (
+    <div className="dashBoard-container">
+      {navMenu.map((item) => (
+        <div key={item.name} className="dashBoard-card">
+          <Card variant="outlined">
+            <CardContent>
+              <Typography>{item.name}</Typography>
+              <Typography>
+                <item.icono className="card-icon" />
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button className="card-button">
+                <Link to={item.link}>Ir</Link>
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default ScreenDashboard;
