@@ -24,6 +24,8 @@ import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
 import BackofficeLayout from './Layout/BackofficeLayout';
+import { isloggedIn } from "./Services/privateApiService";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Route exact path="/backoffice/*">
+            {isloggedIn() && (<Redirect to='/login'/>)}
             <BackofficeLayout>
               <Switch>
                 <Route exact path="/backoffice/slides" component={ShowSlides} />

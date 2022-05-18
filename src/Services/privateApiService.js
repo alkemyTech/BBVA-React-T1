@@ -17,7 +17,7 @@ export const Get = (endpoint) => {
 };
 
 export const isloggedIn = () => {
-  return getToken() && getToken().length>5
+  return getToken() 
 }
 
 export const getToken = () => {
