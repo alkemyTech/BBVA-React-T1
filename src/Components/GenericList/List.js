@@ -51,7 +51,6 @@ const List = ({columnsHeaders=[], rows=[]}) => {
   };
 
   useEffect(() => { setColumns(createList(columnsHeaders)); }, []);
-  console.log({rows});
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>

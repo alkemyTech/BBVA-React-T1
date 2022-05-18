@@ -104,7 +104,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/backoffice/create-member"
+                  path="/backoffice/members/create"
                   component={MembersForm}
                 />
                 <Route

@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import List from '../GenericList/List';
-import { setRef } from '@mui/material';
+import { Button } from '@mui/material';
 import { Get } from '../../Services/publicApiService';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 // Table content
 // Members obj {
@@ -12,6 +14,10 @@ import { Get } from '../../Services/publicApiService';
 //       "image": "string",
 //     } 
 
+const removeMember = id => {
+  //Dummy hasta que esté todo OK BORRAR
+  console.log(`Member 2 remove -> ${id}`);
+}
 
 const getReducedRows = (rows) => {
   rows.forEach((row, index) => {
@@ -19,9 +25,9 @@ const getReducedRows = (rows) => {
     rows[index] = {
       id,
       name,
-      image,
-      modificar: `urlModificar${id}`,
-      eliminar: `urlEliminar${id}`,
+      image: <img className='portrait' src={`${image}`} style={{width: '100px', height:'100px'}} />,
+      modificar: <Link to={`/backoffice/members/${id}`}><EditIcon /></Link>,
+      eliminar: <Button onClick={removeMember({id})}><DeleteForeverIcon /></Button>
     };
   });
   return rows;
@@ -32,21 +38,21 @@ const MembersTable = () => {
   const [rowsContent, setRowsContent] = useState([]);
   const [rowsData, setRowsData] = useState([]);
 
+  const getMembersData = async () => {
+    const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH);
+    setRowsData(res.data.data);
+  }
+
   useEffect(() => { 
-    //Utilizio método axios.get hasta que se repare el Get de publicAPI..
-    const res = Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH);
-    setRowsData(res);
-    //res.then((res) => setRowsData(res.data.data))
-    //.catch(err => alert(err));
-    const reducedRows = getReducedRows(rowsData);
-    setRowsContent(reducedRows);
+    getMembersData();
   }, []);
+  console.log({rowsData});
   return(
     <>
       <div className='container'>
         <h2>MEMBERS LIST</h2>
         <Link to='/backoffice/members/create'> Create Member </Link>
-        <List columnsHeaders={columnsHeaders} rows={rowsContent} />
+        <List columnsHeaders={columnsHeaders} rows={getReducedRows(rowsData)} />
       </div>
     </>
   );
