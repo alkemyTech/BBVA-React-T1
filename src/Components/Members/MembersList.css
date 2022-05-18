@@ -1,0 +1,16 @@
+.members-list {
+  margin: 40px;
+}
+
+.member-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.member-item img {
+  object-fit: cover;
+}
