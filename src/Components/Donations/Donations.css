@@ -119,5 +119,23 @@
     
   }
 
+  @media (max-width: 1200px) {
+    
+    .iframe{
+        width:23rem;
+        height:30rem;
+       
+    }
+    
+    .iframe-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+        
+    }
+    
+
 
 
