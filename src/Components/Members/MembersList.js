@@ -7,11 +7,13 @@ import "./MembersList.css";
 export const MembersList = () => {
   const [data, setData] = React.useState([]);
 
-  function getMembers() {
-    Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/members").then((res) => {
-      setData(res.data.data);
-    });
-  }
+  const getMembers = async () => {
+    const response = await Get(
+      process.env.REACT_APP_URL_BASE_ENDPOINT +
+        process.env.REACT_APP_URL_MEMBER_PATH
+    );
+    setData(response.data.data);
+  };
 
   useEffect(() => {
     getMembers();
