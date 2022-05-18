@@ -71,16 +71,15 @@
     width: 40vw;
 }
 .form-back-submit-btn{
-    background-color: #0094d2;
+    background-color: #ff0000;
     color:white;
     cursor:pointer;
     padding: 0.3rem 1rem;
     width: 50%;
     border:none;
-    box-shadow: 0.3rem 0.3rem 0.2rem #272e316e;
     border-radius: 10px;
     font-size: 1.2rem;
-    margin: 3rem auto;
+    margin: 2.5rem auto;
 }
 
 .input-back{
