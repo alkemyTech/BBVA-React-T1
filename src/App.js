@@ -12,9 +12,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Nosotros from "./Components/About/Nosotros";
-import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
-import ContactForm from "./Components/Contact/ContactForm.js";
 import ActivitiesList from "./Components/Activities/ActivitiesList.js";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
@@ -22,6 +19,7 @@ import LoginForm from "./Components/Auth/LoginForm";
 import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
 import Contact from "./Components/Contact/Contact";
+import HomePage from "./Components/Home/HomePage";
 
 function App() {
   return (
@@ -29,8 +27,6 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Switch>
-            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-
             <Route path="/backoffice/slides/create" component={SlidesForm} />
             <Route path="/backoffice/slides/:id" component={SlidesForm} />
             <Route path="/create-activity" component={ActivitiesForm} />
@@ -54,6 +50,7 @@ function App() {
             <Route path="/backoffice/users" component={UsersList} />
 
             <PublicLayout>
+              <Route path="/" exact component={HomePage} />
               <Route path="/register" component={RegisterForm} />
               <Route path="/login" component={LoginForm} />
               <Route path="/news" component={News} />

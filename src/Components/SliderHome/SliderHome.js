@@ -23,6 +23,7 @@ const SliderHome = ({endpoint}) => {
     const getSlidesInfo = () =>{
         Get(endpoint)
         .then( (res) => {
+            console.log(res)
             setSlides(res.data.data)
         })
     }
