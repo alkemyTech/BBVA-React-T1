@@ -4,12 +4,13 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import {useHistory, Link} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import { Snackbar , Alert } from '@mui/material';
 import "./Donations.css"
+import '../FormStyles.css';
 
 const Donations = () =>{
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     
     const handleOpen = () => {
         if(formValidator()){
@@ -48,9 +49,9 @@ const Donations = () =>{
 
     const navegar =() =>{
         showSnack("Donación exitosa", "success")
-        setTimeout(function(){
-            history.push("/activities");
-        }, 4200);
+        setTimeout(()=>{
+            history.push("/gracias", {sendName:initialValues.name , sendMail: initialValues.mail } );
+        }, 3000);
     }
 
     const handleChange = (e) => {
@@ -70,26 +71,18 @@ const Donations = () =>{
         return formOk
 }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(formValidator()){
-           /* history.push("/activities")  */
-            console.log("Hola")
-        }
-
-    }
 
     return(
         <div className="donation-container">
-        <h1>Ayuda a la Ong</h1>
-        <p> Tu gesto solidario se transforma en proyectos y esperanza</p>
-        <form className="donations-form "onSubmit={handleSubmit}>
+        <h1 className="h1-donations">Ayuda a la Ong</h1>
+        <p className="p-donations"> Tu gesto solidario se transforma en proyectos y esperanza</p>
+        <form className="donations-form">
             <div>
-                <h3>Donante:</h3>
+                <h3 className="h3-donations">Donante:</h3>
                 <input type="text" placeholder="nombre y apellido" name="name" value={initialValues.name} onChange={handleChange}></input>
-                <h3>Mail:</h3>
+                <h3 className="h3-donations">Mail:</h3>
                 <input type="text" placeholder="dirección mail" name="mail" value={initialValues.mail} onChange={handleChange}></input>
-                <div className="btn-container">
+                <div className="btn-container-donations">
                     <Button className="btn-donaciones" onClick={handleOpen} variant="contained">Donar</Button>
                 </div>
             </div>
