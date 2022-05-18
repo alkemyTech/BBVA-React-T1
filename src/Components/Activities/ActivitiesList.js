@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  TableContainer,
-  TableHead,
-  TableCell,
-  TableBody,
-  TableRow,
-} from "@material-ui/core";
-import { Edit, Delete } from "@mui/icons-material";
+
+import { Edit } from "@mui/icons-material";
+import Table from '../../Components/Utils/TableComponent/TableComponent'
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Get } from "./../../Services/privateApiService";
+import { Get, Delete } from "./../../Services/privateApiService";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Snackbar , Alert } from '@mui/material';
 import "./ActivitiesList.css"
 
+
 function ActivitiesList() {
-  const [data, setData] = useState([]);
+
+  const columns = ["Titulo","Fecha Creación","Imagen","",""]
+  const [ rowData , setRowData ] = useState ([[]])
+
   const [snack, setSnack] = useState({
     open: false,
     message: "",
@@ -31,15 +30,51 @@ function ActivitiesList() {
     })
   } 
 
-  const getActivities = async () => {
-    await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ACTIVITIES_PATH)
-    .then(res => setData(res.data.data))
-    .catch(() => showSnack("No se pudieron cargar los datos, intente mas tarde", "error"))
-  };
+  const getActivitiesData = () => {
+    Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ACTIVITIES_PATH)
+    .then( res => {
+      const rows = res.data.data
+      .map( activitie => [activitie.name , dateInfo(activitie.created_at), img(activitie.image, activitie.name) ,editIcon(activitie.id), deleteButton(activitie.id)])
+      setRowData(rows) 
+    })
+    .catch( () => showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "erorr"));
+    }
+
 
   useEffect(() => {
-    getActivities();
+    getActivitiesData();
   }, []);
+
+  const deleteActivitie = async (id) => {
+     await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ACTIVITIES_PATH +"/"+id)
+     .then(res =>{
+        if(res.data.success){
+          getActivitiesData();
+            showSnack("actividad borrado exitosamente.", "success")
+        }else{
+          showSnack("Error al eliminar la actividad, intente nuevamente mas tarde.", "error");
+        }
+    })
+    .catch( e => {
+        showSnack("Error al eliminar la actividad, intente nuevamente mas tarde.", "error")
+      })
+  }
+  
+  const dateInfo = (dateInfo) => dateInfo.slice(0, 10) +" - " + dateInfo.slice(11,16) + " hs"
+
+  const img = (imgSrc, titulo) => <img src={imgSrc} alt={titulo} className="img-list"></img>
+  
+  const deleteButton = (id) =>{
+    return(
+      <DeleteIcon aria-label="delete" size="small" className="table-icon" onClick={() => deleteActivitie(id)}><DeleteIcon />
+      </DeleteIcon>)}
+  
+  const editIcon = (id) => {
+    return(
+        <Link to={"/backoffice/activity/"+id}>
+          <Edit aria-label="delete" size="small" className="table-icon"></Edit>
+        </Link>
+  )}
 
   const onCloseSnack = () =>{
     setSnack({...snack, open:false})
@@ -54,42 +89,7 @@ function ActivitiesList() {
           </Link>
         </Button>
       </div>
-      <div className="table">
-        <TableContainer>
-          <Table className="table-list">
-            <TableHead className="table-head">
-              <TableRow className="table-cell">
-                <TableCell className="table-cell">Nombre</TableCell>
-                <TableCell className="table-cell">Descripción</TableCell>
-                <TableCell className="table-cell">Imagen</TableCell>
-                <TableCell className="table-cell"></TableCell>
-                <TableCell className="table-cell"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((user) => (
-                <TableRow key={user.id} className="table-row">
-                  <TableCell>{user.name}</TableCell>
-                  <TableCell>{user.description}</TableCell>
-                  <TableCell><img src={user.image} alt={user.name} className="img-list"></img></TableCell>
-                  <TableCell>
-                    <Link
-                      to={`/backoffice/activity/${user.id}`}
-                    >
-                      <Edit className="table-icon"/>
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                  </TableCell>
-                  <TableCell>
-                  <Delete className="table-icon"/>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-
+      <Table columnNames={columns} rowData={rowData} className="table-container"/>
       <Snackbar
         open={snack.open}
         severity={snack.severity}
