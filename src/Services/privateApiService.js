@@ -1,20 +1,19 @@
 import axios from "axios";
 
 
-const access_token = ""
+const access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb25nYXBpLmFsa2VteS5vcmdcL2FwaVwvcmVnaXN0ZXIiLCJpYXQiOjE2NTIzODIzNjIsImV4cCI6MTY1MjM4NTk2MiwibmJmIjoxNjUyMzgyMzYyLCJqdGkiOiJpMjdIQ0NVeEhGcUFQdzhsIiwic3ViIjoyNzA1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.lWzeS4VgGBh5F1HNtToGrRScm63_crdNxpd_6Y6Syk4";
 
 
 const config = {
 
   headers: {
     Group: 1, //Aqui va el ID del equipo!!
-    Authorization: `token ${access_token}`,
+    Authorization: access_token,
   },
 };
 
-export const Get = (endpoint, id = null) => {
-  const param = id ? `/${id}` : "";
-  return axios.get(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint+param}`, config);
+export const Get = (endpoint) => {
+  return axios.get(endpoint, config);
 };
 
 export const getToken = () => {
@@ -39,10 +38,10 @@ export const getHeaderAuthorization = () => {
  *     - Err producido por la petición incorrecta.
  *
  */
-export const Delete = async (route, id) => {
+export const Delete = async (route) => {
   try {
     const res = await axios.delete(
-      `${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,
+      route,
       config.headers
     );
     return res;
@@ -53,8 +52,8 @@ export const Delete = async (route, id) => {
 
 
 export const PrivatePost = (endpoint, body) => {
-  axios
-    .post(`${process.env.REACT_APP_URL_BASE_ENDPOINT+endpoint}`, body, config)
+  return axios
+    .post(endpoint, body, config)
     .then((res) => res)
     .catch((err) => err);
 };
@@ -62,17 +61,17 @@ export const PrivatePost = (endpoint, body) => {
 /**
  * Actualiza los datos de la ruta destino
  * @function
- * @param id Id del recurso a actualizar
  * @param route Ruta del recurso, se ingresa sin las barras, ej: route = "slides"
  * @param body Se pasa el objeto del recurso a actualizar
  * 
  * @returns Body de respuesta capturada por try/catch
  */
-export const Put = async (id, route, body) => {
+export const Put = async ( route, body) => {
     try{
-    return await axios.put(`${process.env.REACT_APP_URL_BASE_ENDPOINT+route+'/'+id}`,body,config)
+    return await axios.put(route,body,config)
     }catch(error){
         return error
     }
 }
+
 

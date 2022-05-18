@@ -1,59 +1,45 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import List from '../GenericList/List';
-import { setRef } from '@mui/material';
+import React from "react";
+import Card from "../Card/Card.js";
+import { Get } from "./../../Services/publicApiService";
+import { useEffect } from "react";
+import "./MembersList.css";
 
-// Table content
-// Members obj {
-//       "id": 0,
-//       "name": "string",
-//       "image": "string",
-//       "description": "string",
-//       "facebookUrl": "string",
-//       "linkedinUrl": "string",
-//       "created_at": "2022-05-13T20:08:58.717Z",
-//       "updated_at": "2022-05-13T20:08:58.717Z",
-//       "deleted_at": "2022-05-13T20:08:58.717Z"
-//     } 
+export const MembersList = () => {
+  const [data, setData] = React.useState([]);
 
+  const getMembers = async () => {
+    const response = await Get(
+      process.env.REACT_APP_URL_BASE_ENDPOINT +
+        process.env.REACT_APP_URL_MEMBER_PATH
+    );
+    setData(response.data.data);
+  };
 
-const getReducedRows = (rows) => {
-  rows.forEach((row, index) => {
-    const { id, name, image, ...values } = row;
-    rows[index] = {
-      id,
-      name,
-      image,
-      modificar: `urlModificar${id}`,
-      eliminar: `urlEliminar${id}`,
-    };
-  });
-  return rows;
-};
-
-const columnsHeaders = ['id','name','image','description','modificar','eliminar'];
-const MembersList = () => {
-  const [rowsContent, setRowsContent] = useState([]);
-  const [rowsData, setRowsData] = useState([]);
-
-  useEffect(() => { 
-    //Utilizio método axios.get hasta que se repare el Get de publicAPI..
-    const res = axios.get(`https://ongapi.alkemy.org/api/members`);
-    res.then((res) => setRowsData(res.data.data))
-    .catch(err => alert(err));
-    console.log({rowsData});
-    setRowsContent(getReducedRows(rowsData));
+  useEffect(() => {
+    getMembers();
   }, []);
-  console.log(rowsContent);
-  return(
-    <>
-      <div className='container'>
-        <h2>MEMBERS LIST</h2>
-        <Link to='/backoffice/members/create'> Create Member </Link>
-        <List columnsHeaders={columnsHeaders} rows={rowsContent} />
+
+  return (
+    <div className="members-list">
+      <h2>Miembros</h2>
+      <div className="member-container">
+        {data.map(
+          (item) =>
+            item.image && (
+              <div className="member-item" key={item.id}>
+                <Card
+                  className="member-card"
+                  style={{ objectFit: "cover" }}
+                  type="staff"
+                  img={item.image}
+                  title={item.name}
+                  description={item.description}
+                />
+              </div>
+            )
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
