@@ -12,27 +12,11 @@ import { Snackbar , Alert } from '@mui/material';
 
 const Nosotros = () => {
 
-   const [ sobreNosotros , setSobreNosotros ] = useState({
+   const [ aboutData , setAboutData ] = useState({
         text:"",
         imgSrc:"",
         loaded:false
        })
-
-
-
-    const getOrganizationData  = () => {
-        Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
-            const data=res.data.data;
-            if(res.data.success)
-                setSobreNosotros({...sobreNosotros, loaded: true, text: data.long_description,imgSrc:data.logo})
-            else
-                snackError("Error en la carga de datos, por favor reintente mas tarde.")
-            }).catch( err => snackError("Error en la carga de datos, por favor reintente mas tarde."))
-    }
-
-    useEffect( () => { 
-        getOrganizationData ();
-    }, []);
 
     const [snack, setSnack] = useState({
         open: false,
@@ -50,6 +34,26 @@ const Nosotros = () => {
     const snackError = (message) => snackSend(message,"error")
     const snackSuccess = (message) => snackSend(message,"success")
 
+
+
+    const getOrganizationData  = () => {
+        Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
+            const dataRes=res.data;
+            if(dataRes.success){
+                const data= dataRes.data;
+                setAboutData({...aboutData, loaded: true, text: data.long_description,imgSrc:data.logo})
+            } 
+            else
+                snackError("Error en la carga de datos, por favor reintente mas tarde.")
+            }).catch( err => snackError("Error en la carga de datos, por favor reintente mas tarde."))
+    }
+
+    useEffect( () => { 
+        getOrganizationData ();
+    }, []);
+
+
+
     const onCloseSnack = () =>{
         setSnack({...snack, open:false})
     }
@@ -57,20 +61,20 @@ const Nosotros = () => {
         <>
         
         <div className='containerGeneral'>
-        <Spinner visible={!sobreNosotros.loaded} className="spinner"  /> 
+        <Spinner visible={!aboutData.loaded} className="spinner"  /> 
             <div className='containerData'>
                 <h2 className="centerText" style={{marginTop:30}}>Nosotros</h2>
                     <div className='flexContainer'>
                         <div className='textoContainer'>
                             {
-                                sobreNosotros.loaded &&
+                                aboutData.loaded &&
                                 (
                                 <div dangerouslySetInnerHTML= {{__html: 
-                                    (sobreNosotros.text)}} />
+                                    (aboutData.text)}} />
                                 )
                             }
                         </div>
-                        <div className='imageContainer' style={{backgroundImage: `url(${sobreNosotros.imgSrc})`}}>
+                        <div className='imageContainer' style={{backgroundImage: `url(${aboutData.imgSrc})`}}>
                         </div>
                     </div>
                 </div>
