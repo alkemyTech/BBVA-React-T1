@@ -50,14 +50,12 @@ const LoginForm = () => {
       const res = await Post(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/login`,values );
       const data = await res.data;
       if ("error" in data) {
-        setAlertState({
+        return(setAlertState({
           isOpen: true,
           message: "Usuario no registrado",
           severity: "error",
-        });
-        return;
+        }));
       }
-      console.log(data.data.token);
       localStorage.setItem('token', data.data.token);
       setAlertState({
         isOpen: true,
