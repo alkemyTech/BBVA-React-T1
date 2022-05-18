@@ -5,6 +5,7 @@ import { TextField, Button } from "@mui/material";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Get, PrivatePost, Put } from "../../../Services/privateApiService";
+import "./NewsForm.css";
 
 const NewsForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -42,7 +43,7 @@ const NewsForm = () => {
           content: obj.content,
         });
       };
-    } 
+    }
   };
 
   const handleChange = (e) => {
@@ -51,29 +52,31 @@ const NewsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (initialValues.name && initialValues.content && initialValues.image) {
+    if ((initialValues.name && initialValues.content && initialValues.image).length > 0) {
       if (id) {
-        await Put(
+        try{await Put(
           process.env.REACT_APP_URL_BASE_ENDPOINT +
             process.env.REACT_APP_URL_NEWS_PATH +
             "/" +
             id,
           initialValues
         );
-        history.push("/backoffice/news");
+        history.push("/backoffice/news");} catch(e){
+          return "Lo sentimos! Algo salió mal"
+        }
       } else {
-        await PrivatePost(
+        try{await PrivatePost(
           process.env.REACT_APP_URL_BASE_ENDPOINT + "/users",
           initialValues
         );
-        history.push("/backoffice/news");
+        history.push("/backoffice/news");} catch(e){
+          return "Lo sentimos! Algo salió mal"
+        }
       }
     }
   };
 
-  useEffect(() =>{
-    handleUpdate()
-  }, [])
+
 
   return (
     <div className="news-form-container">
@@ -85,6 +88,7 @@ const NewsForm = () => {
           variant="outlined"
           type="text"
           name="name"
+          className="title-input"
           value={initialValues.name}
           onChange={handleChange}
           required
