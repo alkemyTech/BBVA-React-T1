@@ -23,6 +23,8 @@ import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
+import Donations from "./Components/Donations/Donations"
+import Gracias from "./Components/Donations/Gracias"
 
 
 function App() {
@@ -57,7 +59,9 @@ function App() {
               <Route path="/nosotros" component={Nosotros} />
               <Route path="/news" />
               <Route path="/testimonials" />
+              <Route path="/gracias" component={Gracias} />
               <Route path="/contact" component={Contact} />
+              <Route path="/donations" component={Donations} />
               <Route path="/school-campaign" component={SchoolCampaign} />
               <Route path="/toys-campaign" component={ToysCampaign} />
             </PublicLayout>
