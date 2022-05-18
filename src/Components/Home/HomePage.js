@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Get } from "../../Services/publicApiService"
 import Container from '@mui/material/Container';
 import Listado from './Listado';
+import ListadoNovedades from './ListadoNovedades'
 import './HomePage.css'
 
 function HomePage() {
@@ -46,7 +47,7 @@ function HomePage() {
                             title={"Testimonios"}
                             endpoint={process.env.REACT_APP_TESTIMONIALS_PATH}
                         />
-                        <Listado 
+                        <ListadoNovedades 
                             type={'news'}
                             title={'Últimas novedades'}
                             endpoint={process.env.REACT_APP_URL_NEWS_PATH}

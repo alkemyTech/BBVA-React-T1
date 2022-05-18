@@ -9,8 +9,6 @@ const Listado = ({type, title, endpoint}) =>{
 
     const [info, setInfo] = useState([])
 
-    // agregar variables al usestate y probar iterando y asignando valores
-
     const getOrganizationData = async (url) =>{
         const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + url)
         setInfo(res.data.data);
