@@ -14,7 +14,6 @@ const ListadoNovedades = ({type, title, endpoint}) =>{
     const getOrganizationData = async (url) =>{
         const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + url)
         setInfo(res.data.data);
-        console.log(res.data.data);
     }
 
     useEffect( () => {
