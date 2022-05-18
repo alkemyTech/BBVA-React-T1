@@ -28,7 +28,7 @@ const Listado = ({type, title, endpoint, redirect}) =>{
                 <Link to={redirect} className='link'>Ver más</Link>
             </div>
             <Swiper slidesPerView={5} spaceBetween={20}className="swiper">
-                        { info.length === 0 ? (<p>hola</p>) : (
+                        { info.length === 0 ? (<p>Cargando</p>) : (
                             <>
                                 {info.map ((info) => {
                                     return (

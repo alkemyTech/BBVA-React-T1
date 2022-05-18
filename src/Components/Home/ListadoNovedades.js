@@ -28,20 +28,26 @@ const ListadoNovedades = ({type, title, endpoint}) =>{
                 <Link to='/news' className='link'>Ver más</Link>
             </div>
             <Swiper slidesPerView={2} spaceBetween={5}className="swiper">
-                {info.map(
-                    (item) => item.image && (
-                        <SwiperSlide key={item.id}>
-                            <Card
-                            key={item.id}
-                            type="news"
-                            img={item.image}
-                            buttonContent="Ver novedad"
-                            description={item.content}
-                            />
-              </SwiperSlide>
-            )
-        )}
-      </Swiper>
+                { info.length === 0 ? (<p>Cargando</p>) : (
+                <>
+                    {info.map((item) => item.image && 
+                        (
+                            
+                                <SwiperSlide key={item.id}>
+                                    <Card
+                                    key={item.id}
+                                    type="news"
+                                    img={item.image}
+                                    buttonContent="Ver novedad"
+                                    description={item.content}
+                                    />
+                                </SwiperSlide>
+                            
+                        )
+                )}
+                </>
+            )}
+            </Swiper>
     </div>
     )
 }
