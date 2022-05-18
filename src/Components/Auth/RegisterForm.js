@@ -117,9 +117,8 @@ const RegisterForm = () => {
             helperText={confirmPasswordError ? cPassErrorMsg : ""}
             required
           />
-          <Button className="submit-btn" variant="contained" type="submit">
-            Registrarse
-          </Button>
+          {!token ? <Button className="submit-btn" variant="contained" type="submit"> Registrarse </Button> : ''}
+          
         </form>
         <p className="question-p">¿Ya tienes una cuenta?</p>
         <NavLink className="nav-link" to="/login">
