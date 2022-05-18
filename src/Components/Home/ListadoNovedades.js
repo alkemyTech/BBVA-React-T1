@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import 'swiper/swiper.min.css';
 import Card from '../Card/Card';
 import { Get } from '../../Services/publicApiService';
+import { Link } from "react-router-dom";
+import './Listado.css';
 
 const ListadoNovedades = ({type, title, endpoint}) =>{
 
@@ -21,11 +23,14 @@ const ListadoNovedades = ({type, title, endpoint}) =>{
 
     return (
         <div className="news">
-            <h1>Novedades</h1>
-            <div className="news-container">
+            <div className='title-section'>
+                <h1 className='title' >Novedades</h1>
+                <Link to='/news' className='link'>Ver más</Link>
+            </div>
+            <Swiper slidesPerView={2} spaceBetween={5}className="swiper">
                 {info.map(
                     (item) => item.image && (
-                        <div className="news-item">
+                        <SwiperSlide key={item.id}>
                             <Card
                             key={item.id}
                             type="news"
@@ -33,10 +38,10 @@ const ListadoNovedades = ({type, title, endpoint}) =>{
                             buttonContent="Ver novedad"
                             description={item.content}
                             />
-              </div>
+              </SwiperSlide>
             )
         )}
-      </div>
+      </Swiper>
     </div>
     )
 }

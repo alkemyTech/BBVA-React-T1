@@ -41,11 +41,13 @@ function HomePage() {
                             type={'staff'}
                             title={"Nuestro Staff"}
                             endpoint={process.env.REACT_APP_URL_MEMBER_PATH}
+                            redirect = {'/nosotros'}
                         />
                         <Listado 
                             type={'testimonials'}
                             title={"Testimonios"}
                             endpoint={process.env.REACT_APP_TESTIMONIALS_PATH}
+                            redirect = {'/testimonials'}
                         />
                         <ListadoNovedades 
                             type={'news'}

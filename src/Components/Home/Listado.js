@@ -4,8 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import 'swiper/swiper.min.css';
 import Card from '../Card/Card';
 import { Get } from '../../Services/publicApiService';
+import { Link } from "react-router-dom";
+import './Listado.css'
 
-const Listado = ({type, title, endpoint}) =>{
+const Listado = ({type, title, endpoint, redirect}) =>{
 
     const [info, setInfo] = useState([])
 
@@ -21,7 +23,10 @@ const Listado = ({type, title, endpoint}) =>{
 
     return (
         <div>
-            <h1>{title}</h1>
+            <div className='title-section'>
+                <h1 className='title'>{title}</h1>
+                <Link to={redirect} className='link'>Ver más</Link>
+            </div>
             <Swiper slidesPerView={5} spaceBetween={20}className="swiper">
                         { info.length === 0 ? (<p>hola</p>) : (
                             <>
