@@ -7,15 +7,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 12rem;
     max-height: 559px;
     width: 100vw;
+    padding-bottom: 10rem;
+    box-sizing: content-box;
 }
 
 .hr-logo, .hr-nav{
     background-color: black;
     width:100vw;
-    height:0.15rem;
+    height:0.25rem;
 }
 
 .logo-container{
@@ -25,13 +26,14 @@
 
 .hr-logo{
     position:absolute;
-    top:6rem;
+    top:3.5rem;
     z-index: -9999;
 }
 
-.img-logo{
+.img-logo-footer{
     background-color: #C0C0C0;
     padding:0 4rem;
+    width:250px;
 }
 
 .li-roots, .li-socials{
@@ -41,6 +43,7 @@
 .ul-roots{
     margin-bottom: 3rem;
     margin-top: 0;
+    padding-left: 1rem;
 }
 
 .ul-socials{
@@ -67,7 +70,7 @@
     flex-wrap: wrap;
 }
 
-/* Responsive- Mobile */
+/* Responsive */
 
 @media (max-width: 400px) {
     
@@ -75,8 +78,10 @@
         background-color:#FFFFFF;
     }
 
-    .img-logo{
+    .img-logo-footer{
         padding:0 2rem;
+        width:200px;
+        top:2rem;
     }
     
     .ul-roots{
@@ -89,10 +94,7 @@
     }
 
     .footer-front{
-        height: 267px;
-        padding-top:3rem;
-        font-weight: 300;
-        padding-bottom: 8rem;
+        padding-bottom: 4rem;
     }
 
   }

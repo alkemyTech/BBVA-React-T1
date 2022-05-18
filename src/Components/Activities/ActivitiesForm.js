@@ -97,7 +97,7 @@ const ActivitiesForm = () => {
 
         promise.then( res => {
             if(res.data.success){
-                history.push("/activities");
+                history.push("/backoffice/activities");
             }else{
                 setSnack({...snack, 
                 message:"Error debe completar todos los casilleros y subir una imagen.",
@@ -106,8 +106,6 @@ const ActivitiesForm = () => {
             })
             }
         })
-        
-
         
     }
     
