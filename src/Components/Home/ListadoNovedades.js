@@ -7,7 +7,7 @@ import { Get } from '../../Services/publicApiService';
 import { Link } from "react-router-dom";
 import './Listado.css';
 
-const ListadoNovedades = ({type, title, endpoint}) =>{
+const NewsList = ({type, title, endpoint}) =>{
 
     const [info, setInfo] = useState([])
 
@@ -51,4 +51,4 @@ const ListadoNovedades = ({type, title, endpoint}) =>{
     )
 }
 
-export default ListadoNovedades;
+export default NewsList;

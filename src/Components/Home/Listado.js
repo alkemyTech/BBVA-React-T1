@@ -7,7 +7,7 @@ import { Get } from '../../Services/publicApiService';
 import { Link } from "react-router-dom";
 import './Listado.css'
 
-const Listado = ({type, title, endpoint, redirect}) =>{
+const List = ({type, title, endpoint, redirect}) =>{
 
     const [info, setInfo] = useState([])
 
@@ -44,4 +44,4 @@ const Listado = ({type, title, endpoint, redirect}) =>{
     )
 }
 
-export default Listado;
+export default List;

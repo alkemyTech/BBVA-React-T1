@@ -2,8 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react"
 import { Get } from "../../Services/publicApiService"
 import Container from '@mui/material/Container';
-import Listado from './Listado';
-import ListadoNovedades from './ListadoNovedades'
+import List from './Listado';
+import NewsList from './ListadoNovedades'
 import './HomePage.css'
 
 function HomePage() {
@@ -37,19 +37,19 @@ function HomePage() {
             </section>
             <section className="second-section">
                     <Container className="general-container">
-                        <Listado 
+                        <List 
                             type={'staff'}
                             title={"Nuestro Staff"}
                             endpoint={process.env.REACT_APP_URL_MEMBER_PATH}
                             redirect = {'/nosotros'}
                         />
-                        <Listado 
+                        <List 
                             type={'testimonials'}
                             title={"Testimonios"}
                             endpoint={process.env.REACT_APP_TESTIMONIALS_PATH}
                             redirect = {'/testimonials'}
                         />
-                        <ListadoNovedades 
+                        <NewsList 
                             type={'news'}
                             title={'Últimas novedades'}
                             endpoint={process.env.REACT_APP_URL_NEWS_PATH}
