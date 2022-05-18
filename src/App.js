@@ -44,6 +44,9 @@ function App() {
             <Route path="/backoffice/create-category" component={CategoriesForm} />
             <Route path="/backoffice/create-news" component={NewsForm} />
             <Route path="/backoffice/create-testimonials" component={TestimonialForm} />
+            
+            <Route path="/backoffice/testimonials/create" component={TestimonialForm} />
+            <Route path="/backoffice/testimonials/:id" component={TestimonialForm} />
 
             <Route path="/backoffice/users/create" component={UserForm} />
             <Route path="/backoffice/users/:id" component={UserForm} />
