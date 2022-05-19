@@ -4,19 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+export const GlobalContextApp = React.createContext();
 
-
-
-//let createStoreWithMiddleware = applyMiddleware(thunkMiddleware, api)(createStore)
-
-//const store = createStore(initialStateAuth)
-//let root  = ReactDOM.createRoot(document.getElementById('root'))
+const appContext = {
+  authData : {},
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    
-      <App />
-
+      <GlobalContextApp.Provider value={appContext}>
+        <App />
+      </GlobalContextApp.Provider>
   </React.StrictMode>,
   //document.getElementById('root')
 );

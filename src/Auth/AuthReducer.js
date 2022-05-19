@@ -12,6 +12,11 @@ export const initialStateAuth =  {
     }
 }
 
+
+/*
+* action -> {type:"LOGOUT||LOGIN" , data: {email:"",name:"",token:""}}
+*
+*/
 const AuthReducer = (state , action) =>
 {
     switch(action.type){
