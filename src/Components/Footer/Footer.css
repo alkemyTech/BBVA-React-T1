@@ -26,13 +26,15 @@
 
 .hr-logo{
     position:absolute;
-    top:6rem;
+    top:3.5rem;
     z-index: -9999;
 }
 
-.img-logo{
+.img-logo-footer{
     background-color: #C0C0C0;
+    width: 250px;
     padding:0 4rem;
+    width:250px;
 }
 
 .li-roots, .li-socials{
@@ -77,8 +79,15 @@
         background-color:#FFFFFF;
     }
 
-    .img-logo{
+    .img-logo-footer{
         padding:0 2rem;
+        width: 180px;
+    }
+
+    .hr-logo{
+        position:absolute;
+        top:3rem;
+        z-index: -9999;
     }
     
     .ul-roots{
