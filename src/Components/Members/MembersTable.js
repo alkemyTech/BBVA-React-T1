@@ -27,9 +27,9 @@ const getReducedRows = (rows) => {
     rows[index] = {
       id,
       name,
-      image: <img className='portrait' src={`${image}`} style={{width: '100px', height:'100px'}} />,
-      modificar: <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
-      eliminar: <Button className='icon-link' onClick={removeMember(id)}><DeleteForeverIcon /></Button>
+      'image': <img className='portrait' src={image} alt='image' />,
+      'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
+      'eliminar': <Button className='icon-link' onClick={removeMember(id)}><DeleteForeverIcon /></Button>
     };
   });
   return rows;
@@ -49,12 +49,17 @@ const MembersTable = () => {
     getMembersData();
   }, []);
   console.log({rowsData});
-  return(
+  return (
     <>
-      <div className='container'>
+      <div className="members-container">
         <h2>MEMBERS LIST</h2>
-        <Link to='/backoffice/members/create'> Create Member </Link>
-        <List columnsHeaders={columnsHeaders} rows={getReducedRows(rowsData)} />
+        <Link className='create-link' to="/backoffice/members/create"> Create Member </Link>
+        <div className="content-container">
+          <List
+            columnsHeaders={columnsHeaders}
+            rows={getReducedRows(rowsData)}
+          />
+        </div>
       </div>
     </>
   );

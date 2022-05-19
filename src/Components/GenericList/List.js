@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { create } from '@mui/material/styles/createTransitions';
 
+
 /**
  * Componente "genérico" que crea una tabla con su header fixed:
  * 
@@ -41,9 +42,7 @@ const List = ({columnsHeaders=[], rows=[]}) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [columns, setColumns] = useState([]);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (event, newPage) => { setPage(newPage); };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
