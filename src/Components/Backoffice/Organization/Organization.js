@@ -1,8 +1,9 @@
 import React from "react"
 import { Button, CssBaseline, StyledEngineProvider, TextField, InputAdornment } from "@mui/material";
 
-import { Get } from './../../../Services/privateApiService';
+import { Get, Put } from './../../../Services/privateApiService';
 import './Organization.css';
+import { GetAppContext } from '../../index';
 
 const Organization = () =>{
     const [ organizationData , setOrganizationData ] = React.useState({
@@ -20,6 +21,30 @@ const Organization = () =>{
         twitter_url:"",
     });
     const [keys, setKeys] = React.useState([]);
+    const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
+    }
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
 
     const changesHandler = event =>{
         setOrganizationData({ ...organizationData, [event.target.name]: event.target.value });
@@ -35,8 +60,17 @@ const Organization = () =>{
         }
     }
 
-    const submitHandler = () => {
-        console.log('submit');
+    const submitHandler = async () => {
+        try {
+            const res = await Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH, organizationData);
+            if(res.error){ setSnackBar(`Ha ocurrido un error al editar datos -> ${res.error}`, 'error'); }
+            else {
+                setSnackBar(`Datos actualizados`, 'success');
+                setOrganizationData(organizationData);
+            }
+        } catch (err) {
+            setSnackBar(`Ha ocurrido un error al editar datos -> ${err}`, 'error');
+        }
     }
     React.useEffect(() => {
         getOrgData();
