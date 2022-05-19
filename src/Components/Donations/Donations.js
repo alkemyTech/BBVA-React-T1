@@ -42,7 +42,7 @@ const Donations = () =>{
         setOpen(false)
         showSnack("Donación exitosa", "success")
         setTimeout(()=>{
-            history.push("/gracias", {sendName:initialValues.name , sendMail: initialValues.mail } );
+            history.push("/thanks", {sendName:initialValues.name , sendMail: initialValues.mail } );
         }, 3000)   
     }
     
