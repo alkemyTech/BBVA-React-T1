@@ -45,7 +45,6 @@ const showSnack = (text, type) =>{
                 ...initialValues,
                 name:info.name,
                 description: info.description,
-                img:info.image 
             })
             setEditorData(info.description);
         })
@@ -61,13 +60,12 @@ const showSnack = (text, type) =>{
 
 //Validaciones del form
 const formValidation = () =>{
-    const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
     let validationOk = false;
     if(initialValues.name.length < 4){
         showSnack("El nombre debe contener al menos 4 letras", "error")
     }else if(initialValues.description === ""){
         showSnack("No puede dejar campos vacíos", "error")
-    }else if(!imgRegex.test(initialValues.img)){
+    }else if(!initialValues.img){
         showSnack("Ingrese una imagen debe ser .jpg o .png", "error")
 
     }
