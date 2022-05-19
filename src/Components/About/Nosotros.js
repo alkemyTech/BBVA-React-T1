@@ -81,20 +81,19 @@ const Nosotros = () => {
   return (
     <>
       <div className="containerGeneral">
-        <Spinner visible={!sobreNosotros.loaded} className="spinner" />
         <div className="containerData">
           <h1 className="centerText h1-heading"  style={{ marginTop: 30 }}>
             Nosotros
           </h1>
           <div className="flexContainer">
             <div className="textoContainer">
-              {sobreNosotros.loaded && (
-                <div dangerouslySetInnerHTML={{ __html: sobreNosotros.text }} />
+              {aboutData.loaded && (
+                <div dangerouslySetInnerHTML={{ __html: aboutData.text }} />
               )}
             </div>
             <div
               className="imageContainer"
-              style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
+              style={{ backgroundImage: `url(${aboutData.imgSrc})` }}
             ></div>
           </div>
               <MembersList />
