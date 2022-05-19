@@ -26,26 +26,6 @@ const NewsForm = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleUpdate = () => {
-    if (id) {
-      const getNews = async () => {
-        const res = await Get(
-          process.env.REACT_APP_URL_BASE_ENDPOINT +
-            process.env.REACT_APP_URL_NEWS_PATH +
-            "/" +
-            id
-        );
-        const obj = res.data.data;
-        handleImage(obj.image);
-        setInitialValues({
-          ...initialValues,
-          name: obj.name,
-          content: obj.content,
-        });
-      };
-    }
-  };
-
   const handleChange = (e) => {
     setInitialValues({ ...initialValues, [e.target.name]: e.target.value });
   };
