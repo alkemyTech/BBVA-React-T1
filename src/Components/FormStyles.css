@@ -69,7 +69,7 @@
     padding-top:2rem;
     font-family: 'Poppins', sans-serif;
     width: 40vw;
-    height: 50vh;
+    height: 60vh;
 }
 .form-back-submit-btn{
     background-color: #ff0000;
@@ -78,9 +78,15 @@
     padding: 0.3rem 1rem;
     width: 50%;
     border:none;
-    border-radius: 10px;
+    border-radius: 1rem;
     font-size: 1.2rem;
     margin: 2.5rem auto;
+}
+
+.form-back-submit-btn:hover{
+    cursor: pointer;
+    border: none;
+    box-shadow: .2rem .2rem  #27282946;
 }
 
 .input-back{
