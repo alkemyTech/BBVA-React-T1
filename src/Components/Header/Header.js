@@ -6,11 +6,6 @@ import "./Header.css";
 function Header() {
   const navMenu = [
     {
-      name: "Inicio",
-      link: "/",
-      requiresLogIn: false,
-    },
-    {
       name: "Nosotros",
       link: "/us",
       requiresLogIn: false,
