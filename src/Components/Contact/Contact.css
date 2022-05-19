@@ -1,25 +1,30 @@
 .container-body-contact{
     box-sizing: border-box;
     padding: 20px;
-    margin: 15px 0px;
     min-width: 100vw;
-    min-height: 100vh;
+    height:80%;
     display: flex;
+    align-items: center;
     flex-direction: row;
+    margin-bottom:5rem;
 }
 
 .contact-title{
-   margin: 15px auto;
+   margin-top:2rem;
+
 }
 .contact-form{
     width: 65%;
+    text-align: left;
 }
 
 
 .contact-data{
     background-color: #f8fc74;
     border-radius: 20px;
-    width: 35%;
+    flex-wrap: nowrap;
+    padding:2rem 5rem;
+    margin: 1rem;
     height: 20%;
     text-align: center;
 }
@@ -44,6 +49,7 @@
 
 .contact-icon, .contact-link{
     display: inline;
+    margin-top:0.5rem;
 }
 .contact-link{
     color: #212121;
@@ -63,4 +69,6 @@
         .contact-data {
             width: 100%;
         }
+
+
 }
