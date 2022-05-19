@@ -3,10 +3,11 @@ import "./Nosotros.css";
 import { Get } from "./../../Services/privateApiService";
 import Spinner from "../Spinner/Spinner";
 import { MembersList } from "../Members/MembersList";
+import {LinkedinFollowCompany, TwitterButton,TwitterTweet} from 'react-social-plugins';
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
- * bajo la ruta /Nosotros, el cual podremos ver informacion acerca de la ONG
+ * bajo la ruta /Us, el cual podremos ver informacion acerca de la ONG
  * Dicha informacion se renderizará de forma dinamica desde una API
  * @returns jsx para mostrar en pantalla
  */
@@ -42,9 +43,9 @@ const Nosotros = () => {
       <div className="containerGeneral">
         <Spinner visible={!sobreNosotros.loaded} className="spinner" />
         <div className="containerData">
-          <h2 className="centerText" style={{ marginTop: 30 }}>
+          <h1 className="centerText h1-heading"  style={{ marginTop: 30 }}>
             Nosotros
-          </h2>
+          </h1>
           <div className="flexContainer">
             <div className="textoContainer">
               {sobreNosotros.loaded && (
@@ -56,7 +57,56 @@ const Nosotros = () => {
               style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
             ></div>
           </div>
-          <MembersList />
+              <MembersList />
+          <div className="container-twitter">
+          <h2 className="centerText twitter-tittle" style={{ marginTop: 30 }}>
+            Últimos Tweets
+          </h2>
+            <TwitterTweet
+            className= "twitter-item"
+                align='left'
+                coversation='none'
+                tweetId='1527122168684978176' 
+                theme='light'
+                width={350}
+            />
+            <TwitterTweet
+            className= "twitter-item"
+                align='left'
+                coversation='none'
+                tweetId='1527122059213647872'
+                theme='light'
+                width={350}
+            />
+            <TwitterTweet
+            className= "twitter-item"
+                align='left'
+                coversation='none'
+                tweetId='1527121093617647617'
+                theme='light'
+                width={350}
+            />
+          </div>
+          <div className="novedades-redes">
+            <h4 className="centerText h4-twitter" style={{ marginTop: 30 }}>
+                ¿Tenés algo para contarnos?
+            </h4>
+            <TwitterButton
+              hashtags="ONG, voluntariado"
+              target="OngSomosMas1"
+              text="Suamate a Somos mas"
+              type="Hashtag"
+              size="large"
+              via="OngSomosMas1"
+            />
+            <LinkedinFollowCompany
+            companyId={215424234}
+            counter="top" // Or "right"
+            lang="es_AR"
+            />
+    
+          </div>
+
         </div>
       </div>
     </>
