@@ -20,6 +20,8 @@ import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
+import Donations from "./Components/Donations/Donations"
+import DonationResponse from "./Components/Donations/DonationResponse"
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
 import { getToken } from "./Services/privateApiService";
@@ -142,9 +144,11 @@ function App() {
                 <Route path="/nosotros" component={Nosotros} />
                 <Route path="/testimonials" />
                 <Route path="/contact" component={Contact} />
+                <Route path= "/donations" component={Donations} />
+                <Route path= "/gracias" component={DonationResponse} />
                 <Route path="/school-campaign" component={SchoolCampaign} />
                 <Route path="/toys-campaign" component={ToysCampaign} />
-                <Route path="/contact-form" component={ContactForm} />
+                <Route path="/contact-form" component={Contact} />
               </Switch>
             </PublicLayout>
           </Route>

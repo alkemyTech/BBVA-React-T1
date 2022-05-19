@@ -62,7 +62,7 @@ const Footer = () => {
                         <li className ="li-roots"><Link className ="a-roots" to="/nosotros">Nosotos </Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/news">Novedades</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/testimonials">Testimonios</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots"to="/contact">Contacto</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots"to="/contact-form">Contacto</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/donations">Contribuye</Link></li>
                     </ul>
                     <hr className= "hr-nav"/>
