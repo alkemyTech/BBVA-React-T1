@@ -9,6 +9,7 @@ import Spinner from './../Spinner/Spinner';
 import { Snackbar , Alert,TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
 
+
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
@@ -117,6 +118,8 @@ const ActivitiesForm = () => {
 
 
     return (
+        <>
+
         <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
             <form className="form-container" onSubmit={handleSubmit}>
@@ -147,6 +150,7 @@ const ActivitiesForm = () => {
                 </Alert>
             </Snackbar>
         </div>
+        </>
     );
 }
  
