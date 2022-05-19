@@ -47,7 +47,8 @@ const NewsForm = () => {
         }
       } else {
         try{await PrivatePost(
-          process.env.REACT_APP_URL_BASE_ENDPOINT + "/users",
+          process.env.REACT_APP_URL_BASE_ENDPOINT +
+            process.env.REACT_APP_URL_NEWS_PATH,
           initialValues
         );
         history.push("/backoffice/news");} catch(e){
