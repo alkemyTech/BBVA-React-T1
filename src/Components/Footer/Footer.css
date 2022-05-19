@@ -26,7 +26,7 @@
 
 .hr-logo{
     position:absolute;
-    top:4rem;
+    top:3.5rem;
     z-index: -9999;
 }
 
@@ -34,6 +34,7 @@
     background-color: #C0C0C0;
     width: 250px;
     padding:0 4rem;
+    width:250px;
 }
 
 .li-roots, .li-socials{

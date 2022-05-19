@@ -62,6 +62,11 @@ function App() {
                 />
                 <Route
                   exact
+                  path="/backoffice/slides"
+                  component={ShowSlides}
+                />
+                <Route
+                  exact
                   path="/create-activity"
                   component={ActivitiesForm}
                 />
@@ -69,15 +74,19 @@ function App() {
 
                 <Route
                   exact
+                  path="/backoffice/activity/create"
+                  component={ActivitiesForm}
+                />
+                <Route
+                  exact
                   path="/backoffice/activity/:id"
                   component={ActivitiesForm}
                 />
                 <Route
                   exact
-                  path="/backoffice/activity"
-                  component={ActivitiesForm}
+                  path="/backoffice/activities"
+                  component={ActivitiesList}
                 />
-                <Route exact path="/activities" component={ActivitiesList} />
 
                 <Route
                   exact
