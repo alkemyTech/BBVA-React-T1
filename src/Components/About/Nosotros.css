@@ -1,4 +1,6 @@
-
+.h1-heading{
+    text-decoration: underline rgb(66, 144, 218) 0.5rem;
+}
 
 .flexContainer{
     position: relative;
@@ -7,6 +9,7 @@
     align-content: space-around;
     flex-direction: row;
     height: 100%;
+    margin-top:2rem;
 
 }
 
@@ -51,3 +54,36 @@
 .containerData{
     margin-inline: 7%;
 }
+
+.container-twitter{
+    background-color: #6163644f;
+    height: 60vh;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+    justify-content:center;
+    margin:4rem 2rem 0 2rem;
+}
+
+.twitter-tittle{
+    margin-bottom: 0.8rem;
+}
+
+.novedades-redes{
+    margin: 2rem 0 4rem 0;
+    padding:1rem;
+}
+
+.h4-twitter{
+    margin-bottom:1rem;
+}
+
+@media (max-width: 1270px) {
+    
+    .container-twitter{
+        display:none;
+    }
+
+
+  }

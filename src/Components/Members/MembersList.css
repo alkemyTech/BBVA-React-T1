@@ -6,11 +6,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 40px;
   margin-top: 20px;
 }
 
 .member-item img {
   object-fit: cover;
+}
+
+.member-item{
+  padding: 2.2rem;
 }
