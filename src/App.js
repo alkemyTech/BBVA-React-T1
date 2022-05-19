@@ -25,6 +25,8 @@ import Donations from "./Components/Donations/Donations"
 import DonationResponse from "./Components/Donations/DonationResponse"
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+import GlobalComponents from './Components/Global/GlobalComponents';
+import { appDataInitial,AppContext } from ".";
 import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
@@ -33,9 +35,12 @@ import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashb
 import ActivitiesScreen from "./Components/Activities/ActivitiesScreen";
 
 function App() {
+  const [ appData, setAppData ] = React.useState( appDataInitial );
+
   return (
     <>
       <div className="App">
+      <AppContext.Provider value={{appData, setAppData}}>
         <BrowserRouter>
 
             <AnimatedSwitch
@@ -90,29 +95,33 @@ function App() {
 
                 <Route exact path="/backoffice/organization" component={''} />
               </Switch>
+              
             </BackofficeLayout>
           </Route>
           <Route exact path="/:path?">
-            <PublicLayout>
-              <Switch>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/register" component={RegisterForm} />
-                <Route path="/login" component={LoginForm} />
-                <Route path="/news" component={News} />
-                <Route path="/us" component={Nosotros} />
-                <Route path="/testimonials" />
-                <Route path="/contact" component={Contact} />
-                <Route path= "/donations" component={Donations} />
-                <Route path= "/thanks" component={DonationResponse} />
-                <Route path="/school-campaign" component={SchoolCampaign} />
-                <Route path="/toys-campaign" component={ToysCampaign} />
-                <Route path="/contact-form" component={Contact} />
-                <Route path="/activities" component={ActivitiesScreen} />
-              </Switch>
-            </PublicLayout>
+            <GlobalComponents>
+              <PublicLayout>
+                <Switch>
+                  <Route path="/" exact component={HomePage} />
+                  <Route path="/register" component={RegisterForm} />
+                  <Route path="/login" component={LoginForm} />
+                  <Route path="/news" component={News} />
+                  <Route path="/us" component={Nosotros} />
+                  <Route path="/testimonials" />
+                  <Route path="/contact" component={Contact} />
+                  <Route path= "/donations" component={Donations} />
+                  <Route path= "/thanks" component={DonationResponse} />
+                  <Route path="/school-campaign" component={SchoolCampaign} />
+                  <Route path="/toys-campaign" component={ToysCampaign} />
+                  <Route path="/contact-form" component={Contact} />
+                </Switch>
+              </PublicLayout>
+            </GlobalComponents>
           </Route>
           </AnimatedSwitch>
-        </BrowserRouter>
+         
+          </BrowserRouter>
+        </AppContext.Provider>
       </div>
     </>
   );
