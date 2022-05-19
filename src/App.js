@@ -53,6 +53,7 @@ function App() {
               <Switch>
                 
                 <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
+                <Route exact path="/backoffice/" component={ScreenDashboard} />
 
                 <Route exact path="/backoffice/slides" component={ShowSlides} />
                 <Route exact path="/backoffice/slides/create" component={SlidesForm} />
@@ -97,11 +98,11 @@ function App() {
                 <Route path="/register" component={RegisterForm} />
                 <Route path="/login" component={LoginForm} />
                 <Route path="/news" component={News} />
-                <Route path="/nosotros" component={Nosotros} />
+                <Route path="/us" component={Nosotros} />
                 <Route path="/testimonials" />
                 <Route path="/contact" component={Contact} />
                 <Route path= "/donations" component={Donations} />
-                <Route path= "/gracias" component={DonationResponse} />
+                <Route path= "/thanks" component={DonationResponse} />
                 <Route path="/school-campaign" component={SchoolCampaign} />
                 <Route path="/toys-campaign" component={ToysCampaign} />
                 <Route path="/contact-form" component={Contact} />
