@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, Put} from "../../Services/privateApiService"
-import { Snackbar , Alert } from '@mui/material';
+import { Snackbar , Alert, TextField } from '@mui/material';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -10,6 +10,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const TestimonialForm = () => {
   /* const { id } = useParams();   */
   const history = useHistory();
+  const [editorData, setEditorData] =useState("");
   const [snack, setSnack] = useState({
     open: false,
     message: "",
@@ -26,6 +27,7 @@ const TestimonialForm = () => {
     twitterLink: '',
     linkedInLink: '',
 })
+
 
 
 //Mensajes creados en SnackBar
@@ -53,6 +55,7 @@ const showSnack = (text, type) =>{
                 twitterLink: info.twitter_url,
                 linkedInLink: info.linkedin_url,
             })
+            setEditorData(info.short_description);
         })
         .catch(() => {
             showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
@@ -124,25 +127,51 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1 className="title-back" > Editar Form </h1>
+        <h1 className="title-back" >Organización </h1>
         <form className="form-container form-back" onSubmit={handleSubmit}>
-            <h3 className="title-field-users">Nombre</h3>
-            <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-            <h3 className="title-field-users">Descripción</h3>
 
-            <CKEditor
-                config={{
-                toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
-                }}
-                editor ={ ClassicEditor }
-                value ={initialValues.description}
-                onChange={(e, editor) => {
-                    setInitialValues({...initialValues, description : (editor.getData()).replace(/<\/?[^>]+(>|$)/g, "")});
+        <TextField id="outlined-basic" label="Nombre" variant="outlined"  
+        type="text"  name="name"  
+        value={ initialValues.name } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="Descripción Larga" variant="outlined"  type="text"  name="longDescription"  
+        value={ (initialValues.longDescription).replace(/<\/?[^>]+(>|$)/g, "") } onChange={handleChange}/>  
+
+        <CKEditor
+            config={{
+            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
             }}
-            /> 
-            <h3 className="title-field-users">Seleccione una imagen</h3>
-            <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
-            <button className="form-back-submit-btn" type="submit"> Editar</button>
+            data={editorData}
+            editor ={ ClassicEditor }
+            value ={initialValues.shortDescription}
+            onChange={(e, editor) => {
+                setInitialValues({...initialValues, description : (editor.getData()).replace(/<\/?[^>]+(>|$)/g, "")});
+        }}
+        />
+        
+        <TextField id="outlined-basic" label="Instagram Link" variant="outlined"  
+        type="text"  name="instagramLink"  
+        value={ initialValues.instagramLink } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="Facebook Link" variant="outlined"  
+            type="text"  name="facebookLink"  
+            value={ initialValues.facebookLink } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="LinkdIn Link" variant="outlined"  
+            type="text"  name="inkedInLink"  
+            value={ initialValues.linkedInLink } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="Twitter Link" variant="outlined"  
+        type="text"  name="twitterLink "  
+        value={ initialValues.twitterLink } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="Logo" variant="outlined"  
+        type="text"  name="twitterLink"  
+        value={ initialValues.twitterLink } onChange={handleChange}/>
+
+        <input className="input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
+
+        <button className="form-back-submit-btn" type="submit"> Editar</button>
         </form>
 
         <Snackbar
