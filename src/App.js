@@ -125,7 +125,6 @@ function App() {
                 <Route path="/contact" component={Contact} />
                 <Route path="/school-campaign" component={SchoolCampaign} />
                 <Route path="/toys-campaign" component={ToysCampaign} />
-                <Route path="/contact-form" component={ContactForm} />
               </Switch>
             </PublicLayout>
           </Route>
