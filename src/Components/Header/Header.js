@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import "./Header.css";
 
@@ -76,11 +77,13 @@ function Header() {
   return (
     <div className="header">
       <div className="header_contents">
-        <img
-          className="header_logo"
-          src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
-          alt="logo"
-        />
+        <Link to="/">
+          <img
+            className="header_logo"
+            src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
+            alt="logo"
+          />
+        </Link>
         <button onClick={handleToggle} className="toggle-button">
           <span className="bar"></span>
           <span className="bar"></span>
