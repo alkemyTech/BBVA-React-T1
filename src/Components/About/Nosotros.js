@@ -3,17 +3,7 @@ import "./Nosotros.css";
 import { Get } from "./../../Services/privateApiService";
 import Spinner from "../Spinner/Spinner";
 import { MembersList } from "../Members/MembersList";
-import {
-  LinkedinCompanyProfile,
-  LinkedinFollowCompany,
-  LinkedinLogin,
-  LinkedinAddProfile,
-  LinkedinProfile,
-  LinkedinShare,
- 
-  TwitterButton,
-  TwitterTweet
-} from 'react-social-plugins';
+import {LinkedinFollowCompany, TwitterButton,TwitterTweet} from 'react-social-plugins';
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
@@ -96,12 +86,10 @@ const Nosotros = () => {
                 theme='light'
                 width={350}
             />
-     
-
           </div>
-          <div className="novedades-twitter">
+          <div className="novedades-redes">
             <h4 className="centerText h4-twitter" style={{ marginTop: 30 }}>
-              ¿Tenés algo para contarnos?
+                ¿Tenés algo para contarnos?
             </h4>
             <TwitterButton
               hashtags="ONG, voluntariado"
@@ -112,11 +100,11 @@ const Nosotros = () => {
               via="OngSomosMas1"
             />
             <LinkedinFollowCompany
-              companyId={12312312}
-              counter="top" // Or "right"
-              lang="en_US"
+            companyId={215424234}
+            counter="top" // Or "right"
+            lang="es_AR"
             />
-
+    
           </div>
 
         </div>

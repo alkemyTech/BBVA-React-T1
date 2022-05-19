@@ -56,12 +56,11 @@
 }
 
 .container-twitter{
-    border: 0.2rem dashed rgba(128, 128, 128, 0.411);
-    background-color: rgba(3, 103, 197, 0.733);
+    border: 0.8rem dashed rgb(247, 251, 255);
+    background-color: #1d9cf0d2;
     color:white;
     height: 60vh;
     border-radius:20px;
-    padding:0.6rem;
     display:flex;
     align-items:center;
     flex-direction: column;
@@ -73,7 +72,7 @@
     margin-bottom: 0.8rem;
 }
 
-.novedades-twitter{
+.novedades-redes{
     margin: 2rem 0 4rem 0;
     padding:1rem;
 }
