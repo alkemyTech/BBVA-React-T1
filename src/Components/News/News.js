@@ -4,16 +4,55 @@ import { Get } from "./../../Services/publicApiService";
 import { useEffect } from "react";
 import axios from "axios";
 import "./News.css";
+import { GetAppContext } from '../../index';
 
 export const News = () => {
   const [data, setData] = React.useState([]);
 
+  const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
+    }
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
+
+
+    const snackError = (message) => setSnackBar(message,"error")
+    const snackSuccess = (message) => setSnackBar(message,"success")
+    const errorCarga = () => snackError("Error en la carga de datos, reintente nuevamente mas tarde.")
   const getNews = async () => {
+    setSpinner(true)
+    try{
     const response = await Get(
       process.env.REACT_APP_URL_BASE_ENDPOINT + "/news"
     );
-    const newsList = await response.data.data;
-    setData(newsList);
+      if(response.data.success){
+        const newsList = await response.data.data;
+        setData(newsList);
+      }else
+      errorCarga()
+    }catch(e){
+      errorCarga()
+    }
+    setSpinner(false);
   };
 
   useEffect(() => {
