@@ -6,6 +6,7 @@ import { Button, StyledEngineProvider, CssBaseline } from '@mui/material';
 import { Get } from '../../Services/publicApiService';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Delete } from '../../Services/privateApiService';
 import './MembersTable.css';
 
 // Table content
@@ -15,31 +16,42 @@ import './MembersTable.css';
 //       "image": "string",
 //     } 
 
-const removeMember = id => {
-  //Dummy hasta que esté todo OK BORRAR
-  if(id === '') return;
-  // const res = 
-}
-
-const getReducedRows = (rows) => {
-  rows.forEach((row, index) => {
-    const { id, name, image, description } = row;
-    rows[index] = {
-      id,
-      name,
-      description,
-      'image': <img className='portrait' src={image} alt={image} />,
-      'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
-      'eliminar': <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
-    };
-  });
-  return rows;
-};
 
 const columnsHeaders = ['id','name','image','description','modificar','eliminar'];
 const MembersTable = () => {
   const [rowsContent, setRowsContent] = useState([]);
   const [rowsData, setRowsData] = useState([]);
+
+  const removeMember = async id => {
+    //Dummy hasta que esté todo OK BORRAR
+    if(id === '') return;
+    console.log('borrarrrrrr');
+    try {
+      //const res = await Delete(`${process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH}/${id}`);
+      if(true/*res.data.success */) {
+        alert(`Fue borrao -> ${id}`);
+        getMembersData();
+      }
+    } catch (error) {
+      alert(error);
+    }
+    
+  }
+
+  const getReducedRows = (rows) => {
+    rows.forEach((row, index) => {
+      const { id, name, image, description } = row;
+      rows[index] = {
+        id,
+        name,
+        description,
+        'image': <img className='portrait' src={image} alt={image} />,
+        'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
+        'eliminar': <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
+      };
+    });
+    return rows;
+  };
 
   const getMembersData = async () => {
     const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH);
