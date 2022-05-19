@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
-import {Get, PrivatePost, Put} from "../../Services/privateApiService"
+import {Get, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const TestimonialForm = () => {
-  const { id } = useParams();  
+  /* const { id } = useParams();   */
   const history = useHistory();
   const [snack, setSnack] = useState({
     open: false,
@@ -18,8 +18,13 @@ const TestimonialForm = () => {
 
   const [initialValues, setInitialValues] = useState({
     name: '',
-    description: '',
-    img:  ''
+    logo: '',
+    shortDescription: '',
+    longDescription: '',
+    facebookLink: '',
+    instagramLink: '',
+    twitterLink: '',
+    linkedInLink: '',
 })
 
 
@@ -32,41 +37,43 @@ const showSnack = (text, type) =>{
     })
 }
 
-
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
-  const getTestimonials = async () => {
-    if(id){
-        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id)
+  const getOrganizationData = async () => {
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/" + 5)
         .then(res => {
             const info=res.data.data;
             setInitialValues({
                 ...initialValues,
-                name:info.name,
-                description: info.description,
-                img:info.image 
+                name: info.name,
+                logo: info.logo,
+                shortDescription: info.short_description,
+                longDescription: info.long_description,
+                facebookLink: info.facebook_url,
+                instagramLink: info.instagram_url,
+                twitterLink: info.twitter_url,
+                linkedInLink: info.linkedin_url,
             })
         })
         .catch(() => {
             showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
         })
-        }
   };
 
     useEffect(() => {
-        getTestimonials()
+        getOrganizationData()
     }, []);   
 
 //Validaciones del form
 const formValidation = () =>{
+    const urlRegex = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/)
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
     let validationOk = false;
-    if(initialValues.name.length < 4){
-        showSnack("El nombre debe contener al menos 4 letras", "error")
-    }else if(initialValues.description === ""){
-        showSnack("No puede dejar campos vacíos", "error")
+    if(!initialValues.name || !initialValues.longDescription || !initialValues.shortDescription){
+        showSnack("Los campos no pueden queda vacíos", "error")
+    }else if(!urlRegex.test(initialValues.facebookLink) || !urlRegex.test(initialValues.instagramLink) || !urlRegex.test(initialValues.linkedInLink) || !urlRegex.test(initialValues.twitterLink) ){
+        showSnack("El formato de url es inválido", "error")
     }else if(!imgRegex.test(initialValues.img)){
         showSnack("Ingrese una imagen debe ser .jpg o .png", "error")
-
     }
     else{
         validationOk = true;
@@ -79,23 +86,22 @@ const formValidation = () =>{
 //Envio del form y peticiones
 
 const handleSubmit = async (e)  => {
-    const testimonialCreated={
+    const OrganizationCreated={
         name: initialValues.name,
-        description: initialValues.description,
-        image: initialValues.img
+        logo: initialValues.logo,
+        shortDescription: initialValues.shortDescription,
+        longDescription: initialValues.longDescription,
+        facebook_url: initialValues.facebookLink,
+        instagram_url: initialValues.instagramLink,
+        twitter_url: initialValues.twitterLink,
+        linkedin_url: initialValues.linkedInLink,
     } 
     e.preventDefault();
     if(formValidation()){
-        if(!id){
-           await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH , testimonialCreated)
-            history.push("/backoffice/testimonials") 
-          }
-        else{
-            await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_TESTIMONIALS_PATH + "/" + id, testimonialCreated)
-            history.push("/backoffice/testimonials") 
+        await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_BASE_ENDPOINT + "/" + 5, OrganizationCreated)
+        history.push("/backoffice/organization") 
         }
     }
-}
 
     //Actualiza los datos con los que obtiene de los inputs del form
     const handleChange = (e) => {
@@ -118,8 +124,8 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1 className="title-back" >{ !id ? "Crear Testimonio" : "Editar Testimonio" }</h1>
-        <form className="form-container form-back"  onSubmit={handleSubmit}>
+        <h1 className="title-back" > Editar Form </h1>
+        <form className="form-container form-back" onSubmit={handleSubmit}>
             <h3 className="title-field-users">Nombre</h3>
             <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
             <h3 className="title-field-users">Descripción</h3>
@@ -136,7 +142,7 @@ const handleSubmit = async (e)  => {
             /> 
             <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
-            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : "Editar"}</button>
+            <button className="form-back-submit-btn" type="submit"> Editar</button>
         </form>
 
         <Snackbar
