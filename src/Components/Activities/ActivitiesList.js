@@ -71,7 +71,7 @@ function ActivitiesList() {
   
   const editIcon = (id) => {
     return(
-        <Link to={"/backoffice/activity/"+id}>
+        <Link to={"/backoffice/activities/"+id}>
           <Edit aria-label="delete" size="small" className="table-icon"></Edit>
         </Link>
   )}
@@ -84,7 +84,7 @@ function ActivitiesList() {
     <div className="Activities">
       <div className="buttons">
         <Button variant="contained" color="primary" className="table-btn-create">
-          <Link className="top-links table-link-create" to="/backoffice/activity/create">
+          <Link className="top-links table-link-create" to="/backoffice/activities/create">
             New Activity <AddIcon/> 
           </Link>
         </Button>
