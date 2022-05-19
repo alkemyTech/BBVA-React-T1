@@ -22,14 +22,14 @@ const RoutesList = () => {
     const navMenu = [
         { name: "Inicio", link: "/" , icono: (<HomeIcon/>) },
         { name: "Crear Actividad", link: "/backoffice/activity" , icono: (<VolunteerActivismIcon/>) },
-        { name: "Crear Categoria", link: "/backoffice/create-category", icono: (<CategoryIcon/>)},
-        { name: "Crear Noticia", link: "/backoffice/create-news" , icono: (<NewspaperIcon/>)},
-        { name: "Crear slide", link: "/backoffice/slide/create" , icono: (<SlideshowIcon/>)},
-        { name: "Agregar Testimonio", link: "/backoffice/create-testimonials", icono: (<EmojiPeopleIcon/>)},
-        { name: "Nuevo usuario", link: "/backoffice/create-user", icono: (<PersonAddAltIcon/>)},
+        { name: "Crear Categoria", link: "/backoffice/categories/create", icono: (<CategoryIcon/>)},
+        { name: "Crear Noticia", link: "/backoffice/news/create" , icono: (<NewspaperIcon/>)},
+        { name: "Crear slide", link: "/backoffice/slides/create" , icono: (<SlideshowIcon/>)},
+        { name: "Agregar Testimonio", link: "/backoffice/testimonials/create", icono: (<EmojiPeopleIcon/>)},
+        { name: "Nuevo usuario", link: "/backoffice/users/create", icono: (<PersonAddAltIcon/>)},
         { name: "Lista de usuarios", link: "/backoffice/users", icono: (<PeopleIcon/>)},
-        { name: "Nuevo miembro", link: "/backoffice/create-member", icono: (<GroupAddIcon/>)},
-        { name: "Nuevo Proyecto", link: "/backoffice/create-project", icono: (<DocumentScannerIcon/>)},
+        { name: "Nuevo miembro", link: "/backoffice/members/create", icono: (<GroupAddIcon/>)},
+        { name: "Nuevo Proyecto", link: "/backoffice/projects/create", icono: (<DocumentScannerIcon/>)},
       ];
       
     return(
