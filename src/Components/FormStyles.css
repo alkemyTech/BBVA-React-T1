@@ -1,107 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
-.form-container, .register-form{
-    width: 60%;
-    margin: 15px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
+.form-container,
+.register-form {
+  width: 60%;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.main-container-form{
-    margin: 0px;
-    display: flex;
-    max-width: 100vw;
-    height: 100vh;
-
+.main-container-form {
+  margin: 0px;
+  display: flex;
+  max-width: 100vw;
+  height: 100%;
 }
 
 .img-form-container {
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .img-form-container .img-form {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .question-p {
-    display: inline;
+  display: inline;
 }
 
-.nav-link{
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 2px;
-    color: #ff0000;
+.nav-link {
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 2px;
+  color: #ff0000;
 }
 
 /* Utilicé !important para sobreescribir estilos de MaterialUI */
-.submit-btn{
-    background-color: #ff0000 !important;
-    width: 50%;
-    margin: 0 auto;
-    background-color: #2E86C1;
-    padding: 10px 15px;
-    border: none;
-    color: #fff;
-
+.submit-btn {
+  background-color: #ff0000 !important;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #2e86c1;
+  padding: 10px 15px;
+  border: none;
+  color: #fff;
 }
 
-.submit-btn:hover{
-    cursor: pointer;
-    margin-top:2rem;
-    width:50%;
-    border: none;
-    box-shadow: .2rem .2rem  #27282946;
-    border-radius: 1rem;
+.submit-btn:hover {
+  cursor: pointer;
+  width: 50%;
+  border: none;
+  box-shadow: 0.2rem 0.2rem #27282946;
+  border-radius: 1rem;
 }
 
 /* Form backoffice UserForm */
 .title-back{
     font-family: 'Poppins', sans-serif;
     margin-top:4.5rem;
+    margin-bottom:2rem;
 }
 .form-back{
-    padding-top:2rem;
     font-family: 'Poppins', sans-serif;
     width: 40vw;
+    height: 60vh;
 }
-.form-back-submit-btn{
+.form-back-submit-btn {
     background-color: #ff0000;
     color:white;
     cursor:pointer;
     padding: 0.3rem 1rem;
     width: 50%;
     border:none;
-    border-radius: 10px;
+    border-radius: 1rem;
     font-size: 1.2rem;
-    margin: 2.5rem auto;
+    margin: 2rem auto;
 }
 
-.input-back{
-    border-radius: 1rem;
-    padding:0.25rem;
-    padding:0.5rem;
-    outline: 0.1rem solid rgba(0, 0, 0, 0.185);
+.form-back-submit-btn:hover{ 
     border: none;
+    box-shadow: .2rem .2rem  #27282946;
 }
 
 .input-back-file{
-    border-radius: 1rem;
-    padding:0.25rem;
-    padding:0.5rem;
-    outline: none;
-    border: none;
-}
-
-.title-field-users{
-    text-align: left;
-    margin-top: 0rem;
-    margin-bottom:0rem;
+    border-radius: 0.2rem;
+    padding:1rem;
+    outline: 0.1rem solid rgba(0, 0, 0, 0.185);
 }
 
 
@@ -110,6 +97,9 @@
         display: none;
     }
 
+    .form-back{
+        font-family: 'Poppins', sans-serif;
+        height: 75vh;
+    }
+
 }
-
-
