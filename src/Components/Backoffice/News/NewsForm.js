@@ -52,7 +52,8 @@ const NewsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if ((initialValues.name && initialValues.content && initialValues.image).length > 0) {
+    if ((!!initialValues.name && !!initialValues.content && 
+      !!initialValues.image)) {
       if (id) {
         try{await Put(
           process.env.REACT_APP_URL_BASE_ENDPOINT +
