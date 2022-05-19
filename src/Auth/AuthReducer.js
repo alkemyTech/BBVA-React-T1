@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import React from 'react';
 
-export const AuthGlobalContext = React.createContext();
+export const AuthGlobalContext = React.createContext(null);
 
 
 
