@@ -4,22 +4,60 @@ import "./Header.css";
 
 function Header() {
   const navMenu = [
-    { name: "Inicio", link: "/", requiresLogIn: false },
-    { name: "Nosotros", link: "/us", requiresLogIn: false },
-    { name: "Contacto", link: "/contact-form", requiresLogIn: false },
-    { name: "School", link: "/school-campaign", requiresLogIn: false },
-    { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
-    { name: "Novedades", link: "/news", requiresLogIn: false },
-    { name: "Testimonios", link: "/testimonials", requiresLogIn: false },
+    {
+      name: "Inicio",
+      link: "/",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Nosotros",
+      link: "/us",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Contacto",
+      link: "/contact-form",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Novedades",
+      link: "/news",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Testimonios",
+      link: "/testimonials",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Actividades",
+      link: "/activities",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Cerrar Sesión",
+      link: "/",
+      requiresLogIn: true,
+      className: "button-auth",
+      handleAuth: true,
+    },
     {
       name: "Login",
       link: "/login",
+      className: "button-auth",
       requiresLogIn: false,
       notForLoggedIn: true,
     },
     {
       name: "Registro",
       link: "/register",
+      className: "button-auth",
       requiresLogIn: false,
       notForLoggedIn: true,
     },
@@ -55,15 +93,21 @@ function Header() {
                 ((isLoggedIn && !item.notForLoggedIn) ||
                   (!isLoggedIn && !item.requiresLogIn)) && (
                   <li className={`nav_item ${navbarOpen && "showMenu"}`}>
-                    <NavLink
-                      key={item.name}
-                      className={(navData) =>
-                        navData.isActive ? "active" : "link"
+                    <button
+                      onClick={() =>
+                        item.handleAuth ? localStorage.removeItem("token") : ""
                       }
-                      to={item.link}
+                      className="button-clear"
                     >
-                      {item.name}
-                    </NavLink>
+                      <NavLink
+                        key={item.name}
+                        className={`${item.className} ${(navData) =>
+                          navData.isActive ? "active" : "link"}`}
+                        to={item.link}
+                      >
+                        {item.name}
+                      </NavLink>
+                    </button>
                   </li>
                 )
             )}
