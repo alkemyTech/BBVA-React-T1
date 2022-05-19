@@ -19,7 +19,10 @@ const Donations = () =>{
     };
     const handleClose = () => {
         setOpen(false)
-        navegar()    
+        showSnack("Donación exitosa", "success")
+        setTimeout(()=>{
+            history.push("/gracias", {sendName:initialValues.name , sendMail: initialValues.mail } );
+        }, 3000)   
     }
 
     const history = useHistory();
