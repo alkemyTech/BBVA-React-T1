@@ -59,33 +59,36 @@ function HomePage() {
     return (
         <>
             <section className="first-section">
-                <div className="container">
-                    <div>
+                <div className="container home-desc-container">
+                    <div >
                         <h1>{description.title}</h1>
-                        <p>{description.short_description}</p>
+                        <div dangerouslySetInnerHTML={{__html: description.short_description}}></div>
                     </div>
                     <img src="/images/login.png" alt="login imagen" className="img-form"></img>
                 </div>
             </section>
             <section className="second-section">
-                    <Container className="general-container">
+                    <Container className="general-container ">
                         <List 
                             type={'staff'}
                             title={"Nuestro Staff"}
                             endpoint={process.env.REACT_APP_URL_MEMBER_PATH}
                             redirect = {'/nosotros'}
                         />
+                        <br/>
                         <List 
                             type={'testimonials'}
                             title={"Testimonios"}
                             endpoint={process.env.REACT_APP_TESTIMONIALS_PATH}
                             redirect = {'/testimonials'}
                         />
+                        <br/>
                         <NewsList 
                             type={'news'}
                             title={'Últimas novedades'}
                             endpoint={process.env.REACT_APP_URL_NEWS_PATH}
                         />
+                        <br/>
                     </Container>
             </section>
         </>

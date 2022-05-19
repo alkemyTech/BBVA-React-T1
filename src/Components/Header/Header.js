@@ -1,26 +1,71 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
   const navMenu = [
-    { name: "Inicio", link: "/", requiresLogIn: false },
-    { name: "Nosotros", link: "/us", requiresLogIn: false },
-    { name: "Contacto", link: "/contact-form", requiresLogIn: false },
-    { name: "School", link: "/school-campaign", requiresLogIn: false },
-    { name: "Toys", link: "/toys-campaign", requiresLogIn: false },
-    { name: "Novedades", link: "/news", requiresLogIn: false },
-    { name: "Testimonios", link: "/testimonials", requiresLogIn: false },
+    {
+      name: "Inicio",
+      link: "/",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Nosotros",
+      link: "/us",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Contacto",
+      link: "/contact-form",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "School",
+      link: "/school-campaign",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Toys",
+      link: "/toys-campaign",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Novedades",
+      link: "/news",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Testimonios",
+      link: "/testimonials",
+      requiresLogIn: false,
+      className: "button-nav",
+    },
+    {
+      name: "Cerrar Sesión",
+      link: "/",
+      requiresLogIn: true,
+      className: "button-auth",
+      handleAuth: true,
+    },
     {
       name: "Login",
       link: "/login",
       requiresLogIn: false,
+      className: "button-auth",
       notForLoggedIn: true,
     },
     {
       name: "Registro",
       link: "/register",
       requiresLogIn: false,
+      className: "button-auth",
       notForLoggedIn: true,
     },
   ];
@@ -38,11 +83,13 @@ function Header() {
   return (
     <div className="header">
       <div className="header_contents">
-        <img
-          className="header_logo"
-          src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
-          alt="logo"
-        />
+        <Link to="/">
+          <img
+            className="header_logo"
+            src="http:\/\/ongapi.alkemy.org\/storage\/Ibh6Ggxr26.png"
+            alt="logo"
+          />
+        </Link>
         <button onClick={handleToggle} className="toggle-button">
           <span className="bar"></span>
           <span className="bar"></span>
@@ -57,9 +104,8 @@ function Header() {
                   <li className={`nav_item ${navbarOpen && "showMenu"}`}>
                     <NavLink
                       key={item.name}
-                      className={(navData) =>
-                        navData.isActive ? "active" : "link"
-                      }
+                      className={`${item.className} ${(navData) =>
+                        navData.isActive ? "active" : "link"}`}
                       to={item.link}
                     >
                       {item.name}

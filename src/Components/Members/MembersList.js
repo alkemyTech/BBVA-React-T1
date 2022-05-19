@@ -80,3 +80,5 @@ export const MembersList = () => {
     </div>
   );
 };
+
+export default MembersList;
