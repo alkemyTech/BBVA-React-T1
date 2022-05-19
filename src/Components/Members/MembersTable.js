@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import { Get } from '../../Services/publicApiService';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import './MembersTable.css';
 
 // Table content
 // Members obj {
@@ -16,6 +17,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const removeMember = id => {
   //Dummy hasta que esté todo OK BORRAR
+  if(id === '') console.log(`id is empty, bye`);
   console.log(`Member 2 remove -> ${id}`);
 }
 
@@ -26,8 +28,8 @@ const getReducedRows = (rows) => {
       id,
       name,
       image: <img className='portrait' src={`${image}`} style={{width: '100px', height:'100px'}} />,
-      modificar: <Link to={`/backoffice/members/${id}`}><EditIcon /></Link>,
-      eliminar: <Button onClick={removeMember({id})}><DeleteForeverIcon /></Button>
+      modificar: <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
+      eliminar: <Button className='icon-link' onClick={removeMember(id)}><DeleteForeverIcon /></Button>
     };
   });
   return rows;
