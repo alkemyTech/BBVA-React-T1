@@ -7,7 +7,7 @@ import { Snackbar , Alert, TextField } from '@mui/material';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const TestimonialForm = () => {
+const OrganizationForm = () => {
   /* const { id } = useParams();   */
   const history = useHistory();
   const [editorData, setEditorData] =useState("");
@@ -181,4 +181,4 @@ const handleSubmit = async (e)  => {
     );
 }
  
-export default TestimonialForm;
+export default OrganizationForm;
