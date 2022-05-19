@@ -94,6 +94,12 @@ const NewsForm = () => {
           });
         }
       }
+    } else {
+      setShowMessage({
+        status: true,
+        message: "Debe completar todos los campos",
+        type: "error",
+      });
     }
   };
 
