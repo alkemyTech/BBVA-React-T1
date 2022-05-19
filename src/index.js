@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import { useState } from 'react';
 
 export const AppContext = React.createContext();
+export const GetAppContext = () => React.useContext(AppContext);
+
 
 export const appDataInitial = {
   snackbar :{

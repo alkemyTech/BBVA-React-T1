@@ -8,6 +8,7 @@ import { Get , Put,PrivatePost} from '../../Services/privateApiService';
 import Spinner from './../Spinner/Spinner';
 import { Snackbar , Alert,TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
+import { GetAppContext } from '../../index';
 
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
@@ -18,11 +19,7 @@ const ActivitiesForm = () => {
         getData: '',
     });
     const history = useHistory();
-    const [snack, setSnack] = useState({
-        open: false,
-        message: "",
-        severity: "error",
-    })
+
  
     
     const { id } = useParams();
@@ -30,15 +27,38 @@ const ActivitiesForm = () => {
     const [loaded , setLoaded] = useState(false)
     const actualizacionDeDatos = !!id
 
+    const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
+    }
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
+
+
     const snackErrorCargaDatos = () =>{
-        setSnack({...snack, 
-            message:"Error en la carga de datos, intente nuevamente mas tarde.",
-            open:true,
-            severity:"error"
-        })
+        setSnackBar("Error en la carga de datos, intente nuevamente mas tarde.","error")
     }
 
     const getActivityDataToDisplay = () =>{
+        setSpinner(true)
         if(id){
             Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ACTIVITIES_PATH+"/"+id.toString())
             .then( res => {
@@ -50,13 +70,14 @@ const ActivitiesForm = () => {
                     description:data.description || "",
                     getData: res
                 })
-                setLoaded(true)
+                setSpinner(false)
             })
             .catch( e => {
                 snackErrorCargaDatos();
+                setSpinner(false)
             })
         }
-        else setLoaded(true);
+        else setSpinner(false)
     }
 
     useEffect(() => {
@@ -99,26 +120,19 @@ const ActivitiesForm = () => {
             if(res.data.success){
                 history.push("/activities");
             }else{
-                setSnack({...snack, 
-                message:"Error debe completar todos los casilleros y subir una imagen.",
-                open:true,
-                severity:"error"
-            })
+                setSnackBar("Error debe completar todos los casilleros y subir una imagen.","error")
             }
         })
         
 
         
     }
-    
-    const onCloseSnack = () =>{
-        setSnack({...snack, open:false})
-    }
-
 
     return (
+        <>
+
         <div className="globalContainer">
-            <Spinner visible={!loaded} className="spinner"  /> 
+          
             <form className="form-container" onSubmit={handleSubmit}>
                 <h2>{(actualizacionDeDatos)?"Actualizacion de actividad":"Actividad nueva"}</h2>
 
@@ -137,16 +151,8 @@ const ActivitiesForm = () => {
                 <button className="submit-btn" type="submit" >{(actualizacionDeDatos)?"Actualizar actividad":"Enviar actividad"}</button>
             </form>
 
-            <Snackbar
-                open={snack.open}
-                severity={snack.severity}
-                autoHideDuration={3000}
-                onClose={onCloseSnack}>
-                <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
-                    {snack.message}
-                </Alert>
-            </Snackbar>
         </div>
+        </>
     );
 }
  

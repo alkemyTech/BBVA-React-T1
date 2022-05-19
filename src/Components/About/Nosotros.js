@@ -4,6 +4,7 @@ import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'
 import { Snackbar , Alert } from '@mui/material';
 import { MembersList } from "../Members/MembersList";
+import { GetAppContext } from '../../index';
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
  * bajo la ruta /Nosotros, el cual podremos ver informacion acerca de la ONG
@@ -19,25 +20,39 @@ const Nosotros = () => {
         loaded:false
        })
 
-    const [snack, setSnack] = useState({
-        open: false,
-        message: "",
-        severity: "error",
-    })
 
-    const snackSend = (errorMessage,tipo) =>{
-        setSnack({...snack, 
-            message:errorMessage,
-            open:true,
-            severity:tipo
-        })
+
+    const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
     }
-    const snackError = (message) => snackSend(message,"error")
-    const snackSuccess = (message) => snackSend(message,"success")
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
 
 
+    const snackError = (message) => setSnackBar(message,"error")
+    const snackSuccess = (message) => setSnackBar(message,"success")
 
     const getOrganizationData  = () => {
+        setSpinner(true)
         Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
             const dataRes=res.data;
             if(dataRes.success){
@@ -46,23 +61,24 @@ const Nosotros = () => {
             } 
             else
                 snackError("Error en la carga de datos, por favor reintente mas tarde.")
-            }).catch( err => snackError("Error en la carga de datos, por favor reintente mas tarde."))
+                setSpinner(false)
+            }
+            ).catch( err => {
+                snackError("Error en la carga de datos, por favor reintente mas tarde.")
+                setSpinner(false)
+            })
+               
     }
 
     useEffect( () => { 
-        getOrganizationData ();
+       getOrganizationData ();
     }, []);
 
 
-
-    const onCloseSnack = () =>{
-        setSnack({...snack, open:false})
-    }
     return (
         <>
         
         <div className='containerGeneral'>
-        <Spinner visible={!aboutData.loaded} className="spinner"  /> 
             <div className='containerData'>
                 <h2 className="centerText" style={{marginTop:30}}>Nosotros</h2>
                     <div className='flexContainer'>
@@ -80,17 +96,7 @@ const Nosotros = () => {
                     </div>
                     <MembersList />
                 </div>
-            </div>
-
-            <Snackbar
-                open={snack.open}
-                severity={snack.severity}
-                autoHideDuration={3000}
-                onClose={onCloseSnack}>
-                <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
-                    {snack.message}
-                </Alert>
-            </Snackbar>
+            </div> 
         </>
     )
 }
