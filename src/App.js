@@ -42,12 +42,7 @@ function App() {
       <AppContext.Provider value={{appData, setAppData}}>
         <BrowserRouter>
 
-            <AnimatedSwitch
-              atEnter={{ opacity: 0 }}
-              atLeave={{ opacity: 0 }}
-              atActive={{ opacity: 1 }}
-              className="switch-wrapper"
-            >
+            
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 
 
@@ -56,7 +51,12 @@ function App() {
             {!getToken() && (<Redirect to='/login'/>)}
             <GlobalComponents>
               <BackofficeLayout>
-                <Switch>
+              <AnimatedSwitch
+                atEnter={{ opacity: 0 }}
+                atLeave={{ opacity: 0 }}
+                atActive={{ opacity: 1 }}
+                className="switch-wrapper"
+              >
                   
                   <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
                   <Route exact path="/backoffice/" component={ScreenDashboard} />
@@ -94,7 +94,7 @@ function App() {
                   <Route exact path="/backoffice/projects" component={''} />
 
                   <Route exact path="/backoffice/organization" component={''} />
-                </Switch>
+                </AnimatedSwitch>
                 
               </BackofficeLayout>
             </GlobalComponents>
@@ -102,7 +102,12 @@ function App() {
           <Route exact path="/:path?">
             <GlobalComponents>
               <PublicLayout>
-                <Switch>
+                <AnimatedSwitch
+                    atEnter={{ opacity: 0 }}
+                    atLeave={{ opacity: 0 }}
+                    atActive={{ opacity: 1 }}
+                    className="switch-wrapper"
+                  >
                   <Route path="/" exact component={HomePage} />
                   <Route path="/register" component={RegisterForm} />
                   <Route path="/login" component={LoginForm} />
@@ -115,12 +120,10 @@ function App() {
                   <Route path="/school-campaign" component={SchoolCampaign} />
                   <Route path="/toys-campaign" component={ToysCampaign} />
                   <Route path="/contact-form" component={Contact} />
-                </Switch>
+                </AnimatedSwitch>
               </PublicLayout>
             </GlobalComponents>
-          </Route>
-          </AnimatedSwitch>
-         
+            </Route>
           </BrowserRouter>
         </AppContext.Provider>
       </div>
