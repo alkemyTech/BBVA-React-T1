@@ -22,8 +22,10 @@ import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+import { getToken } from "./Services/privateApiService";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
-
+import ContactForm from './Components/Contact/ContactForm'
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
 
 
           <Route exact path="/backoffice/*">
+            {!getToken() && (<Redirect to='/login'/>)}
             <BackofficeLayout>
               <Switch>
                 <Route exact path="/backoffice/slides" component={ShowSlides} />
