@@ -64,7 +64,7 @@ const RegisterForm = () => {
 
   return (
     <>
-    {token ? (history.push('/')) : RegisterForm}
+    {token ? (history.push('/')) :
     <div className="main-container-form">
       <Container maxWidth="sm" className="form-container">
         <h3>Bienvenido/a!</h3>
@@ -129,6 +129,7 @@ const RegisterForm = () => {
         <img className="img-form" alt="" src="/images/login.png" />
       </div>
     </div>
+    }
     </>
   );
 };
