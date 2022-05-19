@@ -28,7 +28,9 @@
     "react-router-transition": "^2.1.0",
     "react-scripts": "^4.0.3",
     "react-social-plugins": "^2.1.0",
-    "swiper": "^8.1.5"
+    "swiper": "^8.1.5",
+    "swiper-react": "^1.0.0",
+    "swiper.js": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

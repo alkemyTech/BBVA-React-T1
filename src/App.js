@@ -31,6 +31,7 @@ import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
+import ActivitiesScreen from "./Components/Activities/ActivitiesScreen";
 
 function App() {
   const [ appData, setAppData ] = React.useState( appDataInitial );
@@ -122,6 +123,7 @@ function App() {
                   <Route path="/school-campaign" component={SchoolCampaign} />
                   <Route path="/toys-campaign" component={ToysCampaign} />
                   <Route path="/contact-form" component={Contact} />
+                  <Route path="/activities" component={ActivitiesScreen} />
                 </AnimatedSwitch>
               </PublicLayout>
             </GlobalComponents>
