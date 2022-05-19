@@ -17,8 +17,7 @@
 
 .create-link:hover{
   background-color: rgb(50, 50, 255);
-  animation: shadowing 200 normal 0 1;
-  box-shadow: 2px 1px 1px black;
+  color: lightgrey;
 }
 
 .members-container{
@@ -34,6 +33,7 @@
 .portrait{
   width: 100px; 
   height: 100px;
+  object-fit: cover;
 }
 
 .content-container{

@@ -1,0 +1,5 @@
+.table-cell-header{
+  background-color: rgb(29, 29, 29);
+  color: lightgrey;
+  text-transform: capitalize;
+}

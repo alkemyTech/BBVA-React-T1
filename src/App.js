@@ -83,7 +83,7 @@ function App() {
 
                 <Route exact path="/backoffice/members/create" component={MembersForm} />
                 <Route exact path="/backoffice/members/:id" component={MembersForm} />
-                <Route exact path="/backoffice/members" component={''} />
+                <Route exact path="/backoffice/members" component={MembersTable} />
 
                 <Route exact path="/backoffice/projects/create" component={ProjectsForm} />
                 <Route exact path="/backoffice/projects/:id" component={ProjectsForm} />

@@ -45,7 +45,7 @@ const MembersTable = () => {
         id,
         name,
         description,
-        'image': <img className='portrait' src={image} alt={image} />,
+        'image': <img className='portrait' src={image} alt='portrait' />,
         'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
         'eliminar': <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
       };
