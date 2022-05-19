@@ -41,7 +41,7 @@ const showSnack = (text, type) =>{
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getOrganizationData = async () => {
-        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/" + 5)
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4")
         .then(res => {
             const info=res.data.data;
             setInitialValues({
@@ -75,7 +75,7 @@ const formValidation = () =>{
         showSnack("Los campos no pueden queda vacíos", "error")
     }else if(!urlRegex.test(initialValues.facebookLink) || !urlRegex.test(initialValues.instagramLink) || !urlRegex.test(initialValues.linkedInLink) || !urlRegex.test(initialValues.twitterLink) ){
         showSnack("El formato de url es inválido", "error")
-    }else if(!imgRegex.test(initialValues.img)){
+    }else if(!imgRegex.test(initialValues.logo)){
         showSnack("Ingrese una imagen debe ser .jpg o .png", "error")
     }
     else{
@@ -101,14 +101,10 @@ const handleSubmit = async (e)  => {
     } 
     e.preventDefault();
     if(formValidation()){
-        await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_BASE_ENDPOINT + "/" + 5, OrganizationCreated)
+        await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4", OrganizationCreated)
+        .then(res=>console.log(res))
         history.push("/backoffice/organization") 
         }
-    }
-
-    //Actualiza los datos con los que obtiene de los inputs del form
-    const handleChange = (e) => {
-        if(e.target.name === 'name')setInitialValues({...initialValues, name: e.target.value})
     }
 
     //Formateo de imagen a code64 para enviar a api
@@ -116,7 +112,7 @@ const handleSubmit = async (e)  => {
         var file = element.currentTarget.files[0];
         var reader = new FileReader();
         reader.onloadend = function() {
-        setInitialValues({...initialValues, img: reader.result})}
+        setInitialValues({...initialValues, logo: reader.result})}
         reader.readAsDataURL(file);
     }
 
@@ -129,13 +125,13 @@ const handleSubmit = async (e)  => {
         <>
         <h1 className="title-back" >Organización </h1>
         <form className="form-container form-back" onSubmit={handleSubmit}>
-
         <TextField id="outlined-basic" label="Nombre" variant="outlined"  
         type="text"  name="name"  
-        value={ initialValues.name } onChange={handleChange}/>
+        value={ initialValues.name } 
+        onChange={e => setInitialValues({...initialValues, name: e.target.value})}/>
 
         <TextField id="outlined-basic" label="Descripción Larga" variant="outlined"  type="text"  name="longDescription"  
-        value={ (initialValues.longDescription).replace(/<\/?[^>]+(>|$)/g, "") } onChange={handleChange}/>  
+        value={ (initialValues.longDescription).replace(/<\/?[^>]+(>|$)/g, "") } onChange={e => setInitialValues({...initialValues, longDescription: e.target.value})}/>  
 
         <CKEditor
             config={{
@@ -151,25 +147,26 @@ const handleSubmit = async (e)  => {
         
         <TextField id="outlined-basic" label="Instagram Link" variant="outlined"  
         type="text"  name="instagramLink"  
-        value={ initialValues.instagramLink } onChange={handleChange}/>
+        value={ initialValues.instagramLink } 
+        onChange={e => setInitialValues({...initialValues, instagramLink: e.target.value})}/>
 
         <TextField id="outlined-basic" label="Facebook Link" variant="outlined"  
             type="text"  name="facebookLink"  
-            value={ initialValues.facebookLink } onChange={handleChange}/>
+            value={ initialValues.facebookLink }
+            onChange={e => setInitialValues({...initialValues, facebookLink: e.target.value})}/>
 
         <TextField id="outlined-basic" label="LinkdIn Link" variant="outlined"  
-            type="text"  name="inkedInLink"  
-            value={ initialValues.linkedInLink } onChange={handleChange}/>
+            type="text"  name="linkedInLink"  
+            value={ initialValues.linkedInLink } 
+            onChange={e => setInitialValues({...initialValues, linkedInLink: e.target.value})}/>
 
         <TextField id="outlined-basic" label="Twitter Link" variant="outlined"  
         type="text"  name="twitterLink "  
-        value={ initialValues.twitterLink } onChange={handleChange}/>
+        value={ initialValues.twitterLink }
+        onChange={e => setInitialValues({...initialValues, twitterLink: e.target.value})}
+        />
 
-        <TextField id="outlined-basic" label="Logo" variant="outlined"  
-        type="text"  name="twitterLink"  
-        value={ initialValues.twitterLink } onChange={handleChange}/>
-
-        <input className="input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
+        <input className="input-back-file" accept=".png, .jpg, .jpeg" type="file" name="logo" onChange={encodeImageAsURL} placeholder="imagen"></input>
 
         <button className="form-back-submit-btn" type="submit"> Editar</button>
         </form>
