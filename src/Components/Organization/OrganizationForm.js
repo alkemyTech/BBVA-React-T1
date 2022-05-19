@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert, TextField } from '@mui/material';
@@ -47,7 +47,6 @@ const showSnack = (text, type) =>{
             setInitialValues({
                 ...initialValues,
                 name: info.name,
-                logo: info.logo,
                 shortDescription: info.short_description,
                 longDescription: info.long_description,
                 facebookLink: info.facebook_url,
@@ -68,14 +67,14 @@ const showSnack = (text, type) =>{
 
 //Validaciones del form
 const formValidation = () =>{
+    console.log(initialValues.logo)
     const urlRegex = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/)
-    const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i) 
     let validationOk = false;
     if(!initialValues.name || !initialValues.longDescription || !initialValues.shortDescription){
         showSnack("Los campos no pueden queda vacíos", "error")
     }else if(!urlRegex.test(initialValues.facebookLink) || !urlRegex.test(initialValues.instagramLink) || !urlRegex.test(initialValues.linkedInLink) || !urlRegex.test(initialValues.twitterLink) ){
         showSnack("El formato de url es inválido", "error")
-    }else if(!imgRegex.test(initialValues.logo)){
+    }else if(!initialValues.logo){
         showSnack("Ingrese una imagen debe ser .jpg o .png", "error")
     }
     else{
