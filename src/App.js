@@ -30,6 +30,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
 import ContactForm from './Components/Contact/ContactForm'
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
+import OrganizationForm from "./Components/Organization/OrganizationForm"
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
                 
                 <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
                 <Route exact path="/backoffice/" component={ScreenDashboard} />
+                <Route exact path="/backoffice/organization/edit" component={OrganizationForm} />
 
                 <Route exact path="/backoffice/slides" component={ShowSlides} />
                 <Route exact path="/backoffice/slides/create" component={SlidesForm} />
