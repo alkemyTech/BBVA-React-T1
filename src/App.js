@@ -17,6 +17,7 @@ import ActivitiesList from "./Components/Activities/ActivitiesList.js";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
+import MembersList from './Components/Members/MembersList';
 import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
@@ -25,6 +26,7 @@ import Donations from "./Components/Donations/Donations"
 import DonationResponse from "./Components/Donations/DonationResponse"
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+import MembersTable from "./Components/Members/MembersTable";
 import GlobalComponents from './Components/Global/GlobalComponents';
 import { appDataInitial,AppContext } from ".";
 import { getToken } from "./Services/privateApiService";
@@ -89,7 +91,7 @@ function App() {
 
                   <Route exact path="/backoffice/members/create" component={MembersForm} />
                   <Route exact path="/backoffice/members/:id" component={MembersForm} />
-                  <Route exact path="/backoffice/members" component={''} />
+                  <Route exact path="/backoffice/members" component={MembersTable} />
 
                   <Route exact path="/backoffice/projects/create" component={ProjectsForm} />
                   <Route exact path="/backoffice/projects/:id" component={ProjectsForm} />
