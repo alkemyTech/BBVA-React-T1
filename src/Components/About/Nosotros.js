@@ -53,9 +53,9 @@ const Nosotros = () => {
       <div className="containerGeneral">
         <Spinner visible={!sobreNosotros.loaded} className="spinner" />
         <div className="containerData">
-          <h2 className="centerText" style={{ marginTop: 30 }}>
+          <h1 className="centerText h1-heading"  style={{ marginTop: 30 }}>
             Nosotros
-          </h2>
+          </h1>
           <div className="flexContainer">
             <div className="textoContainer">
               {sobreNosotros.loaded && (
@@ -67,7 +67,7 @@ const Nosotros = () => {
               style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
             ></div>
           </div>
-          <MembersList />
+              <MembersList />
           <div className="container-twitter">
           <h2 className="centerText twitter-tittle" style={{ marginTop: 30 }}>
             Últimos Tweets

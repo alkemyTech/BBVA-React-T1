@@ -1,4 +1,6 @@
-
+.h1-heading{
+    text-decoration: underline rgb(66, 144, 218) 0.5rem;
+}
 
 .flexContainer{
     position: relative;
@@ -7,6 +9,7 @@
     align-content: space-around;
     flex-direction: row;
     height: 100%;
+    margin-top:2rem;
 
 }
 
@@ -84,5 +87,6 @@
     .container-twitter{
         display:none;
     }
+
 
   }
