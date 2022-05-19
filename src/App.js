@@ -24,7 +24,7 @@ import Contact from "./Components/Contact/Contact";
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
 import HomePage from "./Components/Home/HomePage";
-
+import ContactForm from "./Components/Contact/ContactForm";
 
 function App() {
   return (
