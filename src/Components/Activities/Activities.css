@@ -1,3 +1,8 @@
+
+.swiper-general-container{
+  min-height: calc(100vh - 120px);
+  margin: 20px;
+}
 .background-img-container {
   background: rgb(2, 0, 36);
   background: radial-gradient(
@@ -27,4 +32,8 @@
 
 .activity-title {
   padding-top: 20px;
+}
+
+.activities-title{
+  margin: 40px;
 }

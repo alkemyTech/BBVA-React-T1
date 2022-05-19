@@ -1,29 +1,60 @@
 import { CssBaseline, StylesProvider } from '@material-ui/core';
-import React, { useEffect, useState, Component } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useRef, useEffect, useState, Component } from "react";
+import {Get} from '../../Services/publicApiService';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
+import 'swiper/swiper-bundle.min.css'
+import 'swiper/swiper.min.css'
 import "./Activities.css";
 // import required modules
 import { Navigation } from "swiper";
+import { GetAppContext } from '../../index';
 
 const ActivitiesScreen = () => {
   const [data, setData] = useState([]);
+  const {appData, setAppData} = GetAppContext();
+
+  const setSpinner = ( open ) =>{
+      setAppData(prevState => ({
+              ...prevState,
+              spinner:{
+                  open:open
+              }
+          })
+      )
+  }
+
+  const setSnackBar = ( message , severity) => {
+      setAppData(prevState => ({
+              ...prevState,
+              snackbar:{
+                      ...prevState.snackbar,
+                      message: message,
+                      severity: severity,
+                      open: true,
+                  }
+              })
+              )
+  }
 
   useEffect(() => {
-    try {
-      const res = axios.get(`https://ongapi.alkemy.org/api/activities`); //llamada a Get de Activities
-      res.then((res) => setData(res.data.data));
-    } catch (err) {
-      return err;
-    }
+    getActivities();
   }, []);
+
+  const getActivities = async () => {
+    try {
+      const res = await Get(`${process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ACTIVITIES_PATH}`);
+      setData(res.data.data);
+    } catch (err) {
+      setSnackBar(`Error al cargar las actividades -> ${err}`,'error');
+    }
+  }
 
   return (
     <StylesProvider injectFirst>
       <CssBaseline />
+      <div className='swiper-general-container'>
+        <h1 className='activities-title'>Activities</h1>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {data.map((activity) => {
           return (
@@ -45,6 +76,7 @@ const ActivitiesScreen = () => {
           );
         })}
       </Swiper>
+      </div>
     </StylesProvider>
   );
 };

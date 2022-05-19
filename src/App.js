@@ -114,6 +114,7 @@ function App() {
                   <Route path="/school-campaign" component={SchoolCampaign} />
                   <Route path="/toys-campaign" component={ToysCampaign} />
                   <Route path="/contact-form" component={Contact} />
+                  <Route path="/activities" component={ActivitiesScreen} />
                 </Switch>
               </PublicLayout>
             </GlobalComponents>
