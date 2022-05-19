@@ -21,7 +21,7 @@ import './RoutesList.css'
 const RoutesList = () => {
     const navMenu = [
         { name: "Inicio", link: "/" , icono: (<HomeIcon/>) },
-        { name: "Crear Actividad", link: "/backoffice/activity" , icono: (<VolunteerActivismIcon/>) },
+        { name: "Crear Actividad", link: "/backoffice/activities" , icono: (<VolunteerActivismIcon/>) },
         { name: "Crear Categoria", link: "/backoffice/categories/create", icono: (<CategoryIcon/>)},
         { name: "Crear Noticia", link: "/backoffice/news/create" , icono: (<NewspaperIcon/>)},
         { name: "Crear slide", link: "/backoffice/slides/create" , icono: (<SlideshowIcon/>)},

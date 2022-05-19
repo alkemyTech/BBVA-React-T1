@@ -59,7 +59,7 @@ const Footer = () => {
                 <nav className="nav-footer">
                     <ul className="ul-roots">
                         <li className ="li-roots"><Link className ="a-roots" to="/"> Inicio</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots" to="/us">Nosotos </Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/us">Nosotros </Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/news">Novedades</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/testimonials">Testimonios</Link></li>
                         <li className ="li-roots"><Link className ="a-roots"to="/contact-form">Contacto</Link></li>
