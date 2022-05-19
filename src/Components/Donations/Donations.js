@@ -74,9 +74,9 @@ const Donations = () =>{
         <form className="donations-form">
             <div>
                 <h3 className="h3-donations">Donante:</h3>
-                <input type="text" placeholder="nombre y apellido" name="name" value={initialValues.name} onChange={handleChange}></input>
+                <input className="input-donations" type="text" placeholder="nombre y apellido" name="name" value={initialValues.name} onChange={handleChange}></input>
                 <h3 className="h3-donations">Mail:</h3>
-                <input type="text" placeholder="dirección mail" name="mail" value={initialValues.mail} onChange={handleChange}></input>
+                <input className="input-donations" type="text" placeholder="dirección mail" name="mail" value={initialValues.mail} onChange={handleChange}></input>
                 <div className="btn-container-donations">
                     <Button className="btn-donaciones" onClick={handleOpen} variant="contained">Donar</Button>
                 </div>
@@ -85,13 +85,11 @@ const Donations = () =>{
             <Modal
                 open={open}
                 onClose={handleClose}
-                className= "modal"
-            >
-                <Box className="box"  >
+                className= "modal">
+                <Box className="box">
                     <div className="iframe-container">
                         <iframe className="iframe" src="https://mpago.la/2ty3Ffo"></iframe>
                     </div>
-                
                 </Box>
             </Modal>
         </form>

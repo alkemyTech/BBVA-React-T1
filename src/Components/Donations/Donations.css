@@ -7,11 +7,9 @@
     max-width: 100vw;
     height: 75vh;
 }
-
 .iframe{
     width:60rem;
-    height:40rem;
-   
+    height:40rem;  
 }
 
 .iframe-container{
@@ -20,29 +18,27 @@
     justify-content: center;
     width: 50rem;
 }
-
 .modal{
     display: flex;
     align-items: center;
     justify-content: center
-
 }
-
 .donations-form {
     display:block;
     width:50%;
     justify-content: center;
     margin: 0.6rem 0; 
 }
-
-.donations-form input{
+.donations-form .input-donations{
     display:block;
     margin: 0.6rem 0;
     padding:0.5rem;
     width:100%;
     border-radius: 10px;
 }
-
+.input-donations:last-of-type{
+    margin-bottom: 2.5rem;
+}
 .p-donations{
     margin-bottom: 2rem;
     text-align: left;
@@ -67,8 +63,7 @@
 
 .btn-donaciones{
     width: 50%;
-    margin-top: 2rem !important;
-    background-color: #2E86C1;
+    margin-top: 2rem;
     text-align: center;
     padding: 10px 15px;
     border: none;
@@ -86,10 +81,6 @@
 
 .link-gracias{
     text-decoration: none;
-}
-
-.btn-gracias{
-    padding:0.5rem  2rem!important;
 }
 
 .gracias-container{
@@ -110,31 +101,23 @@
     align-items: center;
     margin: 0.6rem 0; 
 }
-
 .img-gracias{
     width:50%;
     margin-bottom: 2rem;
     }
-
-    
-  }
-
+}
   @media (max-width: 1200px) {
-    
     .iframe{
         width:23rem;
-        height:30rem;
-       
+        height:30rem; 
     }
     
     .iframe-container{
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-    
-        
-    }
+    }     
+}
     
 
 
