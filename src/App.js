@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
-import NewsForm from "./Components/News/NewsForm";
+import CategoriesForm from "./Components/Categories/CategoriesForm"
+import NewsForm from "./Components/Backoffice/News/NewsForm";
 import NewsBackoffice from "./Components/Backoffice/News/NewsBackoffice"
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
@@ -69,6 +69,7 @@ function App() {
                   <Route exact path="/backoffice/activities/:id" component={ActivitiesForm} />
                   <Route exact path="/backoffice/activities" component={ActivitiesList} />
 
+
                   <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
                   <Route exact path="/backoffice/categories/:id" component={CategoriesForm} />
                   <Route exact path="/backoffice/categories" component={''} />
@@ -76,6 +77,7 @@ function App() {
                   <Route exact path="/backoffice/news" component={NewsBackoffice} />
                   <Route exact path="/backoffice/news/:id" component={NewsForm} />
                   <Route exact path="/backoffice/news/create" component={NewsForm} />
+
 
                   <Route exact path="/backoffice/testimonials/create" component={TestimonialForm} />
                   <Route exact path="/backoffice/testimonials/:id" component={TestimonialForm} />
@@ -100,6 +102,7 @@ function App() {
             </GlobalComponents>
           </Route>
           <Route exact path="/:path?">
+
             <GlobalComponents>
               <PublicLayout>
                 <AnimatedSwitch
@@ -124,6 +127,7 @@ function App() {
               </PublicLayout>
             </GlobalComponents>
             </Route>
+
           </BrowserRouter>
         </AppContext.Provider>
       </div>
