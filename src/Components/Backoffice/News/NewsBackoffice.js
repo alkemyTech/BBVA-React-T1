@@ -29,7 +29,16 @@ const NewsBackoffice = () => {
           process.env.REACT_APP_URL_NEWS_PATH
         }`
       );
-      return res.data.data;
+      const news = res.data.data;
+      const rows = news.map((e) => {
+        return {
+          id: e.id,
+          name: e.name,
+          image: e.image,
+          createdAt: e.created_at,
+        };
+      });
+      setData(rows);
     } catch (err) {
       return [];
     }
@@ -50,26 +59,10 @@ const NewsBackoffice = () => {
     }
   };
 
-  const setNews = (news) => {
-    console.log(news);
-    const rows = news.map((e) => {
-      return {
-        id: e.id,
-        name: e.name,
-        image: e.image,
-        createdAt: e.created_at,
-      };
-    });
-    setData(rows);
-  };
 
-  const handleRows = async () => {
-    const newsData = await getNewsData();
-    await setNews(newsData);
-  };
 
   useEffect(() => {
-    handleRows();
+    getNewsData()
   }, []);
 
   return (
