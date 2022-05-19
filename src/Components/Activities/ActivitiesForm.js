@@ -18,7 +18,7 @@ const ActivitiesForm = () => {
         description: '',
         getData: '',
     });
-    git merge
+    const history = useHistory();
     const [snack, setSnack] = useState({
         open: false,
         message: "",
