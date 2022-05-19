@@ -16,10 +16,10 @@ import { Get } from "./../../Services/privateApiService";
 function UsersList() {
   const [data, setData] = useState([]);
 
-  const getUsers = async () => {
-    const response = await Get("/users", null);
-    const usersList = await response.data.data;
-    setData(usersList);
+  const getUsers = () => {
+    Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users").then((res) => {
+      setData(res.data.data);
+    });
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function UsersList() {
                   <TableCell>
                     <Link
                       className="edit-icon"
-                      to={`/backoffice/users/create/${user.id}`}
+                      to={`/backoffice/users/${user.id}`}
                     >
                       <Edit />
                     </Link>

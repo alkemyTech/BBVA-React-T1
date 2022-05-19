@@ -19,7 +19,6 @@ const Get = (route) => {
     });
 };
 
-
 /** Función estandard POST.
     REQUISITOS:
         - route :=  ruta destino.
@@ -30,7 +29,7 @@ const Get = (route) => {
 */
 export const Post = async (route, bodyObj) => {
     try {
-        const res = await axios.post(route, bodyObj, config);
+        const res = await axios.post(route, bodyObj, config.headers);
         return res;
     } catch (err) { return err; }
 }

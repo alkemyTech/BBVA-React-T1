@@ -1,0 +1,22 @@
+.title-section{
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    text-align: left;
+}
+
+.title{
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.second-section{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.link{
+    display: flex;
+    height: fit-content;
+}
