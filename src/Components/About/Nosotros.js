@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./Nosotros.css";
-import { Get } from "./../../Services/privateApiService";
-import Spinner from "../Spinner/Spinner";
+import React, { useEffect, useState } from 'react';
+import './Nosotros.css'
+import { Get } from './../../Services/privateApiService';
+import Spinner from '../Spinner/Spinner'
+import { Snackbar , Alert } from '@mui/material';
 import { MembersList } from "../Members/MembersList";
+import { GetAppContext } from '../../index';
 import {LinkedinFollowCompany, TwitterButton,TwitterTweet} from 'react-social-plugins';
 
 /**
@@ -13,48 +15,85 @@ import {LinkedinFollowCompany, TwitterButton,TwitterTweet} from 'react-social-pl
  */
 
 const Nosotros = () => {
-  const [sobreNosotros, setSobreNosotros] = useState({
-    text: "",
-    imgSrc: "",
-    loaded: false,
-  });
 
-  const getOrganizationData = () => {
-    Get(
-      process.env.REACT_APP_URL_BASE_ENDPOINT +
-        process.env.REACT_APP_URL_ORGANIZATION_PATH
-    ).then((res) => {
-      const data = res.data.data;
-      setSobreNosotros({
-        ...sobreNosotros,
-        loaded: true,
-        text: data.long_description,
-        imgSrc: data.logo,
-      });
-    });
-  };
+   const [ aboutData , setAboutData ] = useState({
+        text:"",
+        imgSrc:"",
+        loaded:false
+       })
 
-  useEffect(() => {
-    getOrganizationData();
-  }, []);
+
+
+    const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
+    }
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
+
+
+    const snackError = (message) => setSnackBar(message,"error")
+    const snackSuccess = (message) => setSnackBar(message,"success")
+
+    const getOrganizationData  = () => {
+        setSpinner(true)
+        Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
+            if(res.data.success){
+                const data= res.data.data;
+                setAboutData({...aboutData, loaded: true, text: data.long_description,imgSrc:data.logo})
+            } 
+            else
+                snackError("Error en la carga de datos, por favor reintente mas tarde.")
+                setSpinner(false)
+            }
+            ).catch( err => {
+                snackError("Error en la carga de datos, por favor reintente mas tarde.")
+                setSpinner(false)
+            })
+               
+    }
+
+    useEffect( () => { 
+       getOrganizationData ();
+    }, []);
+
+
+
 
   return (
     <>
       <div className="containerGeneral">
-        <Spinner visible={!sobreNosotros.loaded} className="spinner" />
         <div className="containerData">
           <h1 className="centerText h1-heading"  style={{ marginTop: 30 }}>
             Nosotros
           </h1>
           <div className="flexContainer">
             <div className="textoContainer">
-              {sobreNosotros.loaded && (
-                <div dangerouslySetInnerHTML={{ __html: sobreNosotros.text }} />
+              {aboutData.loaded && (
+                <div dangerouslySetInnerHTML={{ __html: aboutData.text }} />
               )}
             </div>
             <div
               className="imageContainer"
-              style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
+              style={{ backgroundImage: `url(${aboutData.imgSrc})` }}
             ></div>
           </div>
               <MembersList />
