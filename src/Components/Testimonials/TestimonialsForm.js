@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, PrivatePost, Put} from "../../Services/privateApiService"
-import { Snackbar , Alert } from '@mui/material';
+import { Snackbar , Alert, TextField } from '@mui/material';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -21,6 +21,8 @@ const TestimonialForm = () => {
     description: '',
     img:  ''
 })
+
+const [editorData, setEditorData] =useState("");
 
 
 //Mensajes creados en SnackBar
@@ -45,6 +47,7 @@ const showSnack = (text, type) =>{
                 description: info.description,
                 img:info.image 
             })
+            setEditorData(info.description);
         })
         .catch(() => {
             showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
@@ -120,21 +123,22 @@ const handleSubmit = async (e)  => {
         <>
         <h1 className="title-back" >{ !id ? "Crear Testimonio" : "Editar Testimonio" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
-            <h3 className="title-field-users">Nombre</h3>
-            <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-            <h3 className="title-field-users">Descripción</h3>
-
+        
+            <TextField id="outlined-basic" label="Nombre" variant="outlined"  
+                        type="text"  name="name"  
+                        value={ initialValues.name } onChange={handleChange}/>
             <CKEditor
+                name="description"
                 config={{
                 toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
                 }}
                 editor ={ ClassicEditor }
-                value ={initialValues.description}
+                value={ initialValues.description }
+                data={ editorData }
                 onChange={(e, editor) => {
-                    setInitialValues({...initialValues, description : (editor.getData()).replace(/<\/?[^>]+(>|$)/g, "")});
+                    setInitialValues({...initialValues, description : editor.getData()});
             }}
             /> 
-            <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
             <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : "Editar"}</button>
         </form>
