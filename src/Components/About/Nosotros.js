@@ -54,9 +54,8 @@ const Nosotros = () => {
     const getOrganizationData  = () => {
         setSpinner(true)
         Get(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH).then( res => {
-            const dataRes=res.data;
-            if(dataRes.success){
-                const data= dataRes.data;
+            if(res.data.success){
+                const data= res.data.data;
                 setAboutData({...aboutData, loaded: true, text: data.long_description,imgSrc:data.logo})
             } 
             else
