@@ -1,9 +1,9 @@
 import React from "react"
 import { Button, CssBaseline, StyledEngineProvider, TextField, InputAdornment } from "@mui/material";
 
-import { Get, Put } from './../../../Services/privateApiService';
+import { Get, PrivatePost } from './../../../Services/privateApiService';
 import './Organization.css';
-import { GetAppContext } from '../../index';
+import { GetAppContext } from '../../../index';
 
 const Organization = () =>{
     const [ organizationData , setOrganizationData ] = React.useState({
@@ -62,8 +62,9 @@ const Organization = () =>{
 
     const submitHandler = async () => {
         try {
-            const res = await Put(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH, organizationData);
-            if(res.error){ setSnackBar(`Ha ocurrido un error al editar datos -> ${res.error}`, 'error'); }
+            const res = await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH, organizationData);
+            console.log({res})
+            if(res.data.error){ setSnackBar(`Ha ocurrido un error al editar datos -> ${res.data.error}`, 'error'); }
             else {
                 setSnackBar(`Datos actualizados`, 'success');
                 setOrganizationData(organizationData);
