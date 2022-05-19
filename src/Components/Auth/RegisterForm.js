@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, TextField, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "../FormStyles.css";
 import { Post } from "../../Services/publicApiService";
 
@@ -16,6 +16,9 @@ const RegisterForm = () => {
     passwordError: false,
     confirmPasswordError: false,
   });
+
+  const token = localStorage.getItem('token');
+  const history = useHistory();
 
   const passErrorMsg =
     "Debe contener un mínimo de 6 caracteres, una letra, un número y un símbolo";
@@ -60,6 +63,8 @@ const RegisterForm = () => {
   }, [password, confirmPassword]);
 
   return (
+    <>
+    {token ? (history.push('/')) :
     <div className="main-container-form">
       <Container maxWidth="sm" className="form-container">
         <h3>Bienvenido/a!</h3>
@@ -112,9 +117,8 @@ const RegisterForm = () => {
             helperText={confirmPasswordError ? cPassErrorMsg : ""}
             required
           />
-          <Button className="submit-btn" variant="contained" type="submit">
-            Registrarse
-          </Button>
+          {!token ? <Button className="submit-btn" variant="contained" type="submit"> Registrarse </Button> : ''}
+          
         </form>
         <p className="question-p">¿Ya tienes una cuenta?</p>
         <NavLink className="nav-link" to="/login">
@@ -125,6 +129,8 @@ const RegisterForm = () => {
         <img className="img-form" alt="" src="/images/login.png" />
       </div>
     </div>
+    }
+    </>
   );
 };
 
