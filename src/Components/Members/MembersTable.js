@@ -13,7 +13,7 @@ import { GetAppContext } from '../../index';
 
 const columnsHeaders = ['id','name','image','description','modificar','eliminar'];
 const MembersTable = () => {
-  const [rowsContent, setRowsContent] = useState([]);
+  
   const [rowsData, setRowsData] = useState([]);
   const { appData, setAppData } = GetAppContext();
 
