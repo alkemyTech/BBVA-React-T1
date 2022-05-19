@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 import "./Donations.css"
 import '../FormStyles.css';
 import React, { useState } from 'react'
@@ -10,17 +9,16 @@ import { Snackbar , Alert } from '@mui/material';
 
 const Donations = () =>{
     const [open, setOpen] = useState(false);
-    const history = useHistory();
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        mail: '',
-    });
-
     const [snack, setSnack] = useState({
         open: false,
         message: "",
         severity: "error",
     })
+    const [initialValues, setInitialValues] = useState({
+        name: '',
+        mail: '',
+    });
+    const history = useHistory();
 
     const showSnack = (text, type) =>{
         setSnack({...snack, 
