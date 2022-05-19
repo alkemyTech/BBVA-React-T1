@@ -43,7 +43,7 @@ export const News = () => {
     try{
     const response = await Get(
       process.env.REACT_APP_URL_BASE_ENDPOINT + "/news"
-    );
+    ); 
       if(response.data.success){
         const newsList = await response.data.data;
         setData(newsList);
