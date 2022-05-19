@@ -25,6 +25,8 @@ import Donations from "./Components/Donations/Donations"
 import DonationResponse from "./Components/Donations/DonationResponse"
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+import GlobalComponents from './Components/Global/GlobalComponents';
+import { appDataInitial,AppContext } from ".";
 import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
@@ -32,9 +34,12 @@ import ContactForm from './Components/Contact/ContactForm'
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 
 function App() {
+  const [ appData, setAppData ] = React.useState( appDataInitial );
+
   return (
     <>
       <div className="App">
+      <AppContext.Provider value={{appData, setAppData}}>
         <BrowserRouter>
 
             
@@ -89,32 +94,36 @@ function App() {
 
                 <Route exact path="/backoffice/organization" component={''} />
               </AnimatedSwitch>
+              
             </BackofficeLayout>
           </Route>
           <Route exact path="/:path?">
-            <PublicLayout>
-            <AnimatedSwitch
-              atEnter={{ opacity: 0 }}
-              atLeave={{ opacity: 0 }}
-              atActive={{ opacity: 1 }}
-              className="switch-wrapper"
-            >
-                <Route path="/" exact component={HomePage} />
-                <Route path="/register" component={RegisterForm} />
-                <Route path="/login" component={LoginForm} />
-                <Route path="/news" component={News} />
-                <Route path="/us" component={Nosotros} />
-                <Route path="/testimonials" />
-                <Route path="/contact" component={Contact} />
-                <Route path= "/donations" component={Donations} />
-                <Route path= "/thanks" component={DonationResponse} />
-                <Route path="/school-campaign" component={SchoolCampaign} />
-                <Route path="/toys-campaign" component={ToysCampaign} />
-                <Route path="/contact-form" component={Contact} />
-              </AnimatedSwitch>
-            </PublicLayout>
-          </Route>
-        </BrowserRouter>
+            <GlobalComponents>
+              <PublicLayout>
+                <AnimatedSwitch
+                    atEnter={{ opacity: 0 }}
+                    atLeave={{ opacity: 0 }}
+                    atActive={{ opacity: 1 }}
+                    className="switch-wrapper"
+                  >
+                  <Route path="/" exact component={HomePage} />
+                  <Route path="/register" component={RegisterForm} />
+                  <Route path="/login" component={LoginForm} />
+                  <Route path="/news" component={News} />
+                  <Route path="/us" component={Nosotros} />
+                  <Route path="/testimonials" />
+                  <Route path="/contact" component={Contact} />
+                  <Route path= "/donations" component={Donations} />
+                  <Route path= "/thanks" component={DonationResponse} />
+                  <Route path="/school-campaign" component={SchoolCampaign} />
+                  <Route path="/toys-campaign" component={ToysCampaign} />
+                  <Route path="/contact-form" component={Contact} />
+                </AnimatedSwitch>
+              </PublicLayout>
+            </GlobalComponents>
+            </Route>
+          </BrowserRouter>
+        </AppContext.Provider>
       </div>
     </>
   );
