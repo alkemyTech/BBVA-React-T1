@@ -142,10 +142,9 @@ const MembersForm = () => {
 
   return (
     <>
-      <div className="globalContainer">
+      <div className="membersform-container">
+        <h2>{isUpdate ? "Actualizar miembro" : "Ingresar miembro"}</h2>
         <form className="form-container" onSubmit={handleSubmit}>
-          <h2>{isUpdate ? "Actualizar miembro" : "Ingresar miembro"}</h2>
-
           <TextField
             id="outlined-basic"
             label="Nombre"
