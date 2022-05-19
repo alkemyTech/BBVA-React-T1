@@ -66,7 +66,8 @@
 .form-back{
     font-family: 'Poppins', sans-serif;
     width: 40vw;
-    height: 60vh;
+    padding-bottom: 3rem;
+    height: 70%;
 }
 .form-back-submit-btn {
     background-color: #ff0000;
@@ -95,11 +96,6 @@
 @media (max-width: 600px) {
     .img-form {
         display: none;
-    }
-
-    .form-back{
-        font-family: 'Poppins', sans-serif;
-        height: 75vh;
     }
 
 }

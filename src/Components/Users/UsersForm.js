@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
 import {Get, PrivatePost, Put} from "../../Services/privateApiService"
-import { Snackbar , Alert } from '@mui/material';
+import { Snackbar , Alert, TextField, MenuItem } from '@mui/material';
 
 
 const UserForm = () => {
@@ -66,11 +66,11 @@ const formValidation = () =>{
     if(initialValues.name.length < 4){
         showSnack("El nombre debe contener al menos 4 letras","error")
     }else if(Number.isNaN(parseInt(initialValues.roleId)) ){
-        showSnack("Debe seleccionar un rol")
+        showSnack("Debe seleccionar un rol", "error")
     }else if(!emailRegexp.test(initialValues.email)){
         showSnack("El formato de mail es incorrecto", "error")
     }else if(initialValues.password.length < 8){
-        showSnack("El password debe contener al menos 8 letras", "error")
+        showSnack("La contraseña debe contener al menos 8 letras", "error")
     }else if(!imgRegex.test(initialValues.profileImg)){
         showSnack("Debe subir una imagen en formato jpg o png", "error")
     }
@@ -126,21 +126,22 @@ const handleSubmit = async (e)  => {
         <>
 
         <h1 className="title-back" >{ !id ? "Crear usuario" : "Editar Usuario" }</h1>
-        <form className="form-container form-back"  onSubmit={handleSubmit}>
-            <h3 className="title-field-users">Nombre</h3>
-            <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
-            <h3 className="title-field-users">Email</h3>
-            <input className="input-field input-back" type="text" name="email" value={initialValues.email} onChange={handleChange}   placeholder="Email"   ></input>
-            <h3 className="title-field-users">Contraseña</h3>
-            <input className="input-field input-back" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Password"></input>
-            <h3 className="title-field-users">Rol</h3>
-            <select className="input-field input-back" value={initialValues.roleId} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
-                <option value="" disabled >Select the role</option>
-                <option value="1">Admin</option>
-                <option value="2">User</option>
-            </select>
-            <h3 className="title-field-users">Seleccione una imagen</h3>
-            <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
+        <form className="form-back"  onSubmit={handleSubmit}>
+        <TextField id="outlined-basic" label="Nombre y Apellido" variant="outlined"  
+        type="text"  name="name"  
+        value={ initialValues.name } onChange={handleChange}/>
+        <TextField id="outlined-basic" label="Dirección Mail" variant="outlined"  
+        type="text"  name="email" value={ initialValues.email } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" label="Contraseña" variant="outlined"  
+        type="text"  name="password" value={ initialValues.password } onChange={handleChange}/>
+
+        <TextField id="outlined-basic" select label="Rol" variant="outlined"  
+        type="text"  name="roleId" defaultValue="Seleccione un rol" value={initialValues.roleId} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>
+            <MenuItem value="1">Admin</MenuItem>
+            <MenuItem value="2">User</MenuItem>
+        </TextField>
+            <input className="input-back-file" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
             <button className="form-back-submit-btn" type="submit">{ !id ? "Crear" : "Editar" }</button>
         </form>
 
