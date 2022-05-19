@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import '../FormStyles.css';
-import {Get, PrivatePost, Put, Delete} from "../../Services/privateApiService"
+import {Get, PrivatePost, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert } from '@mui/material';
 
 const UserForm = () => {
   const { id } = useParams();  
-  const location = useLocation().pathname.toLocaleLowerCase();
   const history = useHistory();
+
   const [snack, setSnack] = useState({
     open: false,
     message: "",
@@ -22,88 +22,39 @@ const UserForm = () => {
     password:  ''
 })
 
-
-    //Mensajes de Error:
-    const snackErrorCargaDatos = () =>{
-        setSnack({...snack, 
-        message:"Error en la carga de datos, intente nuevamente mas tarde.",
-        open:true,
-        severity:"error"
-        })
-    }
-
-    const snackErrorRole = () =>{
-        setSnack({...snack, 
-            message:"Debe seleccionar un rol",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorName = () =>{
-        setSnack({...snack, 
-            message:"El nombre debe contener al menos 4 letras",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorMail = () =>{
-        setSnack({...snack, 
-            message:"El formato de mail es incorrecto",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorPassword = () =>{
-        setSnack({...snack, 
-            message:"El password debe contener al menor 8 letras",
-            open:true,
-            severity:"error"
-        }) 
-    }
-
-    const snackErrorImage = () =>{
-        setSnack({...snack, 
-            message:"El formato de la imagen debe ser .jpg o .png",
-            open:true,
-            severity:"error"
-        }) 
-    }
+const showSnack = (text, type) =>{
+    setSnack({...snack, 
+        message: text,
+        open: true,
+        severity: type,
+    })
+}
 
 //Obtener datos de usuarios y cargarlos en caso de encontrarlos con el id
   const getUsers = async () => {
-    await Get("/users", id)
-    .then(res => {
-        const data=res.data.data;
-        setInitialValues({
-            ...initialValues,
-            name:data.name || "",
-            email:data.email || "",
-            roleId:data.role_id || "",
-            profileImg: data.profile_image || "",
-            password: data.password || ""
+    if(id){
+        await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id)
+        .then(res => {
+            const data=res.data.data;
+            setInitialValues({
+                ...initialValues,
+                name:data.name || "",
+                email:data.email || "",
+                roleId:data.role_id || "",
+                profileImg: data.profile_image || "",
+                password: data.password || ""
+            })
         })
-    })
-    .catch(() => {
-         snackErrorCargaDatos()
-    })
-  };
+        .catch(() => {
+            showSnack("Error en la carga de datos, intente nuevamente mas tarde.", "error")
+        })
+    }
+    };
 
     useEffect(() => {
         getUsers()
     }, []);   
 
-
-// Objeto creado a partir de los valores ingresados del form para enviar peticiones
-const userCreated={
-    name: initialValues.name ,
-    email: initialValues.email,
-    role_id: parseInt(initialValues.roleId),
-    password: initialValues.password,
-    profile_image: initialValues.profileImg,
-} 
   
 
 //Validaciones del form
@@ -112,56 +63,48 @@ const formValidation = () =>{
     const imgRegex = new RegExp(/(.jpg|.jpeg|.png)/i)
     let formCorrecto = false;
     if(initialValues.name.length < 4){
-        snackErrorName()
+        showSnack("El nombre debe contener al menos 4 letras","error")
     }else if(Number.isNaN(parseInt(initialValues.roleId)) ){
-        snackErrorRole()
-    }
-    else if(!emailRegexp.test(initialValues.email)){
-        snackErrorMail()
+        showSnack("Debe seleccionar un rol")
+    }else if(!emailRegexp.test(initialValues.email)){
+        showSnack("El formato de mail es incorrecto", "error")
     }else if(initialValues.password.length < 8){
-        snackErrorPassword()
+        showSnack("El password debe contener al menos 8 letras", "error")
     }else if(!imgRegex.test(initialValues.profileImg)){
-        snackErrorImage()
+        showSnack("Debe subir una imagen en formato jpg o png", "error")
     }
     else{
         formCorrecto = true;
+        showSnack("Formulario procesado", "success")
     }
     return formCorrecto
 }
 
-
 //Envio del form y peticiones
 const handleSubmit = async (e)  => {
+
+    const userCreated={
+    name: initialValues.name ,
+    email: initialValues.email,
+    role_id: parseInt(initialValues.roleId),
+    password: initialValues.password,
+    profile_image: initialValues.profileImg,
+    } 
+
     e.preventDefault();
     if(formValidation()){
-        if(location.includes("create")){
-           await PrivatePost("/users", userCreated)
+        if(id){
+            await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users/" + id, userCreated)
             history.push("/backoffice/users") 
-          }
-        else if(location.includes("edit")){
-            await Put(id,"/users", userCreated)
+        }else{
+            await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT + "/users", userCreated)
             history.push("/backoffice/users") 
-        }else if(location.includes("delete")){
-            await Delete("/users", id)
-            history.push("/backoffice/users") 
-        } 
+        }
     }
 }
-
     //Actualiza los datos con los que obtiene de los inputs del form
     const handleChange = (e) => {
-        if(e.target.name === 'name'){
-        setInitialValues({...initialValues, name: e.target.value})
-        }if(e.target.name === 'email'){
-        setInitialValues({...initialValues, email: e.target.value})
-        }if(e.target.name === 'profile-img'){
-        setInitialValues({...initialValues, profileImg: e.target.value})
-        }if(e.target.name === 'password'){
-        setInitialValues({...initialValues, password: e.target.value})
-        }
-        if(e.target.name === 'profile-img'){
-        setInitialValues({...initialValues, profileImg: e.target.value})
-        }
+        setInitialValues({...initialValues, [e.target.name]: e.target.value})
     }
 
     //Formateo de imagen a code64 para enviar a api
@@ -180,7 +123,7 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-        <h1 className="title-back" >{!id ? "Crear usuario" : (location.includes("edit") ? "Editar Usuario" : "Eliminar Usuario") }</h1>
+        <h1 className="title-back" >{ !id ? "Crear usuario" : "Editar Usuario" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
             <h3 className="title-field-users">Nombre</h3>
             <input className="input-field input-back" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Name"></input>
@@ -196,18 +139,18 @@ const handleSubmit = async (e)  => {
             </select>
             <h3 className="title-field-users">Seleccione una imagen</h3>
             <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="profile-img" onChange={encodeImageAsURL} placeholder="imagen de perfil"></input>
-            <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : (location.includes("edit") ? "Editar" : "Eliminar")}</button>
+            <button className="form-back-submit-btn" type="submit">{ !id ? "Crear" : "Editar" }</button>
         </form>
 
         <Snackbar
                 open={snack.open}
                 severity={snack.severity}
-                autoHideDuration={3000}
+                autoHideDuration={4000}
                 onClose={onCloseSnack}>
                 <Alert onClose={onCloseSnack} severity={snack.severity} sx={{ width: '100%' }}>
                     {snack.message}
                 </Alert>
-            </Snackbar>
+        </Snackbar>
         </>
     );
 }
