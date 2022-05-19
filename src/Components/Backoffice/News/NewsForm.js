@@ -46,14 +46,10 @@ const NewsForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !!initialValues.name &&
-      !!initialValues.content &&
-      !!initialValues.image
-    ) {
+    if (initialValues.name && initialValues.content && initialValues.image) {
       if (id) {
         try {
-          await Put(
+          Put(
             process.env.REACT_APP_URL_BASE_ENDPOINT +
               process.env.REACT_APP_URL_NEWS_PATH +
               "/" +
@@ -75,7 +71,7 @@ const NewsForm = () => {
         }
       } else {
         try {
-          await PrivatePost(
+          PrivatePost(
             process.env.REACT_APP_URL_BASE_ENDPOINT +
               process.env.REACT_APP_URL_NEWS_PATH,
             initialValues
