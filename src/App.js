@@ -30,7 +30,6 @@ import { appDataInitial,AppContext } from ".";
 import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
-import ContactForm from './Components/Contact/ContactForm'
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 
 function App() {
