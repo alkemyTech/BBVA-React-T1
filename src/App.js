@@ -12,9 +12,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Nosotros from "./Components/About/Nosotros";
-import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
-import ContactForm from "./Components/Contact/ContactForm.js";
 import ActivitiesList from "./Components/Activities/ActivitiesList.js";
 import PublicLayout from "./Layout/PublicLayout";
 import RegisterForm from "./Components/Auth/RegisterForm";
@@ -25,7 +22,7 @@ import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
-
+import HomePage from "./Components/Home/HomePage";
 
 
 function App() {
@@ -126,7 +123,7 @@ function App() {
           <Route exact path="/:path?">
             <PublicLayout>
               <Switch>
-                {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+                <Route path="/" exact component={HomePage} />
                 <Route path="/register" component={RegisterForm} />
                 <Route path="/login" component={LoginForm} />
                 <Route path="/news" component={News} />
