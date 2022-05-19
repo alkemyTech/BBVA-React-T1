@@ -3,6 +3,17 @@ import "./Nosotros.css";
 import { Get } from "./../../Services/privateApiService";
 import Spinner from "../Spinner/Spinner";
 import { MembersList } from "../Members/MembersList";
+import {
+  LinkedinCompanyProfile,
+  LinkedinFollowCompany,
+  LinkedinLogin,
+  LinkedinAddProfile,
+  LinkedinProfile,
+  LinkedinShare,
+ 
+  TwitterButton,
+  TwitterTweet
+} from 'react-social-plugins';
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara
@@ -56,7 +67,56 @@ const Nosotros = () => {
               style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
             ></div>
           </div>
-          <MembersList />
+          <LinkedinFollowCompany
+          companyId={12312312}
+          counter="top" // Or "right"
+          lang="en_US"
+        />
+            <MembersList />
+            <h2 className="centerText" style={{ marginTop: 30 }}>
+            Últimos Tweets
+          </h2>
+          <div>
+            <TwitterTweet
+                align='left'
+                coversation='none'
+                tweetId='1527122168684978176' 
+                theme='light'
+                width={325}
+            />
+            <TwitterTweet
+                align='left'
+                coversation='none'
+                tweetId='1527122059213647872'
+                theme='light'
+                width={325}
+            />
+            <TwitterTweet
+                align='left'
+                coversation='none'
+                tweetId='1527121354343972869'
+                theme='light'
+                width={325}
+            />
+            <TwitterTweet
+                align='left'
+                coversation='none'
+                tweetId='1527121093617647617'
+                theme='light'
+                width={325}
+            />
+     
+
+          </div>
+          <TwitterButton
+              hashtags="ONG, voluntariado"
+              target="OngSomosMas1"
+              text="Suamate a Somos mas"
+              type="Hashtag"
+              size="large"
+              via="OngSomosMas1"
+            />
+
         </div>
       </div>
     </>
