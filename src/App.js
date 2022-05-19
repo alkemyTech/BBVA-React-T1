@@ -25,6 +25,8 @@ import Donations from "./Components/Donations/Donations"
 import DonationResponse from "./Components/Donations/DonationResponse"
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+import GlobalComponents from './Components/Global/GlobalComponents';
+import { appDataInitial,AppContext } from ".";
 import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
@@ -32,9 +34,12 @@ import ContactForm from './Components/Contact/ContactForm'
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 
 function App() {
+  const [ appData, setAppData ] = React.useState( appDataInitial );
+
   return (
     <>
       <div className="App">
+      <AppContext.Provider value={{appData, setAppData}}>
         <BrowserRouter>
 
             <AnimatedSwitch
@@ -49,66 +54,79 @@ function App() {
 
           <Route exact path="/backoffice/*">
             {!getToken() && (<Redirect to='/login'/>)}
-            <BackofficeLayout>
-              <Switch>
+            <GlobalComponents>
+              <BackofficeLayout>
+                <Switch>
+                  
+                  <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
+                  <Route exact path="/backoffice/" component={ScreenDashboard} />
+
+                  <Route exact path="/backoffice/slides" component={ShowSlides} />
+                  <Route exact path="/backoffice/slides/create" component={SlidesForm} />
+                  <Route exact path="/backoffice/slides/:id" component={SlidesForm} />
+
+                  <Route exact path="/backoffice/activities/create" component={ActivitiesForm} />
+                  <Route exact path="/backoffice/activities/:id" component={ActivitiesForm} />
+                  <Route exact path="/backoffice/activities" component={ActivitiesList} />
+
+
+                  <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
+                  <Route exact path="/backoffice/categories/:id" component={CategoriesForm} />
+                  <Route exact path="/backoffice/categories" component={''} />
+
+                  <Route exact path="/backoffice/news" component={NewsBackoffice} />
+                  <Route exact path="/backoffice/news/:id" component={NewsForm} />
+                  <Route exact path="/backoffice/news/create" component={NewsForm} />
+
+
+                  <Route exact path="/backoffice/testimonials/create" component={TestimonialForm} />
+                  <Route exact path="/backoffice/testimonials/:id" component={TestimonialForm} />
+                  <Route exact path="/backoffice/testimonials" component={''} />
+
+                  <Route exact path="/backoffice/users/create" component={UserForm} />
+                  <Route exact path="/backoffice/users/:id" component={UserForm} />
+                  <Route exact path="/backoffice/users" component={UsersList} />
+
+                  <Route exact path="/backoffice/members/create" component={MembersForm} />
+                  <Route exact path="/backoffice/members/:id" component={MembersForm} />
+                  <Route exact path="/backoffice/members" component={''} />
+
+                  <Route exact path="/backoffice/projects/create" component={ProjectsForm} />
+                  <Route exact path="/backoffice/projects/:id" component={ProjectsForm} />
+                  <Route exact path="/backoffice/projects" component={''} />
+
+                  <Route exact path="/backoffice/organization" component={''} />
+                </Switch>
                 
-                <Route exact path="/backoffice/dashboard" component={ScreenDashboard} />
-                <Route exact path="/backoffice/" component={ScreenDashboard} />
-
-                <Route exact path="/backoffice/slides" component={ShowSlides} />
-                <Route exact path="/backoffice/slides/create" component={SlidesForm} />
-                <Route exact path="/backoffice/slides/:id" component={SlidesForm} />
-
-                <Route exact path="/backoffice/activities/create" component={ActivitiesForm} />
-                <Route exact path="/backoffice/activities/:id" component={ActivitiesForm} />
-                <Route exact path="/backoffice/activities" component={ActivitiesList} />
-
-                <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
-                <Route exact path="/backoffice/categories/:id" component={CategoriesForm} />
-                <Route exact path="/backoffice/categories" component={''} />
-                <Route exact path="/backoffice/news" component={NewsBackoffice} />
-                <Route exact path="/backoffice/news/:id" component={NewsForm} />
-                <Route exact path="/backoffice/news/create" component={NewsForm} />
-
-                <Route exact path="/backoffice/testimonials/create" component={TestimonialForm} />
-                <Route exact path="/backoffice/testimonials/:id" component={TestimonialForm} />
-                <Route exact path="/backoffice/testimonials" component={''} />
-
-                <Route exact path="/backoffice/users/create" component={UserForm} />
-                <Route exact path="/backoffice/users/:id" component={UserForm} />
-                <Route exact path="/backoffice/users" component={UsersList} />
-
-                <Route exact path="/backoffice/members/create" component={MembersForm} />
-                <Route exact path="/backoffice/members/:id" component={MembersForm} />
-                <Route exact path="/backoffice/members" component={''} />
-
-                <Route exact path="/backoffice/projects/create" component={ProjectsForm} />
-                <Route exact path="/backoffice/projects/:id" component={ProjectsForm} />
-                <Route exact path="/backoffice/projects" component={''} />
-
-                <Route exact path="/backoffice/organization" component={''} />
-              </Switch>
-            </BackofficeLayout>
+              </BackofficeLayout>
+            </GlobalComponents>
           </Route>
           <Route exact path="/:path?">
-            <PublicLayout>
-              <Switch>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/register" component={RegisterForm} />
-                <Route path="/login" component={LoginForm} />
-                <Route path="/news" component={News} />
-                <Route path="/us" component={Nosotros} />
-                <Route path="/testimonials" />
-                <Route path="/contact" component={Contact} />
-                <Route path= "/donations" component={Donations} />
-                <Route path= "/thanks" component={DonationResponse} />
-                <Route path="/school-campaign" component={SchoolCampaign} />
-                <Route path="/toys-campaign" component={ToysCampaign} />
-              </Switch>
-            </PublicLayout>
+
+            <GlobalComponents>
+              <PublicLayout>
+                <Switch>
+                  <Route path="/" exact component={HomePage} />
+                  <Route path="/register" component={RegisterForm} />
+                  <Route path="/login" component={LoginForm} />
+                  <Route path="/news" component={News} />
+                  <Route path="/us" component={Nosotros} />
+                  <Route path="/testimonials" />
+                  <Route path="/contact" component={Contact} />
+                  <Route path= "/donations" component={Donations} />
+                  <Route path= "/thanks" component={DonationResponse} />
+                  <Route path="/school-campaign" component={SchoolCampaign} />
+                  <Route path="/toys-campaign" component={ToysCampaign} />
+                  <Route path="/contact-form" component={Contact} />
+                </Switch>
+              </PublicLayout>
+            </GlobalComponents>
+
           </Route>
           </AnimatedSwitch>
-        </BrowserRouter>
+         
+          </BrowserRouter>
+        </AppContext.Provider>
       </div>
     </>
   );

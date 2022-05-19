@@ -3,6 +3,8 @@ import { Container, TextField, Button } from "@mui/material";
 import { NavLink, useHistory } from "react-router-dom";
 import "../FormStyles.css";
 import { Post } from "../../Services/publicApiService";
+import "./RegisterForm.css"
+
 
 const RegisterForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -125,8 +127,8 @@ const RegisterForm = () => {
           Inicia sesión
         </NavLink>
       </Container>
-      <div className="img-form-container">
-        <img className="img-form" alt="" src="/images/login.png" />
+      <div className="img-form-container img-form-back" style={{ backgroundImage: "url('/images/login.png')" }}>
+     
       </div>
     </div>
     }
