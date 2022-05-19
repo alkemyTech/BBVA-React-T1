@@ -23,7 +23,9 @@ import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
+import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
+
 
 
 function App() {
@@ -31,6 +33,17 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
+
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="switch-wrapper"
+            >
+            {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+
+
+
           <Route exact path="/backoffice/*">
             <BackofficeLayout>
               <Switch>
@@ -50,6 +63,7 @@ function App() {
                   path="/create-activity"
                   component={ActivitiesForm}
                 />
+
 
                 <Route
                   exact
@@ -126,6 +140,7 @@ function App() {
               </Switch>
             </PublicLayout>
           </Route>
+          </AnimatedSwitch>
         </BrowserRouter>
       </div>
     </>
