@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { create } from '@mui/material/styles/createTransitions';
 import {StyledEngineProvider, CssBaseline } from '@mui/material';
+import { GetAppContext } from '../../index';
 import './GenericList.css';
 
 
@@ -25,12 +26,6 @@ import './GenericList.css';
  */
 
 
-//  rows createData(name, code, population, size) {
-//   const density = population / size;
-//   return { name, code, population, size, density };
-// }
-
-
 const createList = col => {
     const columnsH = [];
     col.forEach(header =>{
@@ -43,6 +38,27 @@ const List = ({columnsHeaders=[], rows=[]}) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [columns, setColumns] = useState([]);
+  const { appData, setAppData } = GetAppContext();
+
+  const setSpinner = (open) => {
+    setAppData((prevState) => ({
+      ...prevState,
+      spinner: {
+        open: open,
+      },
+    }));
+  };
+  const setSnackBar = (message, severity) => {
+    setAppData((prevState) => ({
+      ...prevState,
+      snackbar: {
+        ...prevState.snackbar,
+        message: message,
+        severity: severity,
+        open: true,
+      },
+    }));
+  };
 
   const handleChangePage = (event, newPage) => { setPage(newPage); };
 

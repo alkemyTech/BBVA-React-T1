@@ -3,10 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { useState } from 'react';
+
+export const AppContext = React.createContext();
+export const GetAppContext = () => React.useContext(AppContext);
+
+
+export const appDataInitial = {
+  snackbar :{
+    message : "",
+    open: false,
+    severity: "error",
+  },
+  spinner: {
+    open: false,
+  }
+}
+
+
 
 ReactDOM.render(
   <React.StrictMode>
+    
       <App />
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

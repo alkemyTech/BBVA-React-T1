@@ -8,32 +8,44 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Delete } from '../../Services/privateApiService';
 import './MembersTable.css';
-
-// Table content
-// Members obj {
-//       "id": 0,
-//       "name": "string",
-//       "image": "string",
-//     } 
+import { GetAppContext } from '../../index';
 
 
 const columnsHeaders = ['id','name','image','description','modificar','eliminar'];
 const MembersTable = () => {
   const [rowsContent, setRowsContent] = useState([]);
   const [rowsData, setRowsData] = useState([]);
+  const { appData, setAppData } = GetAppContext();
+
+  const setSpinner = (open) => {
+    setAppData((prevState) => ({
+      ...prevState,
+      spinner: {
+        open: open,
+      },
+    }));
+  };
+  const setSnackBar = (message, severity) => {
+    setAppData((prevState) => ({
+      ...prevState,
+      snackbar: {
+        ...prevState.snackbar,
+        message: message,
+        severity: severity,
+        open: true,
+      },
+    }));
+  };
 
   const removeMember = async id => {
-    //Dummy hasta que esté todo OK BORRAR
-    if(id === '') return;
-    console.log('borrarrrrrr');
     try {
-      //const res = await Delete(`${process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH}/${id}`);
-      if(true/*res.data.success */) {
-        alert(`Fue borrao -> ${id}`);
+      const res = await Delete(`${process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_MEMBER_PATH}/${id}`);
+      if(res.data.success) {
+        setSnackBar(`Miembro con id: ${id} borrado correctamente`,"success");
         getMembersData();
       }
     } catch (error) {
-      alert(error);
+      setSnackBar(`Error al borrar miembro -> ${error}`,"error");
     }
     
   }
@@ -60,7 +72,9 @@ const MembersTable = () => {
 
   useEffect(() => { 
     getMembersData();
+
   }, []);
+
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
