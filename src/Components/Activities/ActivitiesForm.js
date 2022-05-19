@@ -9,6 +9,7 @@ import Spinner from './../Spinner/Spinner';
 import { Snackbar , Alert,TextField } from '@mui/material';
 import { useHistory } from "react-router-dom";
 
+
 const ActivitiesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
@@ -97,7 +98,7 @@ const ActivitiesForm = () => {
 
         promise.then( res => {
             if(res.data.success){
-                history.push("/activities");
+                history.push("/backoffice/activities");
             }else{
                 setSnack({...snack, 
                 message:"Error debe completar todos los casilleros y subir una imagen.",
@@ -107,8 +108,6 @@ const ActivitiesForm = () => {
             }
         })
         
-
-        
     }
     
     const onCloseSnack = () =>{
@@ -117,6 +116,8 @@ const ActivitiesForm = () => {
 
 
     return (
+        <>
+
         <div className="globalContainer">
             <Spinner visible={!loaded} className="spinner"  /> 
             <form className="form-container" onSubmit={handleSubmit}>
@@ -147,6 +148,7 @@ const ActivitiesForm = () => {
                 </Alert>
             </Snackbar>
         </div>
+        </>
     );
 }
  

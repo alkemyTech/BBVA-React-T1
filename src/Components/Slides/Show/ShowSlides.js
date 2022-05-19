@@ -13,6 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import './ShowSlides.css'
 import { Button } from '@mui/material';
 
+
 const ShowSlides = () => {
 
     const slidesEndpoint = process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_SLIDES_PATH;

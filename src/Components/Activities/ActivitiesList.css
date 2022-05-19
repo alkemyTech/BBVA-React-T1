@@ -1,0 +1,32 @@
+
+.Activities{
+    margin: 0 8rem;
+    height:80vh;
+}
+
+.img-list{
+    max-width: 4rem;
+}
+
+.table-icon{
+    color:gray;
+    cursor:pointer;
+}
+
+.table-link-create{
+    display: flex;
+    align-items: center;
+}
+.table-btn-create{
+    margin: 1.5rem 0 !important;
+}
+
+/* Responsive- Mobile */
+
+@media (max-width: 840px) {
+    
+    .Activities{
+        margin: 0 2rem;
+    }
+    
+  }
