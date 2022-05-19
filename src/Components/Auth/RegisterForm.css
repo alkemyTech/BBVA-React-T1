@@ -3,14 +3,11 @@
     height: 100%;
 }
 .img-form-back{
-    width: 50%;
+    width: 45%;
     height: auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-block: 5px;
-    border-bottom-left-radius: 10px;
-    -webkit-box-shadow: -12px 0px 5px 3px rgba(0,0,0,0.13);
-    -moz-box-shadow: -12px 0px 5px 3px rgba(0,0,0,0.13);
-    box-shadow: -12px 0px 5px 3px rgba(0,0,0,0.13);
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
 }

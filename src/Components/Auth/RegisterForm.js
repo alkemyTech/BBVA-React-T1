@@ -4,7 +4,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import "../FormStyles.css";
 import { Post } from "../../Services/publicApiService";
 import "./RegisterForm.css"
-
+import { GetAppContext } from '../../index';
 
 const RegisterForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -29,6 +29,35 @@ const RegisterForm = () => {
   const { name, lastName, email, password, confirmPassword } = initialValues;
   const { passwordError, confirmPasswordError } = error;
 
+  const {appData, setAppData} = GetAppContext();
+
+    const setSpinner = ( open ) =>{
+        setAppData(prevState => ({
+                ...prevState,
+                spinner:{
+                    open:open
+                }
+            })
+        )
+    }
+
+    const setSnackBar = ( message , severity) => {
+        setAppData(prevState => ({
+                ...prevState,
+                snackbar:{
+                        ...prevState.snackbar,
+                        message: message,
+                        severity: severity,
+                        open: true,
+                    }
+                })
+                )
+    }
+
+
+    const snackError = (message) => setSnackBar(message,"error")
+    const snackSuccess = (message) => setSnackBar(message,"success")
+
   const passValidation = new RegExp(
     "^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})"
   );
@@ -39,12 +68,26 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await Post("/register", {
-      name: name.toString(),
-      email: email.toString(),
-      password: password.toString(),
-    });
-    localStorage.setItem("token", res.data.data.token);
+    setSpinner(true)
+    try{
+      const res = await Post(process.env.REACT_APP_URL_BASE_ENDPOINT+"/register", {
+        name: name.toString(),
+        email: email.toString(),
+        password: password.toString(),
+      })
+      if(res.data.success){
+        snackSuccess("Registrado correctamente")
+        localStorage.setItem("token", res.data.data.token);
+        history.push("/")
+
+      }else{
+          snackError("El usuario ya esta en uso")
+      }
+    }catch(e){
+      snackError("El usuario ya esta en uso")//aA@12!.Ff
+    }
+    setSpinner(false)
+    
   };
 
   const validConfirmPassword =
