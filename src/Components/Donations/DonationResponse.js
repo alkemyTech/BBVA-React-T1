@@ -2,7 +2,7 @@ import "./Donations.css"
 import { useLocation, Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 
-const Gracias = () =>{
+const DonationResponse = () =>{
     const location = useLocation();
     return(
         <div className="donation-container gracias-container">
@@ -14,4 +14,4 @@ const Gracias = () =>{
     )
 }
 
-export default Gracias;
+export default DonationResponse;

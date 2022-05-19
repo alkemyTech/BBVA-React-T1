@@ -24,7 +24,7 @@ import UsersList from "./Components/Users/UsersList";
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
 import Donations from "./Components/Donations/Donations"
-import Gracias from "./Components/Donations/Gracias"
+import DonationResponse from "./Components/Donations/DonationResponse"
 import BackofficeLayout from './Layout/BackofficeLayout';
 
 
@@ -122,7 +122,7 @@ function App() {
                 <Route path="/testimonials" />
                 <Route path="/contact" component={Contact} />
                 <Route path= "/donations" component={Donations} />
-                <Route path= "/gracias" component={Gracias} />
+                <Route path= "/gracias" component={DonationResponse} />
                 <Route path="/school-campaign" component={SchoolCampaign} />
                 <Route path="/toys-campaign" component={ToysCampaign} />
                 <Route path="/contact-form" component={ContactForm} />
