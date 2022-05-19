@@ -123,8 +123,7 @@ const handleSubmit = async (e)  => {
         <>
         <h1 className="title-back" >{ !id ? "Crear Testimonio" : "Editar Testimonio" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
-        
-            <TextField id="outlined-basic" label="Nombre" variant="outlined"  
+            <TextField id="outlined-basic" label="Nombre y Apellido" variant="outlined"  
                         type="text"  name="name"  
                         value={ initialValues.name } onChange={handleChange}/>
             <CKEditor
@@ -139,7 +138,7 @@ const handleSubmit = async (e)  => {
                     setInitialValues({...initialValues, description : editor.getData()});
             }}
             /> 
-            <input className="input-field input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
+            <input className="input-back-file" accept=".png, .jpg, .jpeg" type="file" name="img" onChange={encodeImageAsURL} placeholder="imagen"></input>
             <button className="form-back-submit-btn" type="submit">{!id ? "Crear" : "Editar"}</button>
         </form>
 
