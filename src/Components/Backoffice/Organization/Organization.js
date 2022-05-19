@@ -63,7 +63,6 @@ const Organization = () =>{
     const submitHandler = async () => {
         try {
             const res = await PrivatePost(process.env.REACT_APP_URL_BASE_ENDPOINT+process.env.REACT_APP_URL_ORGANIZATION_PATH, organizationData);
-            console.log({res})
             if(res.data.error){ setSnackBar(`Ha ocurrido un error al editar datos -> ${res.data.error}`, 'error'); }
             else {
                 setSnackBar(`Datos actualizados`, 'success');
@@ -83,7 +82,7 @@ const Organization = () =>{
           <h1 className="organization-title">Organization Info</h1>
           <form className="organization-form " action="">
             <TextField
-                name=''
+                name='id'
                 onChange={changesHandler}
               id="id"
               className="text-field"
