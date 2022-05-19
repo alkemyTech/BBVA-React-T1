@@ -53,17 +53,17 @@ const Footer = () => {
         <footer className ="footer-front" >
             <div>
                 <div className="logo-container">
-                    <img className="img-logo" src={logo} alt="img-logo"/>
+                    <img className="img-logo-footer" src={logo} alt="img-logo"/>
                     <hr className = "hr-logo"/>
                 </div>
                 <nav className="nav-footer">
                     <ul className="ul-roots">
-                        <li className ="li-roots"><Link className ="a-roots" to="/inicio"> Inicio</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/"> Inicio</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/nosotros">Nosotos </Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/news">Novedades</Link></li>
                         <li className ="li-roots"><Link className ="a-roots" to="/testimonials">Testimonios</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots"to="/contact">Contacto</Link></li>
-                        <li className ="li-roots"><Link className ="a-roots" to="/contact">Contribuye</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots"to="/contact-form">Contacto</Link></li>
+                        <li className ="li-roots"><Link className ="a-roots" to="/donations">Contribuye</Link></li>
                     </ul>
                     <hr className= "hr-nav"/>
                     <ul className="ul-socials">

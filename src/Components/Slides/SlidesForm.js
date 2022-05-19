@@ -12,6 +12,7 @@ import './SlidesForm.css';
 
 
 
+
 const SlidesForm = () => {
 
     const history = useHistory();
@@ -138,7 +139,7 @@ const SlidesForm = () => {
  
         promise.then( res => {
             if(res.data.success){
-                history.push("/slides");
+                history.push("/backoffice/slides");
             }else{
                 setSnack({...snack, 
                     message:"Error debe completar todos los casilleros y subir una imagen.",
