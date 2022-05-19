@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    margin: 15px auto;
+    display: flex;
+    gap: 15px;
+    justify-content: space-around
+}
+
+.img-form {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    position: left;
+    flex-wrap: nowrap;
+    object-fit: cover;
+    border-radius: 20px;
+}
