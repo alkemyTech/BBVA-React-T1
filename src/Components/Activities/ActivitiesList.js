@@ -45,7 +45,7 @@ function ActivitiesList() {
     getActivitiesData();
   }, []);
 
-  const deleteActivitie = async (id) => {
+  const deleteActivity = async (id) => {
      await Delete(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ACTIVITIES_PATH +"/"+id)
      .then(res =>{
         if(res.data.success){
@@ -66,7 +66,7 @@ function ActivitiesList() {
   
   const deleteButton = (id) =>{
     return(
-      <DeleteIcon aria-label="delete" size="small" className="table-icon" onClick={() => deleteActivitie(id)}><DeleteIcon />
+      <DeleteIcon aria-label="delete" size="small" className="table-icon" onClick={() => deleteActivity(id)}><DeleteIcon />
       </DeleteIcon>)}
   
   const editIcon = (id) => {
