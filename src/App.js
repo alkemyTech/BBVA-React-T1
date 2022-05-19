@@ -35,12 +35,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
 
-            <AnimatedSwitch
-              atEnter={{ opacity: 0 }}
-              atLeave={{ opacity: 0 }}
-              atActive={{ opacity: 1 }}
-              className="switch-wrapper"
-            >
+            
             {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 
 
@@ -48,7 +43,12 @@ function App() {
           <Route exact path="/backoffice/*">
             {!getToken() && (<Redirect to='/login'/>)}
             <BackofficeLayout>
-              <Switch>
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="switch-wrapper"
+            >
                 <Route exact path="/backoffice/slides" component={ShowSlides} />
                 <Route
                   exact
@@ -122,12 +122,17 @@ function App() {
                   path="/backoffice/create-project"
                   component={ProjectsForm}
                 />
-              </Switch>
+              </AnimatedSwitch>
             </BackofficeLayout>
           </Route>
           <Route exact path="/:path?">
             <PublicLayout>
-              <Switch>
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="switch-wrapper"
+            >
                 <Route path="/" exact component={HomePage} />
                 <Route path="/register" component={RegisterForm} />
                 <Route path="/login" component={LoginForm} />
@@ -140,10 +145,9 @@ function App() {
                 <Route path="/school-campaign" component={SchoolCampaign} />
                 <Route path="/toys-campaign" component={ToysCampaign} />
                 <Route path="/contact-form" component={Contact} />
-              </Switch>
+              </AnimatedSwitch>
             </PublicLayout>
           </Route>
-          </AnimatedSwitch>
         </BrowserRouter>
       </div>
     </>
