@@ -64,7 +64,7 @@ const RegisterForm = () => {
 
   return (
     <>
-    {token ? (history.push('/')) : ''}
+    {token ? (history.push('/')) : RegisterForm}
     <div className="main-container-form">
       <Container maxWidth="sm" className="form-container">
         <h3>Bienvenido/a!</h3>
