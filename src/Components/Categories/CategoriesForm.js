@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
 
+
 const CategoriesForm = () => {
     const [initialValues, setInitialValues] = useState({
         name: '',
@@ -21,11 +22,14 @@ const CategoriesForm = () => {
     }
 
     return (
+        <>
+
         <form className="form-container" onSubmit={handleSubmit}>
             <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Title"></input>
             <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
             <button className="submit-btn" type="submit">Send</button>
         </form>
+        </>
     );
 }
  
