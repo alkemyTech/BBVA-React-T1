@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import React from 'react';
 
-const AUTHENTICATED = "loggedIn";
-const LOGOUT = "loggedOut";
+export const AuthGlobalContext = React.createContext();
+
 
 
 export const initialStateAuth =  {
@@ -9,9 +10,9 @@ export const initialStateAuth =  {
         email: null,
         token: null,
         name: null,
+        autenticated: false,
     }
 }
-
 
 /*
 * action -> {type:"LOGOUT||LOGIN" , data: {email:"",name:"",token:""}}
@@ -23,33 +24,48 @@ const AuthReducer = (state , action) =>
         case "LOGOUT":
             return initialStateAuth;
         case "LOGIN":
-            return {user: { email: action.data.email, name: action.data.name, token: action.data.token}}
+            return {...state , user: action.data,autenticated:true}
+        case "REGISTRO":
+            return {...state , user: action.data,autenticated:true}
+        default:
+            throw new Error("No existe la accion solicitada del AuthReducer");
     }
 }
 
 
-export const LogIn = ({email,name,token}) => {
-    //useReducer
+export const AuthContext = ({children}) =>{
+    const [ authStatus, authDispacher ] = React.useReducer ( AuthReducer , initialStateAuth )
+    return (
+      <AuthGlobalContext.Provider
+        value={{
+          ...authStatus,
+          authDispacher,
+        }}
+      >
+        {children}
+      </AuthGlobalContext.Provider>
+    );
+}
+/*pese que no es necesario la desestructuracion de los datos 
+* se hace para dejar en claro que datos se deben pasar
+*/
+/*EJEMPLOS PARA LOGIN LOGOUT AND GET USER DATA PARA QUIEN VE POR PRIMERA VEZ ESTO
 
+export const LogInRedux = ({email,name,token}) => { 
+
+    const { user, authDispacher } = React.useContext(AuthGlobalContext);
+    authDispacher( { type: "LOGIN" , data: {email: email, name: name, token: token}} )
 }
 
-export const RegisterUser = ({email,name,token}) => {
-
-}
-
-export const LogOut = () =>{
-
-}
-
-export const isLogged = () =>{
-    //const result: any = useSelector(selector: Function, equalityFn?: Function)
-
-    
+export const LogOutRedux = () => {
+    const { user, authDispacher } = React.useContext(AuthGlobalContext);
+    authDispacher( { type: "LOGOUT" } )
 }
 
 export const GetUserData = () => {
-    return useSelector(state => state.user)
+    const { user, authDispacher } = React.useContext(AuthGlobalContext);
+    return user;
 }
 
-
+*/
 export default  AuthReducer

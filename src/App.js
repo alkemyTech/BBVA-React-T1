@@ -18,18 +18,29 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import LoginForm from "./Components/Auth/LoginForm";
 import { News } from "./Components/News/News";
 import UsersList from "./Components/Users/UsersList";
-import AuthReducer from './Auth/AuthReducer';
+import AuthReducer, { GetUserData ,LogInRedux } from './Auth/AuthReducer';
 import ShowSlides from "./Components/Slides/Show/ShowSlides";
 import Contact from "./Components/Contact/Contact";
 import { AnimatedSwitch } from 'react-router-transition';
 import BackofficeLayout from './Layout/BackofficeLayout';
 import HomePage from "./Components/Home/HomePage";
 import ContactForm from "./Components/Contact/ContactForm";
+import { useEffect } from "react";
+import { AuthGlobalContext } from "./Auth/AuthReducer";
 
 function App() {
+
+  const { user, authDispacher } = React.useContext(AuthGlobalContext);
+    
+  useEffect(() => {
+    authDispacher( { type: "LOGIN" , data: {email: "email", name: "name", token: "token"}} )
+  }, []);
+  
+
   return (
     <> 
       <div className="App">
+        {"data: "+user}
         <BrowserRouter>
 
             <AnimatedSwitch

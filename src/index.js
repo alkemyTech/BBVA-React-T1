@@ -1,22 +1,20 @@
-import React from 'react';
+import React,{useReducer} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { AuthContext } from './Auth/AuthReducer';
 
-export const GlobalContextApp = React.createContext();
 
-const appContext = {
-  authData : {},
-}
 
 ReactDOM.render(
+
   <React.StrictMode>
-      <GlobalContextApp.Provider value={appContext}>
+      <AuthContext>
         <App />
-      </GlobalContextApp.Provider>
+      </AuthContext>
   </React.StrictMode>,
-  //document.getElementById('root')
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
