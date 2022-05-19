@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
+import NewsBackoffice from "./Components/Backoffice/News/NewsBackoffice"
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import UserForm from "./Components/Users/UsersForm";
@@ -70,8 +71,6 @@ function App() {
                   path="/create-activity"
                   component={ActivitiesForm}
                 />
-
-
                 <Route
                   exact
                   path="/backoffice/activity/create"
@@ -93,11 +92,9 @@ function App() {
                   path="/backoffice/create-category"
                   component={CategoriesForm}
                 />
-                <Route
-                  exact
-                  path="/backoffice/create-news"
-                  component={NewsForm}
-                />
+                <Route exact path="/backoffice/news" component={NewsBackoffice} />
+                <Route exact path="/backoffice/news/:id" component={NewsForm} />
+                <Route exact path="/backoffice/create-news" component={NewsForm} />
 
                 <Route
                   exact
