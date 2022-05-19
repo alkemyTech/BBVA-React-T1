@@ -42,7 +42,7 @@ function HomePage() {
     const getOrganizationData = async () => {
         setSpinner(true)
         try{
-        const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH);
+        const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4");
         setDescription({...description, title: res.data.data.welcome_text, short_description: res.data.data.short_description});
         }catch(e){
             setSnackBar("Error en la carga de datos, reintente nuevamente mas tarde.","error")

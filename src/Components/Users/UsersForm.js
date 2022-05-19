@@ -4,7 +4,6 @@ import '../FormStyles.css';
 import {Get, PrivatePost, Put} from "../../Services/privateApiService"
 import { Snackbar , Alert, TextField, MenuItem } from '@mui/material';
 
-
 const UserForm = () => {
   const { id } = useParams();  
   const history = useHistory();
@@ -124,7 +123,6 @@ const handleSubmit = async (e)  => {
     
     return (
         <>
-
         <h1 className="title-back" >{ !id ? "Crear usuario" : "Editar Usuario" }</h1>
         <form className="form-container form-back"  onSubmit={handleSubmit}>
         <TextField id="outlined-basic" label="Nombre y Apellido" variant="outlined"  
