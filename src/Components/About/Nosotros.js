@@ -67,48 +67,43 @@ const Nosotros = () => {
               style={{ backgroundImage: `url(${sobreNosotros.imgSrc})` }}
             ></div>
           </div>
-          <LinkedinFollowCompany
-          companyId={12312312}
-          counter="top" // Or "right"
-          lang="en_US"
-        />
-            <MembersList />
-            <h2 className="centerText" style={{ marginTop: 30 }}>
+          <MembersList />
+          <div className="container-twitter">
+          <h2 className="centerText twitter-tittle" style={{ marginTop: 30 }}>
             Últimos Tweets
           </h2>
-          <div>
             <TwitterTweet
+            className= "twitter-item"
                 align='left'
                 coversation='none'
                 tweetId='1527122168684978176' 
                 theme='light'
-                width={325}
+                width={350}
             />
             <TwitterTweet
+            className= "twitter-item"
                 align='left'
                 coversation='none'
                 tweetId='1527122059213647872'
                 theme='light'
-                width={325}
+                width={350}
             />
             <TwitterTweet
-                align='left'
-                coversation='none'
-                tweetId='1527121354343972869'
-                theme='light'
-                width={325}
-            />
-            <TwitterTweet
+            className= "twitter-item"
                 align='left'
                 coversation='none'
                 tweetId='1527121093617647617'
                 theme='light'
-                width={325}
+                width={350}
             />
      
 
           </div>
-          <TwitterButton
+          <div className="novedades-twitter">
+            <h4 className="centerText h4-twitter" style={{ marginTop: 30 }}>
+              ¿Tenés algo para contarnos?
+            </h4>
+            <TwitterButton
               hashtags="ONG, voluntariado"
               target="OngSomosMas1"
               text="Suamate a Somos mas"
@@ -116,6 +111,13 @@ const Nosotros = () => {
               size="large"
               via="OngSomosMas1"
             />
+            <LinkedinFollowCompany
+              companyId={12312312}
+              counter="top" // Or "right"
+              lang="en_US"
+            />
+
+          </div>
 
         </div>
       </div>

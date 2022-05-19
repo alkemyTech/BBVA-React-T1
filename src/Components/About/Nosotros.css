@@ -51,3 +51,38 @@
 .containerData{
     margin-inline: 7%;
 }
+
+.container-twitter{
+    border: 0.2rem dashed rgba(128, 128, 128, 0.411);
+    background-color: rgba(3, 103, 197, 0.733);
+    color:white;
+    height: 60vh;
+    border-radius:20px;
+    padding:0.6rem;
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+    justify-content:center;
+    margin-top:4rem;
+}
+
+.twitter-tittle{
+    margin-bottom: 0.8rem;
+}
+
+.novedades-twitter{
+    margin: 2rem 0 4rem 0;
+    padding:1rem;
+}
+
+.h4-twitter{
+    margin-bottom:1rem;
+}
+
+@media (max-width: 1270px) {
+    
+    .container-twitter{
+        display:none;
+    }
+
+  }
