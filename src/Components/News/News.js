@@ -37,7 +37,7 @@ export const News = () => {
 
     const snackError = (message) => setSnackBar(message,"error")
     const snackSuccess = (message) => setSnackBar(message,"success")
-    const errorCarga = () => snackError("Error en la carga de datos, reintente nuevamente mas tarde.")
+    const loadingError = () => snackError("Error en la carga de datos, reintente nuevamente mas tarde.")
   const getNews = async () => {
     setSpinner(true)
     try{
@@ -48,9 +48,9 @@ export const News = () => {
         const newsList = await response.data.data;
         setData(newsList);
       }else
-      errorCarga()
+      loadingError()
     }catch(e){
-      errorCarga()
+      loadingError()
     }
     setSpinner(false);
   };
