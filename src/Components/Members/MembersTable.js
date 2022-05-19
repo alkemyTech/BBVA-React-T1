@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import List from '../GenericList/List';
-import { Button } from '@mui/material';
+import { Button, StyledEngineProvider, CssBaseline } from '@mui/material';
 import { Get } from '../../Services/publicApiService';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -17,19 +17,20 @@ import './MembersTable.css';
 
 const removeMember = id => {
   //Dummy hasta que esté todo OK BORRAR
-  if(id === '') console.log(`id is empty, bye`);
-  console.log(`Member 2 remove -> ${id}`);
+  if(id === '') return;
+  // const res = 
 }
 
 const getReducedRows = (rows) => {
   rows.forEach((row, index) => {
-    const { id, name, image, ...values } = row;
+    const { id, name, image, description } = row;
     rows[index] = {
       id,
       name,
-      'image': <img className='portrait' src={image} alt='image' />,
+      description,
+      'image': <img className='portrait' src={image} alt={image} />,
       'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
-      'eliminar': <Button className='icon-link' onClick={removeMember(id)}><DeleteForeverIcon /></Button>
+      'eliminar': <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
     };
   });
   return rows;
@@ -48,9 +49,9 @@ const MembersTable = () => {
   useEffect(() => { 
     getMembersData();
   }, []);
-  console.log({rowsData});
   return (
-    <>
+    <StyledEngineProvider injectFirst>
+      <CssBaseline />
       <div className="members-container">
         <h2>MEMBERS LIST</h2>
         <Link className='create-link' to="/backoffice/members/create"> Create Member </Link>
@@ -61,7 +62,7 @@ const MembersTable = () => {
           />
         </div>
       </div>
-    </>
+    </StyledEngineProvider>
   );
 };
 
