@@ -1,31 +1,20 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
+import "./Donations.css"
+import '../FormStyles.css';
 import React, { useState } from 'react'
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import {useHistory} from "react-router-dom"
 import { Snackbar , Alert } from '@mui/material';
-import "./Donations.css"
-import '../FormStyles.css';
 
 const Donations = () =>{
     const [open, setOpen] = useState(false);
-    
-    const handleOpen = () => {
-        if(formValidator()){
-            setOpen(true)
-        }   
-    };
-    const handleClose = () => {
-        setOpen(false)
-        showSnack("Donación exitosa", "success")
-        setTimeout(()=>{
-            history.push("/gracias", {sendName:initialValues.name , sendMail: initialValues.mail } );
-        }, 3000)   
-    }
-
     const history = useHistory();
+    const [initialValues, setInitialValues] = useState({
+        name: '',
+        mail: '',
+    });
 
     const [snack, setSnack] = useState({
         open: false,
@@ -45,17 +34,20 @@ const Donations = () =>{
         setSnack({...snack, open:false})
     }
     
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        mail: '',
-    });
-
-    const navegar =() =>{
+    const handleOpen = () => {
+        if(formValidator()){
+            setOpen(true)
+        }   
+    };
+    
+    const handleClose = () => {
+        setOpen(false)
         showSnack("Donación exitosa", "success")
         setTimeout(()=>{
             history.push("/gracias", {sendName:initialValues.name , sendMail: initialValues.mail } );
-        }, 3000);
+        }, 3000)   
     }
+    
 
     const handleChange = (e) => {
         setInitialValues({...initialValues, [e.target.name]: e.target.value})
