@@ -32,9 +32,7 @@ const BackofficeHeader = () => {
   return (
     <>
       <div className="navbar">
-        <Link to="/backoffice/">
           <img className="img-logo" src={logo} alt="img-logo" />
-        </Link>
         <IconContext.Provider value={{ color: "#c40404" }}>
           <Link to="#" className="menu-bars">
             <FaBars onClick={showSidebar} />
