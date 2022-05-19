@@ -31,6 +31,7 @@ import { getToken } from "./Services/privateApiService";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HomePage from "./Components/Home/HomePage";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
+import Organization from './Components/Backoffice/Organization/Organization';
 
 function App() {
   const [ appData, setAppData ] = React.useState( appDataInitial );
@@ -94,7 +95,7 @@ function App() {
                   <Route exact path="/backoffice/projects/:id" component={ProjectsForm} />
                   <Route exact path="/backoffice/projects" component={''} />
 
-                  <Route exact path="/backoffice/organization" component={''} />
+                  <Route exact path="/backoffice/organization" component={Organization} />
                 </AnimatedSwitch>
                 
               </BackofficeLayout>
