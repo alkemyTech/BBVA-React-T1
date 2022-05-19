@@ -67,7 +67,6 @@ const showSnack = (text, type) =>{
 
 //Validaciones del form
 const formValidation = () =>{
-    console.log(initialValues.logo)
     const urlRegex = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/)
     let validationOk = false;
     if(!initialValues.name || !initialValues.longDescription || !initialValues.shortDescription){
@@ -101,7 +100,6 @@ const handleSubmit = async (e)  => {
     e.preventDefault();
     if(formValidation()){
         await Put(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + "/4", OrganizationCreated)
-        .then(res=>console.log(res))
         history.push("/backoffice/organization") 
         }
     }
