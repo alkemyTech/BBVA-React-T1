@@ -51,18 +51,20 @@ const MembersTable = () => {
   }
 
   const getReducedRows = (rows) => {
-    rows.forEach((row, index) => {
+    var rowsReturn= []
+    rows.forEach((row) => {
       const { id, name, image, description } = row;
-      rows[index] = {
+      rowsReturn.push( {
         id,
         name,
         description,
-        'image': <img className='portrait' src={image} alt='portrait' />,
-        'modificar': <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
-        'eliminar': <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
-      };
+        image: <img className='portrait' src={image} alt='portrait' />,
+        modificar: <Link className='icon-link' to={`/backoffice/members/${id}`}><EditIcon /></Link>,
+        eliminar: <Button className='icon-link' onClick={ () => removeMember(id)}><DeleteForeverIcon /></Button>
+      })
     });
-    return rows;
+    //const v=rowsReturn[0].image
+    return rowsReturn;
   };
 
   const getMembersData = async () => {
