@@ -21,7 +21,7 @@ export const appDataInitial = {
   }
 }
 
-
+document.title = "ONG - Somos Mas"
 
 ReactDOM.render(
   <React.StrictMode>
