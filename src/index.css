@@ -5,6 +5,7 @@
 
 *{
   box-sizing: border-box;
+  overflow-y: overlay;
 }
 
 body {
