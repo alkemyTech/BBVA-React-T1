@@ -34,7 +34,7 @@ const ScreenDashboard = () => {
     },
     {
       name: "Organización",
-      link: "/backoffice/organization",
+      link: "/backoffice/organization/edit",
       icono: FilterListIcon,
     },
     { name: "Slides", link: "/backoffice/slides", icono: DriveFileMoveIcon },

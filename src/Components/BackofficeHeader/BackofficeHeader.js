@@ -33,7 +33,7 @@ const BackofficeHeader = () => {
     return (
       <>
         <div className="navbar">
-          <Link to="/backoffice/">
+          <Link to="/backoffice/dashboard">
             <img className="img-logo" src={logo} alt="img-logo" />
           </Link>
           <IconContext.Provider value={{ color: "#c40404" }}>

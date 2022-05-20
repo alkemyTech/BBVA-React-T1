@@ -77,7 +77,7 @@ const ContactForm = () => {
                 <form className="form-container" method='POST' onSubmit={handleSubmit}>
                     <div className="contribution">
                         <h2 className="contribution-title">¿Queres contribuir?</h2>
-                        <button className="submit-btn">Contribuir</button>
+                        <button className="submit-btn" onClick={() => history.push('/donations')}>Contribuir</button>
                     </div>
 
                     <h2 className="contact-us">¡Contactate con nosotros!</h2>

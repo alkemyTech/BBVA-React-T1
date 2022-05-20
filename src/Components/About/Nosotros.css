@@ -79,6 +79,16 @@
     margin-bottom:1rem;
 }
 
+.members-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
 @media (max-width: 1270px) {
     
     .container-twitter{

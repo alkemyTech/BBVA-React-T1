@@ -78,7 +78,7 @@ const MembersTable = () => {
   return (
     <StyledEngineProvider injectFirst>
       <CssBaseline />
-      <div className="members-container">
+      <div className="members-table-container">
         <h2>MEMBERS LIST</h2>
         <Link className='create-link' to="/backoffice/members/create"> Create Member </Link>
         <div className="content-container">

@@ -12,11 +12,6 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Categorias",
-    path: "/backoffice/categories",
-    cName: "nav-text",
-  },
-  {
     title: "Novedades",
     path: "/backoffice/news",
     cName: "nav-text",

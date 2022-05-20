@@ -102,12 +102,13 @@ function Header() {
                         item.handleAuth ? localStorage.removeItem("token") : ""
                       }
                       className="button-clear"
-                    <NavLink
-                      key={item.name}
-                      className={`${item.className} ${(navData) =>
-                        navData.isActive ? "active" : "link"}`}
-                      to={item.link}
                     >
+                      <NavLink
+                        key={item.name}
+                        className={`${item.className} ${(navData) =>
+                          navData.isActive ? "active" : "link"}`}
+                        to={item.link}
+                      >
                         {item.name}
                       </NavLink>
                     </button>

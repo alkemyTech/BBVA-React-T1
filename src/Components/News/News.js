@@ -33,7 +33,7 @@ export const News = () => {
                   type="news"
                   img={item.image}
                   buttonContent="Ver novedad"
-                  description={item.content}
+                  description={<div dangerouslySetInnerHTML={{__html: item.content}}></div>}
                 />
               </div>
             )

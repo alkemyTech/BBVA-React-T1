@@ -35,6 +35,7 @@ import HomePage from "./Components/Home/HomePage";
 import ScreenDashboard from "./Components/Backoffice/ScreenDashboard/ScreenDashboard";
 import OrganizationForm from "./Components/Organization/OrganizationForm"
 import ActivitiesScreen from "./Components/Activities/ActivitiesScreen";
+import Testimonials from './Components/Testimonials/Testimonials';
 
 function App() {
   const [ appData, setAppData ] = React.useState( appDataInitial );
@@ -79,8 +80,8 @@ function App() {
                   <Route exact path="/backoffice/categories" component={''} />
 
                   <Route exact path="/backoffice/news" component={NewsBackoffice} />
-                  <Route exact path="/backoffice/news/:id" component={NewsForm} />
                   <Route exact path="/backoffice/news/create" component={NewsForm} />
+                  <Route exact path="/backoffice/news/:id" component={NewsForm} />
 
 
                   <Route exact path="/backoffice/testimonials/create" component={TestimonialForm} />
@@ -120,7 +121,7 @@ function App() {
                   <Route path="/login" component={LoginForm} />
                   <Route path="/news" component={News} />
                   <Route path="/us" component={Nosotros} />
-                  <Route path="/testimonials" />
+                  <Route path="/testimonials" component={Testimonials} />
                   <Route path="/contact" component={Contact} />
                   <Route path= "/donations" component={Donations} />
                   <Route path= "/thanks" component={DonationResponse} />

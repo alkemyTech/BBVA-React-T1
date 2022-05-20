@@ -132,7 +132,7 @@ const handleSubmit = async (e)  => {
         type="text"  name="email" value={ initialValues.email } onChange={handleChange}/>
 
         <TextField id="outlined-basic" label="Contraseña" variant="outlined"  
-        type="text"  name="password" value={ initialValues.password } onChange={handleChange}/>
+        type="password"  name="password" value={ initialValues.password } onChange={handleChange}/>
 
         <TextField id="outlined-basic" select label="Rol" variant="outlined"  
         type="text"  name="roleId" defaultValue="Seleccione un rol" value={initialValues.roleId} onChange={e => setInitialValues({...initialValues, roleId: e.target.value})}>

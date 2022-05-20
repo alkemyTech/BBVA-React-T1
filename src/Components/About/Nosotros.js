@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './Nosotros.css'
 import { Get } from './../../Services/privateApiService';
 import Spinner from '../Spinner/Spinner'
 import { Snackbar , Alert } from '@mui/material';
 import { MembersList } from "../Members/MembersList";
 import { GetAppContext } from '../../index';
 import {LinkedinFollowCompany, TwitterButton,TwitterTweet} from 'react-social-plugins';
+import './Nosotros.css'
 
 /**
  * En esta seccion dispondremos el componente Nosotros, que se encontrara

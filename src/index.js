@@ -21,10 +21,8 @@ export const appDataInitial = {
   }
 }
 
-
-
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode> 
     
       <App />
     

@@ -60,7 +60,7 @@ export const MembersList = () => {
   return (
     <div className="members-list">
       <h2>Miembros</h2>
-      <div className="member-container">
+      <div className="members-container">
         {data.map(
           (item) =>
             item.image && (
