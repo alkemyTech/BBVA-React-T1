@@ -101,7 +101,7 @@ function Header() {
                       onClick={() =>
                         item.handleAuth ? localStorage.removeItem("token") : ""
                       }
-                      className="button-clear"
+                      className="button-clear">
                     <NavLink
                       key={item.name}
                       className={`${item.className} ${(navData) =>
