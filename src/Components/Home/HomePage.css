@@ -1,5 +1,5 @@
 .container{
-    width: 100%;
+    width: auto;
     margin: 15px auto;
     display: flex;
     gap: 15px;
