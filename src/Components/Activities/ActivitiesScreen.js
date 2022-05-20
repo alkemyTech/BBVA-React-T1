@@ -68,7 +68,7 @@ const ActivitiesScreen = () => {
                 <div className="background-img-container">
                   <h2 className="activity-title">{activity.name}</h2>
                   <p className="description-container">
-                    {activity.description}
+                  <div dangerouslySetInnerHTML={{__html: activity.description}}></div>
                   </p>
                 </div>
               </div>
