@@ -8,6 +8,18 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
+}
+
+.min-height{
+    min-height: calc(100vh - 127px);
+}
+
+.spacer{
+    height: 40px;
+}
+
+@media screen and (max-width: 600px){
+    .img-form-back{
+        display: none;
+    }
 }

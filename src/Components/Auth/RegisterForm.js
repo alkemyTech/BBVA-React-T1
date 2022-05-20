@@ -110,8 +110,9 @@ const RegisterForm = () => {
   return (
     <>
     {token ? (history.push('/')) :
-    <div className="main-container-form">
+    <div className="main-container-form min-height">
       <Container maxWidth="sm" className="form-container">
+        <div className="spacer"></div>
         <h3>Bienvenido/a!</h3>
         <h1>Regístrese</h1>
         <form className="register-form" onSubmit={handleSubmit}>
