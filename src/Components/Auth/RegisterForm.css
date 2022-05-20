@@ -3,15 +3,11 @@
     height: 100%;
 }
 .img-form-back{
-    width: 50%;
+    width: 45%;
     height: auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-@media screen and (max-width: 600px){
-    .img-form-back{
-        display: none;
-    }
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
 }
