@@ -39,12 +39,13 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await Post("/register", {
+    const res = await Post(`${process.env.REACT_APP_URL_BASE_ENDPOINT}/register`, {
       name: name.toString(),
       email: email.toString(),
       password: password.toString(),
     });
-    localStorage.setItem("token", res.data.data.token);
+    localStorage.setItem("token", res.data.data.token); 
+    console.log(res.data.error);
   };
 
   const validConfirmPassword =
