@@ -62,6 +62,16 @@
   background-color: rgb(97, 97, 97);
   border-radius: 10px;
 }
+.button-clear{
+  background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+}
 
 .button-auth {
   background-color: red;

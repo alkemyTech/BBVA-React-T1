@@ -1,31 +1,35 @@
-import { useState, useEffect } from "react"
-import { Link } from 'react-router-dom'
-import { FaBars } from 'react-icons/fa'
-import { AiOutlineClose } from 'react-icons/ai'
-import { SidebarData } from "./Sidebar"
-import { IconContext } from 'react-icons'
-import { Get } from '../../Services/publicApiService'
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+import { SidebarData } from "./Sidebar";
+import { IconContext } from "react-icons";
+import { Get } from "../../Services/publicApiService";
 
-import './BackofficeHeader.css'
-
+import "./BackofficeHeader.css";
 
 const BackofficeHeader = () => {
-    
-    const [logo, setLogo] = useState('')
+  const [logo, setLogo] = useState("");
 
-    const getOrganizationData = async () =>{
-        const res = await Get(process.env.REACT_APP_URL_BASE_ENDPOINT + process.env.REACT_APP_URL_ORGANIZATION_PATH + '/' + 1)
-        setLogo(res.data.data.logo)
-    }
-    
-    useEffect ( () => {
-        getOrganizationData();
-    }, [])
+  const getOrganizationData = async () => {
+    const res = await Get(
+      process.env.REACT_APP_URL_BASE_ENDPOINT +
+        process.env.REACT_APP_URL_ORGANIZATION_PATH +
+        "/" +
+        1
+    );
+    setLogo(res.data.data.logo);
+  };
 
-    const [sidebar, setSidebar] = useState(false)
+  useEffect(() => {
+    getOrganizationData();
+  }, []);
 
-    const showSidebar = () => setSidebar(!sidebar)
+  const [sidebar, setSidebar] = useState(false);
 
+  const showSidebar = () => setSidebar(!sidebar);
+
+ 
     return (
       <>
         <div className="navbar">
@@ -61,7 +65,5 @@ const BackofficeHeader = () => {
       </>
     );
 };
-
-
 
 export default BackofficeHeader;
