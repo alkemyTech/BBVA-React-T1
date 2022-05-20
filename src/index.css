@@ -5,7 +5,7 @@
 
 *{
   box-sizing: border-box;
-  overflow-y: overlay;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 body {
