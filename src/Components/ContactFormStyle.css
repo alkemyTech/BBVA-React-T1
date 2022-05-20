@@ -28,8 +28,16 @@
     border: 1px solid #c1c1c1;
 }
 
-.contribution{
-    width: 80%;
+
+.contribution-title{
+    margin-bottom: 1.5rem;
+    font-size:2rem;
+    font-weight:500;
+}
+
+.contact-us{
+    margin-top:1.2rem;
+    font-weight:500;
 }
 
 

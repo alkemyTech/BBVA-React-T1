@@ -73,6 +73,17 @@
     padding: 0;
 }
 
+.button-auth {
+  background-color: red;
+  border-radius: 10px;
+  padding: 10px 8px;
+  margin: 3.5px;
+}
+
+.button-auth:hover {
+  background-color: rgb(250, 31, 31);
+}
+
 @media (max-width: 600px) {
   .toggle-button {
     display: flex;

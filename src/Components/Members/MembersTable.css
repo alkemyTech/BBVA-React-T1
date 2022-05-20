@@ -1,0 +1,41 @@
+.icon-link{
+  text-decoration: none;
+  color: lightgrey;
+}
+.icon-link:hover{
+  color: grey;
+}
+
+.create-link{
+  text-decoration: none;
+  background-color: rgb(70, 70, 255);
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.create-link:hover{
+  background-color: rgb(50, 50, 255);
+  color: lightgrey;
+}
+
+.members-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100vw - 12px);
+  height: 100%;
+  margin: 20px 0;
+}
+
+.portrait{
+  width: 100px; 
+  height: 100px;
+  object-fit: cover;
+}
+
+.content-container{
+  width: 90vw;
+}
