@@ -90,7 +90,7 @@ const NewsBackoffice = () => {
               {data.map((news) => (
                 <TableRow key={news.id}>
                   <TableCell>{news.name}</TableCell>
-                  <TableCell>{news.image}</TableCell>
+                  <TableCell><img className='portrait' src={news.image} alt='portrait' /></TableCell>
                   <TableCell>{news.createdAt}</TableCell>
                   <TableCell>
                     <Link to={"/backoffice/news/" + news.id}>

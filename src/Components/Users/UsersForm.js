@@ -131,7 +131,7 @@ const handleSubmit = async (e)  => {
         <TextField id="outlined-basic" label="Dirección Mail" variant="outlined"  
         type="text"  name="email" value={ initialValues.email } onChange={handleChange}/>
 
-        <TextField id="outlined-basic" label="Contraseña" variant="outlined"  
+        <TextField id="outlined-basic" label="Contraseña" variant="outlined"   type="password"
         type="text"  name="password" value={ initialValues.password } onChange={handleChange}/>
 
         <TextField id="outlined-basic" select label="Rol" variant="outlined"  

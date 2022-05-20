@@ -73,7 +73,7 @@ function HomePage() {
                             type={'staff'}
                             title={"Nuestro Staff"}
                             endpoint={process.env.REACT_APP_URL_MEMBER_PATH}
-                            redirect = {'/nosotros'}
+                            redirect = {'/us'}
                         />
                         <br/>
                         <List 
